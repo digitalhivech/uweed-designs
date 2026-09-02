@@ -1,0 +1,2437 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>uWeed — component gallery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   TOKENS — doc 08. Nothing below this block declares a value.
+   ============================================================ */
+:root{
+  --dark-blue:#0B102A;   --medium-blue:#334BC1;   --light-blue:#CED4F3;
+  --dark-green:#286754;  --medium-green:#4ABD9A;  --light-green:#D1EFE5;
+  --dark-pink:#78596F;   --medium-pink:#DBABCF;   --light-pink:#F4E2ED;
+                         --medium-orange:#FFA033; --light-orange:#FFF5EB;
+                         --medium-red:#EE2E31;    --light-red:#FDEDED;
+  --dark-gray:#3D3D3D;   --medium-gray:#999999;   --light-gray:#F5F5F5;
+  --black:#000000;       --white:#FFFFFF;
+
+  --font-color:var(--dark-gray);
+  --heading-color:var(--dark-blue);
+  --line:#E7E7E9;
+
+  --shadow-xs:0 1px 2px   #0B102A0F;
+  --shadow-sm:0 2px 4px   #0B102A0F, 0 1px 2px #0B102A0A;
+  --shadow-md:0 4px 10px  #0B102A1A;
+  --shadow-lg:0 10px 24px #0B102A1F;
+  --shadow-xl:0 20px 48px #0B102A29;
+
+  --space-2xs:.25rem; --space-xs:.5rem; --space-s:.75rem; --space-m:1rem;
+  --space-l:1.5rem; --space-xl:2rem; --space-2xl:3rem; --space-3xl:4.5rem;
+
+  --radius-checkbox:6px; --radius-inner:10px; --radius-control:12px;
+  --radius-card:16px; --radius-pill:999px;
+
+  --border-hairline:1px; --border-emphasis:2px; --border-heavy:3px;
+  --btn-min-width:160px;
+
+  --ff-heading:'Poppins',system-ui,sans-serif;
+  --ff-body:'DM Sans',system-ui,sans-serif;
+  --fw-regular:400; --fw-medium:500; --fw-semibold:600; --fw-bold:700; --fw-extrabold:800;
+
+  --lh-h5:1.30;--ls-h5:-.015em;
+  --fs-h2:clamp(1.5625rem,1.23rem + 1.44vw,2.375rem);
+  --fs-h4:clamp(1.1875rem,1.06rem + .55vw,1.5rem);
+  --fs-h5:clamp(1.0625rem,.99rem + .33vw,1.25rem);
+  --fs-body:1rem; --fs-small:.875rem; --fs-meta:.8125rem; --fs-cta:1rem;
+  --lh-body:1.6; --ls-caps:.04em;
+}
+
+/* ============================================================
+   GALLERY CHROME — not part of the library
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:var(--ff-body);font-size:var(--fs-body);
+     line-height:var(--lh-body);color:var(--font-color);background:var(--white);
+     -webkit-font-smoothing:antialiased}
+.g-wrap{max-width:1120px;margin-inline:auto;padding:36px 24px 100px}
+.g-h1{font-family:var(--ff-heading);font-size:var(--fs-h2);font-weight:var(--fw-extrabold);
+      letter-spacing:-.03em;line-height:1.15;color:var(--heading-color);margin:0 0 8px}
+.g-sub{max-width:66ch;margin:0 0 20px}
+.g-warn{border:var(--border-hairline) solid var(--medium-orange);background:var(--light-orange);
+        border-radius:var(--radius-card);padding:16px 20px;margin:0 0 40px;font-size:var(--fs-small);
+        line-height:1.55;color:var(--dark-gray)}
+.g-warn b{color:var(--dark-blue)}
+.g-sec{padding:40px 0;border-top:var(--border-hairline) solid var(--line)}
+.g-num{font-size:var(--fs-meta);font-weight:var(--fw-bold);letter-spacing:.1em;
+       text-transform:uppercase;color:var(--medium-blue);margin:0 0 4px}
+.g-h2{font-family:var(--ff-heading);font-size:var(--fs-h4);font-weight:var(--fw-bold);
+      letter-spacing:-.02em;color:var(--heading-color);margin:0 0 6px}
+.g-note{font-size:var(--fs-small);color:var(--dark-gray);margin:0 0 24px;max-width:76ch}
+.g-h3{font-size:var(--fs-meta);font-weight:var(--fw-bold);letter-spacing:.08em;
+      text-transform:uppercase;color:var(--medium-gray);margin:28px 0 12px}
+.g-h3:first-of-type{margin-top:0}
+.g-row{display:flex;flex-wrap:wrap;gap:var(--space-s);align-items:center}
+.g-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:var(--space-m)}
+.g-cell{min-width:0}
+.g-lbl{display:block;font-size:var(--fs-meta);color:var(--medium-gray);margin-bottom:var(--space-2xs);
+       font-family:ui-monospace,monospace}
+.g-dark{background:var(--dark-blue);border-radius:var(--radius-card);padding:20px}
+.g-dark .g-lbl{color:var(--light-blue)}
+.g-flag{display:inline-block;font-size:11px;font-weight:var(--fw-bold);letter-spacing:.06em;
+        text-transform:uppercase;padding:2px 7px;border-radius:3px;vertical-align:2px;
+        background:var(--light-orange);color:var(--dark-blue);margin-left:6px}
+.g-code{font-family:ui-monospace,monospace;font-size:.86em;background:var(--light-gray);
+        padding:1px 5px;border-radius:3px}
+
+/* ============================================================
+   1 · BUTTON
+   ============================================================ */
+.uw-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:var(--space-xs);
+  min-height:44px;min-width:var(--btn-min-width);padding-inline:var(--space-l);
+  font-family:var(--ff-body);font-size:var(--fs-cta);font-weight:var(--fw-bold);
+  line-height:1;letter-spacing:var(--ls-caps);text-transform:uppercase;
+  text-decoration:none;white-space:nowrap;
+  border:var(--border-emphasis) solid transparent;border-radius:var(--radius-pill);
+  cursor:pointer;
+  transition:background-color 150ms ease-out,border-color 150ms ease-out,color 150ms ease-out;
+}
+.uw-btn--buy{background:var(--dark-green);border-color:var(--dark-green);color:var(--white)}
+.uw-btn--nav{background:var(--dark-blue);border-color:var(--dark-blue);color:var(--white)}
+.uw-btn--outline{background:transparent;border-color:var(--dark-blue);color:var(--dark-blue)}
+.uw-btn--text{background:transparent;border-color:transparent;color:var(--dark-blue);
+              min-width:0;padding-inline:var(--space-xs);text-transform:none;letter-spacing:0}
+.uw-btn--icon{min-width:44px;width:44px;padding-inline:0}
+.uw-btn--block{width:100%}
+@media(hover:hover) and (pointer:fine){
+  .uw-btn--buy:hover{background:var(--light-green);color:var(--dark-green)}
+  .uw-btn--nav:hover{background:var(--light-blue);color:var(--dark-blue)}
+  .uw-btn--outline:hover{background:var(--light-blue)}
+  .uw-btn--text:hover{color:var(--medium-blue)}
+}
+.uw-btn:active{transform:translateY(1px)}
+.uw-btn:focus-visible{outline:var(--border-heavy) solid var(--medium-blue);outline-offset:2px}
+.on-dark .uw-btn:focus-visible{outline-color:var(--white)}
+.uw-btn:disabled,.uw-btn[aria-disabled="true"]{
+  background:var(--light-gray);border-color:var(--medium-gray);color:var(--medium-gray);
+  cursor:not-allowed;pointer-events:none}
+.uw-btn.is-loading{position:relative;color:transparent;pointer-events:none}
+.uw-btn.is-loading::after{
+  content:"";position:absolute;width:18px;height:18px;
+  border:var(--border-emphasis) solid var(--white);border-top-color:transparent;
+  border-radius:50%;animation:spin 700ms linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* forced-state demos — gallery only */
+.is-hover.uw-btn--buy{background:var(--light-green);color:var(--dark-green)}
+.is-hover.uw-btn--nav{background:var(--light-blue);color:var(--dark-blue)}
+.is-hover.uw-btn--outline{background:var(--light-blue)}
+.is-focus{outline:var(--border-heavy) solid var(--medium-blue);outline-offset:2px}
+.g-dark .is-focus{outline-color:var(--white)}
+
+/* ============================================================
+   2 · INPUT
+   ============================================================ */
+.uw-field{display:flex;flex-direction:column;gap:var(--space-2xs)}
+.uw-field__label{font-family:var(--ff-body);font-size:var(--fs-small);
+                 font-weight:var(--fw-regular);color:var(--dark-gray);
+                 padding-inline-start:var(--space-m);cursor:pointer}
+.uw-field__message{margin:0;padding-inline-start:var(--space-m);
+                   font-size:var(--fs-small);line-height:1.4;color:var(--medium-gray)}
+.uw-input{
+  width:100%;min-height:46px;padding:0 var(--space-m);
+  font-family:var(--ff-body);font-size:var(--fs-body);font-weight:var(--fw-regular);
+  color:var(--dark-gray);background:var(--light-gray);
+  border:var(--border-hairline) solid var(--line);border-radius:var(--radius-pill);
+  appearance:none;transition:border-color 150ms ease-out,background-color 150ms ease-out}
+.uw-input::placeholder{color:var(--medium-gray);opacity:1}
+@media(hover:hover) and (pointer:fine){
+  .uw-input:hover:not(:disabled){border-color:var(--medium-gray)}}
+.uw-input:focus{outline:none;border-color:var(--medium-blue);background:var(--white)}
+.uw-input:focus-visible{outline:var(--border-emphasis) solid var(--medium-blue);outline-offset:2px}
+.uw-input:disabled{color:var(--medium-gray);border-color:var(--medium-gray);cursor:not-allowed}
+.uw-field.is-invalid .uw-input{border-color:var(--medium-red);background:var(--light-red)}
+.uw-field.is-invalid .uw-field__label,
+.uw-field.is-invalid .uw-field__message{color:var(--medium-red)}
+.uw-input--area{min-height:96px;padding:var(--space-s) var(--space-m);
+                border-radius:var(--radius-card);resize:vertical;line-height:var(--lh-body)}
+.uw-input[type=number]{-moz-appearance:textfield}
+.uw-input[type=number]::-webkit-outer-spin-button,
+.uw-input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+/* forced */
+.uw-input.is-hover{border-color:var(--medium-gray)}
+.uw-input.is-focus{border-color:var(--medium-blue);background:var(--white);
+                   outline:var(--border-emphasis) solid var(--medium-blue);outline-offset:2px}
+
+/* ============================================================
+   3 · SELECT
+   ============================================================ */
+.uw-select{position:relative}
+.uw-select__control{
+  width:100%;min-height:46px;padding:0 calc(var(--space-m) + 20px) 0 var(--space-m);
+  font-family:var(--ff-body);font-size:var(--fs-body);color:var(--dark-gray);
+  background:var(--light-gray);border:var(--border-hairline) solid var(--line);
+  border-radius:var(--radius-pill);appearance:none;cursor:pointer}
+.uw-select__chevron{position:absolute;right:var(--space-m);top:50%;transform:translateY(-50%);
+                    color:var(--medium-gray);pointer-events:none;transition:color 150ms ease-out}
+.uw-select__control:focus+.uw-select__chevron{color:var(--medium-blue)}
+.uw-select__control:focus-visible{outline:var(--border-emphasis) solid var(--medium-blue);
+                                  outline-offset:2px}
+.uw-select__control:disabled{color:var(--medium-gray);border-color:var(--medium-gray);
+                             cursor:not-allowed}
+.uw-select__control:disabled+.uw-select__chevron{color:var(--medium-gray)}
+
+/* ============================================================
+   4 · CHECKBOX AND RADIO
+   ============================================================ */
+.uw-check{display:flex;align-items:center;gap:var(--space-xs);min-height:44px;
+          cursor:pointer;font-family:var(--ff-body);font-size:var(--fs-body);color:var(--dark-gray)}
+.uw-check__input{
+  appearance:none;-webkit-appearance:none;flex:0 0 auto;width:20px;height:20px;margin:0;
+  background:var(--white);border:var(--border-hairline) solid var(--line);
+  border-radius:var(--radius-checkbox);cursor:pointer;
+  display:inline-grid;place-content:center;
+  transition:background-color 150ms ease-out,border-color 150ms ease-out}
+.uw-check--radio .uw-check__input{border-radius:50%}
+.uw-check__input::after{
+  content:"";width:10px;height:10px;transform:scale(0);transition:transform 120ms ease-out;
+  box-shadow:inset 1em 1em var(--white);
+  clip-path:polygon(14% 44%,0 65%,50% 100%,100% 16%,80% 0%,43% 62%)}
+.uw-check--radio .uw-check__input::after{width:8px;height:8px;border-radius:50%;clip-path:none}
+.uw-check__input:checked{background:var(--dark-blue);border-color:var(--dark-blue)}
+.uw-check__input:checked::after{transform:scale(1)}
+.uw-check__input:indeterminate{background:var(--dark-blue);border-color:var(--dark-blue)}
+.uw-check__input:indeterminate::after{transform:scale(1);
+  clip-path:polygon(0 40%,100% 40%,100% 60%,0 60%)}
+@media(hover:hover) and (pointer:fine){
+  .uw-check__input:hover:not(:disabled){border-color:var(--medium-gray)}}
+.uw-check__input:focus-visible{outline:var(--border-emphasis) solid var(--medium-blue);
+                               outline-offset:2px}
+.uw-check__input:disabled{background:var(--light-gray);border-color:var(--medium-gray);
+                          cursor:not-allowed}
+.uw-check__input:disabled:checked,.uw-check__input:disabled:indeterminate{
+  background:var(--light-gray);border-color:var(--medium-gray)}
+.uw-check__input:disabled:checked::after,.uw-check__input:disabled:indeterminate::after{
+  box-shadow:inset 1em 1em var(--medium-gray)}
+.uw-check__input:disabled~.uw-check__label{color:var(--medium-gray)}
+.uw-check__label{flex:1 1 auto;min-width:0}
+.uw-check--count .uw-check__count{flex:0 0 auto;font-size:var(--fs-meta);
+  color:var(--medium-blue);font-variant-numeric:tabular-nums}
+.uw-check--count:has(.uw-check__input:checked) .uw-check__count{
+  color:var(--medium-blue);font-weight:var(--fw-medium)}
+.uw-check__input.is-focus{outline:var(--border-emphasis) solid var(--medium-blue);outline-offset:2px}
+
+/* ============================================================
+   5 · BADGE
+   ============================================================ */
+.uw-badge{
+  display:inline-flex;align-items:center;gap:var(--space-2xs);
+  padding:var(--space-2xs) var(--space-s);
+  font-family:var(--ff-body);font-size:var(--fs-meta);font-weight:var(--fw-medium);
+  line-height:1;white-space:nowrap;
+  background:var(--light-gray);color:var(--dark-gray);border-radius:var(--radius-pill)}
+.uw-badge--category{background:var(--light-pink);color:var(--dark-pink)}
+.uw-badge--attribute{background:var(--light-gray);color:var(--dark-gray)}
+.uw-badge--sale{background:var(--medium-red);color:var(--white);font-weight:var(--fw-bold)}
+.uw-badge--new{background:var(--dark-green);color:var(--white)}
+.uw-badge--bestseller{background:var(--medium-orange);color:var(--dark-blue);font-weight:var(--fw-bold)}
+.uw-badge--oos{background:var(--light-gray);color:var(--dark-gray)}
+.uw-badge--count{justify-content:center;min-width:20px;height:20px;padding:0 var(--space-2xs);
+  background:var(--dark-green);color:var(--white);font-weight:var(--fw-bold);
+  font-variant-numeric:tabular-nums}
+.uw-badge--count-fav{background:var(--medium-red)}
+.uw-badge--count:empty{display:none}
+.uw-badge--removable{background:var(--light-gray);color:var(--dark-gray);
+                     padding-inline-end:var(--space-2xs)}
+.uw-badge__remove{display:grid;place-items:center;width:20px;height:20px;padding:0;border:0;
+  border-radius:50%;background:transparent;color:inherit;cursor:pointer;
+  transition:background-color 150ms ease-out}
+@media(hover:hover) and (pointer:fine){
+  .uw-badge__remove:hover{background:var(--medium-red);color:var(--white)}}
+.uw-badge__remove:focus-visible{outline:var(--border-emphasis) solid var(--medium-blue);
+                                outline-offset:1px}
+
+/* ============================================================
+   6 · LINK
+   ============================================================ */
+.uw-link{color:var(--medium-blue);text-decoration:underline;text-underline-offset:.15em;
+         text-decoration-thickness:1px;transition:color 150ms ease-out}
+@media(hover:hover) and (pointer:fine){
+  .uw-link:hover{color:var(--dark-blue);text-decoration-thickness:2px}}
+.uw-link:focus-visible{outline:var(--border-emphasis) solid var(--medium-blue);
+                       outline-offset:2px;border-radius:2px}
+.uw-link--action{color:var(--medium-blue);text-decoration:none;font-weight:var(--fw-medium)}
+.uw-link--nav{color:var(--dark-blue);text-decoration:none;font-weight:var(--fw-medium)}
+@media(hover:hover) and (pointer:fine){
+  .uw-link--action:hover,.uw-link--nav:hover{text-decoration:underline}}
+.on-dark .uw-link{color:var(--white);text-decoration:none}
+@media(hover:hover) and (pointer:fine){.on-dark .uw-link:hover{text-decoration:underline}}
+.on-dark .uw-link:focus-visible{outline-color:var(--white)}
+.uw-link[aria-current="page"]{font-weight:var(--fw-bold);text-decoration:none}
+.uw-link.is-focus{outline:var(--border-emphasis) solid var(--medium-blue);
+                  outline-offset:2px;border-radius:2px}
+.g-dark .uw-link.is-focus{outline-color:var(--white)}
+
+/* ============================================================
+   7 · CATEGORY TAB NAV
+   ============================================================ */
+.uw-tabnav__list{display:flex;gap:var(--space-l);margin:0;padding:0;list-style:none;
+  overflow-x:auto;scrollbar-width:none}
+.uw-tabnav__list::-webkit-scrollbar{display:none}
+.uw-tabnav__item{display:inline-flex;align-items:center;min-height:44px;
+  padding-block:var(--space-s);
+  font-family:var(--ff-body);font-size:var(--fs-small);font-weight:var(--fw-medium);
+  letter-spacing:var(--ls-caps);text-transform:uppercase;text-decoration:none;white-space:nowrap;
+  color:var(--dark-gray);border-bottom:var(--border-heavy) solid transparent;
+  transition:color 150ms ease-out,border-color 150ms ease-out}
+@media(hover:hover) and (pointer:fine){
+  .uw-tabnav__item:hover{color:var(--dark-blue)}}
+.uw-tabnav__item.is-active,.uw-tabnav__item[aria-current="page"]{
+  color:var(--dark-blue);font-weight:var(--fw-bold);border-bottom-color:var(--dark-blue)}
+.uw-tabnav__item:focus-visible{outline:var(--border-emphasis) solid var(--medium-blue);
+  outline-offset:-2px;border-radius:2px}
+
+/* ============================================================
+   8 · BREADCRUMB
+   ============================================================ */
+.uw-crumbs__list{display:flex;align-items:center;flex-wrap:nowrap;gap:0;margin:0;padding:0;
+  list-style:none;font-family:var(--ff-body);font-size:var(--fs-meta);line-height:1.6;
+  overflow-x:auto;scrollbar-width:none}
+.uw-crumbs__list::-webkit-scrollbar{display:none}
+.uw-crumbs__item{display:flex;align-items:center;white-space:nowrap}
+.uw-crumbs__item + .uw-crumbs__item::before{content:"\203A";margin-inline:var(--space-xs);
+  color:var(--line);font-size:1.15em;line-height:1}
+.uw-crumbs__link{color:var(--medium-gray);text-decoration:none;transition:color 150ms ease-out}
+@media(hover:hover) and (pointer:fine){
+  .uw-crumbs__link:hover{color:var(--medium-blue);text-decoration:underline;
+    text-underline-offset:.15em}}
+.uw-crumbs__link:focus-visible{outline:var(--border-emphasis) solid var(--medium-blue);
+  outline-offset:2px;border-radius:2px}
+.uw-crumbs__current{color:var(--dark-blue);font-weight:var(--fw-medium)}
+
+/* ============================================================
+   9 · ACCORDION
+   Markup: <details> > <summary> > <h3>.  The <summary> MUST be the
+   first child of <details> — wrapping it in a heading makes the
+   browser generate its own default marker instead.
+   ============================================================ */
+.uw-acc__item{border-bottom:var(--border-hairline) solid var(--line)}
+.uw-acc__item:last-child{border-bottom:0}
+
+.uw-acc__trigger{display:flex;align-items:center;justify-content:space-between;
+  gap:var(--space-m);width:100%;min-height:44px;padding:var(--space-m) 0;
+  cursor:pointer;list-style:none}
+.uw-acc__trigger::-webkit-details-marker{display:none}
+.uw-acc__trigger::marker{content:""}
+
+.uw-acc__heading{margin:0;flex:1 1 auto;min-width:0;
+  font-family:var(--ff-heading);font-size:var(--fs-h5);font-weight:var(--fw-semibold);
+  line-height:var(--lh-h5);letter-spacing:var(--ls-h5);color:var(--medium-gray);
+  transition:color 150ms ease-out}
+[open] > .uw-acc__trigger .uw-acc__heading{color:var(--dark-blue);font-weight:var(--fw-bold)}
+@media(hover:hover) and (pointer:fine){
+  .uw-acc__trigger:hover .uw-acc__heading{color:var(--medium-blue)}}
+.uw-acc__trigger:focus-visible{outline:var(--border-emphasis) solid var(--medium-blue);
+  outline-offset:2px;border-radius:var(--radius-inner)}
+
+/* Chevron drawn in CSS — no SVG, so <summary> holds exactly one heading */
+.uw-acc__trigger::after{content:"";flex:0 0 auto;width:9px;height:9px;
+  margin-bottom:3px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;
+  color:var(--medium-gray);transform:rotate(45deg);
+  transition:transform 200ms ease-out,color 150ms ease-out}
+[open] > .uw-acc__trigger::after{transform:rotate(-135deg);margin-bottom:-3px;
+  color:var(--dark-blue)}
+
+.uw-acc__panel{padding-bottom:var(--space-m);font-family:var(--ff-body);
+  font-size:var(--fs-body);font-weight:var(--fw-regular);color:var(--dark-gray)}
+.uw-acc__panel p{margin:0}
+
+/* Boxed */
+.uw-acc--boxed{display:flex;flex-direction:column;gap:var(--space-xs)}
+.uw-acc--boxed .uw-acc__item{border:0;background:var(--light-blue);
+  border-radius:var(--radius-pill);overflow:hidden;transition:border-radius 200ms ease-out}
+.uw-acc--boxed .uw-acc__item[open]{border-radius:var(--radius-card)}
+.uw-acc--boxed .uw-acc__trigger{padding:var(--space-m) var(--space-l)}
+.uw-acc--boxed .uw-acc__heading{color:var(--dark-blue)}
+.uw-acc--boxed .uw-acc__trigger::after{color:var(--dark-blue)}
+.uw-acc--boxed .uw-acc__panel{padding:0 var(--space-l) var(--space-m)}
+
+/* On dark */
+.on-dark .uw-acc__item{border-bottom-color:#FFFFFF33}
+.on-dark .uw-acc__heading{color:var(--white);text-transform:uppercase;
+  font-size:var(--fs-body);letter-spacing:var(--ls-caps)}
+.on-dark [open] > .uw-acc__trigger .uw-acc__heading{color:var(--white)}
+.on-dark .uw-acc__trigger::after,
+.on-dark [open] > .uw-acc__trigger::after{color:var(--white)}
+@media(hover:hover) and (pointer:fine){
+  .on-dark .uw-acc__trigger:hover .uw-acc__heading{color:var(--light-green)}}
+.on-dark .uw-acc__trigger:focus-visible{outline-color:var(--white)}
+.on-dark .uw-acc__panel{color:var(--white)}
+
+/* ============================================================
+   10 · DROPDOWN
+   ============================================================ */
+.uw-pop{background:var(--white);border:var(--border-hairline) solid var(--line);
+  border-radius:var(--radius-card);box-shadow:var(--shadow-lg);
+  padding:var(--space-2xs);min-width:260px;max-width:360px;
+  max-height:min(60vh,420px);overflow-y:auto;overscroll-behavior:contain;
+  margin:0;list-style:none}
+.uw-pop__item{display:flex;align-items:center;gap:var(--space-xs);
+  min-height:44px;padding:var(--space-xs) var(--space-s);
+  border-radius:var(--radius-inner);font-family:var(--ff-body);font-size:var(--fs-body);
+  color:var(--dark-gray);text-decoration:none;cursor:pointer;
+  transition:background-color 120ms ease-out,color 120ms ease-out}
+@media(hover:hover) and (pointer:fine){
+  .uw-pop__item:hover{background:var(--light-blue);color:var(--dark-blue)}}
+.uw-pop__item.is-active{background:var(--light-blue);color:var(--dark-blue)}
+.uw-pop__item[aria-selected="true"]{color:var(--dark-blue);font-weight:var(--fw-medium)}
+.uw-pop__item[aria-selected="true"]::after{content:"";flex:0 0 auto;width:14px;height:9px;
+  margin-left:auto;border-left:var(--border-emphasis) solid currentColor;
+  border-bottom:var(--border-emphasis) solid currentColor;
+  transform:rotate(-45deg) translate(1px,-2px)}
+.uw-pop__item[aria-current="page"]{color:var(--dark-blue);font-weight:var(--fw-bold)}
+.uw-pop__item:focus-visible{outline:var(--border-emphasis) solid var(--medium-blue);
+  outline-offset:-2px}
+.uw-pop__group{padding:var(--space-xs) var(--space-s) var(--space-2xs);
+  font-size:var(--fs-meta);font-weight:var(--fw-bold);letter-spacing:var(--ls-caps);
+  text-transform:uppercase;color:var(--dark-gray);margin:0}
+.uw-pop__sep{height:1px;background:var(--line);margin:var(--space-2xs) var(--space-s)}
+.uw-pop__meta{margin-left:auto;font-size:var(--fs-meta);color:var(--medium-blue);
+  font-variant-numeric:tabular-nums}
+.uw-pop__foot{display:flex;gap:var(--space-xs);padding:var(--space-xs);
+  border-top:var(--border-hairline) solid var(--line);margin-top:var(--space-2xs)}
+.uw-pop__thumb{width:36px;height:36px;border-radius:var(--radius-checkbox);
+  background:var(--light-gray);flex-shrink:0}
+.uw-pop__sub{display:block;font-size:var(--fs-meta);color:var(--dark-gray)}
+.g-pops{display:flex;flex-wrap:wrap;gap:var(--space-l);align-items:flex-start}
+
+/* ============================================================
+   11 · BLOG CARD
+   ============================================================ */
+.uw-post{position:relative;display:flex;flex-direction:column;background:var(--white);
+  border:var(--border-hairline) solid var(--line);border-radius:var(--radius-card);
+  box-shadow:var(--shadow-xs);overflow:hidden;
+  transition:transform .15s ease,box-shadow .15s ease}
+@media(hover:hover) and (pointer:fine){
+  .uw-post:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}}
+.uw-post__media{position:relative;aspect-ratio:16/9;background:var(--light-gray);flex-shrink:0}
+.uw-post__badge{position:absolute;top:var(--space-s);left:var(--space-s);display:inline-flex;
+  padding:var(--space-2xs) var(--space-s);font-size:var(--fs-meta);
+  font-weight:var(--fw-medium);line-height:1.2;background:var(--light-pink);
+  color:var(--dark-pink);border-radius:var(--radius-pill)}
+.uw-post__body{display:flex;flex-direction:column;gap:var(--space-xs);padding:var(--space-m);
+  flex:1;min-width:0;overflow:hidden}
+.uw-post__title{font-family:var(--ff-heading);font-size:var(--fs-h5);
+  font-weight:var(--fw-semibold);line-height:var(--lh-h5);letter-spacing:var(--ls-h5);
+  color:var(--dark-blue);margin:0;display:-webkit-box;-webkit-line-clamp:3;
+  -webkit-box-orient:vertical;overflow:hidden}
+.uw-post__title a{color:inherit;text-decoration:none}
+.uw-post__title a::after{content:"";position:absolute;inset:0;z-index:1}
+@media(hover:hover) and (pointer:fine){
+  .uw-post:hover .uw-post__title{color:var(--medium-blue)}}
+.uw-post:has(a:focus-visible){outline:var(--border-emphasis) solid var(--medium-blue);
+  outline-offset:2px}
+.uw-post__excerpt{font-size:var(--fs-small);color:var(--dark-gray);margin:0;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.uw-post__meta{margin-top:auto;padding-top:var(--space-2xs);font-size:var(--fs-meta);
+  line-height:1.15;color:var(--medium-gray)}
+.uw-post--featured{flex-direction:row}
+.uw-post--featured .uw-post__media{flex:0 0 52%;align-self:flex-start}
+.uw-post--featured .uw-post__body{padding:var(--space-l);justify-content:center}
+.uw-post--featured .uw-post__title{font-size:var(--fs-h4);font-weight:var(--fw-bold);
+  line-height:1.25;letter-spacing:-.02em;-webkit-line-clamp:2}
+.uw-post--featured .uw-post__excerpt{-webkit-line-clamp:2;font-size:var(--fs-body)}
+.uw-post--compact{flex-direction:row;align-items:center;background:none;border:0;
+  border-radius:0;box-shadow:none;padding:var(--space-s) 0}
+.uw-post--compact + .uw-post--compact{border-top:var(--border-hairline) solid var(--line)}
+@media(hover:hover) and (pointer:fine){
+  .uw-post--compact:hover{transform:none;box-shadow:none}}
+.uw-post--compact .uw-post__media{flex:0 0 46%;border-radius:var(--radius-inner);
+  overflow:hidden}
+.uw-post--compact .uw-post__body{padding:0 0 0 var(--space-s);gap:var(--space-2xs);
+  justify-content:center}
+.uw-post--compact .uw-post__title{font-size:var(--fs-small);line-height:1.25;
+  -webkit-line-clamp:2}
+.uw-post--compact .uw-post__excerpt,.uw-post--compact .uw-post__badge{display:none}
+.uw-post--compact .uw-post__meta{margin-top:0;padding-top:0}
+/* gallery-only: mobile treatment forced inside the phone frame */
+.g-mobile .uw-post{flex-direction:row;align-items:center;background:none;border:0;
+  border-radius:0;box-shadow:none;padding:var(--space-s) 0}
+.g-mobile .uw-post + .uw-post{border-top:var(--border-hairline) solid var(--line)}
+.g-mobile .uw-post:hover{transform:none;box-shadow:none}
+.g-mobile .uw-post__media{flex:0 0 46%;border-radius:var(--radius-inner);overflow:hidden;
+  align-self:center}
+.g-mobile .uw-post__badge{top:5px;left:5px}
+.g-mobile .uw-post__body{padding:0 0 0 var(--space-s);gap:2px;justify-content:center}
+.g-mobile .uw-post__title{font-size:var(--fs-small);font-weight:var(--fw-semibold);
+  line-height:1.25;letter-spacing:0;-webkit-line-clamp:3}
+.g-mobile .uw-post__excerpt{display:none}
+.g-mobile .uw-post__meta{margin-top:0;padding-top:0}
+.g-post3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-l)}
+@media(max-width:820px){.g-post3{grid-template-columns:1fr}}
+.g-phone{width:375px;max-width:100%;border:10px solid var(--dark-blue);border-radius:34px;
+  overflow:hidden;background:#fff;box-shadow:var(--shadow-lg)}
+.g-phone__bar{height:24px;background:var(--dark-blue)}
+.g-phone__body{padding:16px;height:520px;overflow-y:auto}
+.g-img{background:linear-gradient(135deg,#D9DEF0,#CED4F3);display:grid;place-items:center;
+  color:#6F79A6;font-size:9px;letter-spacing:.08em;width:100%;height:100%}
+.g-img.g2{background:linear-gradient(135deg,#D6EDE4,#D1EFE5);color:#5B8E7C}
+.g-img.g3{background:linear-gradient(135deg,#EFDCE8,#F4E2ED);color:#8E6F85}
+.g-img.g4{background:linear-gradient(135deg,#F7E4CE,#FFF5EB);color:#9B7A4E}
+
+/* ============================================================
+   12 · TOOLTIP
+   ============================================================ */
+.uw-tip{position:relative;display:inline-flex}
+.uw-tip__trigger{display:inline-grid;place-items:center;width:20px;height:20px;padding:0;
+  border:var(--border-hairline) solid var(--medium-gray);border-radius:50%;
+  background:transparent;color:var(--medium-gray);font-family:var(--ff-body);
+  font-size:var(--fs-meta);font-weight:var(--fw-bold);line-height:1;cursor:pointer;
+  transition:color 120ms ease-out,border-color 120ms ease-out}
+.uw-tip__trigger::before{content:"";position:absolute;inset:-12px;border-radius:50%}
+@media(hover:hover) and (pointer:fine){
+  .uw-tip__trigger:hover{color:var(--dark-blue);border-color:var(--dark-blue)}}
+.uw-tip__trigger:focus-visible{outline:var(--border-emphasis) solid var(--medium-blue);
+  outline-offset:2px}
+.uw-tip__bubble{position:absolute;bottom:calc(100% + 10px);left:50%;
+  transform:translateX(-50%) translateY(4px);z-index:1075;
+  width:max-content;max-width:min(280px,70vw);padding:var(--space-xs) var(--space-s);
+  background:var(--dark-blue);color:var(--white);
+  border-radius:var(--radius-inner);box-shadow:var(--shadow-lg);
+  font-family:var(--ff-body);font-size:var(--fs-small);line-height:1.45;text-align:left;
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity 120ms ease-out,transform 120ms ease-out,visibility 120ms}
+.uw-tip__bubble::after{content:"";position:absolute;top:100%;left:50%;
+  transform:translateX(-50%);border:6px solid transparent;border-top-color:var(--dark-blue)}
+.uw-tip__trigger:hover + .uw-tip__bubble,
+.uw-tip__trigger:focus + .uw-tip__bubble{opacity:1;visibility:visible;
+  transform:translateX(-50%) translateY(0)}
+.uw-tip--start .uw-tip__bubble{left:0;transform:translateX(0) translateY(4px)}
+.uw-tip--start .uw-tip__trigger:hover + .uw-tip__bubble,
+.uw-tip--start .uw-tip__trigger:focus + .uw-tip__bubble{transform:translateX(0) translateY(0)}
+.uw-tip--start .uw-tip__bubble::after{left:14px;transform:none}
+.uw-tip--end .uw-tip__bubble{left:auto;right:0;transform:translateX(0) translateY(4px)}
+.uw-tip--end .uw-tip__trigger:hover + .uw-tip__bubble,
+.uw-tip--end .uw-tip__trigger:focus + .uw-tip__bubble{transform:translateX(0) translateY(0)}
+.uw-tip--end .uw-tip__bubble::after{left:auto;right:14px;transform:none}
+.uw-tip--below .uw-tip__bubble{bottom:auto;top:calc(100% + 10px);
+  transform:translateX(-50%) translateY(-4px)}
+.uw-tip--below .uw-tip__trigger:hover + .uw-tip__bubble,
+.uw-tip--below .uw-tip__trigger:focus + .uw-tip__bubble{transform:translateX(-50%) translateY(0)}
+.uw-tip--below .uw-tip__bubble::after{top:auto;bottom:100%;border-top-color:transparent;
+  border-bottom-color:var(--dark-blue)}
+.on-dark .uw-tip__trigger{border-color:#FFFFFF80;color:var(--white)}
+.on-dark .uw-tip__trigger:focus-visible{outline-color:var(--white)}
+.on-dark .uw-tip__bubble{background:var(--white);color:var(--dark-gray)}
+.on-dark .uw-tip__bubble::after{border-top-color:var(--white)}
+.uw-tip__trigger--text{width:auto;height:auto;border:0;border-radius:0;
+  color:var(--dark-gray);font-size:inherit;font-weight:inherit;
+  text-decoration:underline dotted;text-underline-offset:.2em}
+@media(hover:hover) and (pointer:fine){
+  .uw-tip__trigger--text:hover{color:var(--dark-blue)}}
+.g-tipstage{background:var(--light-gray);border-radius:var(--radius-card);
+  padding:64px var(--space-l);display:flex;flex-wrap:wrap;gap:var(--space-2xl);
+  align-items:center}
+.g-tipstage.dark{background:var(--dark-blue)}
+.g-tipdemo{display:flex;align-items:center;gap:var(--space-xs)}
+
+/* ============================================================
+   13–17 · COMMERCE
+   ============================================================ */
+.uw-stock{display:flex;align-items:center;gap:var(--space-xs);margin:0;
+  font-family:var(--ff-body);font-size:var(--fs-small);font-weight:var(--fw-medium);
+  color:var(--dark-gray)}
+.uw-stock__dot{flex:0 0 auto;width:8px;height:8px;border-radius:50%;
+  background:var(--medium-gray)}
+.uw-stock--in{color:var(--dark-green)}
+.uw-stock--in .uw-stock__dot{background:var(--dark-green)}
+.uw-stock--low .uw-stock__dot,.uw-stock--last .uw-stock__dot{background:var(--medium-orange)}
+
+.uw-oi{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-m);
+  border-block:var(--border-hairline) solid var(--line);padding:var(--space-m) 0}
+@media(max-width:820px){.uw-oi{grid-template-columns:repeat(2,1fr)}}
+.uw-oi__item{display:flex;flex-direction:column;gap:2px;padding-inline:var(--space-s)}
+.uw-oi__item + .uw-oi__item{border-left:var(--border-hairline) solid var(--line)}
+.uw-oi__icon{font-size:20px;line-height:1;margin-bottom:4px}
+.uw-oi__label{font-size:var(--fs-small);font-weight:var(--fw-semibold);color:var(--dark-blue)}
+.uw-oi__sub{font-size:var(--fs-meta);color:var(--dark-gray)}
+
+.uw-sum{margin:0;font-variant-numeric:tabular-nums;max-width:340px}
+.uw-sum__row{display:flex;justify-content:space-between;gap:var(--space-m);
+  padding:var(--space-2xs) 0;font-size:var(--fs-body)}
+.uw-sum__row dt{margin:0;color:var(--dark-gray)}
+.uw-sum__row dd{margin:0;color:var(--dark-blue)}
+.uw-sum__row--discount dd{color:var(--medium-red)}
+.uw-sum__row--total{border-top:var(--border-hairline) solid var(--line);
+  margin-top:var(--space-xs);padding-top:var(--space-s);font-size:var(--fs-h5);
+  font-weight:var(--fw-bold)}
+.uw-sum__row--total dt,.uw-sum__row--total dd{color:var(--dark-blue)}
+.uw-sum__tax{font-size:var(--fs-meta);color:var(--dark-gray);margin:2px 0 0;text-align:right}
+.uw-sum__code{font-size:var(--fs-meta);color:var(--dark-gray)}
+
+.uw-drawer{width:340px;background:var(--white);border:var(--border-hairline) solid var(--line);
+  border-radius:var(--radius-card);box-shadow:var(--shadow-lg);overflow:hidden;
+  display:flex;flex-direction:column;height:460px}
+.uw-drawer__head,.uw-drawer__foot{padding:var(--space-m);flex-shrink:0}
+.uw-drawer__head{border-bottom:var(--border-hairline) solid var(--line);
+  display:flex;justify-content:space-between;align-items:center}
+.uw-drawer__foot{border-top:var(--border-hairline) solid var(--line)}
+.uw-drawer__title{font-family:var(--ff-heading);font-size:var(--fs-h5);
+  font-weight:var(--fw-semibold);color:var(--dark-blue);margin:0}
+.uw-drawer__body{flex:1;overflow-y:auto;padding:0 var(--space-m)}
+.uw-ci{display:flex;gap:var(--space-s);padding:var(--space-m) 0}
+.uw-ci + .uw-ci{border-top:var(--border-hairline) solid var(--line)}
+.uw-ci__img{width:64px;height:64px;border-radius:var(--radius-inner);flex-shrink:0;
+  background:var(--light-gray);display:grid;place-items:center;font-size:9px;
+  color:#6F79A6;letter-spacing:.06em}
+.uw-ci__b{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.uw-ci__n{font-size:var(--fs-small);font-weight:var(--fw-medium);color:var(--dark-blue);margin:0}
+.uw-ci__m{font-size:var(--fs-meta);color:var(--dark-gray);margin:0}
+.uw-ci__r{display:flex;justify-content:space-between;align-items:center;margin-top:4px}
+.uw-ci__p{font-size:var(--fs-small);font-weight:var(--fw-bold);font-variant-numeric:tabular-nums}
+.uw-qty{display:inline-flex;align-items:center;border:var(--border-hairline) solid var(--line);
+  border-radius:var(--radius-pill);height:32px}
+.uw-qty button{width:32px;height:30px;border:0;background:none;cursor:pointer;
+  color:var(--dark-blue);font-size:15px;line-height:1}
+.uw-qty span{min-width:22px;text-align:center;font-size:var(--fs-small);
+  font-variant-numeric:tabular-nums}
+
+.uw-meth{display:flex;flex-direction:column;gap:var(--space-xs);max-width:400px;
+  border:0;padding:0;margin:0}
+.uw-meth legend{font-size:var(--fs-small);color:var(--dark-gray);padding:0;
+  margin-bottom:var(--space-2xs)}
+.uw-meth__opt{display:flex;align-items:center;gap:var(--space-s);
+  padding:var(--space-s) var(--space-l);background:var(--white);
+  border:var(--border-hairline) solid var(--line);border-radius:var(--radius-pill);
+  cursor:pointer;transition:background-color 120ms ease-out,border-color 120ms ease-out}
+@media(hover:hover) and (pointer:fine){
+  .uw-meth__opt:hover{background:var(--light-blue)}}
+.uw-meth__opt:has(input:checked){border:var(--border-emphasis) solid var(--dark-blue);
+  padding:calc(var(--space-s) - 1px) calc(var(--space-l) - 1px)}
+.uw-meth__opt.is-disabled{background:var(--light-gray);color:var(--medium-gray);
+  cursor:not-allowed}
+.uw-meth__t{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+.uw-meth__n{font-size:var(--fs-small);font-weight:var(--fw-medium);color:var(--dark-blue)}
+.uw-meth__s{font-size:var(--fs-meta);color:var(--dark-gray)}
+.uw-meth__p{font-size:var(--fs-small);font-weight:var(--fw-bold);
+  font-variant-numeric:tabular-nums;color:var(--dark-blue)}
+.uw-meth__opt.is-disabled .uw-meth__n,.uw-meth__opt.is-disabled .uw-meth__p{
+  color:var(--medium-gray)}
+.g-commerce{display:flex;gap:var(--space-xl);flex-wrap:wrap;align-items:flex-start}
+
+/* ============================================================
+   18–19 · PRICE AND QUANTITY
+   ============================================================ */
+.uw-price{margin:0;color:var(--dark-blue);font-variant-numeric:tabular-nums}
+.uw-price--hero{font-size:var(--fs-h4);font-weight:var(--fw-bold)}
+.uw-price--tile{font-size:var(--fs-h5);font-weight:var(--fw-bold)}
+.uw-price--list{font-size:var(--fs-small);font-weight:var(--fw-bold)}
+.uw-price--total{font-size:var(--fs-h5);font-weight:var(--fw-bold)}
+.uw-price.is-sale{color:var(--medium-red)}
+.uw-price__was{margin-left:var(--space-xs);font-size:.8em;font-weight:var(--fw-regular);
+  color:var(--dark-gray);text-decoration:line-through}
+.uw-price__unit{margin-left:var(--space-xs);font-size:var(--fs-meta);
+  font-weight:var(--fw-regular);color:var(--medium-blue)}
+.uw-qty{display:inline-flex;align-items:center;background:var(--white);
+  border:var(--border-hairline) solid var(--line);border-radius:var(--radius-pill)}
+.uw-qty button{border:0;background:none;cursor:pointer;color:var(--dark-blue);
+  display:grid;place-items:center;font-family:var(--ff-body);line-height:1}
+.uw-qty__value{border:0;background:none;padding:0;text-align:center;
+  font-family:var(--ff-body);font-weight:var(--fw-medium);color:var(--dark-blue);
+  font-variant-numeric:tabular-nums;-moz-appearance:textfield}
+.uw-qty__value::-webkit-outer-spin-button,.uw-qty__value::-webkit-inner-spin-button{
+  -webkit-appearance:none;margin:0}
+.uw-qty button:disabled{color:var(--medium-gray);cursor:not-allowed}
+@media(hover:hover) and (pointer:fine){
+  .uw-qty button:not(:disabled):hover{color:var(--medium-blue)}
+  .uw-qty__down.is-remove:hover{color:var(--medium-red)}}
+.uw-qty button:focus-visible{outline:var(--border-emphasis) solid var(--medium-blue);
+  outline-offset:-2px;border-radius:var(--radius-pill)}
+.uw-qty--lg{height:56px}
+.uw-qty--lg button{width:52px;height:54px;font-size:20px}
+.uw-qty--lg .uw-qty__value{width:44px;font-size:var(--fs-body)}
+.uw-qty--md{height:40px}
+.uw-qty--md button{width:38px;height:38px;font-size:17px}
+.uw-qty--md .uw-qty__value{width:34px;font-size:var(--fs-small)}
+.uw-qty--sm{height:32px}
+.uw-qty--sm button{display:none}
+.uw-qty--sm .uw-qty__value{width:auto;padding-inline:var(--space-s);font-size:var(--fs-small)}
+
+/* ============================================================
+   20–26 · GENERAL
+   ============================================================ */
+.uw-msg{display:flex;align-items:flex-start;gap:var(--space-s);padding:var(--space-m);
+  border-radius:var(--radius-card);border-left:var(--border-heavy) solid;
+  font-size:var(--fs-small);line-height:1.55;color:var(--dark-gray)}
+.uw-msg:not(:has(.uw-msg__t)){align-items:center}
+.uw-msg__ic{flex:0 0 auto;display:grid;place-items:center}
+.uw-msg:has(.uw-msg__t) .uw-msg__ic{margin-top:1px}
+.uw-msg__b{flex:1;min-width:0}
+.uw-msg__t{font-weight:var(--fw-bold);color:var(--dark-blue);margin:0 0 2px}
+.uw-msg p{margin:0}
+.uw-msg--neutral{background:var(--light-gray);border-color:var(--medium-gray)}
+.uw-msg--neutral .uw-msg__ic{color:var(--dark-gray)}
+.uw-msg--info{background:var(--light-blue);border-color:var(--medium-blue)}
+.uw-msg--info .uw-msg__ic{color:var(--medium-blue)}
+.uw-msg--success{background:var(--light-green);border-color:var(--dark-green)}
+.uw-msg--success .uw-msg__ic{color:var(--dark-green)}
+.uw-msg--warning{background:var(--light-orange);border-color:var(--medium-orange)}
+.uw-msg--warning .uw-msg__ic{color:#8A5A12}
+.uw-msg--error{background:var(--light-red);border-color:var(--medium-red)}
+.uw-msg--error .uw-msg__ic{color:var(--medium-red)}
+
+.uw-toast{display:flex;align-items:flex-start;gap:var(--space-s);max-width:380px;
+  padding:var(--space-s) var(--space-m);background:var(--white);color:var(--dark-gray);
+  border:var(--border-hairline) solid var(--line);border-radius:var(--radius-card);
+  box-shadow:var(--shadow-lg);font-size:var(--fs-small)}
+.uw-toast__ic{flex:0 0 auto;margin-top:2px;color:var(--dark-green)}
+.uw-toast__b{flex:1;min-width:0}
+.uw-toast__t{font-weight:var(--fw-bold);color:var(--dark-blue);margin:0 0 1px}
+.uw-toast p{margin:0}
+.uw-toast__a{display:inline-block;margin-top:4px;color:var(--medium-blue);
+  font-weight:var(--fw-medium);text-decoration:none}
+.uw-toast__a:hover{text-decoration:underline;text-underline-offset:.15em}
+.uw-toast__x{flex:0 0 auto;width:24px;height:24px;border:0;background:none;
+  color:var(--medium-gray);cursor:pointer;display:grid;place-items:center;font-size:16px}
+.uw-toast--dark{background:var(--dark-blue);border-color:transparent;color:#FFFFFFCC}
+.uw-toast--dark .uw-toast__t{color:var(--white)}
+.uw-toast--dark p{color:#FFFFFFCC}
+.uw-toast--dark .uw-toast__ic{color:var(--medium-green)}
+.uw-toast--dark .uw-toast__a{color:var(--white);text-decoration:underline}
+.uw-toast--dark .uw-toast__x{color:#FFFFFF99}
+
+.uw-tabs{display:flex;gap:var(--space-xl)}
+.uw-tabs__rail{position:relative;display:flex;flex-direction:column;min-width:170px;
+  flex-shrink:0;padding-right:var(--space-m)}
+.uw-tabs__rail::before{content:"";position:absolute;top:0;bottom:0;right:0;width:3px;
+  background:var(--line);border-radius:var(--radius-pill)}
+.uw-tabs__t{position:relative;padding:var(--space-s) 0;text-align:left;background:none;
+  border:0;cursor:pointer;font-family:var(--ff-heading);font-size:var(--fs-h6);
+  font-weight:var(--fw-semibold);color:var(--medium-gray);transition:color 120ms ease-out}
+.uw-tabs__t::after{content:"";position:absolute;top:6px;bottom:6px;
+  right:calc(var(--space-m) * -1);width:3px;border-radius:var(--radius-pill);
+  background:transparent;transition:background-color 150ms ease-out}
+.uw-tabs__t[aria-selected="true"]{color:var(--dark-blue);font-weight:var(--fw-bold)}
+.uw-tabs__t[aria-selected="true"]::after{background:var(--dark-blue)}
+.uw-tabs__p{flex:1;min-width:0}
+.uw-tabs__p p{margin:0}
+
+.uw-ft{background:var(--dark-green);color:var(--white);border-radius:var(--radius-card);
+  padding:var(--space-l)}
+.uw-ft__cols{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-l)}
+@media(max-width:820px){.uw-ft__cols{grid-template-columns:repeat(2,1fr)}}
+.uw-ft__h{font-family:var(--ff-heading);font-size:var(--fs-meta);
+  font-weight:var(--fw-semibold);letter-spacing:var(--ls-caps);text-transform:uppercase;
+  margin:0 0 var(--space-xs)}
+.uw-ft a{color:var(--white);text-decoration:none;font-size:var(--fs-small);display:block;
+  padding:3px 0}
+.uw-ft a:hover{color:var(--light-green);text-decoration:underline}
+.uw-ft__bot{margin-top:var(--space-l);padding-top:var(--space-m);
+  border-top:var(--border-hairline) solid #FFFFFF33;display:flex;
+  justify-content:space-between;gap:var(--space-m);flex-wrap:wrap;font-size:var(--fs-meta)}
+.uw-sw{display:inline-flex;background:#FFFFFF1F;border-radius:var(--radius-pill);padding:3px}
+.uw-sw button{border:0;background:none;padding:5px 14px;border-radius:var(--radius-pill);
+  font-size:var(--fs-meta);font-family:var(--ff-body);font-weight:var(--fw-medium);
+  color:#FFFFFFCC;cursor:pointer;transition:background-color 120ms ease-out,color 120ms ease-out}
+.uw-sw button:hover{color:var(--white);background:#FFFFFF26}
+.uw-sw button[aria-pressed="true"]{background:var(--white);color:var(--dark-green)}
+
+.uw-pit{width:100%;border-collapse:collapse;border:var(--border-hairline) solid var(--line);
+  border-radius:var(--radius-card);overflow:hidden;font-size:var(--fs-small)}
+.uw-pit th{width:34%;text-align:left;font-weight:var(--fw-semibold);color:var(--dark-blue);
+  padding:var(--space-s) var(--space-m);vertical-align:top}
+.uw-pit td{padding:var(--space-s) var(--space-m);color:var(--dark-gray);vertical-align:top}
+.uw-pit tr + tr th,.uw-pit tr + tr td{border-top:var(--border-hairline) solid var(--line)}
+
+.uw-card{background:var(--white);border:var(--border-hairline) solid var(--line);
+  border-radius:var(--radius-card);box-shadow:var(--shadow-xs)}
+.uw-card__b{padding:var(--space-m)}
+.uw-card--flat{box-shadow:none}
+.uw-card--tint{background:var(--light-gray);border-color:transparent;box-shadow:none}
+.uw-card--link{position:relative;transition:transform .15s ease,box-shadow .15s ease}
+@media(hover:hover) and (pointer:fine){
+  .uw-card--link:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}}
+.uw-card h4{font-family:var(--ff-heading);font-size:var(--fs-h5);
+  font-weight:var(--fw-semibold);color:var(--dark-blue);margin:0 0 4px}
+.uw-card p{font-size:var(--fs-small);margin:0}
+
+.uw-modalstage{position:relative;background:var(--light-gray);
+  border-radius:var(--radius-card);padding:var(--space-2xl) var(--space-l);overflow:hidden}
+.uw-modalstage::before{content:"";position:absolute;inset:0;background:#0B102A80}
+.uw-modal{position:relative;max-width:440px;margin-inline:auto;background:var(--white);
+  border-radius:var(--radius-card);box-shadow:var(--shadow-xl);overflow:hidden}
+.uw-modal__h{display:flex;align-items:flex-start;justify-content:space-between;
+  gap:var(--space-m);padding:var(--space-l) var(--space-l) var(--space-s)}
+.uw-modal__t{font-family:var(--ff-heading);font-size:var(--fs-h5);
+  font-weight:var(--fw-semibold);color:var(--dark-blue);margin:0}
+.uw-modal__x{width:44px;height:44px;margin:-10px -10px 0 0;border:0;background:none;
+  cursor:pointer;color:var(--dark-blue);font-size:20px;display:grid;place-items:center}
+.uw-modal__b{padding:0 var(--space-l) var(--space-l);font-size:var(--fs-small)}
+.uw-modal__b p{margin:0}
+.uw-modal__f{display:flex;gap:var(--space-xs);justify-content:flex-end;
+  padding:var(--space-m) var(--space-l);border-top:var(--border-hairline) solid var(--line);
+  flex-wrap:wrap}
+.uw-btn--danger{background:var(--medium-red);border-color:var(--medium-red);color:#fff}
+.g-zt{width:100%;border-collapse:collapse;font-size:var(--fs-small);margin-top:8px}
+.g-zt th{text-align:left;font-weight:var(--fw-bold);color:var(--dark-blue);padding:8px 10px;
+  border-bottom:var(--border-emphasis) solid var(--line)}
+.g-zt td{padding:8px 10px;border-bottom:var(--border-hairline) solid var(--line)}
+.g-zt td:first-child{font-family:ui-monospace,monospace;color:var(--medium-blue);width:90px}
+
+/* ============================================================
+   27–32 · FIELD, COUPON, PAGINATION, LOADING, CAROUSEL, GATE
+   ============================================================ */
+.uw-field{display:flex;flex-direction:column;gap:var(--space-2xs);max-width:340px}
+.uw-field__label{font-size:var(--fs-small);color:var(--dark-gray);
+  padding-inline-start:var(--space-m);cursor:pointer}
+.uw-field__req{color:var(--medium-red)}
+.uw-field__hint{margin:0;padding-inline-start:var(--space-m);font-size:var(--fs-small);
+  color:var(--dark-gray);line-height:1.4}
+.uw-field.is-invalid .uw-input{border-color:var(--medium-red);background:var(--light-red)}
+.uw-field.is-invalid .uw-field__hint{color:var(--medium-red)}
+.uw-field__err{display:flex;align-items:flex-start;gap:5px}
+.uw-field__err svg{flex-shrink:0;margin-top:3px}
+
+.uw-coupon{display:flex;gap:var(--space-xs);max-width:420px}
+.uw-coupon .uw-input{flex:1}
+.uw-btn--apply{background:transparent;border-color:var(--dark-green);color:var(--dark-green)}
+@media(hover:hover) and (pointer:fine){
+  .uw-btn--apply:hover{background:var(--light-green)}}
+.uw-cchip{display:inline-flex;align-items:center;gap:var(--space-2xs);
+  padding:var(--space-2xs) var(--space-2xs) var(--space-2xs) var(--space-s);
+  font-size:var(--fs-meta);font-weight:var(--fw-medium);background:var(--light-green);
+  color:var(--dark-green);border-radius:var(--radius-pill)}
+.uw-cchip button{width:20px;height:20px;border:0;border-radius:50%;background:none;
+  color:inherit;cursor:pointer;display:grid;place-items:center;font-size:13px}
+.uw-cchip button:hover{background:var(--medium-red);color:#fff}
+
+.uw-pg{display:flex;align-items:center;gap:var(--space-2xs);flex-wrap:wrap}
+.uw-pg a,.uw-pg > span{display:inline-grid;place-items:center;min-width:44px;height:44px;
+  padding-inline:var(--space-xs);border-radius:var(--radius-pill);font-family:var(--ff-body);
+  font-size:var(--fs-small);font-weight:var(--fw-medium);color:var(--dark-blue);
+  text-decoration:none}
+.uw-pg a:hover{background:var(--light-blue)}
+.uw-pg__cur{background:var(--dark-blue);color:var(--white)!important;
+  font-weight:var(--fw-bold)}
+.uw-pg__gap{color:var(--medium-gray)}
+.uw-pg__arrow{border:var(--border-hairline) solid var(--dark-green);color:var(--dark-green)}
+.uw-pg__arrow:hover{background:var(--light-green)}
+.uw-pg__arrow[aria-disabled="true"]{border-color:var(--line);color:var(--medium-gray);
+  pointer-events:none}
+.uw-pg__count{font-size:var(--fs-meta);color:var(--dark-gray);margin:var(--space-s) 0 0}
+
+.uw-sk{background:var(--light-gray);border-radius:var(--radius-inner);position:relative;
+  overflow:hidden}
+.uw-sk::after{content:"";position:absolute;inset:0;transform:translateX(-100%);
+  background:linear-gradient(90deg,transparent,#FFFFFFB3,transparent);
+  animation:uw-shimmer 1.4s infinite}
+@keyframes uw-shimmer{100%{transform:translateX(100%)}}
+.uw-sk--img{aspect-ratio:16/9;border-radius:var(--radius-card) var(--radius-card) 0 0}
+.uw-sk--line{height:12px;margin-bottom:8px}
+.uw-spin{width:20px;height:20px;border:2px solid var(--line);
+  border-top-color:var(--dark-blue);border-radius:50%;animation:uw-spin .7s linear infinite}
+@keyframes uw-spin{to{transform:rotate(360deg)}}
+
+.uw-car__track{display:flex;gap:var(--space-m);overflow-x:auto;scroll-snap-type:x mandatory;
+  scrollbar-width:none;padding-bottom:var(--space-s)}
+.uw-car__track::-webkit-scrollbar{display:none}
+.uw-car__item{flex:0 0 180px;scroll-snap-align:start}
+.uw-car__ph{aspect-ratio:1/1;background:linear-gradient(135deg,#D6EDE4,#D1EFE5);
+  border-radius:var(--radius-card);display:grid;place-items:center;color:#5B8E7C;font-size:9px}
+.uw-car__bar{height:6px;background:var(--line);border-radius:var(--radius-pill);
+  margin-top:var(--space-s);max-width:200px}
+.uw-car__thumb{height:6px;width:34%;background:var(--dark-blue);
+  border-radius:var(--radius-pill)}
+.uw-car__nav{display:flex;gap:var(--space-xs);margin-top:var(--space-m)}
+.uw-car__b{width:48px;height:48px;border:var(--border-hairline) solid var(--dark-green);
+  border-radius:50%;background:var(--white);color:var(--dark-green);cursor:pointer;
+  display:grid;place-items:center}
+.uw-car__b:hover{background:var(--light-green)}
+.uw-car__b[aria-disabled="true"]{border-color:var(--line);color:var(--medium-gray);
+  pointer-events:none}
+
+.uw-gate{position:relative;background:var(--dark-blue);border-radius:var(--radius-card);
+  padding:var(--space-2xl) var(--space-l);display:grid;place-items:center;min-height:340px}
+.uw-gate__card{background:var(--white);border-radius:var(--radius-card);
+  box-shadow:var(--shadow-xl);max-width:400px;width:100%;padding:var(--space-l);
+  text-align:center}
+.uw-gate__mark{width:56px;height:56px;margin:0 auto var(--space-m);border-radius:50%;
+  background:var(--light-green);display:grid;place-items:center;color:var(--dark-green)}
+.uw-gate__t{font-family:var(--ff-heading);font-size:var(--fs-h5);
+  font-weight:var(--fw-semibold);color:var(--dark-blue);margin:0 0 var(--space-xs)}
+.uw-gate__p{font-size:var(--fs-small);margin:0 0 var(--space-l)}
+.uw-gate__a{display:flex;flex-direction:column;gap:var(--space-xs)}
+.uw-gate__legal{font-size:var(--fs-meta);font-style:italic;color:var(--dark-gray);
+  margin:var(--space-m) 0 0;line-height:1.45}
+
+/* ============================================================
+   33 · PDP GALLERY
+   ============================================================ */
+.uw-gal{width:440px;max-width:100%;position:relative}
+.uw-gal__main{position:relative;display:block;width:100%;aspect-ratio:1/1;padding:0;border:0;
+  border-radius:var(--radius-card);overflow:hidden;background:var(--light-gray);
+  cursor:zoom-in}
+.uw-gal__tags{position:absolute;top:var(--space-s);right:var(--space-s);display:flex;
+  flex-direction:column;gap:var(--space-2xs);align-items:flex-end;pointer-events:none;z-index:2}
+.uw-gal__fav{position:absolute;top:var(--space-s);left:var(--space-s);z-index:3;
+  width:44px;height:44px;padding:0;border:0;background:none;cursor:pointer;
+  color:var(--dark-blue);display:grid;place-items:center;
+  filter:drop-shadow(0 1px 2px #0B102A40);transition:color 120ms ease-out}
+.uw-gal__fav svg{fill:none;stroke:currentColor}
+@media(hover:hover) and (pointer:fine){
+  .uw-gal__fav:hover{color:var(--medium-red)}}
+.uw-gal__fav[aria-pressed="true"]{color:var(--medium-red)}
+.uw-gal__fav[aria-pressed="true"] svg{fill:currentColor}
+.uw-gal__fav:focus-visible{outline:var(--border-emphasis) solid var(--medium-blue);
+  outline-offset:2px;border-radius:50%}
+.uw-gal__hint{position:absolute;right:var(--space-s);bottom:var(--space-s);width:36px;
+  height:36px;border-radius:50%;background:#FFFFFFD9;display:grid;place-items:center;
+  color:var(--dark-blue);pointer-events:none;z-index:2}
+.uw-gal__strip{display:flex;gap:var(--space-xs);margin-top:var(--space-s);overflow-x:auto;
+  scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:2px}
+.uw-gal__strip::-webkit-scrollbar{display:none}
+.uw-gal__t{flex:0 0 76px;aspect-ratio:1/1;padding:0;background:none;
+  border:var(--border-emphasis) solid transparent;border-radius:var(--radius-inner);
+  overflow:hidden;cursor:pointer;scroll-snap-align:start}
+.uw-gal__t[aria-current="true"]{border-color:var(--dark-blue)}
+.uw-gal__t:hover{border-color:var(--light-blue)}
+.uw-gal__t[aria-current="true"]:hover{border-color:var(--dark-blue)}
+.g-ph{width:100%;height:100%;display:grid;place-items:center;font-size:10px;
+  letter-spacing:.06em;background:linear-gradient(135deg,#D6EDE4,#D1EFE5);color:#5B8E7C}
+.g-ph.b{background:linear-gradient(135deg,#D9DEF0,#CED4F3);color:#6F79A6}
+.g-ph.o{background:linear-gradient(135deg,#F7E4CE,#FFF5EB);color:#9B7A4E}
+.g-ph.p{background:linear-gradient(135deg,#EFDCE8,#F4E2ED);color:#8E6F85}
+.g-ph.dk{background:linear-gradient(135deg,#2F3A2E,#4A5A46);color:#B8C7B4}
+
+/* ============================================================
+   34 · SEARCH BAR
+   ============================================================ */
+.uw-srch{position:relative;max-width:560px}
+.uw-srch__field{display:flex;align-items:center;gap:var(--space-xs);height:48px;
+  padding:0 var(--space-xs) 0 var(--space-m);background:var(--white);
+  border:var(--border-hairline) solid var(--line);border-radius:var(--radius-pill);
+  transition:border-color 150ms ease-out,box-shadow 150ms ease-out}
+.uw-srch__ico{flex:0 0 auto;color:var(--dark-gray);display:grid;place-items:center;
+  transition:color 150ms ease-out}
+.uw-srch__in{flex:1;min-width:0;border:0;background:none;outline:0;
+  font-family:var(--ff-body);font-size:var(--fs-body);color:var(--dark-blue)}
+.uw-srch__in::placeholder{color:var(--medium-gray)}
+.uw-srch__clear{flex:0 0 auto;width:32px;height:32px;border:0;background:none;
+  color:var(--medium-gray);cursor:pointer;display:grid;place-items:center}
+.uw-srch__clear:hover{color:var(--dark-blue)}
+.uw-srch__go{flex:0 0 auto;width:40px;height:40px;border:0;border-radius:50%;
+  background:var(--light-green);color:var(--dark-green);cursor:pointer;
+  display:grid;place-items:center;transition:background-color 150ms ease-out,
+  color 150ms ease-out,transform 100ms ease-out}
+.uw-srch__go:active{transform:scale(.94)}
+.uw-srch--hover .uw-srch__field{border-color:var(--medium-green)}
+.uw-srch--focus .uw-srch__field,.uw-srch__field:focus-within{
+  border-color:var(--dark-green);box-shadow:0 0 0 4px var(--light-green)}
+.uw-srch--focus .uw-srch__ico,.uw-srch__field:focus-within .uw-srch__ico{
+  color:var(--dark-green)}
+.uw-srch--typed .uw-srch__go{background:var(--medium-green);color:var(--white)}
+.uw-srch__panel{margin-top:var(--space-xs);background:var(--white);
+  border:var(--border-hairline) solid var(--line);border-radius:var(--radius-card);
+  box-shadow:var(--shadow-lg);padding:4px;max-height:420px;overflow-y:auto;
+  overscroll-behavior:contain}
+.uw-srch__lab{font-size:var(--fs-meta);font-weight:var(--fw-bold);
+  letter-spacing:var(--ls-caps);text-transform:uppercase;color:var(--medium-gray);
+  padding:var(--space-s) var(--space-s) var(--space-2xs)}
+.uw-srch__row{display:flex;align-items:center;gap:var(--space-s);width:100%;
+  padding:var(--space-xs) var(--space-s);min-height:44px;border:0;background:none;
+  border-radius:var(--radius-inner);cursor:pointer;text-align:left;
+  font-family:var(--ff-body);font-size:var(--fs-small);color:var(--dark-gray)}
+.uw-srch__row:hover{background:var(--light-blue)}
+.uw-srch__row.is-cursor{background:var(--light-green)}
+.uw-srch__th{flex:0 0 auto;width:40px;height:40px;border-radius:var(--radius-inner);
+  background:var(--light-gray);display:grid;place-items:center;font-size:16px}
+.uw-srch__tx{flex:1;min-width:0}
+.uw-srch__n{display:block;color:var(--dark-gray)}
+.uw-srch__n b{color:var(--dark-blue);font-weight:var(--fw-bold)}
+.uw-srch__m{display:block;font-size:var(--fs-meta);color:var(--medium-gray)}
+.uw-srch__p{flex:0 0 auto;font-size:var(--fs-small);font-weight:var(--fw-bold);
+  color:var(--dark-blue);font-variant-numeric:tabular-nums}
+.uw-srch__all{display:block;width:100%;padding:var(--space-s);border:0;background:none;
+  border-top:var(--border-hairline) solid var(--line);margin-top:4px;cursor:pointer;
+  font-family:var(--ff-body);font-size:var(--fs-small);font-weight:var(--fw-medium);
+  color:var(--medium-blue);text-align:left}
+.uw-srch__all:hover{text-decoration:underline}
+.uw-srch__skel{height:40px;margin:var(--space-2xs) var(--space-s);border-radius:var(--radius-inner);
+  background:var(--light-gray);position:relative;overflow:hidden}
+.uw-srch__skel::after{content:"";position:absolute;inset:0;transform:translateX(-100%);
+  background:linear-gradient(90deg,transparent,#FFFFFFB3,transparent);
+  animation:uw-shimmer 1.4s infinite}
+.uw-srch__empty{padding:var(--space-m) var(--space-s);font-size:var(--fs-small)}
+.uw-srch__empty b{color:var(--dark-blue)}
+.uw-srch__chips{display:flex;gap:var(--space-xs);flex-wrap:wrap;margin-top:var(--space-s)}
+.uw-srch__chip{padding:var(--space-2xs) var(--space-s);font-size:var(--fs-meta);
+  background:var(--light-gray);color:var(--dark-gray);border:0;
+  border-radius:var(--radius-pill);cursor:pointer}
+.uw-srch__chip:hover{background:var(--light-blue)}
+.uw-srch__err{display:flex;gap:var(--space-s);padding:var(--space-m);
+  background:var(--light-red);border-left:var(--border-heavy) solid var(--medium-red);
+  border-radius:var(--radius-card);font-size:var(--fs-small)}
+.uw-srch__err a{color:var(--medium-blue);font-weight:var(--fw-bold)}
+
+/* ============================================================
+   10b · FILTER AND SORT PILL
+   ============================================================ */
+.uw-fp{display:inline-flex;align-items:center;gap:var(--space-xs);height:44px;
+  padding:0 var(--space-m);font-family:var(--ff-body);font-size:var(--fs-small);
+  font-weight:var(--fw-medium);line-height:1;background:var(--white);
+  color:var(--dark-blue);border:var(--border-hairline) solid var(--line);
+  border-radius:var(--radius-pill);cursor:pointer;
+  transition:background-color 120ms ease-out,border-color 120ms ease-out,color 120ms ease-out}
+.uw-fp__chev{width:7px;height:7px;border-right:1.5px solid currentColor;
+  border-bottom:1.5px solid currentColor;transform:rotate(45deg) translate(-2px,-2px)}
+@media(hover:hover) and (pointer:fine){
+  .uw-fp:hover{background:var(--light-blue);border-color:var(--light-blue)}}
+.uw-fp:focus-visible{outline:var(--border-emphasis) solid var(--medium-blue);
+  outline-offset:2px}
+.uw-fp[aria-expanded="true"]{background:var(--light-blue);border-color:var(--medium-blue)}
+.uw-fp.is-active{background:var(--dark-blue);border-color:var(--dark-blue);
+  color:var(--white)}
+.uw-fp__count{display:inline-flex;align-items:center;justify-content:center;min-width:20px;
+  height:20px;padding:0 6px;font-size:var(--fs-meta);font-weight:var(--fw-bold);
+  font-variant-numeric:tabular-nums;background:var(--white);color:var(--dark-blue);
+  border-radius:var(--radius-pill)}
+.uw-fp:disabled{background:var(--light-gray);border-color:var(--line);
+  color:var(--medium-gray);cursor:not-allowed}
+.uw-fp--grey{background:var(--light-gray);border-color:var(--light-gray);
+  color:var(--medium-gray)}
+.uw-fp--green.is-active{background:var(--dark-green);border-color:var(--dark-green)}
+.uw-fp--green.is-active .uw-fp__count{color:var(--dark-green)}
+.uw-fchip{display:inline-flex;align-items:center;gap:var(--space-2xs);
+  padding:var(--space-2xs) var(--space-2xs) var(--space-2xs) var(--space-s);
+  font-size:var(--fs-meta);font-weight:var(--fw-medium);background:var(--light-gray);
+  color:var(--dark-gray);border-radius:var(--radius-pill)}
+.uw-fchip button{width:20px;height:20px;border:0;border-radius:50%;background:none;
+  color:inherit;cursor:pointer;display:grid;place-items:center;font-size:13px;
+  transition:background-color 120ms ease-out,color 120ms ease-out}
+.uw-fchip button:hover{background:var(--medium-red);color:var(--white)}
+.uw-freset{background:none;border:0;padding:0 var(--space-xs);color:var(--medium-blue);
+  font-family:var(--ff-body);font-size:var(--fs-meta);font-weight:var(--fw-medium);
+  cursor:pointer;min-height:44px}
+.uw-freset:hover{text-decoration:underline}
+
+@media(prefers-reduced-motion:reduce){
+  .uw-btn,.uw-input,.uw-check__input,.uw-check__input::after,.uw-link,.uw-badge__remove,
+  .uw-select__chevron,.uw-acc__trigger::after,.uw-acc--boxed .uw-acc__item,
+  .uw-post,.uw-tip__bubble,.uw-card--link,.uw-tabs__t::after{transition:none}
+  .uw-sk::after,.uw-srch__skel::after{animation:none}
+  .uw-srch__field{transition:none}
+  .uw-spin{animation-duration:2s}
+  .uw-btn.is-loading::after{animation-duration:2s}
+}
+</style>
+</head>
+<body>
+<div class="g-wrap">
+
+<h1 class="g-h1">Component gallery</h1>
+<p class="g-sub">33 of 40 components, rendered from the real tokens. Everything is live: hover it, tab to it, tap it. Where a live implementation is being replaced, the reason sits beside the component.</p>
+
+<div class="g-warn">
+<b>This is the target, not production.</b> It renders the corrected tokens: <span class="g-code">--white</span> at true white, <span class="g-code">--line</span>, the shadow scale, <span class="g-code">--radius-pill</span>, six font faces. None of that is live until the token-corrections card ships.<br><br>
+<b>Focus rings are proposed.</b> Marked <span class="g-flag">proposed</span> throughout, pending decisions B1–B4.<br><br>
+<b>Copy is German</b> — the longest of the three languages, and the one that breaks layouts first.
+</div>
+
+<!-- ============ 1 · BUTTON ============ -->
+<section class="g-sec">
+<p class="g-num">Component 1</p>
+<h2 class="g-h2">Button</h2>
+<p class="g-note">Colour tells the user what kind of thing will happen. Green advances a purchase; blue takes them somewhere. Outline and text are secondary regardless of destination.</p>
+
+<p class="g-h3">Variants</p>
+<div class="g-row">
+  <button class="uw-btn uw-btn--buy">In den Warenkorb</button>
+  <a class="uw-btn uw-btn--nav" href="#">Jetzt entdecken</a>
+  <button class="uw-btn uw-btn--outline">Weiter einkaufen</button>
+  <button class="uw-btn uw-btn--text">Mehr anzeigen</button>
+</div>
+<p class="g-note" style="margin-top:12px">Green never navigates. Blue never adds to cart. That is the whole reason there are two.</p>
+
+<p class="g-h3">Size — one height, 44px</p>
+<div class="g-row">
+  <button class="uw-btn uw-btn--buy">In den Warenkorb</button>
+  <button class="uw-btn uw-btn--nav">Zum Shop</button>
+  <button class="uw-btn uw-btn--buy uw-btn--icon" aria-label="In den Warenkorb">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+</div>
+
+<p class="g-h3">Width — 160px floor, then grows with the label</p>
+<div class="g-row" style="flex-direction:column;align-items:flex-start">
+  <button class="uw-btn uw-btn--buy">Add to cart</button>
+  <button class="uw-btn uw-btn--buy">Ajouter au panier</button>
+  <button class="uw-btn uw-btn--buy">In den Warenkorb</button>
+</div>
+<p class="g-note" style="margin-top:12px">English sits at the floor; French and German set their own width. Never a fixed width, never sized to English.</p>
+
+<p class="g-h3">Full width — sole action in a block</p>
+<div style="max-width:340px">
+  <button class="uw-btn uw-btn--buy uw-btn--block">In den Warenkorb</button>
+</div>
+
+<p class="g-h3">States — buy</p>
+<div class="g-grid">
+  <div class="g-cell"><span class="g-lbl">rest</span><button class="uw-btn uw-btn--buy">In den Warenkorb</button></div>
+  <div class="g-cell"><span class="g-lbl">hover — mouse over</span><button class="uw-btn uw-btn--buy is-hover">In den Warenkorb</button></div>
+  <div class="g-cell"><span class="g-lbl">focus — Tab key <span class="g-flag">proposed</span></span><button class="uw-btn uw-btn--buy is-focus">In den Warenkorb</button></div>
+  <div class="g-cell"><span class="g-lbl">disabled</span><button class="uw-btn uw-btn--buy" disabled>Ausverkauft</button></div>
+  <div class="g-cell"><span class="g-lbl">loading</span><button class="uw-btn uw-btn--buy is-loading" aria-busy="true">In den Warenkorb</button></div>
+</div>
+
+<p class="g-h3">States — navigate</p>
+<div class="g-grid">
+  <div class="g-cell"><span class="g-lbl">rest</span><button class="uw-btn uw-btn--nav">Jetzt entdecken</button></div>
+  <div class="g-cell"><span class="g-lbl">hover</span><button class="uw-btn uw-btn--nav is-hover">Jetzt entdecken</button></div>
+  <div class="g-cell"><span class="g-lbl">focus <span class="g-flag">proposed</span></span><button class="uw-btn uw-btn--nav is-focus">Jetzt entdecken</button></div>
+  <div class="g-cell"><span class="g-lbl">disabled</span><button class="uw-btn uw-btn--nav" disabled>Nicht verfügbar</button></div>
+</div>
+
+<p class="g-h3">Try it — press Tab</p>
+<div class="g-row">
+  <button class="uw-btn uw-btn--buy">Erste</button>
+  <button class="uw-btn uw-btn--nav">Zweite</button>
+  <button class="uw-btn uw-btn--outline">Dritte</button>
+</div>
+<p class="g-note" style="margin-top:12px">Click into the page, then press Tab. The ring follows the keyboard and does <em>not</em> appear when you click — that is <span class="g-code">:focus-visible</span>. Without it, a keyboard user has no idea where they are.</p>
+
+<p class="g-h3">On dark — the ring turns white</p>
+<div class="g-dark on-dark">
+  <div class="g-row">
+    <div class="g-cell"><span class="g-lbl">focus <span class="g-flag">proposed</span></span>
+      <button class="uw-btn uw-btn--buy is-focus">In den Warenkorb</button></div>
+    <div class="g-cell"><span class="g-lbl">link</span>
+      <a class="uw-link" href="#">Laborberichte ansehen</a></div>
+  </div>
+  <p style="color:var(--light-blue);font-size:var(--fs-small);margin:16px 0 0;max-width:60ch">
+    <span class="g-code" style="background:#FFFFFF1A;color:var(--white)">--medium-blue</span> on
+    <span class="g-code" style="background:#FFFFFF1A;color:var(--white)">--dark-blue</span> is about 1.5:1 — invisible. Any component inside
+    <span class="g-code" style="background:#FFFFFF1A;color:var(--white)">.on-dark</span> swaps the ring to white.</p>
+</div>
+</section>
+
+<!-- ============ 2 · INPUT ============ -->
+<section class="g-sec">
+<p class="g-num">Component 2</p>
+<h2 class="g-h2">Input <span class="g-flag">height undecided</span></h2>
+<p class="g-note">46px height with <span class="g-code">--radius-pill</span>, matching the CTA shape so controls and buttons read as one system. Labels are <span class="g-code">--dark-gray</span>. Only the height is still open — 46px here, 60–70px elsewhere on the site.</p>
+
+<div class="g-grid" style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr))">
+  <div class="g-cell"><span class="g-lbl">rest</span>
+    <div class="uw-field"><label class="uw-field__label">E-Mail</label>
+    <input class="uw-input" type="email" placeholder="deine@email.ch"></div></div>
+
+  <div class="g-cell"><span class="g-lbl">filled</span>
+    <div class="uw-field"><label class="uw-field__label">E-Mail</label>
+    <input class="uw-input" type="email" value="anna.mueller@example.ch"></div></div>
+
+  <div class="g-cell"><span class="g-lbl">hover</span>
+    <div class="uw-field"><label class="uw-field__label">E-Mail</label>
+    <input class="uw-input is-hover" type="email" placeholder="deine@email.ch"></div></div>
+
+  <div class="g-cell"><span class="g-lbl">focus <span class="g-flag">proposed</span></span>
+    <div class="uw-field"><label class="uw-field__label">E-Mail</label>
+    <input class="uw-input is-focus" type="email" value="anna.mueller@"></div></div>
+
+  <div class="g-cell"><span class="g-lbl">disabled</span>
+    <div class="uw-field"><label class="uw-field__label">Land</label>
+    <input class="uw-input" type="text" value="Schweiz" disabled></div></div>
+
+  <div class="g-cell"><span class="g-lbl">invalid</span>
+    <div class="uw-field is-invalid"><label class="uw-field__label">Postleitzahl</label>
+    <input class="uw-input" type="text" value="80" aria-invalid="true" aria-describedby="e1">
+    <p class="uw-field__message" id="e1">Bitte gib eine gültige PLZ ein.</p></div></div>
+</div>
+
+<p class="g-h3">Textarea — --radius-card</p>
+<div style="max-width:420px">
+  <div class="uw-field"><label class="uw-field__label">Anmerkung zur Bestellung</label>
+  <textarea class="uw-input uw-input--area" rows="3" placeholder="Optional"></textarea></div>
+</div>
+<p class="g-note" style="margin-top:12px">A pill on a 96px box reads as a lozenge and eats the corners, so the textarea keeps <span class="g-code">--radius-card</span>.</p>
+</section>
+
+<!-- ============ 3 · SELECT ============ -->
+<section class="g-sec">
+<p class="g-num">Component 3</p>
+<h2 class="g-h2">Select</h2>
+<p class="g-note">Matches Input exactly except the chevron — same pill radius, same height. Prefer native: the OS picker beats anything custom on touch and is keyboard accessible for free. The panel below applies only to enhanced selects; a native dropdown is drawn by the OS and cannot be styled.</p>
+
+<div class="g-grid" style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr))">
+  <div class="g-cell"><span class="g-lbl">rest</span>
+    <div class="uw-field"><label class="uw-field__label">Land</label>
+    <div class="uw-select">
+      <select class="uw-select__control"><option>Schweiz</option><option>Deutschland</option></select>
+      <svg class="uw-select__chevron" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+        <path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div></div></div>
+
+  <div class="g-cell"><span class="g-lbl">disabled</span>
+    <div class="uw-field"><label class="uw-field__label">Versandart</label>
+    <div class="uw-select">
+      <select class="uw-select__control" disabled><option>Nicht verfügbar</option></select>
+      <svg class="uw-select__chevron" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+        <path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div></div></div>
+</div>
+
+<p class="g-h3">Panel — enhanced selects only</p>
+<div style="max-width:280px;background:var(--white);border:var(--border-hairline) solid var(--line);
+            border-radius:var(--radius-card);box-shadow:var(--shadow-lg);padding:var(--space-2xs)">
+  <div class="uw-pop__item" aria-selected="true">Schweiz</div>
+  <div class="uw-pop__item is-active">Deutschland</div>
+  <div class="uw-pop__item">Frankreich</div>
+</div>
+<p class="g-note" style="margin-top:12px"><b>A native dropdown cannot be styled.</b> Its highlight, radius and font come from the operating system — solid blue on Windows, grey on macOS. If the panel must match the brand, the control has to be an enhanced select with the full combobox pattern. That is the trade: OS-native behaviour, or brand-matched appearance.</p>
+</section>
+
+<!-- ============ 4 · CHECKBOX ============ -->
+<section class="g-sec">
+<p class="g-num">Component 4</p>
+<h2 class="g-h2">Checkbox and radio</h2>
+<p class="g-note">The whole label is the hit area — a 20px box is far below the 44px minimum. Uses <span class="g-code">appearance: none</span> on the real input rather than a separate visual element.</p>
+
+<p class="g-h3">Checkbox states</p>
+<div class="g-grid">
+  <div class="g-cell"><span class="g-lbl">rest</span>
+    <label class="uw-check"><input class="uw-check__input" type="checkbox">
+    <span class="uw-check__label">Newsletter abonnieren</span></label></div>
+
+  <div class="g-cell"><span class="g-lbl">checked</span>
+    <label class="uw-check"><input class="uw-check__input" type="checkbox" checked>
+    <span class="uw-check__label">Newsletter abonnieren</span></label></div>
+
+  <div class="g-cell"><span class="g-lbl">focus <span class="g-flag">proposed</span></span>
+    <label class="uw-check"><input class="uw-check__input is-focus" type="checkbox">
+    <span class="uw-check__label">Newsletter abonnieren</span></label></div>
+
+  <div class="g-cell"><span class="g-lbl">indeterminate</span>
+    <label class="uw-check"><input class="uw-check__input" type="checkbox" id="ind">
+    <span class="uw-check__label">Alle Marken</span></label></div>
+
+  <div class="g-cell"><span class="g-lbl">disabled</span>
+    <label class="uw-check"><input class="uw-check__input" type="checkbox" disabled>
+    <span class="uw-check__label">Nicht verfügbar</span></label></div>
+
+  <div class="g-cell"><span class="g-lbl">disabled + checked — medium-gray glyph</span>
+    <label class="uw-check"><input class="uw-check__input" type="checkbox" checked disabled>
+    <span class="uw-check__label">Bereits gewählt</span></label></div>
+</div>
+
+<p class="g-h3">Radio — in a fieldset, as required</p>
+<fieldset style="border:var(--border-hairline) solid var(--line);border-radius:var(--radius-card);
+                 padding:var(--space-m) var(--space-l);max-width:420px;margin:0">
+  <legend style="font-size:var(--fs-small);color:var(--medium-gray);padding-inline:var(--space-xs)">Versandart</legend>
+  <label class="uw-check uw-check--radio"><input class="uw-check__input" type="radio" name="v" checked>
+  <span class="uw-check__label">Swiss Post — Priority</span></label>
+  <label class="uw-check uw-check--radio"><input class="uw-check__input" type="radio" name="v">
+  <span class="uw-check__label">MyPost24 Abholung</span></label>
+  <label class="uw-check uw-check--radio"><input class="uw-check__input" type="radio" name="v" disabled>
+  <span class="uw-check__label">Express — nicht verfügbar</span></label>
+</fieldset>
+<p class="g-note" style="margin-top:12px">No radio group on the live site uses <span class="g-code">&lt;fieldset&gt;</span> + <span class="g-code">&lt;legend&gt;</span>. Without it a screen reader announces each option with no idea what is being chosen — finding G1.</p>
+
+<p class="g-h3">Filter variant — label left, count right</p>
+<div style="max-width:280px">
+  <label class="uw-check uw-check--count"><input class="uw-check__input" type="checkbox" checked>
+  <span class="uw-check__label">Sweed</span><span class="uw-check__count">24</span></label>
+  <label class="uw-check uw-check--count"><input class="uw-check__input" type="checkbox">
+  <span class="uw-check__label">Green Passion</span><span class="uw-check__count">18</span></label>
+  <label class="uw-check uw-check--count"><input class="uw-check__input" type="checkbox">
+  <span class="uw-check__label">CannaSwissCup</span><span class="uw-check__count">3</span></label>
+</div>
+</section>
+
+<!-- ============ 5 · BADGE ============ -->
+<section class="g-sec">
+<p class="g-num">Component 5</p>
+<h2 class="g-h2">Badge and tag</h2>
+<p class="g-note">Bestseller takes dark text. White on <span class="g-code">--medium-orange</span> is 2.0:1 and fails AA — a live defect fixed by the token-corrections card.<br><br>Removable badges are <b>grey, not green</b>. Applied filters sit directly above the product grid; green chips there compete with the products and read as promotion rather than state. Green stays reserved for the purchase path, blue for filter counts.</p>
+
+<p class="g-h3">Variants</p>
+<div class="g-row">
+  <span class="uw-badge uw-badge--category">Wellness</span>
+  <span class="uw-badge uw-badge--attribute">CBD 10 % · THC 0.3 %</span>
+  <span class="uw-badge uw-badge--sale">−15%</span>
+  <span class="uw-badge uw-badge--new">Neu</span>
+  <span class="uw-badge uw-badge--bestseller">Top bewertet</span>
+  <span class="uw-badge uw-badge--oos">Ausverkauft</span>
+  <span class="uw-badge uw-badge--count" aria-label="3 Artikel im Warenkorb">3</span>
+  <span class="uw-badge uw-badge--count uw-badge--count-fav" aria-label="2 Favoriten">2</span>
+</div>
+<p class="g-note" style="margin-top:12px"><b>Pink is the category colour</b> — it has no other job. Blue navigates, green buys, orange rates, red warns. Category badges and the cart count are the two places pink earns its place.<br><br>
+<b>Category and attribute are different things.</b> A category places the product in the catalogue; an attribute states a fact about it. Both appear on a tile, and conflating them is why every small label looked the same.</p>
+
+<p class="g-h3">Removable — applied filters, grey</p>
+<div class="g-row">
+  <span class="uw-badge uw-badge--removable">Sweed
+    <button class="uw-badge__remove" aria-label="Filter Sweed entfernen">
+      <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+        <path d="M3 3l6 6M9 3l-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg></button></span>
+  <span class="uw-badge uw-badge--removable">CBD 10–20 %
+    <button class="uw-badge__remove" aria-label="Filter CBD-Gehalt entfernen">
+      <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+        <path d="M3 3l6 6M9 3l-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg></button></span>
+</div>
+
+<p class="g-h3">Contrast — mid-tones never take white text</p>
+<div class="g-row">
+  <span class="uw-badge" style="background:var(--medium-orange);color:var(--white)">2.0:1 fails</span>
+  <span class="uw-badge uw-badge--bestseller">9.6:1 passes</span>
+  <span class="uw-badge" style="background:var(--medium-green);color:var(--white)">2.1:1 fails</span>
+  <span class="uw-badge uw-badge--new">7.6:1 passes</span>
+  <span class="uw-badge" style="background:var(--medium-pink);color:var(--white)">1.8:1 fails</span>
+  <span class="uw-badge" style="background:var(--dark-pink);color:var(--white)">6.4:1 passes</span>
+</div>
+<p class="g-note" style="margin-top:12px">The live “Neu” badge is mid-green with white text at 2.1:1.</p>
+
+<p class="g-h3">Count badges — cart green, favourites red</p>
+<div class="g-row" style="gap:var(--space-xl);align-items:flex-start">
+  <div class="g-cell"><span class="g-lbl">cart — --dark-green, 7.6:1</span>
+    <div style="position:relative;width:44px;height:44px;display:grid;place-items:center;
+                border:var(--border-hairline) solid var(--line);border-radius:var(--radius-card)">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M6 8h12l-1 12H7L6 8zM9 8V6a3 3 0 016 0v2" stroke="var(--dark-blue)" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="uw-badge uw-badge--count" style="position:absolute;top:2px;right:2px">1</span>
+    </div></div>
+  <div class="g-cell"><span class="g-lbl">favourites — --medium-red, 4.8:1</span>
+    <div style="position:relative;width:44px;height:44px;display:grid;place-items:center;
+                border:var(--border-hairline) solid var(--line);border-radius:var(--radius-card)">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 20s-7-4.5-7-9a4 4 0 017-2.6A4 4 0 0119 11c0 4.5-7 9-7 9z" stroke="var(--dark-blue)"
+              stroke-width="1.6" stroke-linejoin="round"/></svg>
+      <span class="uw-badge uw-badge--count uw-badge--count-fav" style="position:absolute;top:2px;right:2px">2</span>
+    </div></div>
+  <div class="g-cell"><span class="g-lbl">two digits</span>
+    <div class="g-row" style="gap:var(--space-xs)">
+      <span class="uw-badge uw-badge--count">12</span>
+      <span class="uw-badge uw-badge--count uw-badge--count-fav">12</span>
+    </div></div>
+</div>
+<p class="g-note" style="margin-top:12px">Cart is commerce, so green. Favourites follows its heart (§33) — a filled red heart is a convention strong enough that fighting it costs more than it gains, and a count attached to a heart reads as "how many saved" rather than as an error. An earlier draft made both green: right about cart, wrong about favourites, since a green count beside a red heart reads as two features.<br><br>
+The live <span class="g-code">#D95ABA</span> is retired, being neither in the palette nor above 3.4:1. Pink is the editorial section colour and appears on exactly one badge, the category chip.</p>
+</section>
+
+<!-- ============ 6 · LINK ============ -->
+<section class="g-sec">
+<p class="g-num">Component 6</p>
+<h2 class="g-h2">Link</h2>
+<p class="g-note">Three variants, sorted by <b>whether the linkness has to announce itself</b> — not by where the link sits. In a menu it does not: every row is clickable, so blue would be noise and the colour is better spent on structure. A single action link at the foot of a list has no such context and takes the link colour.</p>
+
+<p class="g-h3">Inline — always underlined</p>
+<p style="max-width:60ch;margin:0">Alle Produkte werden vor der Listung geprüft — <a class="uw-link" href="#">Laborberichte ansehen</a>. Versand ab CHF 49 kostenlos, <a class="uw-link" href="#">mehr zu den Versandoptionen</a>.</p>
+<p class="g-note" style="margin-top:12px"><span class="g-code">--medium-blue</span> against <span class="g-code">--dark-gray</span> body text is about 2.5:1 — nowhere near the 3:1 that would let colour work alone. The underline is not decoration; it is the affordance.</p>
+
+<p class="g-h3">Action — announces itself as a link</p>
+<div class="g-row">
+  <a class="uw-link uw-link--action" href="#">Alle Ergebnisse anzeigen</a>
+  <a class="uw-link uw-link--action" href="#">Mehr erfahren</a>
+</div>
+
+<p class="g-h3">Navigation — linkness implied by context</p>
+<div class="g-row">
+  <a class="uw-link uw-link--nav" href="#">CBD Blüten</a>
+  <a class="uw-link uw-link--nav" href="#">Häufige Fragen</a>
+  <a class="uw-link uw-link--nav" href="#" aria-current="page">Aktuelle Seite</a>
+</div>
+
+<p class="g-h3">On dark — a context, not a variant</p>
+<div class="g-dark on-dark">
+  <div class="g-row">
+    <a class="uw-link" href="#">Versandoptionen</a>
+    <a class="uw-link uw-link--nav" href="#">Kontakt</a>
+  </div>
+</div>
+
+<p class="g-h3">Focus — Tab key <span class="g-flag">proposed</span></p>
+<div class="g-row">
+  <a class="uw-link is-focus" href="#">Laborberichte ansehen</a>
+</div>
+
+<p class="g-h3">Not a link — disclosure moved to Button</p>
+<div class="g-row">
+  <button class="uw-btn uw-btn--text" aria-expanded="false">Mehr anzeigen</button>
+</div>
+</section>
+
+
+<!-- ============ 7 · CATEGORY TAB NAV ============ -->
+<section class="g-sec">
+<p class="g-num">Component 7</p>
+<h2 class="g-h2">Category tab nav <span class="g-flag">colour decision</span></h2>
+<p class="g-note">A horizontal row of filters over a listing or carousel. Narrows what is shown without leaving the page. Distinct from Link, which navigates away, and from the filter panel, which combines many facets.</p>
+
+<p class="g-h3">Swipeable, no rule under the row</p>
+<nav class="uw-tabnav" aria-label="Produktkategorien">
+  <ul class="uw-tabnav__list">
+    <li><a class="uw-tabnav__item is-active" href="#" aria-current="page">Alle Produkte</a></li>
+    <li><a class="uw-tabnav__item" href="#">CBD Öl 5 %</a></li>
+    <li><a class="uw-tabnav__item" href="#">CBD Öl 10 %</a></li>
+    <li><a class="uw-tabnav__item" href="#">CBD Öl 20 %</a></li>
+    <li><a class="uw-tabnav__item" href="#">CBD Öl 30 %+</a></li>
+    <li><a class="uw-tabnav__item" href="#">Tropfen</a></li>
+  </ul>
+</nav>
+<p class="g-note" style="margin-top:16px">Only the active item is underlined, at 3px. A full-width grey rule makes the row look like a boundary between sections rather than a set of options, and it fights the card grid directly beneath.<br><br>
+Active is <b>dark blue</b>: a category tab changes which products are listed, so it navigates, and green is reserved for advancing a purchase.<br><br>
+Uppercase is kept — short labels, scanned not read, and <span class="g-code">--ls-caps</span> applied.</p>
+</section>
+
+<!-- ============ 8 · BREADCRUMB ============ -->
+<section class="g-sec">
+<p class="g-num">Component 8</p>
+<h2 class="g-h2">Breadcrumb <span class="g-flag">proposal</span></h2>
+<p class="g-note">Deliberately quiet. Orientation, not navigation people came for — findable, and never competing with the H1 directly beneath it.</p>
+
+<p class="g-h3">Proposed</p>
+<nav class="uw-crumbs" aria-label="Brotkrumen">
+  <ol class="uw-crumbs__list">
+    <li class="uw-crumbs__item"><a class="uw-crumbs__link" href="#">Startseite</a></li>
+    <li class="uw-crumbs__item"><a class="uw-crumbs__link" href="#">CBD Shop</a></li>
+    <li class="uw-crumbs__item"><a class="uw-crumbs__link" href="#">CBD Öl</a></li>
+    <li class="uw-crumbs__item"><span class="uw-crumbs__current" aria-current="page">CBD Öl 10 % Vollspektrum</span></li>
+  </ol>
+</nav>
+<div style="margin-top:8px">
+  <h3 style="font-family:var(--ff-heading);font-size:var(--fs-h4);font-weight:var(--fw-extrabold);
+             letter-spacing:-.02em;color:var(--heading-color);margin:0">CBD Öl 10 % Vollspektrum mit MCT-Öl</h3>
+</div>
+<p class="g-note" style="margin-top:12px">Shown with the H1 beneath it — the relationship that matters. 13px, sentence case, <span class="g-code">--medium-gray</span> links, <span class="g-code">--dark-gray</span> current page at medium weight.</p>
+
+<p class="g-h3">Long trail — German, scrolls rather than wraps</p>
+<nav class="uw-crumbs" aria-label="Brotkrumen" style="max-width:340px">
+  <ol class="uw-crumbs__list">
+    <li class="uw-crumbs__item"><a class="uw-crumbs__link" href="#">Startseite</a></li>
+    <li class="uw-crumbs__item"><a class="uw-crumbs__link" href="#">CBD Shop</a></li>
+    <li class="uw-crumbs__item"><a class="uw-crumbs__link" href="#">Rauchzubehör</a></li>
+    <li class="uw-crumbs__item"><span class="uw-crumbs__current" aria-current="page">Zigarettenpapier</span></li>
+  </ol>
+</nav>
+<p class="g-note" style="margin-top:12px">A two-line breadcrumb above an H1 is visual noise, so the trail scrolls. On a PDP the last crumb truncates at 22 characters below <span class="g-code">--bs-breakpoint-md</span>.</p>
+
+<p class="g-h3">Current page in dark blue</p>
+<p class="g-note" style="margin-top:0;margin-bottom:12px">The one risk is that standalone links are also dark blue at medium weight. In practice it does not read that way — the grey siblings are what say “you are here”, and matching the H1 below makes the trail feel attached to the page rather than floating above it.</p>
+</section>
+
+<!-- ============ 9 · ACCORDION ============ -->
+<section class="g-sec">
+<p class="g-num">Component 9</p>
+<h2 class="g-h2">Accordion</h2>
+<p class="g-note">Replaces eight live implementations. Real <code>&lt;details&gt;</code> markup — open one and it works, with no JavaScript on the page. Weight and chevron carry the state on every surface; colour varies only where the background allows it.</p>
+
+<p class="g-h3">Flush — the default</p>
+<div class="uw-acc">
+  <details class="uw-acc__item" open>
+    <summary class="uw-acc__trigger"><h3 class="uw-acc__heading">Beschreibung</h3></summary>
+    <div class="uw-acc__panel"><p>Dichte Indoor-Blüten, handverlesen und langsam getrocknet. Erdige Basis, ein Hauch Zitrus im Abgang.</p></div>
+  </details>
+  <details class="uw-acc__item">
+    <summary class="uw-acc__trigger"><h3 class="uw-acc__heading">Produktinfos</h3></summary>
+    <div class="uw-acc__panel"><p>Indoor-Anbau · unter 1 % THC · Laborbericht auf der Produktseite.</p></div>
+  </details>
+  <details class="uw-acc__item">
+    <summary class="uw-acc__trigger"><h3 class="uw-acc__heading">Laborbericht</h3></summary>
+    <div class="uw-acc__panel"><p>Der Laborbericht dieser Charge ist als PDF hinterlegt.</p></div>
+  </details>
+</div>
+<p class="g-note" style="margin-top:12px">Closed is <span class="g-code">--medium-gray</span>, open is <span class="g-code">--dark-blue</span> bold. First item open on PDP tabs — the description is the reason the page exists.</p>
+
+<p class="g-h3">Boxed — FAQ and brand sections</p>
+<div class="uw-acc uw-acc--boxed">
+  <details class="uw-acc__item">
+    <summary class="uw-acc__trigger"><h3 class="uw-acc__heading">Wie schnell wird geliefert?</h3></summary>
+    <div class="uw-acc__panel"><p>Bestellungen, die vor 16:00 Uhr an einem Werktag bezahlt sind, gehen am selben Tag raus.</p></div>
+  </details>
+  <details class="uw-acc__item">
+    <summary class="uw-acc__trigger"><h3 class="uw-acc__heading">Kann ich zurücksenden?</h3></summary>
+    <div class="uw-acc__panel"><p>30 Tage, ungeöffnet und nicht reduziert. Rücksendekosten trägst du.</p></div>
+  </details>
+  <details class="uw-acc__item">
+    <summary class="uw-acc__trigger"><h3 class="uw-acc__heading">Sind die Produkte laborgeprüft?</h3></summary>
+    <div class="uw-acc__panel"><p>Wir prüfen den Laborbericht jeder Charge vor der Listung und veröffentlichen ihn auf der Produktseite.</p></div>
+  </details>
+</div>
+<p class="g-note" style="margin-top:12px">Radius follows the state — <span class="g-code">--radius-pill</span> closed, matching the CTA; <span class="g-code">--radius-card</span> open, because it becomes a container. Open one to see it. Nothing open by default on FAQ.</p>
+
+<p class="g-h3">On dark — footer columns</p>
+<div class="g-dark on-dark">
+  <div class="uw-acc">
+  <details class="uw-acc__item">
+    <summary class="uw-acc__trigger"><span class="uw-acc__heading">Shop</span></summary>
+    <div class="uw-acc__panel"><p>CBD Blüten · CBD Öl · Hash · Vapes</p></div>
+  </details>
+  <details class="uw-acc__item" open>
+    <summary class="uw-acc__trigger"><span class="uw-acc__heading">Über uns</span></summary>
+    <div class="uw-acc__panel"><p>Team · Kontakt · uWeed Club</p></div>
+  </details>
+  </div>
+</div>
+<p class="g-note" style="margin-top:12px">Not a separate variant — the flush component inside <span class="g-code">.on-dark</span>. Labels stay white in both states; weight and chevron carry the difference. Footer column labels are not headings, so they use a <span class="g-code">&lt;span&gt;</span> rather than <span class="g-code">&lt;h3&gt;</span>.</p>
+</section>
+
+<!-- ============ 10 · DROPDOWN ============ -->
+<section class="g-sec">
+<p class="g-num">Component 10</p>
+<h2 class="g-h2">Dropdown</h2>
+<p class="g-note">Replaces eight live treatments. One surface, three behaviours — menu, panel, listbox — because their keyboard models are incompatible and forcing one pattern onto all three would break two of them. <b>Hover is the only fill in the component;</b> selection is a check mark, so the two never collide.</p>
+
+<div class="g-pops">
+  <div>
+    <span class="g-lbl">menu</span>
+    <div class="uw-pop">
+      <a class="uw-pop__item" href="#">CBD Blüten</a>
+      <a class="uw-pop__item" href="#">CBD Öl</a>
+      <a class="uw-pop__item" href="#">Hash &amp; Pollen</a>
+      <div class="uw-pop__sep"></div>
+      <a class="uw-pop__item" href="#" aria-current="page">Alle Kategorien</a>
+    </div>
+  </div>
+
+  <div>
+    <span class="g-lbl">menu with groups</span>
+    <div class="uw-pop">
+      <p class="uw-pop__group">Nach Wirkung</p>
+      <a class="uw-pop__item" href="#">Zum Entspannen</a>
+      <a class="uw-pop__item" href="#">Für den Schlaf</a>
+      <div class="uw-pop__sep"></div>
+      <p class="uw-pop__group">Nach Anbau</p>
+      <a class="uw-pop__item" href="#">Indoor</a>
+      <a class="uw-pop__item" href="#">Outdoor</a>
+    </div>
+  </div>
+
+  <div>
+    <span class="g-lbl">panel — sort</span>
+    <div class="uw-pop" role="listbox" aria-label="Sortierung">
+      <div class="uw-pop__item" role="option" aria-selected="true">Beliebtheit</div>
+      <div class="uw-pop__item" role="option">Preis aufsteigend</div>
+      <div class="uw-pop__item" role="option">Preis absteigend</div>
+      <div class="uw-pop__item" role="option">Neuheiten</div>
+    </div>
+  </div>
+
+  <div>
+    <span class="g-lbl">panel — filter facet</span>
+    <div class="uw-pop">
+      <label class="uw-pop__item"><input class="uw-check__input" type="checkbox" checked>Sweed<span class="uw-pop__meta">24</span></label>
+      <label class="uw-pop__item"><input class="uw-check__input" type="checkbox">Green Passion<span class="uw-pop__meta">18</span></label>
+      <label class="uw-pop__item"><input class="uw-check__input" type="checkbox">Qualicann<span class="uw-pop__meta">11</span></label>
+      <label class="uw-pop__item"><input class="uw-check__input" type="checkbox">CannaSwissCup<span class="uw-pop__meta">3</span></label>
+    </div>
+  </div>
+
+  <div>
+    <span class="g-lbl">listbox — autocomplete</span>
+    <div class="uw-pop" role="listbox">
+      <div class="uw-pop__item is-active" role="option">Bahnhofstrasse 1, 8001 Zürich</div>
+      <div class="uw-pop__item" role="option">Bahnhofstrasse 12, 8001 Zürich</div>
+      <div class="uw-pop__item" role="option">Bahnhofplatz 3, 8001 Zürich</div>
+    </div>
+  </div>
+
+  <div>
+    <span class="g-lbl">listbox — search suggestions</span>
+    <div class="uw-pop" role="listbox">
+      <div class="uw-pop__item" role="option"><span class="uw-pop__thumb"></span>
+        <span>CBD Öl 10 %<span class="uw-pop__sub">Sweed · ab 44.10 CHF</span></span></div>
+      <div class="uw-pop__item is-active" role="option"><span class="uw-pop__thumb"></span>
+        <span>CBD Öl 20 %<span class="uw-pop__sub">Sweed · ab 84.15 CHF</span></span></div>
+      <div class="uw-pop__foot">
+        <a class="uw-link uw-link--action" href="#" style="flex:1;text-align:center;padding:var(--space-xs)">Alle Ergebnisse anzeigen</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p class="g-note" style="margin-top:20px">Width is 260–360px — one product-grid column across every desktop container, so the panel reads as aligned to the grid without being coupled to it. Past 360px a facet row stops being scannable: the gap between a short label and its count becomes a gulf.<br><br>
+<b>Below <span class="g-code">--bs-breakpoint-lg</span> the filter panel becomes a full-screen sheet</b> with a fixed header and footer, the list scrolling between them. Menus and listboxes stay panels at every width.<br><br>
+<b>Open:</b> the z-index band. The eight live treatments sit across three, including search suggestions at <span class="g-code">10000 !important</span> against address autocomplete at <span class="g-code">20</span>.</p>
+
+<p class="g-h3">10b · Filter and sort pill — the trigger</p>
+<div class="g-row" style="gap:var(--space-xs);flex-wrap:wrap">
+  <button class="uw-fp">Marke <span class="uw-fp__chev"></span></button>
+  <button class="uw-fp" aria-expanded="true">CBD-Gehalt <span class="uw-fp__chev"></span></button>
+  <button class="uw-fp is-active">Anbau <span class="uw-fp__count">2</span> <span class="uw-fp__chev"></span></button>
+  <button class="uw-fp" disabled>Terpene <span class="uw-fp__chev"></span></button>
+</div>
+<p class="g-note" style="margin-top:10px">Rest · open · applied · unavailable. Hover and tab through them.</p>
+
+<p class="g-h3">The row in context</p>
+<div style="border:var(--border-hairline) solid var(--line);border-radius:var(--radius-card);padding:var(--space-m)">
+  <div class="g-row" style="justify-content:space-between;gap:var(--space-xs);margin-bottom:var(--space-m)">
+    <div class="g-row" style="gap:var(--space-xs)">
+      <button class="uw-fp is-active">Marke <span class="uw-fp__count">1</span> <span class="uw-fp__chev"></span></button>
+      <button class="uw-fp">CBD-Gehalt <span class="uw-fp__chev"></span></button>
+      <button class="uw-fp is-active">Anbau <span class="uw-fp__count">2</span> <span class="uw-fp__chev"></span></button>
+      <button class="uw-fp">Preis <span class="uw-fp__chev"></span></button>
+    </div>
+    <button class="uw-fp">Sortieren: Beliebtheit <span class="uw-fp__chev"></span></button>
+  </div>
+  <div class="g-row" style="gap:var(--space-xs);margin-bottom:var(--space-s)">
+    <span class="uw-fchip">Sweed <button aria-label="Filter Sweed entfernen">&times;</button></span>
+    <span class="uw-fchip">Indoor <button aria-label="Filter Indoor entfernen">&times;</button></span>
+    <span class="uw-fchip">Greenhouse <button aria-label="Filter Greenhouse entfernen">&times;</button></span>
+    <button class="uw-freset">Alle zurücksetzen</button>
+  </div>
+  <p style="margin:0;font-size:var(--fs-small);color:var(--dark-gray)">42 Produkte</p>
+</div>
+
+<p class="g-note" style="margin-top:12px"><b>This row is the clearest example of <em>saturated on controls, tint on labels</em> in the system.</b> An applied filter is a control in an on state, so it takes the dark fill. The chip naming that same filter below is a label describing state, so it stays a grey tint. Both in one row, and obviously different.</p>
+
+<p class="g-h3">Against the live version</p>
+<div class="g-row" style="gap:var(--space-xl)">
+  <div class="g-cell"><span class="g-lbl">live — green fill, grey at rest</span>
+    <div class="g-row" style="gap:var(--space-xs)">
+      <button class="uw-fp uw-fp--grey">Marke <span class="uw-fp__chev"></span></button>
+      <button class="uw-fp uw-fp--green is-active">Anbau <span class="uw-fp__count">2</span> <span class="uw-fp__chev"></span></button>
+    </div></div>
+  <div class="g-cell"><span class="g-lbl">proposed — blue fill, white at rest</span>
+    <div class="g-row" style="gap:var(--space-xs)">
+      <button class="uw-fp">Marke <span class="uw-fp__chev"></span></button>
+      <button class="uw-fp is-active">Anbau <span class="uw-fp__count">2</span> <span class="uw-fp__chev"></span></button>
+    </div></div>
+</div>
+<p class="g-note" style="margin-top:12px"><b>Two changes, and the grey one matters more than it looks.</b> Green on an applied filter spends the buy signal on a view control — on a category page those pills sit directly above a grid of green add-to-cart buttons.<br><br>
+And <b>rest must not be grey</b>: on the left, an unapplied filter with options waiting looks identical to one with no options at all, so the control you <em>can</em> use is the one that looks unusable. That is why doc 08 carries <em>inactive is not grey</em> as a rule.</p>
+
+</section>
+
+<!-- ============ 11 · BLOG CARD ============ -->
+<section class="g-sec">
+<p class="g-num">Component 11</p>
+<h2 class="g-h2">Blog card</h2>
+<p class="g-note">Replaces five live treatments. One 16:9 source image serves the card, the featured slot and the article header — no second crop. <b>One link per card</b>, on the headline, stretched over the whole card: a nine-card archive goes from 27 links to 9, each named by its headline instead of "Weiterlesen" nine times.</p>
+
+<p class="g-h3">Standard — desktop, 3-up</p>
+<div class="g-post3">
+  <article class="uw-post">
+    <div class="uw-post__media"><div class="g-img">BILD</div>
+      <span class="uw-post__badge">Law &amp; Safety</span>
+    </div>
+    <div class="uw-post__body">
+      <h3 class="uw-post__title"><a href="#">CBD am Steuer: was in der Schweiz wirklich gilt</a></h3>
+      <p class="uw-post__excerpt">Grenzwerte, Kontrollen und was bei einem positiven Test passiert.</p>
+      <p class="uw-post__meta"><time datetime="2026-08">August 2026</time></p>
+    </div>
+  </article>
+  <article class="uw-post">
+    <div class="uw-post__media"><div class="g-img g2">BILD</div>
+      <span class="uw-post__badge">Knowledge</span>
+    </div>
+    <div class="uw-post__body">
+      <h3 class="uw-post__title"><a href="#">Vollspektrum, Breitspektrum oder Isolat</a></h3>
+      <p class="uw-post__excerpt">Die drei Extrakttypen und wofür sie sich jeweils eignen.</p>
+      <p class="uw-post__meta"><time datetime="2026-08">Juli 2026</time></p>
+    </div>
+  </article>
+  <article class="uw-post">
+    <div class="uw-post__media"><div class="g-img g3">BILD</div>
+      <span class="uw-post__badge">Guides</span>
+    </div>
+    <div class="uw-post__body">
+      <h3 class="uw-post__title"><a href="#">CBD-Öl richtig dosieren: der Einstieg</a></h3>
+      <p class="uw-post__excerpt">Warum weniger am Anfang meist mehr ist.</p>
+      <p class="uw-post__meta"><time datetime="2026-08">Juni 2026</time></p>
+    </div>
+  </article>
+</div>
+<p class="g-note" style="margin-top:12px">Badge is a label, not a link — category navigation belongs in the tab nav (§7). Date is month and year, no "Aktualisiert" prefix. Reading time deliberately absent. Tab to a card to see the focus ring sit on the card rather than the invisible overlay.</p>
+
+<p class="g-h3">Featured — title at --fs-h4 so the image always fills</p>
+  <article class="uw-post uw-post--featured">
+    <div class="uw-post__media"><div class="g-img g4">BILD</div>
+      <span class="uw-post__badge">Knowledge</span>
+    </div>
+    <div class="uw-post__body">
+      <h3 class="uw-post__title"><a href="#">Vollspektrum, Breitspektrum, Isolat — was der Unterschied wirklich bedeutet</a></h3>
+      <p class="uw-post__excerpt">Die drei Extrakttypen unterscheiden sich nicht nur im Cannabinoidprofil, sondern auch darin, wofür sie sich eignen. Ein Überblick ohne Marketingsprache.</p>
+      <p class="uw-post__meta"><time datetime="2026-08">August 2026</time></p>
+    </div>
+  </article>
+
+<p class="g-note" style="margin-top:12px">The text block has to stay shorter than the image at every width, or the card grows and a strip of empty card appears beside the picture. <span class="g-code">--fs-h4</span> with a two-line clamp and a two-line excerpt keeps it under even at a 720px container, where the image is ~210px tall and the text ~185px. Raising a size or adding a line means re-checking that.</p>
+
+<p class="g-h3">Compact — sidebar and related</p>
+<div style="max-width:340px;border:var(--border-hairline) solid var(--line);
+            border-radius:var(--radius-card);padding:var(--space-m)">
+  <p style="font-family:var(--ff-heading);font-size:var(--fs-meta);font-weight:var(--fw-bold);
+            letter-spacing:var(--ls-caps);text-transform:uppercase;color:var(--dark-gray);
+            margin:0 0 var(--space-xs)">Weitere Artikel</p>
+  <article class="uw-post uw-post--compact">
+    <div class="uw-post__media"><div class="g-img">BILD</div>
+    </div>
+    <div class="uw-post__body">
+      <h3 class="uw-post__title"><a href="#">CBD am Steuer: was in der Schweiz gilt</a></h3>
+      <p class="uw-post__meta"><time datetime="2026-08">August 2026</time></p>
+    </div>
+  </article>
+  <article class="uw-post uw-post--compact">
+    <div class="uw-post__media"><div class="g-img g2">BILD</div>
+    </div>
+    <div class="uw-post__body">
+      <h3 class="uw-post__title"><a href="#">Blüten richtig lagern</a></h3>
+      <p class="uw-post__meta"><time datetime="2026-08">Mai 2026</time></p>
+    </div>
+  </article>
+</div>
+
+<p class="g-h3">Mobile — the box is dropped</p>
+<div class="g-phone"><div class="g-phone__bar"></div><div class="g-phone__body g-mobile">
+  <article class="uw-post">
+    <div class="uw-post__media"><div class="g-img">BILD</div>
+      <span class="uw-post__badge">Law &amp; Safety</span>
+    </div>
+    <div class="uw-post__body">
+      <h3 class="uw-post__title"><a href="#">CBD am Steuer: was in der Schweiz wirklich gilt</a></h3>
+      <p class="uw-post__excerpt">Grenzwerte und Kontrollen.</p>
+      <p class="uw-post__meta"><time datetime="2026-08">August 2026</time></p>
+    </div>
+  </article>
+  <article class="uw-post">
+    <div class="uw-post__media"><div class="g-img g2">BILD</div>
+      <span class="uw-post__badge">Guides</span>
+    </div>
+    <div class="uw-post__body">
+      <h3 class="uw-post__title"><a href="#">Blüten richtig lagern</a></h3>
+      <p class="uw-post__meta"><time datetime="2026-08">Mai 2026</time></p>
+    </div>
+  </article>
+  <article class="uw-post">
+    <div class="uw-post__media"><div class="g-img g3">BILD</div>
+      <span class="uw-post__badge">Knowledge</span>
+    </div>
+    <div class="uw-post__body">
+      <h3 class="uw-post__title"><a href="#">Vollspektrum, Breitspektrum oder Isolat</a></h3>
+      <p class="uw-post__meta"><time datetime="2026-08">Juli 2026</time></p>
+    </div>
+  </article>
+  <article class="uw-post">
+    <div class="uw-post__media"><div class="g-img g4">BILD</div>
+      <span class="uw-post__badge">News</span>
+    </div>
+    <div class="uw-post__body">
+      <h3 class="uw-post__title"><a href="#">Neue Grenzwerte für Hanfprodukte ab 2027</a></h3>
+      <p class="uw-post__meta"><time datetime="2026-08">August 2026</time></p>
+    </div>
+  </article>
+  <article class="uw-post">
+    <div class="uw-post__media"><div class="g-img">BILD</div>
+      <span class="uw-post__badge">Knowledge</span>
+    </div>
+    <div class="uw-post__body">
+      <h3 class="uw-post__title"><a href="#">Terpene und was sie im Hanf bewirken</a></h3>
+      <p class="uw-post__meta"><time datetime="2026-08">Mai 2026</time></p>
+    </div>
+  </article>
+  <article class="uw-post">
+    <div class="uw-post__media"><div class="g-img g2">BILD</div>
+      <span class="uw-post__badge">Guides</span>
+    </div>
+    <div class="uw-post__body">
+      <h3 class="uw-post__title"><a href="#">CBD-Öl richtig dosieren: der Einstieg für Neulinge</a></h3>
+      <p class="uw-post__meta"><time datetime="2026-08">Juni 2026</time></p>
+    </div>
+  </article>
+</div></div>
+<p class="g-note" style="margin-top:12px">Below <span class="g-code">--bs-breakpoint-md</span> the card loses its border, shadow and radius and becomes a list row with a hairline between items — equal space above and below, none before the first or after the last. Six outlines stacked on a phone is a lot of chrome for very little separation, and dropping the box lets the image be exactly 16:9 with nothing to reconcile.<br><br>
+<b>The card height is set by the image, never the headline.</b> The three-line clamp guarantees the text can never exceed it, so a one-line and a three-line headline produce identical rows — compare "Blüten richtig lagern" with the first item.<br><br>
+Image 158 × 89px at 46 %, about six items per screen. The headline uses <span class="g-code">--fs-small</span>, a recorded component-level exception: the scale has no size for a heading that must be small.</p>
+</section>
+
+<!-- ============ 12 · TOOLTIP ============ -->
+<section class="g-sec">
+<p class="g-num">Component 12</p>
+<h2 class="g-h2">Tooltip</h2>
+<p class="g-note">Replaces three live implementations, none of which is the basis — all three are hover-only pseudo-element text, unreachable by touch and keyboard. <b>Hover it, tab to it, or tap it.</b> All three work below.</p>
+
+<p class="g-h3">Trigger and bubble</p>
+<div class="g-tipstage">
+  <div class="g-tipdemo">
+    <span>84.15 CHF</span>
+    <span class="uw-tip">
+      <button class="uw-tip__trigger" type="button" aria-describedby="gt1">i</button>
+      <span class="uw-tip__bubble" role="tooltip" id="gt1">Etwa 89.20 EUR zum heutigen Kurs. Abgerechnet wird in CHF.</span>
+    </span>
+  </div>
+  <div class="g-tipdemo">
+    <span>Laborgeprüft</span>
+    <span class="uw-tip">
+      <button class="uw-tip__trigger" type="button" aria-describedby="gt2">i</button>
+      <span class="uw-tip__bubble" role="tooltip" id="gt2">Jede Charge wird vor der Listung von einem Schweizer Labor geprüft.</span>
+    </span>
+  </div>
+  <div class="g-tipdemo">
+    <span>Versand</span>
+    <span class="uw-tip uw-tip--below">
+      <button class="uw-tip__trigger" type="button" aria-describedby="gt3">i</button>
+      <span class="uw-tip__bubble" role="tooltip" id="gt3">Bestellungen vor 16:00 Uhr gehen am selben Werktag raus.</span>
+    </span>
+  </div>
+</div>
+<p class="g-note" style="margin-top:12px">The bubble is <span class="g-code">--dark-blue</span> because a tooltip is a <b>surface</b> — same category as a modal, a dropdown panel and a toast — and doc 08 reserves colour families for meaning, not containers. At 17.8:1 it is also the strongest surface in the palette, which matters for something whose purpose is to be read.</p>
+
+<p class="g-h3">Inline in running text</p>
+<div class="g-tipstage" style="padding:48px var(--space-l);display:block">
+  <p style="margin:0;max-width:60ch">Alle Blüten stammen aus Schweizer
+  <span class="uw-tip">
+    <button class="uw-tip__trigger uw-tip__trigger--text" type="button" aria-describedby="gt4">Indoor-Anbau</button>
+    <span class="uw-tip__bubble" role="tooltip" id="gt4">Anbau in geschlossenen Räumen unter kontrolliertem Licht und Klima.</span>
+  </span>
+  und werden langsam getrocknet.</p>
+</div>
+<p class="g-note" style="margin-top:12px">A dotted underline rather than the solid one a link uses — it says "there is more here" without promising navigation.</p>
+
+<p class="g-h3">On dark, and at the edges</p>
+<div class="g-tipstage dark on-dark">
+  <div class="g-tipdemo">
+    <span style="color:var(--white)">Gratis ab 49 CHF</span>
+    <span class="uw-tip">
+      <button class="uw-tip__trigger" type="button" aria-describedby="gt5">i</button>
+      <span class="uw-tip__bubble" role="tooltip" id="gt5">Gilt für Standardversand innerhalb der Schweiz.</span>
+    </span>
+  </div>
+</div>
+<div class="g-tipstage" style="justify-content:space-between;margin-top:var(--space-m)">
+  <div class="g-tipdemo">
+    <span class="uw-tip uw-tip--start">
+      <button class="uw-tip__trigger" type="button" aria-describedby="gt6">i</button>
+      <span class="uw-tip__bubble" role="tooltip" id="gt6">Am linken Rand richtet sich die Blase am Auslöser aus.</span>
+    </span>
+    <span>Linker Rand</span>
+  </div>
+  <div class="g-tipdemo">
+    <span>Rechter Rand</span>
+    <span class="uw-tip uw-tip--end">
+      <button class="uw-tip__trigger" type="button" aria-describedby="gt7">i</button>
+      <span class="uw-tip__bubble" role="tooltip" id="gt7">Am rechten Rand ebenso, gespiegelt.</span>
+    </span>
+  </div>
+</div>
+
+<p class="g-note" style="margin-top:12px"><b>The trigger is a <span class="g-code">&lt;button&gt;</span>, and that is what makes all three inputs work.</b> The live implementations use spans, which are not focusable, so keyboard and touch have nothing to act on.<br><br>
+Shown on <span class="g-code">:focus</span>, not <span class="g-code">:focus-visible</span> — deliberate, because <span class="g-code">:focus-visible</span> specifically does not fire on tap, which is the case that needs it most.<br><br>
+Hit area is 44px, the circle is 20px: an <span class="g-code">::before</span> with <span class="g-code">inset: -12px</span> extends the target without a small control dominating its line.<br><br>
+<b>Open:</b> the z-index band. The three live tooltips sit at 9999 and 10000 <span class="g-code">!important</span>.</p>
+</section>
+
+<!-- ============ 13–17 · COMMERCE ============ -->
+<section class="g-sec">
+<p class="g-num">Components 13–17</p>
+<h2 class="g-h2">The commerce path</h2>
+<p class="g-note">Documented largely as built — these five are sound. What follows are the corrections that came from decisions taken since they shipped.</p>
+
+<p class="g-h3">13 · Stock status</p>
+<div class="g-commerce">
+  <p class="uw-stock uw-stock--in"><span class="uw-stock__dot" aria-hidden="true"></span>Auf Lager</p>
+  <p class="uw-stock uw-stock--low"><span class="uw-stock__dot" aria-hidden="true"></span>Nur noch wenige verfügbar</p>
+  <p class="uw-stock uw-stock--last"><span class="uw-stock__dot" aria-hidden="true"></span>Nur noch 3 verfügbar</p>
+  <p class="uw-stock uw-stock--out"><span class="uw-stock__dot" aria-hidden="true"></span>Ausverkauft</p>
+</div>
+<p class="g-note" style="margin-top:12px">Out of stock is <b>grey, not red</b> — red is for things needing action, and availability is a fact. Low stock is the one place orange is not "earned recognition"; red there would put an alarm colour on a normal shopping state. The text stays <span class="g-code">--dark-gray</span> because <span class="g-code">--medium-orange</span> as text is 2.0:1 — the dot carries the colour.</p>
+
+<p class="g-h3">14 · Order info bar</p>
+<div class="uw-oi">
+  <div class="uw-oi__item"><span class="uw-oi__icon" style="color:var(--dark-blue)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="7" cy="18" r="1.8" stroke="currentColor" stroke-width="1.5"/><circle cx="17" cy="18" r="1.8" stroke="currentColor" stroke-width="1.5"/></svg></span>
+    <span class="uw-oi__label">Gratis ab 49 CHF</span>
+    <span class="uw-oi__sub">Versand in der Schweiz</span></div>
+  <div class="uw-oi__item"><span class="uw-oi__icon" style="color:var(--dark-blue)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 9h11a5 5 0 010 10H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 6L4 9l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    <span class="uw-oi__label">30 Tage Rückgabe</span>
+    <span class="uw-oi__sub">Ungeöffnet und unbenutzt</span></div>
+  <div class="uw-oi__item"><span class="uw-oi__icon" style="color:var(--dark-blue)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 10V7a4 4 0 018 0v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+    <span class="uw-oi__label">Sichere Zahlung</span>
+    <span class="uw-oi__sub">TWINT, Karte, Rechnung</span></div>
+  <div class="uw-oi__item"><span class="uw-oi__icon" style="color:var(--dark-blue)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 3v6L5.5 17A2 2 0 007.2 20h9.6a2 2 0 001.7-3L14 9V3" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 3h6M7.5 14h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+    <span class="uw-oi__label">Laborgeprüft</span>
+    <span class="uw-oi__sub">Jede Charge einzeln</span></div>
+</div>
+<p class="g-note" style="margin-top:12px">Icons are <span class="g-code">--dark-blue</span>, not green — these are informational statements sitting directly under the actual buy button, and green there would claim the purchase signal for a reassurance strip. The supporting line stays visible rather than becoming a tooltip: it <em>is</em> the reassurance.</p>
+
+<p class="g-h3">15 · Order summary</p>
+<dl class="uw-sum">
+  <div class="uw-sum__row"><dt>Zwischensumme</dt><dd>168.30 CHF</dd></div>
+  <div class="uw-sum__row"><dt>Versand</dt><dd>gratis</dd></div>
+  <div class="uw-sum__row uw-sum__row--discount"><dt>Rabatt <span class="uw-sum__code">ANGEBOT10</span></dt><dd>−16.83 CHF</dd></div>
+  <div class="uw-sum__row uw-sum__row--total"><dt>Gesamt</dt><dd>151.47 CHF</dd></div>
+</dl>
+<p class="uw-sum__tax" style="max-width:340px">inkl. MwSt.</p>
+<p class="g-note" style="margin-top:12px">A <span class="g-code">&lt;dl&gt;</span>, so a screen reader pairs each label with its value rather than reading loose numbers. Discounts are <span class="g-code">--medium-red</span> with an explicit minus — a red number without one reads as a surcharge, and green would be wrong because a saving is a reduction, not a purchase. "Gratis" rather than "0.00 CHF": a word reads as a benefit, a zero reads as an unfilled field.</p>
+
+<p class="g-h3">16 · Cart drawer</p>
+<div class="uw-drawer">
+  <div class="uw-drawer__head">
+    <p class="uw-drawer__title">Warenkorb (2)</p>
+    <button class="uw-btn uw-btn--icon uw-btn--text" aria-label="Warenkorb schliessen" style="min-width:44px">×</button>
+  </div>
+  <div class="uw-drawer__body">
+    <div class="uw-ci">
+      <div class="uw-ci__img">BILD</div>
+      <div class="uw-ci__b">
+        <p class="uw-ci__n">CBD Öl 20 % Vollspektrum</p>
+        <p class="uw-ci__m">10 ml</p>
+        <div class="uw-ci__r">
+          <span class="uw-qty uw-qty--md"><button class="uw-qty__down is-remove" aria-label="Artikel entfernen">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M9 7V5h6v2M6 7l1 13h10l1-13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <input class="uw-qty__value" type="text" inputmode="numeric" value="1" aria-label="Menge">
+            <button aria-label="Menge erhöhen">+</button></span>
+          <span class="uw-price uw-price--list">84.15 CHF</span>
+        </div>
+      </div>
+    </div>
+    <div class="uw-ci">
+      <div class="uw-ci__img">BILD</div>
+      <div class="uw-ci__b">
+        <p class="uw-ci__n">Passion Kush CBD Blüten Indoor</p>
+        <p class="uw-ci__m">5 g</p>
+        <div class="uw-ci__r">
+          <span class="uw-qty uw-qty--md"><button class="uw-qty__down" aria-label="Menge verringern">−</button>
+            <input class="uw-qty__value" type="text" inputmode="numeric" value="2" aria-label="Menge">
+            <button aria-label="Menge erhöhen">+</button></span>
+          <span class="uw-price uw-price--list">84.15 CHF</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="uw-drawer__foot">
+    <dl class="uw-sum" style="margin-bottom:var(--space-s)">
+      <div class="uw-sum__row"><dt>Zwischensumme</dt><dd>168.30 CHF</dd></div>
+    </dl>
+    <button class="uw-btn uw-btn--buy uw-btn--block">Zur Kasse</button>
+  </div>
+</div>
+<p class="g-note" style="margin-top:12px">Header and footer fixed, only the item list scrolls — the checkout button is always reachable regardless of how many items are in the cart. Item meta corrected from <span class="g-code">--medium-gray</span> to <span class="g-code">--dark-gray</span>: 2.8:1 is UI only, never text.<br><br>
+<b>Open:</b> the drawer sits at z-index 99999 <span class="g-code">!important</span>, above modals and everything else. Defensible as the checkout path, but it needs to be a named value in a scale.</p>
+
+<p class="g-h3">17 · Checkout — shipping method cards</p>
+<fieldset class="uw-meth">
+  <legend>Versandart</legend>
+  <label class="uw-meth__opt">
+    <input class="uw-check__input" type="radio" name="ship" checked>
+    <span class="uw-meth__t"><span class="uw-meth__n">Swiss Post — Priority</span>
+    <span class="uw-meth__s">Lieferung morgen</span></span>
+    <span class="uw-meth__p">gratis</span>
+  </label>
+  <label class="uw-meth__opt">
+    <input class="uw-check__input" type="radio" name="ship">
+    <span class="uw-meth__t"><span class="uw-meth__n">MyPost24 Abholung</span>
+    <span class="uw-meth__s">Abholstation wählen</span></span>
+    <span class="uw-meth__p">gratis</span>
+  </label>
+  <label class="uw-meth__opt is-disabled">
+    <input class="uw-check__input" type="radio" name="ship" disabled>
+    <span class="uw-meth__t"><span class="uw-meth__n">Express — Samstag</span>
+    <span class="uw-meth__s">Nicht verfügbar für diese Adresse</span></span>
+    <span class="uw-meth__p">—</span>
+  </label>
+</fieldset>
+<p class="g-note" style="margin-top:12px">The whole card is the control — a 20px radio inside a 72px card is a poor target. Selection is shown by the radio and a 2px border, <b>not by a fill</b>: a filled selected card at checkout competes with the place-order button.<br><br>
+A disabled method <b>states its reason inline</b> rather than in a tooltip (§12) — on a phone a hover-only reason is never available.<br><br>
+<b>Note the <span class="g-code">&lt;fieldset&gt;</span> and <span class="g-code">&lt;legend&gt;</span>.</b> No radio group on the live site has them, so a screen reader announces each shipping and payment option with no idea what is being chosen. That is a WCAG 1.3.1 failure across the whole checkout, and it is the largest accessibility defect on the purchase path.</p>
+</section>
+
+<!-- ============ 18–19 · PRICE AND QUANTITY ============ -->
+<section class="g-sec">
+<p class="g-num">Components 18–19</p>
+<h2 class="g-h2">Price and quantity</h2>
+<p class="g-note">Both surfaced by consolidating the commerce path — price appeared on five surfaces in four colours, and the quantity control in three densities with no shared definition.</p>
+
+<p class="g-h3">18 · Price — all blue, except when reduced</p>
+<div class="g-row" style="gap:var(--space-xl);align-items:flex-start">
+  <div class="g-cell"><span class="g-lbl">hero — PDP</span>
+    <p class="uw-price uw-price--hero">84.15 CHF<span class="uw-price__unit">8.42 CHF / ml</span></p></div>
+  <div class="g-cell"><span class="g-lbl">hero on sale</span>
+    <p class="uw-price uw-price--hero is-sale">44.10 CHF<s class="uw-price__was">49.00 CHF</s></p></div>
+  <div class="g-cell"><span class="g-lbl">tile</span>
+    <p class="uw-price uw-price--tile">13.00 CHF</p></div>
+  <div class="g-cell"><span class="g-lbl">list</span>
+    <p class="uw-price uw-price--list">84.15 CHF</p></div>
+</div>
+
+<p class="g-h3">Order summary — every price the same colour</p>
+<dl class="uw-sum">
+  <div class="uw-sum__row"><dt>Zwischensumme</dt><dd>168.30 CHF</dd></div>
+  <div class="uw-sum__row"><dt>Versand</dt><dd>gratis</dd></div>
+  <div class="uw-sum__row uw-sum__row--discount"><dt>Rabatt <span class="uw-sum__code">ANGEBOT10</span></dt><dd>−16.83 CHF</dd></div>
+  <div class="uw-sum__row uw-sum__row--total"><dt>Gesamt</dt><dd>151.47 CHF</dd></div>
+</dl>
+<p class="g-note" style="margin-top:12px"><b>Green is not a price colour.</b> It survives as a signal by meaning exactly one thing — press this to buy — and a price is not an action. An earlier draft made hero prices green and list prices blue; on the summary that read as a different <em>kind</em> of number rather than a bigger one, since size and weight were already doing the hierarchy.<br><br>
+Per unit is <span class="g-code">--medium-blue</span> because it is a comparison aid, not a price you pay — the same token as filter counts, for the same reason.<br><br>
+Every price uses <span class="g-code">tabular-nums</span>, so a total that changes does not shift the layout beside it.</p>
+
+<p class="g-h3">19 · Quantity — stepper, three sizes</p>
+<div class="g-row" style="gap:var(--space-xl);align-items:flex-end">
+  <div class="g-cell"><span class="g-lbl">lg · 56px — PDP</span>
+    <div class="uw-qty uw-qty--lg"><button aria-label="Menge verringern">−</button>
+    <input class="uw-qty__value" type="text" inputmode="numeric" value="1" aria-label="Menge">
+    <button aria-label="Menge erhöhen">+</button></div></div>
+  <div class="g-cell"><span class="g-lbl">md · 40px — cart</span>
+    <div class="uw-qty uw-qty--md"><button aria-label="Menge verringern">−</button>
+    <input class="uw-qty__value" type="text" inputmode="numeric" value="2" aria-label="Menge">
+    <button aria-label="Menge erhöhen">+</button></div></div>
+  <div class="g-cell"><span class="g-lbl">sm · 32px — read-only</span>
+    <div class="uw-qty uw-qty--sm"><button></button>
+    <input class="uw-qty__value" type="text" value="1" aria-label="Menge" readonly>
+    <button></button></div></div>
+</div>
+
+<p class="g-h3">At quantity 1, minus becomes remove</p>
+<div class="g-row" style="gap:var(--space-xl)">
+  <div class="g-cell"><span class="g-lbl">qty 2 — decrements</span>
+    <div class="uw-qty uw-qty--md"><button class="uw-qty__down" aria-label="Menge verringern">−</button>
+    <input class="uw-qty__value" type="text" inputmode="numeric" value="2" aria-label="Menge">
+    <button aria-label="Menge erhöhen">+</button></div></div>
+  <div class="g-cell"><span class="g-lbl">qty 1 — removes, red on hover</span>
+    <div class="uw-qty uw-qty--md"><button class="uw-qty__down is-remove" aria-label="Artikel entfernen">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M9 7V5h6v2M6 7l1 13h10l1-13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <input class="uw-qty__value" type="text" inputmode="numeric" value="1" aria-label="Menge">
+    <button aria-label="Menge erhöhen">+</button></div></div>
+  <div class="g-cell"><span class="g-lbl">at stock limit</span>
+    <div class="uw-qty uw-qty--md"><button aria-label="Menge verringern">−</button>
+    <input class="uw-qty__value" type="text" inputmode="numeric" value="3" aria-label="Menge">
+    <button aria-label="Menge erhöhen" disabled>+</button></div></div>
+</div>
+<p class="g-note" style="margin-top:12px"><b>A disabled minus at quantity 1 is a dead end</b> — the shopper hunts for a separate remove control. The bin icon puts removal where the hand already is and makes the most common cart action one tap. Costs a class toggle and a branch inside the change handler that already exists.<br><br>
+<span class="g-code">sm</span> at 32px is below the 44px minimum, so it is <b>read-only</b> — a display in the order review, not a control. If checkout needs an editable quantity it uses <span class="g-code">md</span>.<br><br>
+The value is a real input with <span class="g-code">inputmode="numeric"</span> and <span class="g-code">type="text"</span> — number inputs bring a spinner that is unusable on touch and accept "e" and "-".</p>
+</section>
+
+<!-- ============ 20–26 · GENERAL ============ -->
+<section class="g-sec">
+<p class="g-num">Components 20–26</p>
+<h2 class="g-h2">Feedback, structure and overlays</h2>
+
+<p class="g-h3">20 · Message — five variants</p>
+<div style="max-width:640px;display:flex;flex-direction:column;gap:var(--space-s)">
+  <div class="uw-msg uw-msg--neutral" role="status"><span class="uw-msg__ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 11v5M12 8h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+    <div class="uw-msg__b"><p>Unser Lager ist am 1. August geschlossen.</p></div></div>
+  <div class="uw-msg uw-msg--info" role="status"><span class="uw-msg__ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 11v5M12 8h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+    <div class="uw-msg__b"><p class="uw-msg__t">Versand nach Deutschland</p>
+    <p>Bestellungen ausserhalb der Schweiz können 3–5 Werktage dauern.</p></div></div>
+  <div class="uw-msg uw-msg--success" role="status"><span class="uw-msg__ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M8.5 12.5l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    <div class="uw-msg__b"><p>Gutschein <b>ANGEBOT10</b> wurde angewendet.</p></div></div>
+  <div class="uw-msg uw-msg--warning" role="status"><span class="uw-msg__ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 4l9 16H3l9-16z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 10v4M12 17h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+    <div class="uw-msg__b"><p class="uw-msg__t">Nicht für Schwangere geeignet</p>
+    <p>Bei Schwangerschaft oder Stillzeit vor der Anwendung ärztlichen Rat einholen.</p></div></div>
+  <div class="uw-msg uw-msg--error" role="alert"><span class="uw-msg__ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M9 9l6 6M15 9l-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+    <div class="uw-msg__b"><p class="uw-msg__t">Gutschein konnte nicht angewendet werden</p>
+    <p>Der Code ist abgelaufen oder gilt nicht für diese Artikel.</p></div></div>
+</div>
+<p class="g-note" style="margin-top:12px">Titled messages align to the top so the icon sits beside the heading; single-line ones centre. One <span class="g-code">:has()</span> rule, no variant to remember.<br><br>
+The 3px border, the icon and the title are what make the message <em>type</em> survive greyscale — four tinted backgrounds alone would not. Errors take <span class="g-code">role="alert"</span>, everything else <span class="g-code">role="status"</span>: an alert interrupts mid-sentence, which is right for a failure and wrong for a coupon confirmation.<br><br>
+Warning is the second place orange means caution rather than earned recognition. Its icon is <span class="g-code">#8A5A12</span> — <span class="g-code">--medium-orange</span> on <span class="g-code">--light-orange</span> is 1.6:1.</p>
+
+<p class="g-h3">21 · Toast — light by default, dark available</p>
+<div class="g-row" style="gap:var(--space-xl);align-items:flex-start">
+  <div class="uw-toast" role="status">
+    <span class="uw-toast__ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M8.5 12.5l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    <div class="uw-toast__b"><p class="uw-toast__t">Zum Warenkorb hinzugefügt</p>
+      <p>CBD Öl 20 % Vollspektrum · 10 ml</p>
+      <a class="uw-toast__a" href="#">Warenkorb ansehen</a></div>
+    <button class="uw-toast__x" aria-label="Schliessen">×</button>
+  </div>
+  <div class="uw-toast uw-toast--dark" role="status">
+    <span class="uw-toast__ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M8.5 12.5l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    <div class="uw-toast__b"><p class="uw-toast__t">Zum Warenkorb hinzugefügt</p>
+      <p>CBD Öl 20 % Vollspektrum · 10 ml</p>
+      <a class="uw-toast__a" href="#">Warenkorb ansehen</a></div>
+    <button class="uw-toast__x" aria-label="Schliessen">×</button>
+  </div>
+</div>
+<p class="g-note" style="margin-top:12px">Light is the default, and it resolves a link problem: on a dark surface the action link had to be white and underlined, a fourth link treatment existing nowhere else. On white it is simply the action link from §6. The dark variant stays available for placement over imagery.<br><br>
+<b>Never a toast for an error</b> — it disappears, and an error the reader missed is one they cannot act on. Five seconds, paused on hover and focus, never auto-dismissed when it contains a link.</p>
+
+<p class="g-h3">22 · Content tabs — rounded marker</p>
+<div class="uw-tabs">
+  <div class="uw-tabs__rail" role="tablist" aria-orientation="vertical">
+    <button class="uw-tabs__t" role="tab" aria-selected="true">Beschreibung</button>
+    <button class="uw-tabs__t" role="tab" aria-selected="false">Produktinfos</button>
+    <button class="uw-tabs__t" role="tab" aria-selected="false">Laborbericht</button>
+    <button class="uw-tabs__t" role="tab" aria-selected="false">Versand</button>
+  </div>
+  <div class="uw-tabs__p" role="tabpanel">
+    <p>Dichte Indoor-Blüten, handverlesen und langsam getrocknet. Erdige Basis, ein Hauch Zitrus im Abgang. Jede Charge wird vor der Listung von einem Schweizer Labor geprüft.</p>
+  </div>
+</div>
+<p class="g-note" style="margin-top:12px">The marker spans only the active label and takes <span class="g-code">--radius-pill</span> on a 3px bar; the track behind it is the same shape in <span class="g-code">--line</span>. Inactive labels moved off <span class="g-code">#9ca3af</span> — an off-palette grey at 2.6:1 on interactive text.<br><br>
+A real tablist: arrow keys move between tabs, Tab moves into the panel. That is why this and the accordion it becomes on mobile are separate components rather than one responsive thing.</p>
+
+<p class="g-h3">23 · Footer</p>
+<div class="uw-ft on-dark">
+  <div class="uw-ft__cols">
+    <div><p class="uw-ft__h">Shop</p><a href="#">CBD Blüten</a><a href="#">CBD Öl</a><a href="#">Hash &amp; Pollen</a></div>
+    <div><p class="uw-ft__h">Über uns</p><a href="#">Team</a><a href="#">Kontakt</a><a href="#">uWeed Club</a></div>
+    <div><p class="uw-ft__h">Hilfe</p><a href="#">Häufige Fragen</a><a href="#">Versandoptionen</a><a href="#">Rückgabe</a></div>
+    <div><p class="uw-ft__h">Rechtliches</p><a href="#">Impressum</a><a href="#">Datenschutz</a><a href="#">AGB</a></div>
+  </div>
+  <div class="uw-ft__bot">
+    <span>© 2026 uWeed</span>
+    <span style="display:flex;gap:var(--space-xs);flex-wrap:wrap">
+      <span class="uw-sw"><button aria-pressed="true">CHF</button><button aria-pressed="false">EUR</button></span>
+      <span class="uw-sw"><button aria-pressed="true">DE</button><button aria-pressed="false">FR</button><button aria-pressed="false">EN</button></span>
+    </span>
+  </div>
+</div>
+<p class="g-note" style="margin-top:12px">The switcher pills sit in a translucent white well rather than a solid one, so they belong to the footer instead of sitting on it. The pressed pill is solid white with the footer's own colour as its text, which means it inverts correctly whatever the footer surface becomes. Hover an unpressed pill to see the well lighten.<br><br>
+Below <span class="g-code">--bs-breakpoint-lg</span> the columns become the accordion (§9) inside <span class="g-code">.on-dark</span> — not a separate footer accordion, which is what exists today.<br><br>
+<b>Green stays for now.</b> Doc 08 lists green as the purchase path and a footer is navigation, so blue is the rule-consistent answer — but the palette names green <em>CBD Shop</em> and this is a long-standing brand signal. Recorded as an open item rather than settled.</p>
+
+<p class="g-h3">24 · Product info table</p>
+<table class="uw-pit">
+  <tr><th scope="row">Anbau</th><td>Indoor</td></tr>
+  <tr><th scope="row">CBD-Gehalt</th><td>18–22 %</td></tr>
+  <tr><th scope="row">THC-Gehalt</th><td>unter 1 %</td></tr>
+  <tr><th scope="row">Herkunft</th><td>Schweiz</td></tr>
+  <tr><th scope="row">Inhalt</th><td>5 g</td></tr>
+</table>
+<p class="g-note" style="margin-top:12px">Columns corrected from 20 % + 65 % — which totalled 85 % with the remainder unassigned — to 34 % / 66 %. <span class="g-code">&lt;th scope="row"&gt;</span> rather than two cells, so each label is announced with its value. No zebra striping: a hairline does the same job without a second background.</p>
+
+<p class="g-h3">25 · Card — the base tiles inherit</p>
+<div class="g-row" style="gap:var(--space-m)">
+  <div style="width:210px"><span class="g-lbl">default</span>
+    <div class="uw-card"><div class="uw-card__b"><h4>Zürich</h4><p>12 Läden</p></div></div></div>
+  <div style="width:210px"><span class="g-lbl">--link · hover me</span>
+    <div class="uw-card uw-card--link"><div class="uw-card__b"><h4>CBD am Steuer</h4>
+    <p>Was in der Schweiz gilt.</p></div></div></div>
+  <div style="width:210px"><span class="g-lbl">--flat · inside a container</span>
+    <div class="uw-card uw-card--tint"><div class="uw-card__b">
+      <div class="uw-card uw-card--flat"><div class="uw-card__b"><h4>Warenkorb</h4>
+      <p>Ein Kartenelement in einem Panel.</p></div></div></div></div></div>
+  <div style="width:210px"><span class="g-lbl">--tint · a panel in a page</span>
+    <div class="uw-card uw-card--tint"><div class="uw-card__b"><h4>Zusammenfassung</h4>
+    <p>Gruppierung ohne zusätzlichen Rahmen.</p></div></div></div>
+</div>
+<p class="g-note" style="margin-top:12px"><b>Not a component you place directly.</b> Its value is that when the blog card, city tile, order summary and cart drawer are written independently they land on the same border, radius and elevation instead of four near-misses — which is exactly what happened live: four radii and three shadows across five card types.<br><br>
+Only <span class="g-code">--link</span> lifts: a card that moves on hover but goes nowhere is a false affordance. Cards never nest more than one deep, and the inner one drops its frame.</p>
+
+<p class="g-h3">26 · Modal</p>
+<div class="uw-modalstage">
+  <div class="uw-modal" role="dialog" aria-modal="true">
+    <div class="uw-modal__h">
+      <h4 class="uw-modal__t">Artikel entfernen?</h4>
+      <button class="uw-modal__x" aria-label="Schliessen">×</button>
+    </div>
+    <div class="uw-modal__b"><p>CBD Öl 20 % Vollspektrum wird aus deinem Warenkorb entfernt.</p></div>
+    <div class="uw-modal__f">
+      <button class="uw-btn uw-btn--outline" style="min-width:120px">Abbrechen</button>
+      <button class="uw-btn uw-btn--danger" style="min-width:120px">Entfernen</button>
+    </div>
+  </div>
+</div>
+<p class="g-note" style="margin-top:12px">The destructive action is red and is <b>not</b> the default focus — on open, focus lands on cancel. Escape closes, except when confirming something destructive, where an accidental Escape would lose the decision. The page behind must be <em>inert</em>, not merely covered.</p>
+
+<p class="g-h3">The stacking order — shipped</p>
+<table class="g-zt">
+<tr><th>Band</th><th>What sits there</th></tr>
+<tr><td>--z-overlap</td><td>10 · spinners, local overlaps</td></tr>
+<tr><td>--z-sticky</td><td>1020 · sticky filter bar, PDP sticky bar</td></tr>
+<tr><td>--z-header</td><td>1030 · sticky header</td></tr>
+<tr><td>--z-panel</td><td>1035 · dropdown, mega menu, filter panel, autocomplete</td></tr>
+<tr><td>--z-tooltip</td><td>1046 · above panels, so a tooltip on a filter is visible</td></tr>
+<tr><td>--z-backdrop</td><td>1050 · modal and drawer backdrops</td></tr>
+<tr><td>--z-modal</td><td>1055 · modal</td></tr>
+<tr><td>--z-drawer</td><td>1060 · cart drawer, above modals</td></tr>
+<tr><td>--z-toast</td><td>1090 · above everything</td></tr>
+</table>
+<p class="g-note" style="margin-top:12px"><b>This has now shipped.</b> Eleven tokens, 41 declarations migrated, one raw value left — a third-party 1000, documented as theirs rather than adopted as ours.<br><br>
+Both contentious questions were answered: the header takes 1030, breaking its tie with Intercom; and the cart drawer sits <em>above</em> modals at 1060, keeping the position it held at 99999 but as a named value. Seven defects closed with it — spinners no longer paint over modals, the 9999/10000/10001 escalation is gone with its <span class="g-code">!important</span>s, and <span class="g-code">#reviews_fade</span> came down from 5989.</p>
+</section>
+
+<!-- ============ 27–32 · FINAL SET ============ -->
+<section class="g-sec">
+<p class="g-num">Components 27–32</p>
+<h2 class="g-h2">Field, coupon, pagination, loading, carousel, age gate</h2>
+
+<p class="g-h3">27 · Form field</p>
+<div class="g-row" style="gap:var(--space-xl)">
+  <div class="uw-field">
+    <label class="uw-field__label" for="gf1">E-Mail <span class="uw-field__req" aria-hidden="true">*</span></label>
+    <input class="uw-input" id="gf1" type="email" placeholder="deine@email.ch">
+    <p class="uw-field__hint">Für die Bestellbestätigung.</p>
+  </div>
+  <div class="uw-field is-invalid">
+    <label class="uw-field__label" for="gf2">Postleitzahl <span class="uw-field__req" aria-hidden="true">*</span></label>
+    <input class="uw-input" id="gf2" type="text" inputmode="numeric" value="80" aria-invalid="true" aria-describedby="gf2e">
+    <p class="uw-field__hint uw-field__err" id="gf2e">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v6M12 16h.01" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      Bitte gib eine gültige PLZ ein.</p>
+  </div>
+</div>
+<p class="g-note" style="margin-top:12px"><b>The label stays neutral in the error state.</b> Border, tinted fill, icon and message already carry it four times; a fifth signal makes the field harder to scan for what it <em>is</em>, which is what someone needs when correcting it. Help text and error share a slot, so a field never grows taller on error and shifts the submit button mid-tap.</p>
+
+<p class="g-h3">28 · Coupon form</p>
+<div class="g-row" style="gap:var(--space-xl);align-items:flex-start">
+  <div><span class="g-lbl">collapsed</span>
+    <button class="uw-btn uw-btn--outline" style="min-width:0;padding-inline:var(--space-m);font-size:var(--fs-small)" aria-expanded="false">Gutscheincode eingeben</button></div>
+  <div><span class="g-lbl">expanded — apply is outline green</span>
+    <div class="uw-coupon">
+      <input class="uw-input" type="text" placeholder="Code" aria-label="Gutscheincode">
+      <button class="uw-btn uw-btn--apply" style="min-width:0;padding-inline:var(--space-m);font-size:var(--fs-small)">Anwenden</button>
+    </div></div>
+  <div><span class="g-lbl">applied</span>
+    <span class="uw-cchip">ANGEBOT10 · −16.83 CHF<button aria-label="Gutschein entfernen">×</button></span></div>
+</div>
+<p class="g-note" style="margin-top:12px">Collapsed by default everywhere — an open coupon field invites the visitor to leave and hunt for a code. The trigger is an outline button rather than a link, so it reads as a control.<br><br>
+<b>Apply is green, but outline.</b> Applying a coupon is on the purchase path, so the family is green — but the filled green on that step is already spoken for by <em>Zur Kasse</em> or <em>Jetzt bestellen</em>. <b>One filled green per step</b>, or the wrong button ends up under the thumb.</p>
+
+<p class="g-h3">29 · Pagination</p>
+<nav class="uw-pg" aria-label="Seitennummerierung">
+  <a class="uw-pg__arrow" href="#" aria-disabled="true" aria-label="Vorherige Seite"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  <span class="uw-pg__cur" aria-current="page">1</span>
+  <a href="#">2</a><a href="#">3</a>
+  <span class="uw-pg__gap" aria-hidden="true">…</span>
+  <a href="#">12</a>
+  <a class="uw-pg__arrow" href="#" aria-label="Nächste Seite"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+</nav>
+<p class="uw-pg__count">Seite 1 von 12 · 284 Produkte</p>
+<p class="g-note" style="margin-top:12px">Arrow circles are green while there is somewhere to go, grey when disabled. The current page is a <span class="g-code">&lt;span&gt;</span>, not a link — no hover, no pointer, not focusable, since a link to the page you are on is a control that does nothing. The ellipsis is static: a clickable one is a hidden control nobody discovers.<br><br>
+<b>Recorded exception:</b> pagination is navigation, and the nav roadmap card removes green from navigation. This goes the other way on the arrows, noted so a developer following that card does not correct it back to blue.</p>
+
+<p class="g-h3">30 · Loading and skeleton</p>
+<div class="g-row" style="gap:var(--space-xl)">
+  <div style="width:230px">
+    <div style="border:var(--border-hairline) solid var(--line);border-radius:var(--radius-card);overflow:hidden">
+      <div class="uw-sk uw-sk--img"></div>
+      <div style="padding:var(--space-m)">
+        <div class="uw-sk uw-sk--line" style="width:60%"></div>
+        <div class="uw-sk uw-sk--line" style="width:90%"></div>
+        <div class="uw-sk uw-sk--line" style="width:40%;margin-bottom:0"></div>
+      </div></div>
+  </div>
+  <div style="display:flex;align-items:center;gap:var(--space-s)">
+    <span class="uw-spin" role="status" aria-label="Wird geladen"></span>
+    <span style="font-size:var(--fs-small)">Wird geladen …</span>
+  </div>
+</div>
+<p class="g-note" style="margin-top:12px">Skeleton when the shape is known, spinner when it is not. <b>This replaces a live defect:</b> <span class="g-code">@keyframes spinner</span> declares only <span class="g-code">-webkit-transform</span>, so six spinners on the site do not currently rotate.<br><br>
+Never collapse a container while it loads — one that shrinks and re-expands reads as broken even when it is faster.</p>
+
+<p class="g-h3">31 · Carousel</p>
+<div class="uw-car">
+  <div class="uw-car__track">
+    <div class="uw-car__item"><div class="uw-car__ph">BILD</div></div>
+    <div class="uw-car__item"><div class="uw-car__ph">BILD</div></div>
+    <div class="uw-car__item"><div class="uw-car__ph">BILD</div></div>
+    <div class="uw-car__item"><div class="uw-car__ph">BILD</div></div>
+    <div class="uw-car__item"><div class="uw-car__ph">BILD</div></div>
+    <div class="uw-car__item"><div class="uw-car__ph">BILD</div></div>
+  </div>
+  <div class="uw-car__bar"><div class="uw-car__thumb"></div></div>
+  <div class="uw-car__nav">
+    <button class="uw-car__b" aria-disabled="true" aria-label="Zurück"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button class="uw-car__b" aria-label="Weiter"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
+</div>
+<p class="g-note" style="margin-top:12px">Native CSS scroll-snap rather than Swiper or the custom track — no JavaScript for scrolling, native touch momentum and keyboard, and it works before JS loads. <b>The trade-off is loop and autoplay</b>, which scroll-snap cannot do; nothing on the site needs either today.<br><br>
+The bar is 6px at <span class="g-code">--radius-pill</span> and doubles as the mobile navigation — at 3px it read as a hairline. Buttons are 48px with 22px chevrons, green while there is somewhere to go.</p>
+
+<p class="g-h3">32 · Age gate — the modal's --blocking variant</p>
+<div class="uw-gate">
+  <div class="uw-gate__card" role="dialog" aria-modal="true">
+    <span class="uw-gate__mark" aria-hidden="true">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6l7-3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    <p class="uw-gate__t">Bist du über 18?</p>
+    <p class="uw-gate__p">Unsere Produkte sind nur für Erwachsene bestimmt.</p>
+    <div class="uw-gate__a">
+      <button class="uw-btn" style="width:100%">Ja, ich bin über 18</button>
+      <button class="uw-btn uw-btn--outline" style="width:100%">Nein</button>
+    </div>
+    <p class="uw-gate__legal">Mit dem Fortfahren bestätigst du, dass du volljährig bist und unsere AGB gelesen hast.</p>
+  </div>
+</div>
+<p class="g-note" style="margin-top:12px">No close button, Escape does nothing, and focus has nothing to return to — three departures from the modal spec, each named so "a modal you cannot dismiss" does not read as a contradiction. The legal line is italic, which separates it without another colour or a rule. <b>"Ja" is filled but not pre-focused:</b> a legally meaningful confirmation should not be one stray Enter away.</p>
+</section>
+
+<!-- ============ 33 · PDP GALLERY ============ -->
+<section class="g-sec">
+<p class="g-num">Component 33</p>
+<h2 class="g-h2">PDP gallery</h2>
+<p class="g-note">Two thumbnail navs become one, and mobile gets the zoom it currently has no access to at all. <b>Hover the heart, and click it.</b></p>
+
+<div class="uw-gal">
+  <button class="uw-gal__main" aria-label="Bild vergrössern">
+    <span class="g-ph">HAUPTBILD</span>
+    <span class="uw-gal__tags">
+      <span class="uw-badge uw-badge--sale">−15%</span>
+      <span class="uw-badge uw-badge--bestseller">Bestseller</span>
+    </span>
+    <span class="uw-gal__hint" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8"/><path d="M16 16l4 4M11 8.5v5M8.5 11h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+  </button>
+  <button class="uw-gal__fav" type="button" aria-pressed="false" aria-label="Zu Favoriten hinzufügen"><svg width="26" height="26" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-9.3A4 4 0 0112 7.5 4 4 0 0119 10.7c0 4.9-7 9.3-7 9.3z" stroke-width="1.8" stroke-linejoin="round"/></svg></button>
+  <div class="uw-gal__strip" aria-label="Produktbilder">
+    <button class="uw-gal__t" aria-current="true" aria-label="Bild 1 von 5"><span class="g-ph">1</span></button>
+    <button class="uw-gal__t" aria-label="Bild 2 von 5"><span class="g-ph b">2</span></button>
+    <button class="uw-gal__t" aria-label="Bild 3 von 5"><span class="g-ph o">3</span></button>
+    <button class="uw-gal__t" aria-label="Bild 4 von 5"><span class="g-ph p">4</span></button>
+    <button class="uw-gal__t" aria-label="Bild 5 von 5"><span class="g-ph">5</span></button>
+  </div>
+</div>
+
+<p class="g-note" style="margin-top:16px"><b>Thumbnails below, not beside.</b> A vertical rail costs about 80px of column width — straight out of the image on a two-column PDP — and is capped by the image height at roughly four thumbnails. A horizontal strip takes any number and scroll-snaps, and the thumbnails grow to 76px where one bud is distinguishable from the next.</p>
+
+<p class="g-h3">Heart states</p>
+<div class="g-row" style="gap:var(--space-l)">
+  <div class="g-cell"><span class="g-lbl">rest</span>
+    <span style="display:grid;place-items:center;width:96px;height:96px;border-radius:var(--radius-inner);background:linear-gradient(135deg,#D6EDE4,#D1EFE5)">
+    <span class="uw-gal__fav" style="position:static"><svg width="26" height="26" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-9.3A4 4 0 0112 7.5 4 4 0 0119 10.7c0 4.9-7 9.3-7 9.3z" stroke-width="1.8" stroke-linejoin="round"/></svg></span></span></div>
+  <div class="g-cell"><span class="g-lbl">hover — red outline</span>
+    <span style="display:grid;place-items:center;width:96px;height:96px;border-radius:var(--radius-inner);background:linear-gradient(135deg,#D6EDE4,#D1EFE5)">
+    <span class="uw-gal__fav" style="position:static;color:var(--medium-red)"><svg width="26" height="26" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-9.3A4 4 0 0112 7.5 4 4 0 0119 10.7c0 4.9-7 9.3-7 9.3z" stroke-width="1.8" stroke-linejoin="round"/></svg></span></span></div>
+  <div class="g-cell"><span class="g-lbl">saved — filled red</span>
+    <span style="display:grid;place-items:center;width:96px;height:96px;border-radius:var(--radius-inner);background:linear-gradient(135deg,#D6EDE4,#D1EFE5)">
+    <span class="uw-gal__fav" aria-pressed="true" style="position:static"><svg width="26" height="26" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-9.3A4 4 0 0112 7.5 4 4 0 0119 10.7c0 4.9-7 9.3-7 9.3z" stroke-width="1.8" stroke-linejoin="round"/></svg></span></span></div>
+  <div class="g-cell"><span class="g-lbl">saved, over a dark photo</span>
+    <span style="display:grid;place-items:center;width:96px;height:96px;border-radius:var(--radius-inner);background:linear-gradient(135deg,#2F3A2E,#4A5A46)">
+    <span class="uw-gal__fav" aria-pressed="true" style="position:static"><svg width="26" height="26" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-9.3A4 4 0 0112 7.5 4 4 0 0119 10.7c0 4.9-7 9.3-7 9.3z" stroke-width="1.8" stroke-linejoin="round"/></svg></span></span></div>
+</div>
+<p class="g-note" style="margin-top:12px"><b>A drop-shadow, not a circle.</b> Without a container the heart sits directly on the photograph, and a product shot can be any brightness — the last swatch is over a dark bud. The saved heart keeps its stroke in the same red so the shape stays crisp rather than becoming a soft blob at 26px.<br><br>
+<b>Recorded exception:</b> doc 08 gives red to alarm and reduction. The filled red heart is a convention strong enough that fighting it costs more than it gains. The favourites count badge follows it to red; the cart count stays green.</p>
+
+<p class="g-h3">Zoom — native &lt;dialog&gt;, no library</p>
+<table class="g-tbl">
+<tr><th></th><th>PhotoSwipe / Fancybox</th><th>&lt;dialog&gt; + scroll-snap</th></tr>
+<tr><td>Payload</td><td>30–45 KB gzipped plus CSS</td><td><b>~1 KB</b> — reuses modal §26 and carousel §31</td></tr>
+<tr><td>Pinch, pan</td><td>Re-implemented in JS</td><td>Native, GPU-composited</td></tr>
+<tr><td>Focus trap, inert, Escape</td><td>Re-implemented</td><td>Free with <span class="g-code">showModal()</span></td></tr>
+<tr><td>Main-thread cost</td><td>Parse and execute on every PDP</td><td>Effectively none</td></tr>
+</table>
+<p class="g-note" style="margin-top:12px">A library re-implements in JavaScript what the browser now does natively, on the main thread. Native pinch and scrolling are composited, so they stay smooth on the mid-range Android that matters most for mobile-heavy traffic.<br><br>
+<b>The performance decision that actually matters is not the library.</b> Full-resolution images load <em>on open</em>, never on page load — the gallery keeps its <span class="g-code">srcset</span> at display size, the lightbox holds <span class="g-code">data-full</span>, and <span class="g-code">src</span> is assigned when the dialog opens. Most visitors never open it and never pay for it.<br><br>
+<b>Two caveats:</b> iOS pinch inside a fixed dialog is historically unreliable, so double-tap is the mechanism and pinch the enhancement. And <span class="g-code">&lt;dialog&gt;</span> needs Safari 15.4+.</p>
+</section>
+
+<!-- ============ 34 · SEARCH BAR ============ -->
+<section class="g-sec">
+<p class="g-num">Component 34</p>
+<h2 class="g-h2">Search bar</h2>
+<p class="g-note">Header search and its suggestion panel. Focus the field below to see the ring.</p>
+
+<p class="g-h3">Field states</p>
+<div style="display:flex;flex-direction:column;gap:var(--space-m);max-width:560px">
+  <div><span class="g-lbl">rest</span><div class="uw-srch ">
+  <div class="uw-srch__field">
+    <span class="uw-srch__ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8"/><path d="M16 16l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+    <input class="uw-srch__in" type="search" enterkeyhint="search" placeholder="Wonach suchst du heute?" aria-label="Produkte suchen">
+    <button class="uw-srch__go" aria-label="Suchen"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
+</div></div>
+  <div><span class="g-lbl">hover</span><div class="uw-srch uw-srch--hover">
+  <div class="uw-srch__field">
+    <span class="uw-srch__ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8"/><path d="M16 16l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+    <input class="uw-srch__in" type="search" enterkeyhint="search" placeholder="Wonach suchst du heute?" aria-label="Produkte suchen">
+    <button class="uw-srch__go" aria-label="Suchen"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
+</div></div>
+  <div><span class="g-lbl">focus</span><div class="uw-srch uw-srch--focus">
+  <div class="uw-srch__field">
+    <span class="uw-srch__ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8"/><path d="M16 16l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+    <input class="uw-srch__in" type="search" enterkeyhint="search" placeholder="Wonach suchst du heute?" aria-label="Produkte suchen">
+    <button class="uw-srch__go" aria-label="Suchen"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
+</div></div>
+  <div><span class="g-lbl">typing</span><div class="uw-srch uw-srch--focus uw-srch--typed">
+  <div class="uw-srch__field">
+    <span class="uw-srch__ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8"/><path d="M16 16l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+    <input class="uw-srch__in" type="search" enterkeyhint="search" placeholder="Wonach suchst du heute?" value="cbd öl" aria-label="Produkte suchen">
+    <button class="uw-srch__clear" aria-label="Suche löschen"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><button class="uw-srch__go" aria-label="Suchen"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
+</div></div>
+</div>
+<p class="g-note" style="margin-top:12px"><b>The focus ring is a <span class="g-code">box-shadow</span>, never a wider border.</b> A border would grow the box by 3px and shift everything beside it — on a header that means the logo and cart icons move when someone clicks the search field.</p>
+
+<p class="g-h3">Suggestion panel</p>
+<div class="uw-srch" style="max-width:480px">
+  <div class="uw-srch__panel">
+    <p class="uw-srch__lab">Produkte</p>
+    <button class="uw-srch__row is-cursor"><span class="uw-srch__th">🌿</span>
+      <span class="uw-srch__tx"><span class="uw-srch__n"><b>CBD Öl</b> 10% Vollspektrum</span>
+      <span class="uw-srch__m">10 ml · Green Passion</span></span>
+      <span class="uw-srch__p">39.90</span></button>
+    <button class="uw-srch__row"><span class="uw-srch__th">💧</span>
+      <span class="uw-srch__tx"><span class="uw-srch__n"><b>CBD Öl</b> 20% mit MCT-Öl</span>
+      <span class="uw-srch__m">10 ml · Sweed</span></span>
+      <span class="uw-srch__p">84.15</span></button>
+    <p class="uw-srch__lab">Kategorien</p>
+    <button class="uw-srch__row"><span class="uw-srch__th">📂</span>
+      <span class="uw-srch__tx"><span class="uw-srch__n"><b>CBD Öl</b></span></span></button>
+    <button class="uw-srch__all">Alle Ergebnisse für „cbd öl"</button>
+  </div>
+</div>
+<p class="g-note" style="margin-top:12px">Uses the dropdown surface (§10), so hover is the only fill. <b>The keyboard cursor is a separate treatment</b> — <span class="g-code">--light-green</span> on the first row here — so the pointer position and the keyboard position never merge into one ambiguous highlight.</p>
+
+<p class="g-h3">Loading, empty, error</p>
+<div class="g-row" style="gap:var(--space-m);align-items:flex-start">
+  <div style="flex:1;min-width:240px"><span class="g-lbl">skeleton — after 150ms only</span>
+    <div class="uw-srch__panel">
+      <div class="uw-srch__skel"></div><div class="uw-srch__skel"></div><div class="uw-srch__skel"></div>
+    </div></div>
+  <div style="flex:1;min-width:240px"><span class="g-lbl">no results — not an error</span>
+    <div class="uw-srch__panel"><div class="uw-srch__empty">
+      <p style="margin:0 0 4px"><b>Keine Treffer für „cbd xyz"</b></p>
+      <p style="margin:0;color:var(--dark-gray)">Prüfe die Schreibweise oder such nach einer Kategorie.</p>
+      <div class="uw-srch__chips">
+        <button class="uw-srch__chip">CBD Blüten</button>
+        <button class="uw-srch__chip">CBD Öl</button>
+        <button class="uw-srch__chip">Hash</button>
+      </div></div></div></div>
+  <div style="flex:1;min-width:240px"><span class="g-lbl">error — endpoint failed</span>
+    <div class="uw-srch__err">
+      <span style="color:var(--medium-red);flex-shrink:0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M9 9l6 6M15 9l-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+      <span>Die Suche ist gerade nicht erreichbar. <a href="#">Erneut versuchen</a></span>
+    </div></div>
+</div>
+<p class="g-note" style="margin-top:12px"><b>No results is not an error.</b> Nothing failed — the shop simply does not stock it. Red is reserved for a broken search endpoint, which is the third panel.<br><br>
+The skeleton appears only after 150ms, so a fast response never flashes it.</p>
+
+<p class="g-h3">What the plugin makes impossible</p>
+<table class="g-tbl">
+<tr><th>Spec item</th><th>Why not</th></tr>
+<tr><td>Skeleton rows</td><td>The plugin shows a preloader spinner — no rows exist to style</td></tr>
+<tr><td>Error state</td><td><span class="g-code">onSearchError</span> is a no-op; a failed request renders nothing</td></tr>
+<tr><td><b>ARIA combobox</b></td><td>Only <span class="g-code">aria-label</span> is emitted. No listbox, no option roles, no <span class="g-code">aria-activedescendant</span>, no live region</td></tr>
+<tr><td>No-results chips</td><td>One flat text string, no chip markup</td></tr>
+<tr><td>See-all copy</td><td>A global label plus a count; it does not interpolate the query</td></tr>
+<tr><td>Per-instance styling</td><td><b>One panel is appended to <span class="g-code">&lt;body&gt;</span> and reused for every search on the page</b></td></tr>
+<tr><td>Popular searches</td><td>The feature does not exist — recent only</td></tr>
+</table>
+<p class="g-note" style="margin-top:12px"><b>Six of the seven share one root cause:</b> FiboSearch renders the DOM and offers no hook, so there is nothing to style. The states above are the target, not the current build.<br><br>
+<b>The per-instance limit is the structural one.</b> Banner search and header search are the same panel with the same settings — not a styling gap but a ceiling on what can ever be specified separately.<br><br>
+<b>The ARIA gap is the one that matters.</b> The rest is polish; a suggestion list with no listbox role and no active-descendant is unusable by screen reader.</p>
+</section>
+
+</div>
+<script>
+  // Indeterminate has no HTML attribute — must be set in JS.
+  document.getElementById('ind').indeterminate = true;
+
+  // Gallery favourites toggle
+  document.querySelectorAll('.uw-gal__fav[type="button"]').forEach(function (b) {
+    b.addEventListener('click', function (e) {
+      e.preventDefault();
+      b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
+    });
+  });
+
+  // Tooltip: Escape dismisses. One of only two things the component needs JS for.
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    var el = document.activeElement;
+    if (el && el.classList && el.classList.contains('uw-tip__trigger')) el.blur();
+  });
+</script>
+</body>
+</html>
