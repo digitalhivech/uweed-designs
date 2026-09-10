@@ -1,6 +1,12 @@
 # **uWeed — Design Tokens**
 
-**Version 1.8** · Supersedes v1.7
+**Version 1.9** · Supersedes v1.8
+
+## **Changelog — v1.8 → v1.9**
+
+- **Orange gains a dark tone: --dark-orange \#8A5A12.** The value was already shipping as a raw literal in the warning message icon (doc 09 §20 and the gallery), where --medium-orange on --light-orange is unreadable. Part 1 requires sign-off for a new token; this one is recorded rather than assumed, on the grounds that the value exists in production either way and the only question was whether it is searchable. **It is an icon and text tone, not a fill** — orange fills still take --dark-blue text.
+
+- **The gallery used --fs-h6 without defining it.** Doc 08's scale specifies H6 (16px → 18px, Poppins 600), but the gallery's :root declared h2, h4 and h5 only, so the category tab rail silently inherited its font size instead of taking the H6 step. Defined from the scale table; no new value.
 
 ## **Changelog — v1.7 → v1.8**
 
@@ -103,7 +109,7 @@ Every colour uWeed uses. There are no others.
 | **Blue**   | \#0B102A | \#334BC1   | \#CED4F3  |
 | **Green**  | \#286754 | \#4ABD9A   | \#D1EFE5  |
 | **Pink**   | \#78596F | \#DBABCF   | \#F4E2ED  |
-| **Orange** | —        | \#FFA033   | \#FFF5EB  |
+| **Orange** | \#8A5A12 | \#FFA033   | \#FFF5EB  |
 | **Red**    | —        | \#EE2E31   | \#FDEDED  |
 | **Grey**   | \#3D3D3D | \#999999   | \#F5F5F5  |
 | **Black**  | \#000000 | —          | —         |
@@ -115,7 +121,7 @@ Every colour uWeed uses. There are no others.
 
 --dark-pink: \#78596F; --medium-pink: \#DBABCF; --light-pink: \#F4E2ED;
 
---medium-orange: \#FFA033; --light-orange: \#FFF5EB;
+--dark-orange: \#8A5A12; --medium-orange: \#FFA033; --light-orange: \#FFF5EB;
 
 --medium-red: \#EE2E31; --light-red: \#FDEDED;
 
@@ -152,7 +158,7 @@ Meaning, not decoration. Using green for an error would be wrong even if it look
 
 **Pink is the editorial section colour**, paralleling green as the shop's — which the palette already implies by naming it *Green (CBD Shop)*. It marks which part of the site you are in, not what will happen if you click. **Pink is never a button.**
 
-**Orange is not a warning.** Amber-as-caution is a common convention and it is not the one in use here — that is red's job, and orange beside a red error would muddy both. Orange also has no dark tone, so orange fills always take --dark-blue text, which keeps it to badges and marks rather than surfaces.
+**Orange is not a warning.** Amber-as-caution is a common convention and it is not the one in use here — that is red's job, and orange beside a red error would muddy both. **Orange fills always take --dark-blue text**, which keeps orange to badges and marks rather than surfaces. --dark-orange is the exception and is not a fill: it is the icon and text tone for orange-tinted surfaces, where --medium-orange is unreadable (1.9:1 on --light-orange, against 5.49:1 for --dark-orange).
 
 **Out of stock is grey, not red.** Red is for things that need action or attention. Out of stock needs neither — it is a fact about availability, which is what grey covers.
 
@@ -255,6 +261,7 @@ The distinction matters most on filter pills, where an unapplied filter and a fi
 | --white / --medium-blue | either direction | 7.20:1 | ✅ links |
 | --dark-green | --white | 6.65:1 | ✅ |
 | --dark-pink | --white | 6.07:1 | ✅ |
+| --light-orange | --dark-orange | 5.49:1 | ✅ |
 | --light-green | --dark-green | 5.44:1 | ✅ |
 | --light-pink | --dark-pink | 4.90:1 | ✅ |
 | **--medium-red** | **--white** | **4.14:1** | ⚠️ **large text only — see below** |
@@ -657,7 +664,7 @@ Part 1 says never write a raw value where a token exists. That rule now holds ac
 >
 > **An earlier count said 19.** That figure counted only the named Tailwind hexes already spotted; the real number was 96, of which 27 have since been mapped. **The correction matters more than the number** — a count taken by looking for what you already know is there will always undercount, and this one was out by a factor of five.
 
-**Closed in this pass:** 19 named Tailwind literals → 0 · \#9ca3af ×3 → --dark-gray, including in pdp-critical.css · --base-font, --base-font-size and --green were all silently dead and are now real tokens · --height documented as JS-written with an auto fallback.
+**Closed in this pass:** 19 named Tailwind literals → 0 · \#8A5A12 ×2 → --dark-orange, in the warning message icon (doc 09 §20 and the gallery) · \#9ca3af ×3 → --dark-gray, including in pdp-critical.css · --base-font, --base-font-size and --green were all silently dead and are now real tokens · --height documented as JS-written with an auto fallback.
 
 **Duplicate keyframes collapsed:** fadeIn ×4 → 1, countUpdate ×2 → 1, all byte-identical. In pdp-critical.css, fadeIn ×2 → 1 and marquee ×4 → 1.
 

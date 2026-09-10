@@ -30,4 +30,15 @@ https://claude.ai/public/artifacts/6f583f52-2c2e-4f81-ac39-b64ca3f8503a
 
 ## Source files
 
-`UWEED-08-Design-Tokens-v1.md.docx` and `UWEED-09-Component-Library-v0.1.md.docx` are the original exports the markdown files were converted from. The markdown files are the working copies; when the docx exports are updated, re-convert them (pandoc, `-f docx -t gfm --wrap=none`) rather than editing markdown and docx independently.
+The markdown files are the source. `UWEED-08-Design-Tokens-v1.md` and
+`UWEED-09-Component-Library-v0.1.md` are edited directly — there is no parallel
+docx to keep in step.
+
+The original `.md.docx` exports the markdown was first converted from were removed
+once every substantive line in them was confirmed to be present verbatim in the
+markdown (they carried no images or embedded objects). They remain in git history
+at commit `f8b7c53` if an original export is ever needed.
+
+If a Word copy is required for sharing, generate it from the markdown as a
+throwaway (`pandoc -f gfm -t docx`) and do not commit it — a committed docx becomes
+a second copy that drifts.
