@@ -34,10 +34,12 @@ The markdown files are the source. `UWEED-08-Design-Tokens-v1.md` and
 `UWEED-09-Component-Library-v0.1.md` are edited directly — there is no parallel
 docx to keep in step.
 
-The original `.md.docx` exports the markdown was first converted from were removed
-once every substantive line in them was confirmed to be present verbatim in the
-markdown (they carried no images or embedded objects). They remain in git history
-at commit `f8b7c53` if an original export is ever needed.
+The original `.md.docx` exports the markdown was first converted from have been
+**purged from git history entirely** — not just deleted from the working tree.
+They are gone and cannot be recovered from this repository. That was safe to do
+because every substantive fragment of both files was first confirmed to be present
+verbatim in the corresponding markdown, and neither carried images or embedded
+objects: the markdown is a complete replacement, not a lossy one.
 
 If a Word copy is required for sharing, generate it from the markdown as a
 throwaway (`pandoc -f gfm -t docx`) and do not commit it — a committed docx becomes
