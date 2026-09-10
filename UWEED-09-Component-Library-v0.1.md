@@ -127,7 +127,7 @@ Every one of these shipped as a wrong colour, a wrong size or a broken layout, a
 
 ### **1 · A tie loses on source order**
 
-.subcategory-item.active { background-color: \#33A481 } and the correct --dark-blue rule were both **(0,2,0)**. The green file was imported about 134 KB later, so it won — and the right rule had been losing silently for as long as both existed.
+.subcategory-item.active { background-color: \#33A481 } — off-palette; **--medium-green (\#4ABD9A) is its palette equivalent** — and the correct --dark-blue rule were both **(0,2,0)**. The green file was imported about 134 KB later, so it won — and the right rule had been losing silently for as long as both existed.
 
 **A wrong colour does not mean a missing rule.** Check whether the correct one is already there and losing.
 
@@ -1453,7 +1453,7 @@ Cart is commerce, and green at 7.6:1 against white. Favourites follows its heart
 
 > An earlier draft made both green. That was right about cart and wrong about favourites — a green count beside a red heart reads as two features rather than one.
 
-The live \#D95ABA is retired: not in the palette, and only 3.4:1.
+The live pink is retired: \#D95ABA is not in the palette, and only 3.43:1. **Its palette equivalent is --medium-pink (\#DBABCF)** — which is not a substitute here on two counts: this count is --medium-red, and --medium-pink on white is 1.96:1, lower still. --medium-pink is a fill that takes --dark-blue text (9.57:1), never a colour for small white numerals.
 
 **“New” moved from --light-green to --dark-green with white text.** The live badge is a mid-green pill with white text at roughly 2.1:1. Dark green reaches 7.6:1 and still reads as a green badge.
 
@@ -1838,7 +1838,7 @@ text-decoration: none;
 
 > Three drifted breadcrumb renderers collapsed into one uweed_crumbs(). Legacy CSS — breadcrumb-wrap, ol.breadcrumb, breadcrumb-active — is at zero in both style.css and pdp-critical.css. BreadcrumbList JSON-LD unchanged: it is generated in PHP from query objects with no DOM coupling, so the card's headline risk was closed by inspection rather than accepted.
 >
-> **The green tab was never this component's CSS.** .subcategory-item.active { background-color: \#33A481 } sat *outside* the .related-product-categories block it was written for, so it applied to every tab on the site. The correct --dark-blue rule already existed in \_filters.scss. Both were **(0,2,0)** — so source order decided it, and the green file was imported about 134 KB later.
+> **The green tab was never this component's CSS.** .subcategory-item.active { background-color: \#33A481 } — off-palette, **--medium-green (\#4ABD9A) in the palette** — sat *outside* the .related-product-categories block it was written for, so it applied to every tab on the site. The correct --dark-blue rule already existed in \_filters.scss. Both were **(0,2,0)** — so source order decided it, and the green file was imported about 134 KB later.
 >
 > **The right rule had been losing silently the whole time.** Worth remembering before assuming a wrong colour means a missing rule.
 >
@@ -4917,12 +4917,12 @@ Inline feedback at page or section level. Consolidates .woocommerce-message, -in
 | **Neutral** | --light-gray | --medium-gray | --dark-gray | Context with no valence — a shipping note, a store closure |
 | **Info** | --light-blue | --medium-blue | --medium-blue | Something worth knowing before acting |
 | **Success** | --light-green | --dark-green | --dark-green | Something completed |
-| **Warning** | --light-orange | --medium-orange | --dark-orange | Caution — compliance, suitability, restrictions |
+| **Warning** | --light-orange | --medium-orange | --medium-orange | Caution — compliance, suitability, restrictions |
 | **Error** | --light-red | --medium-red | --medium-red | Something failed or needs fixing |
 
 **Warning is the second place orange means caution rather than earned recognition** (the first is low stock). Red would be worse — it is reserved for failure, and "not suitable during pregnancy" is a restriction, not a failure. A deliberate exception, recorded rather than a redefinition of orange.
 
-**The warning icon is --dark-orange, not --medium-orange.** Orange on --light-orange is 1.6:1. The darker tone was a raw \#8A5A12 here and in the gallery; it is a token as of doc 08 v1.9, which also records that it is an icon and text tone, never a fill.
+**The warning icon is --medium-orange, and it fails contrast.** --medium-orange on --light-orange is 1.89:1 against the 3:1 non-text UI requires. A darker \#8A5A12 was trialled and withdrawn in doc 08 v1.10 rather than add a third orange tone. **Accepted deliberately, not overlooked** — the border and the title carry the message type as well, so the variant survives without the icon. Logged as an open item in doc 08 Part 2; do not copy this to an icon that carries meaning on its own.
 
 ## **Structure**
 
@@ -4996,7 +4996,7 @@ line-height: 1.55;
 
 .uw-msg--warning { background: var(--light-orange); border-color: var(--medium-orange); }
 
-.uw-msg--warning .uw-msg\_\_ic { color: var(--dark-orange); } /\* --medium-orange on --light-orange is 1.6:1 \*/
+.uw-msg--warning .uw-msg\_\_ic { color: var(--medium-orange); } /\* 1.89:1 — accepted, doc 08 Part 2 \*/
 
 .uw-msg--error { background: var(--light-red); border-color: var(--medium-red); }
 
