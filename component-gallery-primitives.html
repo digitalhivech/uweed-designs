@@ -15,7 +15,7 @@
   --dark-blue:#0B102A;   --medium-blue:#334BC1;   --light-blue:#CED4F3;
   --dark-green:#286754;  --medium-green:#4ABD9A;  --light-green:#D1EFE5;
   --dark-pink:#78596F;   --medium-pink:#DBABCF;   --light-pink:#F4E2ED;
-  --dark-orange:#8A5A12; --medium-orange:#FFA033; --light-orange:#FFF5EB;
+                         --medium-orange:#FFA033; --light-orange:#FFF5EB;
                          --medium-red:#EE2E31;    --light-red:#FDEDED;
   --dark-gray:#3D3D3D;   --medium-gray:#999999;   --light-gray:#F5F5F5;
   --black:#000000;       --white:#FFFFFF;
@@ -682,7 +682,7 @@ body{margin:0;font-family:var(--ff-body);font-size:var(--fs-body);
 .uw-msg--success{background:var(--light-green);border-color:var(--dark-green)}
 .uw-msg--success .uw-msg__ic{color:var(--dark-green)}
 .uw-msg--warning{background:var(--light-orange);border-color:var(--medium-orange)}
-.uw-msg--warning .uw-msg__ic{color:var(--dark-orange)}
+.uw-msg--warning .uw-msg__ic{color:var(--medium-orange)}
 .uw-msg--error{background:var(--light-red);border-color:var(--medium-red)}
 .uw-msg--error .uw-msg__ic{color:var(--medium-red)}
 
@@ -1326,7 +1326,7 @@ body{margin:0;font-family:var(--ff-body);font-size:var(--fs-body);
     </div></div>
 </div>
 <p class="g-note" style="margin-top:12px">Cart is commerce, so green. Favourites follows its heart (§33) — a filled red heart is a convention strong enough that fighting it costs more than it gains, and a count attached to a heart reads as "how many saved" rather than as an error. An earlier draft made both green: right about cart, wrong about favourites, since a green count beside a red heart reads as two features.<br><br>
-The live <span class="g-code">#D95ABA</span> is retired, being neither in the palette nor above 3.4:1. Pink is the editorial section colour and appears on exactly one badge, the category chip.</p>
+The live <span class="g-code">#D95ABA</span> is retired, being neither in the palette nor above 3.43:1; its palette equivalent is <span class="g-code">--medium-pink</span>, which is a fill for <span class="g-code">--dark-blue</span> text, not a colour for white numerals. Pink is the editorial section colour and appears on exactly one badge, the category chip.</p>
 </section>
 
 <!-- ============ 6 · LINK ============ -->
@@ -2034,7 +2034,7 @@ The value is a real input with <span class="g-code">inputmode="numeric"</span> a
 </div>
 <p class="g-note" style="margin-top:12px">Titled messages align to the top so the icon sits beside the heading; single-line ones centre. One <span class="g-code">:has()</span> rule, no variant to remember.<br><br>
 The 3px border, the icon and the title are what make the message <em>type</em> survive greyscale — four tinted backgrounds alone would not. Errors take <span class="g-code">role="alert"</span>, everything else <span class="g-code">role="status"</span>: an alert interrupts mid-sentence, which is right for a failure and wrong for a coupon confirmation.<br><br>
-Warning is the second place orange means caution rather than earned recognition. Its icon is <span class="g-code">--dark-orange</span> — <span class="g-code">--medium-orange</span> on <span class="g-code">--light-orange</span> is 1.6:1.</p>
+Warning is the second place orange means caution rather than earned recognition. Its icon is <span class="g-code">--medium-orange</span> on <span class="g-code">--light-orange</span> — 1.89:1, below the 3:1 non-text UI requires. Accepted deliberately (doc 08 Part 2): the border and title carry the message type as well, so the variant survives without the icon.</p>
 
 <p class="g-h3">21 · Toast — light by default, dark available</p>
 <div class="g-row" style="gap:var(--space-xl);align-items:flex-start">

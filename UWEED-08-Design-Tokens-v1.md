@@ -1,6 +1,14 @@
 # **uWeed — Design Tokens**
 
-**Version 1.9** · Supersedes v1.8
+**Version 1.10** · Supersedes v1.9
+
+## **Changelog — v1.9 → v1.10**
+
+- **--dark-orange is withdrawn. The warning icon reverts to --medium-orange on --light-orange at 1.89:1, which fails AA and is accepted for now.** Decided deliberately rather than by oversight, on the same footing as the sale badge below: the palette stays at two orange tones, and the contrast debt is recorded rather than hidden. **See Part 2 · Open — the warning icon is far below AA.** \#8A5A12 is the value to reinstate if it is fixed.
+
+- **The type scale now declares its token names.** The scale table specified every size but never named a single token, which is why the gallery could reference --fs-h6 for the category tab rail without anything defining it. Names and clamps are now written down for the whole scale; the values are unchanged and derive from the table.
+
+- **Two off-palette literals mapped to the palette:** \#33A481 → --medium-green, \#D95ABA → --medium-pink. Both are recorded at the point each is documented in doc 09.
 
 ## **Changelog — v1.8 → v1.9**
 
@@ -109,7 +117,7 @@ Every colour uWeed uses. There are no others.
 | **Blue**   | \#0B102A | \#334BC1   | \#CED4F3  |
 | **Green**  | \#286754 | \#4ABD9A   | \#D1EFE5  |
 | **Pink**   | \#78596F | \#DBABCF   | \#F4E2ED  |
-| **Orange** | \#8A5A12 | \#FFA033   | \#FFF5EB  |
+| **Orange** | —        | \#FFA033   | \#FFF5EB  |
 | **Red**    | —        | \#EE2E31   | \#FDEDED  |
 | **Grey**   | \#3D3D3D | \#999999   | \#F5F5F5  |
 | **Black**  | \#000000 | —          | —         |
@@ -121,7 +129,7 @@ Every colour uWeed uses. There are no others.
 
 --dark-pink: \#78596F; --medium-pink: \#DBABCF; --light-pink: \#F4E2ED;
 
---dark-orange: \#8A5A12; --medium-orange: \#FFA033; --light-orange: \#FFF5EB;
+--medium-orange: \#FFA033; --light-orange: \#FFF5EB;
 
 --medium-red: \#EE2E31; --light-red: \#FDEDED;
 
@@ -158,7 +166,7 @@ Meaning, not decoration. Using green for an error would be wrong even if it look
 
 **Pink is the editorial section colour**, paralleling green as the shop's — which the palette already implies by naming it *Green (CBD Shop)*. It marks which part of the site you are in, not what will happen if you click. **Pink is never a button.**
 
-**Orange is not a warning.** Amber-as-caution is a common convention and it is not the one in use here — that is red's job, and orange beside a red error would muddy both. **Orange fills always take --dark-blue text**, which keeps orange to badges and marks rather than surfaces. --dark-orange is the exception and is not a fill: it is the icon and text tone for orange-tinted surfaces, where --medium-orange is unreadable (1.9:1 on --light-orange, against 5.49:1 for --dark-orange).
+**Orange is not a warning.** Amber-as-caution is a common convention and it is not the one in use here — that is red's job, and orange beside a red error would muddy both. Orange also has no dark tone, so orange fills always take --dark-blue text, which keeps it to badges and marks rather than surfaces. **The cost of having no dark tone is the warning icon**, which takes --medium-orange on --light-orange at 1.89:1 — see the open item below.
 
 **Out of stock is grey, not red.** Red is for things that need action or attention. Out of stock needs neither — it is a fact about availability, which is what grey covers.
 
@@ -261,7 +269,6 @@ The distinction matters most on filter pills, where an unapplied filter and a fi
 | --white / --medium-blue | either direction | 7.20:1 | ✅ links |
 | --dark-green | --white | 6.65:1 | ✅ |
 | --dark-pink | --white | 6.07:1 | ✅ |
-| --light-orange | --dark-orange | 5.49:1 | ✅ |
 | --light-green | --dark-green | 5.44:1 | ✅ |
 | --light-pink | --dark-pink | 4.90:1 | ✅ |
 | **--medium-red** | **--white** | **4.14:1** | ⚠️ **large text only — see below** |
@@ -270,9 +277,22 @@ The distinction matters most on filter pills, where an unapplied filter and a fi
 | --medium-green | --white | 2.32:1 | ❌ use --dark-blue |
 | --medium-pink | --white | 1.96:1 | ❌ use --dark-blue |
 | --medium-orange | --white | 2.03:1 | ❌ use --dark-blue |
+| --light-orange | --medium-orange | 1.89:1 | ❌ **shipping anyway — see open item** |
 | --light-\* (any) | --white | \<1.5:1 | ❌ backgrounds only |
 
 **The rule that falls out of this:** a medium tone as background takes --dark-blue text. A dark tone takes white. Never white on a medium.
+
+### **Open — the warning icon is far below AA**
+
+The warning message (doc 09 §20) puts a --medium-orange icon on a --light-orange surface: **1.89:1, against the 3:1 that non-text UI requires.** The icon is one of three things carrying the message type — border, icon and title — so the variant is still distinguishable without it, which is the only reason this is survivable.
+
+| **Option** | **Effect** |
+|----|----|
+| **Darken the icon to \#8A5A12** | 5.49:1. A third orange tone, which Part 1 sets a high bar for. |
+| **--dark-blue icon on --light-orange** | 17.39:1, already an approved pairing. Reads as an info message, not a warning. |
+| **Accept and document** | **Current decision.** The border and title still carry the type. |
+
+**Accepted for now, deliberately.** Unlike the sale badge, nothing here is information a customer needs to read — the icon is decorative reinforcement of a message that is also bordered and titled. It is still a failure, it is still logged, and it should not be copied to any icon that carries meaning alone.
 
 ### **Open — the sale badge is below AA**
 
@@ -445,6 +465,34 @@ Fluid between 375px and 1280px via clamp(). No breakpoints — there is a define
 | Small | 14px | 14px | DM Sans | 400 | 1.5 | 0 |
 | Meta | 13px | 13px | DM Sans | 400 | 1.45 | 0 |
 | CTA | 16px | 16px | DM Sans | 700 | 1 | +0.04em |
+
+**The tokens.** Names and clamps for the table above. Sizes are unchanged — each clamp reproduces its mobile and desktop value at 375px and 1280px.
+
+--fs-display: clamp(2.25rem, 1.525rem + 3.094vw, 4rem);
+
+--fs-h1: clamp(1.875rem, 1.41rem + 1.99vw, 3rem);
+
+--fs-h2: clamp(1.5625rem, 1.23rem + 1.44vw, 2.375rem);
+
+--fs-h3: clamp(1.3125rem, 1.0794rem + 0.9945vw, 1.875rem);
+
+--fs-h4: clamp(1.1875rem, 1.06rem + 0.55vw, 1.5rem);
+
+--fs-h5: clamp(1.0625rem, 0.99rem + 0.33vw, 1.25rem);
+
+--fs-h6: clamp(1rem, 0.95rem + 0.22vw, 1.125rem);
+
+--fs-lead: clamp(1.0625rem, 1.01rem + 0.22vw, 1.1875rem);
+
+--fs-body: 1rem; --fs-small: 0.875rem; --fs-meta: 0.8125rem; --fs-cta: 1rem;
+
+--lh-display: 1.02; --lh-h1: 1.10; --lh-h2: 1.15; --lh-h3: 1.20; --lh-h4: 1.25; --lh-h5: 1.30; --lh-h6: 1.35;
+
+--lh-lead: 1.55; --lh-body: 1.6; --lh-small: 1.5; --lh-meta: 1.45; --lh-cta: 1;
+
+--ls-display: −0.045em; --ls-h1: −0.04em; --ls-h2: −0.03em; --ls-h3: −0.025em; --ls-h4: −0.02em; --ls-h5: −0.015em; --ls-h6: −0.01em; --ls-caps: +0.04em;
+
+**A size with no token is a size nobody can use.** The scale was specified here from v1.0 and named nowhere, so --fs-h6 was referenced by the category tab rail and defined by nothing — it silently inherited its parent size. Declaring the names is what makes the table enforceable.
 
 **Tracking relaxes as size drops.** −0.04em on an 18px H6 reads as a rendering fault.
 
@@ -664,7 +712,7 @@ Part 1 says never write a raw value where a token exists. That rule now holds ac
 >
 > **An earlier count said 19.** That figure counted only the named Tailwind hexes already spotted; the real number was 96, of which 27 have since been mapped. **The correction matters more than the number** — a count taken by looking for what you already know is there will always undercount, and this one was out by a factor of five.
 
-**Closed in this pass:** 19 named Tailwind literals → 0 · \#8A5A12 ×2 → --dark-orange, in the warning message icon (doc 09 §20 and the gallery) · \#9ca3af ×3 → --dark-gray, including in pdp-critical.css · --base-font, --base-font-size and --green were all silently dead and are now real tokens · --height documented as JS-written with an auto fallback.
+**Closed in this pass:** 19 named Tailwind literals → 0 · \#9ca3af ×3 → --dark-gray, including in pdp-critical.css · --base-font, --base-font-size and --green were all silently dead and are now real tokens · --height documented as JS-written with an auto fallback.
 
 **Duplicate keyframes collapsed:** fadeIn ×4 → 1, countUpdate ×2 → 1, all byte-identical. In pdp-critical.css, fadeIn ×2 → 1 and marquee ×4 → 1.
 
