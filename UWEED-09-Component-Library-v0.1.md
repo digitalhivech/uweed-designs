@@ -612,8 +612,8 @@ Single-line text entry and its multi-line sibling.
 |------------|-----------------------------|----------------------------|
 | Height     | 46px                        | 60px (70px ≥1200px)        |
 | Radius     | --radius-pill — **decided** | --radius-pill              |
-| Border     | --border-hairline --line    | --border-emphasis \#e7e7e9 |
-| Background | --light-gray                | \#fafafa                   |
+| Border     | --border-hairline --line    | --border-emphasis --line   |
+| Background | --light-gray                | \#fafafa — off-palette, doc 08 Part 8b |
 | Font size  | --fs-body                   | --fs-body                  |
 
 > Both are deliberate — the checkout was redesigned for density. **This document takes the checkout height (46px) with the pill radius**, which is the combination decided in review: dense enough to keep forms short, and matching the CTA shape so controls and buttons read as one system. Only the height remains open.
@@ -4917,12 +4917,12 @@ Inline feedback at page or section level. Consolidates .woocommerce-message, -in
 | **Neutral** | --light-gray | --medium-gray | --dark-gray | Context with no valence — a shipping note, a store closure |
 | **Info** | --light-blue | --medium-blue | --medium-blue | Something worth knowing before acting |
 | **Success** | --light-green | --dark-green | --dark-green | Something completed |
-| **Warning** | --light-orange | --medium-orange | \#8A5A12 | Caution — compliance, suitability, restrictions |
+| **Warning** | --light-orange | --medium-orange | --dark-orange | Caution — compliance, suitability, restrictions |
 | **Error** | --light-red | --medium-red | --medium-red | Something failed or needs fixing |
 
 **Warning is the second place orange means caution rather than earned recognition** (the first is low stock). Red would be worse — it is reserved for failure, and "not suitable during pregnancy" is a restriction, not a failure. A deliberate exception, recorded rather than a redefinition of orange.
 
-**The warning icon is \#8A5A12, not --medium-orange.** Orange on --light-orange is 1.6:1. The darker tone is a component-level value; if warnings become common enough it earns a token.
+**The warning icon is --dark-orange, not --medium-orange.** Orange on --light-orange is 1.6:1. The darker tone was a raw \#8A5A12 here and in the gallery; it is a token as of doc 08 v1.9, which also records that it is an icon and text tone, never a fill.
 
 ## **Structure**
 
@@ -4996,7 +4996,7 @@ line-height: 1.55;
 
 .uw-msg--warning { background: var(--light-orange); border-color: var(--medium-orange); }
 
-.uw-msg--warning .uw-msg\_\_ic { color: \#8A5A12; } /\* orange on light-orange is 1.6:1 \*/
+.uw-msg--warning .uw-msg\_\_ic { color: var(--dark-orange); } /\* --medium-orange on --light-orange is 1.6:1 \*/
 
 .uw-msg--error { background: var(--light-red); border-color: var(--medium-red); }
 

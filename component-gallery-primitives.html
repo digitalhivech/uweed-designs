@@ -15,7 +15,7 @@
   --dark-blue:#0B102A;   --medium-blue:#334BC1;   --light-blue:#CED4F3;
   --dark-green:#286754;  --medium-green:#4ABD9A;  --light-green:#D1EFE5;
   --dark-pink:#78596F;   --medium-pink:#DBABCF;   --light-pink:#F4E2ED;
-                         --medium-orange:#FFA033; --light-orange:#FFF5EB;
+  --dark-orange:#8A5A12; --medium-orange:#FFA033; --light-orange:#FFF5EB;
                          --medium-red:#EE2E31;    --light-red:#FDEDED;
   --dark-gray:#3D3D3D;   --medium-gray:#999999;   --light-gray:#F5F5F5;
   --black:#000000;       --white:#FFFFFF;
@@ -47,6 +47,7 @@
   --fs-h2:clamp(1.5625rem,1.23rem + 1.44vw,2.375rem);
   --fs-h4:clamp(1.1875rem,1.06rem + .55vw,1.5rem);
   --fs-h5:clamp(1.0625rem,.99rem + .33vw,1.25rem);
+  --fs-h6:clamp(1rem,.95rem + .22vw,1.125rem);
   --fs-body:1rem; --fs-small:.875rem; --fs-meta:.8125rem; --fs-cta:1rem;
   --lh-body:1.6; --ls-caps:.04em;
 }
@@ -681,7 +682,7 @@ body{margin:0;font-family:var(--ff-body);font-size:var(--fs-body);
 .uw-msg--success{background:var(--light-green);border-color:var(--dark-green)}
 .uw-msg--success .uw-msg__ic{color:var(--dark-green)}
 .uw-msg--warning{background:var(--light-orange);border-color:var(--medium-orange)}
-.uw-msg--warning .uw-msg__ic{color:#8A5A12}
+.uw-msg--warning .uw-msg__ic{color:var(--dark-orange)}
 .uw-msg--error{background:var(--light-red);border-color:var(--medium-red)}
 .uw-msg--error .uw-msg__ic{color:var(--medium-red)}
 
@@ -2033,7 +2034,7 @@ The value is a real input with <span class="g-code">inputmode="numeric"</span> a
 </div>
 <p class="g-note" style="margin-top:12px">Titled messages align to the top so the icon sits beside the heading; single-line ones centre. One <span class="g-code">:has()</span> rule, no variant to remember.<br><br>
 The 3px border, the icon and the title are what make the message <em>type</em> survive greyscale — four tinted backgrounds alone would not. Errors take <span class="g-code">role="alert"</span>, everything else <span class="g-code">role="status"</span>: an alert interrupts mid-sentence, which is right for a failure and wrong for a coupon confirmation.<br><br>
-Warning is the second place orange means caution rather than earned recognition. Its icon is <span class="g-code">#8A5A12</span> — <span class="g-code">--medium-orange</span> on <span class="g-code">--light-orange</span> is 1.6:1.</p>
+Warning is the second place orange means caution rather than earned recognition. Its icon is <span class="g-code">--dark-orange</span> — <span class="g-code">--medium-orange</span> on <span class="g-code">--light-orange</span> is 1.6:1.</p>
 
 <p class="g-h3">21 · Toast — light by default, dark available</p>
 <div class="g-row" style="gap:var(--space-xl);align-items:flex-start">
