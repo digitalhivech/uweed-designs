@@ -490,7 +490,9 @@ Fluid between 375px and 1280px via clamp(). No breakpoints — there is a define
 
 --lh-lead: 1.55; --lh-body: 1.6; --lh-small: 1.5; --lh-meta: 1.45; --lh-cta: 1;
 
---ls-display: −0.045em; --ls-h1: −0.04em; --ls-h2: −0.03em; --ls-h3: −0.025em; --ls-h4: −0.02em; --ls-h5: −0.015em; --ls-h6: −0.01em; --ls-caps: +0.04em;
+--ls-display: -0.045em; --ls-h1: -0.04em; --ls-h2: -0.03em; --ls-h3: -0.025em; --ls-h4: -0.02em; --ls-h5: -0.015em; --ls-h6: -0.01em; --ls-caps: +0.04em;
+
+**The table above prints a typographic minus (−); the tokens use an ASCII hyphen.** U+2212 is not valid in a CSS length and fails silently — the declaration is dropped and the tracking reverts to normal. Copy from the token block, not from the table.
 
 **A size with no token is a size nobody can use.** The scale was specified here from v1.0 and named nowhere, so --fs-h6 was referenced by the category tab rail and defined by nothing — it silently inherited its parent size. Declaring the names is what makes the table enforceable.
 
