@@ -1,0 +1,33 @@
+{
+  "$comment": "Written by the design system sync. Do not hand-edit.",
+  "lastSync": "2026-09-18T00:00:00Z",
+  "artifact": {
+    "url": "https://claude.ai/artifact/JyZjDAewAEusKwmN6LbvVH",
+    "version": "1789741918-369b",
+    "tokensSha256": "2f80a28bc9ffedbaaf1a54284ed7d018dfe50849c899ea321ee83c0d14e7355f",
+    "lastChange": {
+      "by": "uWeed",
+      "at": "2026-09-17T15:10:07Z",
+      "via": "Claude (Cowork)"
+    }
+  },
+  "doc08": {
+    "file": "UWEED-08-Design-Tokens-v1.md",
+    "version": "1.10",
+    "sha256": "954db47938334562496ec2a4663792f5cf46f9741cd2e6e97a046be87119faf5"
+  },
+  "result": {
+    "tokenCount": 113,
+    "valueChanges": 0,
+    "doc08Edited": false
+  },
+  "reported": [
+    "patch-2026-09-15: --film-oos, --space-3xs, --fs-tile-name, --fs-tile-name-compact, --tile-frame-ratio, --tile-frame-ratio-compact, --tile-frame-w-compact not in doc 08",
+    "--btn-min-width used by doc 09 and the gallery, declared in no document",
+    "--lift-hover flagged missing by doc 08 v1.3-v1.4, still not declared",
+    "--measure and the --bs-breakpoint-* family specified in doc 08 prose/tables, declared as tokens nowhere",
+    "--container-xl, --container-xxl, --container-wide-lg, --container-wide not declared in doc 08",
+    "--ls-caps formatting only: doc 08 '+0.04em' vs artifact '0.04em'; doc 08 spelling used",
+    "hex case: artifact lowercase, doc 08 uppercase; both correct per doc 08 Part 7"
+  ]
+}
