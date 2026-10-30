@@ -25,6 +25,7 @@ Every file maps one to one to the design system, at the same path.
 | `ui_kits/uweed-shop/` | The shop prototype screens built from the components. |
 | `design-system.json`, `manifest.json` | The design system's own index and build manifest. |
 | `previews/` | A picture of every preview page, rendered for this copy so the components can be seen on GitHub. Not part of the design system. |
+| `.mirror/` | The scripts the nightly copy runs (rebuild, render the pictures, write this file). Not part of the design system. |
 
 The preview pages run inside Claude Design, which supplies the tokens, the bundle and React. Opened
 straight from this repository they render blank; the pictures in `previews/` show what they look like.
