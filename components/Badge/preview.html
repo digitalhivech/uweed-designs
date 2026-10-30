@@ -1,0 +1,33 @@
+<!-- @dsCard group="Core" height=143 subtitle="Label, count or flag. Mid-tone fills take dark-blue text; never more than two on one item" -->
+<!doctype html>
+<html lang="de">
+<head><meta charset="utf-8"><title>Badge</title>
+<style>body{margin:0;padding:16px 20px;background:var(--white);color:var(--font-color);font-family:var(--font-body)}.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}.col{display:flex;flex-direction:column;gap:6px}.lbl{font-family:ui-monospace,monospace;font-size:10px;color:var(--dark-gray);margin:0}.sec{font-family:ui-monospace,monospace;font-size:10px;font-weight:var(--fw-bold);letter-spacing:.08em;text-transform:uppercase;color:var(--medium-blue);margin:14px 0 8px}.sec:first-child{margin-top:0}.dark{background:var(--dark-blue);border-radius:var(--radius-card);padding:14px}.stage{position:relative;overflow:hidden;border:var(--border-hairline) solid var(--line);border-radius:var(--radius-card);background:var(--light-gray);transform:translateZ(0)}</style></head>
+<body>
+<div id="root"></div>
+<script>
+var NS = window.UWeedDesignSystem_8df554, h = React.createElement, F = React.Fragment;
+function sec(t){return h("p",{className:"sec"},t);}
+function lbl(t){return h("p",{className:"lbl"},t);}
+function row(p){var k=[].slice.call(arguments,1);return h.apply(null,["div",Object.assign({className:"row"},p)].concat(k));}
+function ph(c,t,w,hh){w=w||600;hh=hh||600;return 'data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+hh+'"><rect width="'+w+'" height="'+hh+'" fill="'+c+'"/>'+(t?'<text x="'+w/2+'" y="'+(hh/2+hh*0.03)+'" font-family="DM Sans,sans-serif" font-size="'+Math.round(Math.min(w,hh)*0.07)+'" fill="#0B102A" text-anchor="middle">'+t+'</text>':'')+'</svg>');}
+var Bd = NS.Badge;
+function Demo(){ return h(F,null,
+  sec("Labels and flags"),
+  row(null,
+    h(Bd,{variant:"category"},"Wellness"),
+    h(Bd,{variant:"attribute"},"CBD 10% · THC 0.3%"),
+    h(Bd,{variant:"sale"},"−15%"),
+    h(Bd,{variant:"new"},"Neu"),
+    h(Bd,{variant:"bestseller"},"Bestseller"),
+    h(Bd,{variant:"oos"},"Ausverkauft")),
+  sec("Counts · removable applied filter"),
+  row(null,
+    h(Bd,{variant:"count","aria-label":"3 Artikel im Warenkorb"},"3"),
+    h(Bd,{variant:"count-fav","aria-label":"2 Favoriten"},"2"),
+    h(Bd,{onRemove:function(){},removeLabel:"Filter Sweed entfernen"},"Sweed")));
+}
+ReactDOM.createRoot(document.getElementById("root")).render(h(Demo));
+</script>
+</body>
+</html>

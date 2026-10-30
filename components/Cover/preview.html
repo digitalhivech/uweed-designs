@@ -1,0 +1,51 @@
+<!-- @dsCard height=288 -->
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>uWeed Design System</title>
+<style>
+  html, body { margin:0; height:100%; }
+  body { background:var(--white); color:var(--heading-color); font-family:var(--font-body); overflow:hidden; }
+  .cover { position:relative; width:960px; height:288px; overflow:hidden; }
+  .band { position:absolute; top:0; left:0; width:960px; height:112px; }
+  .band svg { display:block; }
+  .green { fill:var(--dark-green); }
+  .blue { fill:var(--dark-blue); }
+  .tint { fill:var(--light-green); }
+  .gold { fill:var(--medium-orange); }
+  .rose { fill:var(--light-pink); }
+  .blk { rx:var(--radius-card); }
+  .words { position:absolute; left:var(--space-l); right:var(--space-l); bottom:var(--space-l); }
+  /* The logo is the kit's file, never type. Its canvas already holds the clear
+     space, so the tagline is indented by the canvas's own left margin (4% of the
+     logo's width) to sit under the artwork rather than under the canvas edge. */
+  .name { margin:0; display:flex; align-items:center; gap:var(--space-s); font-family:var(--font-heading); font-size:44px; line-height:1; font-weight:var(--fw-extrabold); letter-spacing:var(--ls-h1); color:var(--heading-color); white-space:nowrap; }
+  .name img { display:block; width:228px; height:96px; flex:none; }
+  .tag { margin:0 0 0 9px; max-width:440px; font-size:14px; line-height:20px; color:var(--font-color); }
+</style>
+</head>
+<body>
+<div class="cover">
+<div class="band" aria-hidden="true">
+<svg viewBox="0 0 960 112" width="960" height="112">
+<!--
+  blocks      dark-green 360×128 (the green of buying: buy button, cart, in stock) · dark-blue 224×128 (brand, structure, footer) · light-green 240×112 tint for relief · medium-orange 80×64 and light-pink 80×48, small (recognition, editorial) — all bleed off the top, orange and pink off the right; ≈30% of 960×288
+  arrangement top-band skeleton (logo plus title is too wide for the 440px zone): a strip of unequal bands, space-m gutters, bottoms stepped 112 / 96 / 112
+  scales      sides in 8px multiples (space-xs); gutters space-m; block corners radius-card
+  pattern     none: plain colour blocks, so nothing on the cover reads as a brand motif
+-->
+<rect class="green blk" x="24" y="-16" width="360" height="128" rx="16"/>
+<rect class="tint blk" x="400" y="-16" width="240" height="112" rx="16"/>
+<rect class="blue blk" x="656" y="-16" width="224" height="128" rx="16"/>
+<rect class="gold blk" x="896" y="-16" width="80" height="64" rx="16"/>
+<rect class="rose blk" x="896" y="64" width="80" height="48" rx="16"/>
+</svg>
+</div>
+<div class="words">
+<h1 class="name"><img src="/_blob/1d680124e60ec7d4840c1826d71ebf89" alt="uWeed" width="228" height="96">Design System</h1>
+<p class="tag">For uweed.ch, the Swiss CBD and hemp marketplace.</p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!-- @dsCard group="Core" height=453 subtitle="Tabler Icons: 24px grid, one 2px line, round ends, currentColor" -->
+<!doctype html>
+<html lang="de">
+<head><meta charset="utf-8"><title>Icon</title>
+<style>body{margin:0;padding:16px 20px;background:var(--white);color:var(--font-color);font-family:var(--font-body)}.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}.col{display:flex;flex-direction:column;gap:6px}.lbl{font-family:ui-monospace,monospace;font-size:10px;color:var(--dark-gray);margin:0}.sec{font-family:ui-monospace,monospace;font-size:10px;font-weight:var(--fw-bold);letter-spacing:.08em;text-transform:uppercase;color:var(--medium-blue);margin:14px 0 8px}.sec:first-child{margin-top:0}.dark{background:var(--dark-blue);border-radius:var(--radius-card);padding:14px}.stage{position:relative;overflow:hidden;border:var(--border-hairline) solid var(--line);border-radius:var(--radius-card);background:var(--light-gray);transform:translateZ(0)}</style></head>
+<body>
+<div id="root"></div>
+<script>
+var NS = window.UWeedDesignSystem_8df554, h = React.createElement, F = React.Fragment;
+function sec(t){return h("p",{className:"sec"},t);}
+function lbl(t){return h("p",{className:"lbl"},t);}
+function row(p){var k=[].slice.call(arguments,1);return h.apply(null,["div",Object.assign({className:"row"},p)].concat(k));}
+function ph(c,t,w,hh){w=w||600;hh=hh||600;return 'data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+hh+'"><rect width="'+w+'" height="'+hh+'" fill="'+c+'"/>'+(t?'<text x="'+w/2+'" y="'+(hh/2+hh*0.03)+'" font-family="DM Sans,sans-serif" font-size="'+Math.round(Math.min(w,hh)*0.07)+'" fill="#0B102A" text-anchor="middle">'+t+'</text>':'')+'</svg>');}
+var I = NS.Icon;
+function Demo(){ var names = (NS.ICON_NAMES||[]).slice();
+  return h(F,null,
+  sec("The set — " + names.length + " icons, dark blue at 24px"),
+  h("div",{style:{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(92px,1fr))",gap:"10px 8px",color:"var(--dark-blue)"}},
+    names.map(function(n){ return h("div",{key:n,className:"col",style:{alignItems:"center",gap:4}},h(I,{name:n,size:24}),h("span",{className:"lbl",style:{fontSize:9}},n)); })),
+  sec("Four sizes — 32 empty state · 24 on its own · 20 in buttons, fields, messages · 16 in small controls. Always the same 2px line"),
+  row({style:{color:"var(--dark-blue)",gap:20}}, h(I,{name:"truck",size:32}), h(I,{name:"truck",size:24}), h(I,{name:"truck",size:20}), h(I,{name:"truck",size:16})),
+  sec("Filled — for a state or a score only"),
+  row({style:{gap:20}}, h("span",{style:{color:"var(--medium-orange)",display:"flex",gap:2}}, h(I,{name:"star-filled",size:20}), h(I,{name:"star-filled",size:20}), h(I,{name:"star-filled",size:20})), h("span",{className:"lbl"},"star-filled, the rating star")));
+}
+ReactDOM.createRoot(document.getElementById("root")).render(h(Demo));
+</script>
+</body>
+</html>

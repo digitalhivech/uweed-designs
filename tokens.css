@@ -1,0 +1,240 @@
+/* uWeed Design System — generated from tokens.json */
+:root, [data-theme="default"] {
+  --dark-blue: #0b102a; /* Brand, structure, navigation. Headings (via heading-color), the nav button, active tab underline, applied filter pill fill, footer, tooltip, lightbox and dark toast surfaces, price text. White on it is 18.72:1. The shadow scale is tinted with it. */
+  --medium-blue: #334bc1; /* Links and action links, focus rings on light surfaces (2px, 2px offset), facet counts, section eyebrows. 7.20:1 against white in either direction; fine as text on white. */
+  --light-blue: #ced4f3; /* Tint for navigation surfaces: outline-button and panel-row hover, open filter pill, boxed accordion fill. Background only, never text; dark-blue on it is 12.78:1. */
+  --dark-green: #286754; /* Commerce only: the buy button, checkout, place order, cart count, in-stock dot, New badge, brand line on the product tile. White on it is 6.65:1. Green never navigates. */
+  --medium-green: #4abd9a; /* Commerce accent on marks. Mid-tone: never takes white text (2.32:1); pair with dark-blue. */
+  --light-green: #d1efe5; /* Commerce tint: buy-button hover fill, applied coupon chip, success message ground. Background only; dark-green on it is 5.44:1. */
+  --dark-pink: #78596f; /* Text and icon accent where uWeed informs or invites: blog category labels, the small label above the heading of an informing block, the icon on a pink icon disc. White on it is 6.07:1; on light-gray it is 5.57:1 and on light-pink 4.90:1. Pink is never a button. */
+  --medium-pink: #dbabcf; /* No job in the interface yet. Mid-tone: dark-blue text only (white is 1.96:1). */
+  --light-pink: #f4e2ed; /* Behind small marks only: the blog category label and the pink icon disc. Never the background of a block, band or page, and never in the buying steps. Dark-pink on it is 4.90:1. */
+  --medium-orange: #ffa033; /* Worth noticing, softer than red: rating stars, Bestseller badge, low-stock dot, the edge and icon disc of the warning note. Never an alarm. Always dark-blue on it (9.21:1), never white (2.03:1). */
+  --light-orange: #fff5eb; /* Heads-up tint: the background of the warning note. Background only; dark-blue on it is 17.39:1. */
+  --medium-red: #d6252a; /* The one attention colour, for what must not be missed: sale price, discount badge, form errors, destructive actions, the favourites heart and its counter. White on it is 5.05:1, so it carries small white text. Darkened from #EE2E31 in October 2026 to pass AA. */
+  --light-red: #fdeded; /* Error tint: invalid field and error message ground. Background only; medium-red text on it is 4.45:1, large text and icons only. */
+  --dark-gray: #3d3d3d; /* Body copy on white (10.86:1) and light-gray (9.96:1); the unavailable button's border and label; struck original prices; second lines in panels. */
+  --medium-gray: #6f6f6f; /* Quiet text and the unavailable colour: dates, hints, breadcrumb links, unselected tabs, placeholder; disabled label and border; UI marks. On white it is 5.02:1 and on light-gray 4.61:1, so small text passes on both. Darkened from #767676 in October 2026 so the hint text inside fields passes; the brand book grey (#999999) was too faint for text. */
+  --light-gray: #f5f5f5; /* Grouped-block surface, input fill, gallery frame, disabled fill, attribute chips. Not interchangeable with white. Dark-gray on it is 9.96:1. */
+  --black: #000000; /* In the palette; the system uses dark-blue for depth and ink instead. */
+  --white: #ffffff; /* Page background and card surface; text on every dark tone (text on a dark surface is white, not near-white). */
+  --font-color: var(--dark-gray); /* Semantic alias of dark-gray for body copy on white and light-gray. */
+  --heading-color: var(--dark-blue); /* Semantic alias of dark-blue for headings on white and light-gray. */
+  --line: #e7e7e9; /* The hairline: card, input and divider borders. Carries the palette's slight blue tint. The one value for every thin line; the #E4E4E4 named in two old specs is retired. */
+  --film-oos: #f5f5f599; /* The sold-out film: 60% light-gray laid over a whole product tile, pointer-events none. */
+  --shadow-xs: 0 1px 2px #0b102a0f; /* Card at rest. */
+  --shadow-sm: 0 2px 4px #0b102a0f, 0 1px 2px #0b102a0a; /* Raised surface inside a card. */
+  --shadow-md: 0 4px 10px #0b102a1a; /* Card on hover, paired with lift-hover. */
+  --shadow-lg: 0 10px 24px #0b102a1f; /* Dropdown, popover, tooltip, notification. */
+  --shadow-xl: 0 20px 48px #0b102a29; /* Modal and cart drawer. */
+}
+:root {
+  --space-2xs: 0.25rem; /* 4px. Inside a component: icon-to-label gaps, chip padding. */
+  --space-3xs: 0.375rem; /* 6px. Badge, chip and rating gaps on the signed-off product tile. */
+  --space-xs: 0.5rem; /* 8px. Inside a component: gap between filter pills, label to field. */
+  --space-s: 0.75rem; /* 12px. Inside a component: tooltip padding, compact tile gutters. */
+  --space-m: 1rem; /* 16px. Between components: card padding, form row gaps. */
+  --space-l: 1.5rem; /* 24px. Between components: grid gutters, button side padding. */
+  --space-xl: 2rem; /* 32px. Between blocks within a section. */
+  --space-2xl: 3rem; /* 48px. Between blocks within a section. */
+  --space-3xl: 4.5rem; /* 72px. Between page sections on desktop. */
+  --space-3xl-mobile: 3.6rem; /* About 58px. Between page sections on mobile. */
+  --lift-hover: -2px; /* The hover lift for link cards, blog cards and tiles: translateY(-2px), always paired with a step up the shadow scale. Gate it behind (hover: hover) and (pointer: fine). */
+  --radius-checkbox: 6px; /* 6px. Checkboxes and small chips. */
+  --radius-inner: 10px; /* 10px. Elements nested inside a card; the tooltip bubble; skeleton blocks by default. */
+  --radius-control: 12px; /* 12px. Inputs, selects and small buttons where a pill does not fit. */
+  --radius-card: 16px; /* 16px. Cards, panels, modals, the textarea and the open boxed accordion. There is no 20, 30, 40 or 50px. */
+  --radius-pill: 999px; /* Full pill. Buttons, inputs, tags, filter pills, dots, the closed boxed accordion. */
+  --motion-fast: 150ms; /* State changes: colour, border, opacity. Under prefers-reduced-motion the stylesheet clamps it to 0.01ms. */
+  --motion-base: 250ms; /* Panels, disclosure, transforms. Under prefers-reduced-motion the stylesheet clamps it to 0.01ms. */
+  --motion-slow: 400ms; /* Full-surface transitions. Under prefers-reduced-motion the stylesheet clamps it to 0.01ms. */
+  --motion-ease: cubic-bezier(0.4,0,0.2,1); /* The one easing for every transition. No bounces, springs or overshoot. */
+  --fw-regular: 400; /* DM Sans 400: body copy. */
+  --fw-medium: 500; /* DM Sans 500: navigation, labels, table headers, UI. */
+  --fw-semibold: 600; /* Poppins 600: H5, H6, eyebrows. Not used with DM Sans (600 is not loaded). */
+  --fw-bold: 700; /* Poppins 700: H3, H4. DM Sans 700: CTAs, prices, strong. */
+  --fw-extrabold: 800; /* Poppins 800: Display, H1, H2, the type-only wordmark. */
+  --fs-display: clamp(2.25rem, 1.525rem + 3.094vw, 4rem); /* Display size, 36px at 375px to 64px at 1280px. Poppins 800, lh-display, ls-display. */
+  --fs-h1: clamp(1.875rem, 1.41rem + 1.99vw, 3rem); /* H1 size, 30 to 48px. Poppins 800, lh-h1, ls-h1. */
+  --fs-h2: clamp(1.5625rem, 1.23rem + 1.44vw, 2.375rem); /* H2 size, 25 to 38px. Poppins 800, lh-h2, ls-h2. */
+  --fs-h3: clamp(1.3125rem, 1.0794rem + 0.9945vw, 1.875rem); /* H3 size, 21 to 30px. Poppins 700, lh-h3, ls-h3. */
+  --fs-h4: clamp(1.1875rem, 1.06rem + 0.55vw, 1.5rem); /* H4 size, 19 to 24px. Poppins 700, lh-h4, ls-h4. */
+  --fs-h5: clamp(1.0625rem, 0.99rem + 0.33vw, 1.25rem); /* H5 size, 17 to 20px; also the order-summary total. Poppins 600, lh-h5, ls-h5. */
+  --fs-h6: clamp(1rem, 0.95rem + 0.22vw, 1.125rem); /* H6 size, 16 to 18px. Poppins 600, lh-h6, ls-h6. */
+  --fs-lead: clamp(1.0625rem, 1.01rem + 0.22vw, 1.1875rem); /* Lead paragraph, 17 to 19px. DM Sans 400, lh-lead. */
+  --fs-body: 1rem; /* Body copy, 16px. The floor for prose; the `body` type style renders it. */
+  --fs-small: 0.875rem; /* Secondary copy: unit prices, panel rows, helper text. */
+  --fs-meta: 0.8125rem; /* UI metadata only, the 13px floor: dates, counts, badges, breadcrumbs. Not for prose. */
+  --fs-cta: 1rem; /* Button labels, with fw-bold and ls-caps. */
+  --measure: 68ch; /* Maximum line length for running text. */
+  --border-hairline: 1px; /* 1px. Dividers, card borders, inputs at rest. */
+  --border-emphasis: 2px; /* 2px. Selected states, button borders, the focus ring on light surfaces. */
+  --border-heavy: 3px; /* 3px. The focus ring inside .on-dark only; the active tab underline. A border never changes width between states. */
+  --btn-min-width: 160px; /* A floor, not a width: labels grow past it rather than wrapping. Sized for German (DE 217px vs EN 165px for the same label). */
+  --bs-breakpoint-sm: 576px; /* Bootstrap 5.3 sm. Layout only, never type. */
+  --bs-breakpoint-md: 768px; /* Bootstrap 5.3 md. The product tile and blog card switch between row and card here. */
+  --bs-breakpoint-lg: 992px; /* Bootstrap 5.3 lg. Content tabs swap to the accordion, footer columns collapse, below this. */
+  --bs-breakpoint-xl: 1200px; /* Bootstrap 5.3 xl. Layout only. */
+  --bs-breakpoint-xxl: 1400px; /* Bootstrap 5.3 xxl. Layout only. */
+  --container-xl: 1120px; /* Container width from xl. */
+  --container-xxl: 1280px; /* Container width from xxl. */
+  --container-wide-lg: 1464px; /* Container width from 1640px. */
+  --container-wide: 1770px; /* The one named wide max-width, replacing three literals. */
+  --tile-frame-ratio: 172 / 165; /* Product tile image frame on the stacked (desktop) card. */
+  --tile-frame-ratio-compact: 32 / 43; /* Product tile image frame on the compact (mobile) row. */
+  --tile-frame-w-compact: 8rem; /* Image column width on the compact product tile row. */
+  --z-behind: -1; /* Behind the base layer. */
+  --z-base: 0; /* The base layer. */
+  --z-raised: 1; /* Local lift inside a component. */
+  --z-overlap: 10; /* Overlaps within a component; spinners over their content. */
+  --z-sticky: 1020; /* Sticky filter bar and PDP sticky bar. */
+  --z-header: 1030; /* The site header. */
+  --z-panel: 1035; /* Floating panels: dropdowns, filter panels, search suggestions. */
+  --z-tooltip: 1046; /* Tooltips, above panels so a tooltip on a filter shows. */
+  --z-backdrop: 1050; /* Modal and drawer backdrops. */
+  --z-modal: 1055; /* Modals and the age gate. */
+  --z-drawer: 1060; /* The cart drawer, above modals. */
+  --z-toast: 1090; /* Toasts, above everything: they confirm actions that may have opened a modal. */
+  --lh-display: 1.02; /* Display line height. */
+  --lh-h1: 1.10; /* H1 line height. */
+  --lh-h2: 1.15; /* H2 line height. */
+  --lh-h3: 1.20; /* H3 line height. */
+  --lh-h4: 1.25; /* H4 line height. */
+  --lh-h5: 1.30; /* H5 line height. */
+  --lh-h6: 1.35; /* H6 line height. */
+  --lh-lead: 1.55; /* Lead paragraph line height. */
+  --lh-body: 1.6; /* Line height for body copy. */
+  --lh-small: 1.5; /* Line height for small copy. */
+  --lh-meta: 1.45; /* Line height for UI metadata. */
+  --lh-cta: 1; /* Line height for button labels: the label is one line. */
+  --ls-display: -0.045em; /* Display tracking. Tracking relaxes as size drops. */
+  --ls-h1: -0.04em; /* H1 tracking. */
+  --ls-h2: -0.03em; /* H2 tracking. */
+  --ls-h3: -0.025em; /* H3 tracking. */
+  --ls-h4: -0.02em; /* H4 tracking. */
+  --ls-h5: -0.015em; /* H5 tracking. */
+  --ls-h6: -0.01em; /* H6 tracking; body copy is 0. */
+  --ls-caps: 0.04em; /* +0.04em on every uppercase run: CTA labels and the category tab nav. Without it capitals read as a solid block. */
+  --font-heading: 'Poppins',system-ui,sans-serif;
+  --font-body: 'DM Sans',system-ui,sans-serif;
+  --text-fs-body: 400 1rem/1.6 var(--font-body); /* Body copy, 16px, never smaller for prose. DM Sans 400 in font-color. */
+  --text-fs-small: 400 0.875rem/1.5 var(--font-body); /* Secondary copy: unit prices, panel rows, helper text. DM Sans 400. */
+  --text-fs-meta: 400 0.8125rem/1.45 var(--font-body); /* UI metadata only, the 13px floor: dates, counts, badges, breadcrumbs. Not for prose. */
+  --text-fs-cta: 700 1rem/1 var(--font-body); /* Button labels: DM Sans 700, uppercase with ls-caps. */
+  --text-fs-tile-name: 600 1.125rem/1.30 var(--font-heading); /* Product name on the stacked product tile: Poppins 600 in heading-color, lh-h5, ls-h5. */
+  --text-fs-tile-name-compact: 600 1rem/1.30 var(--font-heading); /* Product name on the compact product tile row: Poppins 600, ls-h6. */
+  --text-body: 400 16px/1.6 var(--font-body); /* From `body` in tokens/base.css. */
+  --text-h1: 800 48px/1.10 var(--font-heading); /* From `h1,h2,h3,h4,h5,h6` · `h1` in tokens/base.css — size is var(--fs-h1) in CSS; the largest bound is shown. */
+  --text-h2: 800 38px/1.15 var(--font-heading); /* From `h1,h2,h3,h4,h5,h6` · `h2` in tokens/base.css — size is var(--fs-h2) in CSS; the largest bound is shown. */
+  --text-h3: 700 30px/1.20 var(--font-heading); /* From `h1,h2,h3,h4,h5,h6` · `h3` in tokens/base.css — size is var(--fs-h3) in CSS; the largest bound is shown. */
+  --text-h4: 700 24px/1.25 var(--font-heading); /* From `h1,h2,h3,h4,h5,h6` · `h4` in tokens/base.css — size is var(--fs-h4) in CSS; the largest bound is shown. */
+  --text-h5: 600 20px/1.30 var(--font-heading); /* From `h1,h2,h3,h4,h5,h6` · `h5` in tokens/base.css — size is var(--fs-h5) in CSS; the largest bound is shown. */
+  --text-h6: 600 18px/1.35 var(--font-heading); /* From `h1,h2,h3,h4,h5,h6` · `h6` in tokens/base.css — size is var(--fs-h6) in CSS; the largest bound is shown. */
+  --text-display: 800 64px/1.02 var(--font-heading); /* Built from fs-display, lh-display, ls-display and fw-extrabold at the 1280px bound (36px at 375px). Hero-scale headlines only. */
+  --text-lead: 400 19px/1.55 var(--font-body); /* Built from fs-lead and lh-lead at the 1280px bound (17px at 375px). The paragraph under a page title. */
+}
+.fs-body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.fs-small {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.fs-meta {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.fs-cta {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.fs-tile-name {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  line-height: 1.30;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+.fs-tile-name-compact {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  line-height: 1.30;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.h1 {
+  font-family: var(--font-heading);
+  font-size: 48px;
+  line-height: 1.10;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+.h2 {
+  font-family: var(--font-heading);
+  font-size: 38px;
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+.h3 {
+  font-family: var(--font-heading);
+  font-size: 30px;
+  line-height: 1.20;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+.h4 {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.h5 {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  line-height: 1.30;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+.h6 {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  line-height: 1.35;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.display {
+  font-family: var(--font-heading);
+  font-size: 64px;
+  line-height: 1.02;
+  font-weight: 800;
+  letter-spacing: -0.045em;
+}
+.lead {
+  font-family: var(--font-body);
+  font-size: 19px;
+  line-height: 1.55;
+  font-weight: 400;
+  letter-spacing: 0;
+}

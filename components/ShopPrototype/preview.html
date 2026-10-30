@@ -1,0 +1,414 @@
+<!-- @dsCard group="Pages" height=900 width=1280 subtitle="A clickable mock of uweed.ch built only from this system: age gate, category listing with live filters, PDP, cart drawer, cart and checkout, blog archive" page -->
+<!DOCTYPE html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>uWeed shop prototype</title>
+<style>
+  html,body{height:100%;margin:0;overflow:hidden;background:var(--white)}
+  #root{height:100%;overflow:auto}
+  .uw-pdp-tabs-mobile{display:none}
+  @media (max-width:991px){
+    .uw-pdp-tabs-desktop{display:none}
+    .uw-pdp-tabs-mobile{display:block}
+  }
+</style>
+</head><body>
+<div id="root"></div>
+<script>
+/* the page scrolls inside #root, so screen changes scroll that */
+window.scrollTo = function (x, y) { var r = document.getElementById("root"); if (r) r.scrollTop = y || 0; };
+/* ph.js */
+/* Placeholder imagery. The provided sources contain no photography or
+   illustration assets (doc 11 Visual Identity was not supplied), so every
+   image in this kit is a flat token-coloured placeholder. Replace with real
+   product photography before using any of this outside a mock. */
+window.ph = function (w, h, fill, label) {
+  const safe = String(label || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const svg =
+    '<svg xmlns="http://www.w3.org/2000/svg" width="' + w + '" height="' + h + '">' +
+    '<rect width="' + w + '" height="' + h + '" fill="' + fill + '"/>' +
+    '<text x="' + w / 2 + '" y="' + (h / 2 + h * 0.03) + '" font-family="DM Sans, sans-serif" ' +
+    'font-size="' + Math.round(Math.min(w, h) * 0.09) + '" fill="#0B102A" opacity=".55" text-anchor="middle">' +
+    safe + '</text></svg>';
+  return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+};
+window.PRODUCTS = [
+  { slug: "fedtnight", name: "Slow Weed · Fedtnight", brand: "Slow Weed", cat: "CBD Blüten", price: "26.80 CHF", unit: "8.93 CHF / g", tile: "#D1EFE5", cbd: "CBD 18%", thc: "THC < 1%", size: "3 g", tags: [{ label: "Bestseller", variant: "bestseller" }], stock: "in", stockLabel: "Auf Lager · heute versandfertig", rating: "4.8", reviews: 212 },
+  { slug: "oel-20", name: "CBD Öl 20% Vollspektrum", brand: "Sweed", cat: "CBD Öl", price: "44.10 CHF", was: "49.00 CHF", sale: true, unit: "0.022 CHF / mg CBD", tile: "#CED4F3", cbd: "CBD 20%", thc: "THC < 1%", size: "10 ml", tags: [{ label: "−15%", variant: "sale" }, { label: "Bestseller", variant: "bestseller" }, { label: "Neu", variant: "new" }], stock: "last", stockLabel: "Nur noch 3 verfügbar", rating: "4.6", reviews: 89 },
+  { slug: "oel-10", name: "CBD Öl 10% Vollspektrum", brand: "Sweed", cat: "CBD Öl", price: "29.90 CHF", unit: "0.030 CHF / mg CBD", tile: "#F4E2ED", cbd: "CBD 10%", thc: "THC < 1%", size: "10 ml", tags: [{ label: "Neu", variant: "new" }], stock: "in", stockLabel: "Auf Lager", rating: "4.9", reviews: 341, sizes: true },
+  { slug: "hanftee", name: "Hanftee Bio · Zitronenmelisse", brand: "B-Chill", cat: "Hanftee", price: "12.50 CHF", unit: "0.42 CHF / g", tile: "#FFF5EB", cbd: "CBD 2%", thc: "THC < 1%", size: "30 g", tags: [], stock: "in", stockLabel: "Auf Lager", rating: "4.4", reviews: 27 },
+  { slug: "pollen", name: "Pollen · Swiss Indoor", brand: "Qualicann", cat: "Hash & Pollen", price: "38.00 CHF", unit: "19.00 CHF / g", tile: "#D1EFE5", cbd: "CBD 24%", thc: "THC < 1%", size: "2 g", tags: [{ label: "Bestseller", variant: "bestseller" }], stock: "low", stockLabel: "Wenige verfügbar", rating: "4.7", reviews: 58 },
+  { slug: "balsam", name: "CBD Balsam · Arnika", brand: "Herba di Berna", cat: "Kosmetik", price: "34.90 CHF", unit: "0.70 CHF / ml", tile: "#CED4F3", cbd: "CBD 5%", thc: "THC 0%", size: "50 ml", tags: [], stock: "out", stockLabel: "Ausverkauft", rating: "4.5", reviews: 133 },
+];
+
+/* Shell.jsx */
+(() => {
+const { SearchBar, Badge, Icon, Link, Footer, Breadcrumb, Logo } = window.UWeedDesignSystem_8df554;
+function Header({ cartCount = 0, favCount = 0, onCart, onNav, active }) {
+  const nav = [
+    ["CBD Bl\xFCten", "category"],
+    ["CBD \xD6l", "category"],
+    ["Hanftee", "category"],
+    ["Kosmetik", "category"],
+    ["Blog", "blog"]
+  ];
+  return /* @__PURE__ */ React.createElement("header", { style: { position: "sticky", top: 0, zIndex: "var(--z-header)", background: "var(--white)", borderBottom: "var(--border-hairline) solid var(--line)" } }, /* @__PURE__ */ React.createElement("div", { style: { background: "var(--dark-blue)", color: "var(--white)", fontSize: "var(--fs-meta)", textAlign: "center", padding: "6px var(--space-m)", letterSpacing: "var(--ls-caps)" } }, "Gratis Versand ab 50 CHF \xB7 Laborgepr\xFCft \xB7 Diskreter Versand aus der Schweiz"), /* @__PURE__ */ React.createElement("div", { style: { maxWidth: "var(--container-xl)", margin: "0 auto", padding: "var(--space-s) var(--space-l)", display: "flex", alignItems: "center", gap: "var(--space-l)" } }, /* @__PURE__ */ React.createElement(
+    "a",
+    {
+      href: "#",
+      "aria-label": "uWeed, zur Startseite",
+      onClick: (e) => {
+        e.preventDefault();
+        onNav("category");
+      },
+      style: { display: "block", flex: "0 0 auto" }
+    },
+    /* @__PURE__ */ React.createElement(Logo, { variant: "horizontal", color: "dark-blue", width: 120, decorative: true })
+  ), /* @__PURE__ */ React.createElement("div", { style: { flex: "1 1 auto", maxWidth: 420 } }, /* @__PURE__ */ React.createElement(SearchBar, { placeholder: "Suchen nach Produkten, Marken" })), /* @__PURE__ */ React.createElement("div", { style: { display: "flex", alignItems: "center", gap: "var(--space-s)", flex: "0 0 auto" } }, /* @__PURE__ */ React.createElement("button", { type: "button", "aria-label": "Konto", style: btn }, /* @__PURE__ */ React.createElement(Icon, { name: "user", size: 22 })), /* @__PURE__ */ React.createElement("button", { type: "button", "aria-label": favCount + " Favoriten", style: { ...btn, position: "relative" } }, /* @__PURE__ */ React.createElement(Icon, { name: "heart", size: 22 }), favCount ? /* @__PURE__ */ React.createElement("span", { style: dot }, /* @__PURE__ */ React.createElement(Badge, { variant: "count-fav", "aria-label": favCount + " Favoriten" }, favCount)) : null), /* @__PURE__ */ React.createElement("button", { type: "button", "aria-label": "Warenkorb, " + cartCount + " Artikel", onClick: onCart, style: { ...btn, position: "relative" } }, /* @__PURE__ */ React.createElement(Icon, { name: "shopping-cart", size: 22 }), cartCount ? /* @__PURE__ */ React.createElement("span", { style: dot }, /* @__PURE__ */ React.createElement(Badge, { variant: "count", "aria-label": cartCount + " Artikel im Warenkorb" }, cartCount)) : null))), /* @__PURE__ */ React.createElement("nav", { "aria-label": "Hauptnavigation", style: { borderTop: "var(--border-hairline) solid var(--line)" } }, /* @__PURE__ */ React.createElement("ul", { style: { maxWidth: "var(--container-xl)", margin: "0 auto", padding: "0 var(--space-l)", display: "flex", gap: "var(--space-l)", listStyle: "none" } }, nav.map(([label, screen]) => /* @__PURE__ */ React.createElement("li", { key: label, style: { padding: "10px 0" } }, /* @__PURE__ */ React.createElement(
+    Link,
+    {
+      variant: "nav",
+      href: "#",
+      current: screen === active,
+      onClick: (e) => {
+        e.preventDefault();
+        onNav(screen);
+      }
+    },
+    label
+  ))))));
+}
+const btn = { width: 44, height: 44, display: "grid", placeItems: "center", border: 0, background: "none", color: "var(--dark-blue)", cursor: "pointer", borderRadius: "50%" };
+const dot = { position: "absolute", top: 4, right: 2 };
+const FOOTER_COLS = [
+  { heading: "Shop", links: [{ label: "CBD Bl\xFCten", href: "#" }, { label: "CBD \xD6l", href: "#" }, { label: "Hanftee", href: "#" }, { label: "Kosmetik", href: "#" }, { label: "Hash & Pollen", href: "#" }] },
+  { heading: "Marken", links: [{ label: "Sweed", href: "#" }, { label: "B-Chill", href: "#" }, { label: "Slow Weed", href: "#" }, { label: "Qualicann", href: "#" }] },
+  { heading: "Hilfe", links: [{ label: "Versand & Lieferung", href: "#" }, { label: "R\xFCckgabe", href: "#" }, { label: "H\xE4ufige Fragen", href: "#" }, { label: "Kontakt", href: "#" }] },
+  { heading: "\xDCber uWeed", links: [{ label: "Laborberichte", href: "#" }, { label: "Blog", href: "#" }, { label: "AGB", href: "#" }, { label: "Datenschutz", href: "#" }] }
+];
+function ShopFooter() {
+  return /* @__PURE__ */ React.createElement(
+    Footer,
+    {
+      columns: FOOTER_COLS,
+      copyright: "\xA9 2026 uWeed \xB7 Z\xFCrich, Schweiz",
+      switches: [{ label: "W\xE4hrung", options: ["CHF", "EUR"], value: "CHF" }, { label: "Sprache", options: ["DE", "FR", "EN"], value: "DE" }]
+    }
+  );
+}
+function Page({ crumbs, children }) {
+  return /* @__PURE__ */ React.createElement("div", { style: { maxWidth: "var(--container-xl)", margin: "0 auto", padding: "var(--space-m) var(--space-l) var(--space-3xl)" } }, crumbs ? /* @__PURE__ */ React.createElement(Breadcrumb, { items: crumbs }) : null, children);
+}
+Object.assign(window, { Header, ShopFooter, Page });
+})();
+
+/* TileAdapter.jsx */
+(() => {
+const { ProductTile } = window.UWeedDesignSystem_8df554;
+function KitTile({ p, onOpen, onAdd }) {
+  const tags = p.tags.map((t) => t.variant);
+  return /* @__PURE__ */ React.createElement(
+    ProductTile,
+    {
+      image: window.ph(688, 660, p.tile, p.cat),
+      href: "#",
+      brand: p.brand,
+      name: p.name,
+      size: p.size,
+      sizes: Boolean(p.sizes),
+      cbd: p.cbd.replace("CBD ", ""),
+      thc: p.thc.replace("THC ", ""),
+      rating: p.rating,
+      reviewCount: p.reviews,
+      price: p.price,
+      was: p.was,
+      unitPrice: p.unit,
+      sale: Boolean(p.sale),
+      bestseller: tags.includes("bestseller"),
+      isNew: tags.includes("new"),
+      soldOut: p.stock === "out",
+      onNavigate: (e) => {
+        e.preventDefault();
+        onOpen(p);
+      },
+      onAdd: () => onAdd(p),
+      onChooseSize: () => onOpen(p)
+    }
+  );
+}
+Object.assign(window, { KitTile });
+})();
+
+/* CategoryScreen.jsx */
+(() => {
+const { TabNav, FilterPill, SortButton, Badge, Link, Pagination, Checkbox, Popover, PopoverItem, Message } = window.UWeedDesignSystem_8df554;
+function CategoryScreen({ onOpen, onAdd }) {
+  const [openPanel, setOpenPanel] = React.useState(null);
+  const [applied, setApplied] = React.useState(["Sweed"]);
+  const toggle = (name) => setApplied((a) => a.includes(name) ? a.filter((x) => x !== name) : [...a, name]);
+  return /* @__PURE__ */ React.createElement(Page, { crumbs: [{ label: "Startseite", href: "#" }, { label: "CBD Shop", href: "#" }, { label: "Alle Produkte" }] }, /* @__PURE__ */ React.createElement("h1", { style: { margin: "var(--space-m) 0 var(--space-xs)" } }, "CBD Shop"), /* @__PURE__ */ React.createElement("p", { style: { maxWidth: "var(--measure)", fontSize: "var(--fs-lead)", lineHeight: "var(--lh-lead)", margin: "0 0 var(--space-l)" } }, "Bl\xFCten, \xD6le, Tee und Kosmetik aus Schweizer Anbau. Jede Charge wird im Labor gepr\xFCft und der Bericht liegt offen."), /* @__PURE__ */ React.createElement(TabNav, { label: "Produktkategorien", items: [
+    { label: "Alle Produkte", active: true },
+    { label: "CBD Bl\xFCten" },
+    { label: "CBD \xD6l" },
+    { label: "Hanftee" },
+    { label: "Hash & Pollen" },
+    { label: "Kosmetik" }
+  ] }), /* @__PURE__ */ React.createElement("div", { style: { display: "grid", gridTemplateColumns: "auto 1fr auto", alignItems: "center", gap: "var(--space-l)", margin: "var(--space-l) 0 var(--space-s)" } }, /* @__PURE__ */ React.createElement("div", { style: { display: "flex", gap: "var(--space-xs)", flexWrap: "wrap" } }, /* @__PURE__ */ React.createElement("div", { style: { position: "relative" } }, /* @__PURE__ */ React.createElement(
+    FilterPill,
+    {
+      count: applied.length || void 0,
+      active: applied.length > 0,
+      open: openPanel === "brand",
+      onClick: () => setOpenPanel(openPanel === "brand" ? null : "brand")
+    },
+    "Marke"
+  ), openPanel === "brand" ? /* @__PURE__ */ React.createElement("div", { style: { position: "absolute", top: "calc(100% + var(--space-xs))", left: 0, zIndex: "var(--z-panel)" } }, /* @__PURE__ */ React.createElement(Popover, { behaviour: "panel", className: "uw-pop--check" }, [["Sweed", 24], ["B-Chill", 18], ["Slow Weed", 9], ["Qualicann", 12], ["Herba di Berna", 7]].map(([n, c]) => /* @__PURE__ */ React.createElement(Checkbox, { key: n, label: n + " (" + c + ")", checked: applied.includes(n), onChange: () => toggle(n) })))) : null), /* @__PURE__ */ React.createElement(FilterPill, null, "CBD-Gehalt"), /* @__PURE__ */ React.createElement(FilterPill, null, "Preis"), /* @__PURE__ */ React.createElement(FilterPill, null, "Anbau"), /* @__PURE__ */ React.createElement(FilterPill, { disabled: true }, "Herkunft")), /* @__PURE__ */ React.createElement("span", { "aria-live": "polite", style: { justifySelf: "center", fontSize: "var(--fs-small)", color: "var(--dark-gray)", whiteSpace: "nowrap" } }, "284 Produkte"), /* @__PURE__ */ React.createElement("div", { style: { display: "flex", justifyContent: "flex-end", minWidth: 210, position: "relative" } }, /* @__PURE__ */ React.createElement(
+    SortButton,
+    {
+      label: "Sortieren",
+      value: "Beliebtheit",
+      open: openPanel === "sort",
+      onClick: () => setOpenPanel(openPanel === "sort" ? null : "sort")
+    }
+  ), openPanel === "sort" ? /* @__PURE__ */ React.createElement("div", { style: { position: "absolute", top: "calc(100% + var(--space-xs))", right: 0, zIndex: "var(--z-panel)" } }, /* @__PURE__ */ React.createElement(Popover, { behaviour: "listbox", label: "Sortierung" }, /* @__PURE__ */ React.createElement(PopoverItem, { selected: true }, "Beliebtheit"), /* @__PURE__ */ React.createElement(PopoverItem, { selected: false }, "Preis aufsteigend"), /* @__PURE__ */ React.createElement(PopoverItem, { selected: false }, "Preis absteigend"), /* @__PURE__ */ React.createElement(PopoverItem, { selected: false }, "Neuheiten"))) : null)), applied.length ? /* @__PURE__ */ React.createElement("div", { style: { display: "flex", alignItems: "center", gap: "var(--space-xs)", flexWrap: "wrap", marginBottom: "var(--space-l)" } }, applied.map((n) => /* @__PURE__ */ React.createElement(Badge, { key: n, onRemove: () => toggle(n), removeLabel: "Filter " + n + " entfernen" }, n)), /* @__PURE__ */ React.createElement(Link, { variant: "action", href: "#", onClick: (e) => {
+    e.preventDefault();
+    setApplied([]);
+  } }, "Alle zur\xFCcksetzen")) : null, /* @__PURE__ */ React.createElement("div", { style: { display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: "var(--space-l)" } }, window.PRODUCTS.map((p) => /* @__PURE__ */ React.createElement(KitTile, { key: p.slug, p, onOpen, onAdd }))), /* @__PURE__ */ React.createElement("div", { style: { margin: "var(--space-2xl) 0 var(--space-xl)" } }, /* @__PURE__ */ React.createElement(Pagination, { current: 1, total: 12, count: "284 Produkte" })), /* @__PURE__ */ React.createElement(Message, { variant: "info", title: "Nur drei Reihen gezeigt" }, /* @__PURE__ */ React.createElement("p", null, "Diese Ansicht k\xFCrzt 284 Produkte auf sechs Kacheln ab. Alles andere \u2014 Filter, Sortierung, Chips, Pagination \u2014 ist vollst\xE4ndig.")));
+}
+Object.assign(window, { CategoryScreen });
+})();
+
+/* ProductScreen.jsx */
+(() => {
+const {
+  PdpGallery,
+  Price,
+  Badge,
+  StockStatus,
+  QuantitySelector,
+  Button,
+  OrderInfoBar,
+  ContentTabs,
+  ProductInfoTable,
+  Accordion,
+  AccordionItem,
+  Tooltip,
+  RadioGroup,
+  Radio,
+  Message,
+  Carousel
+} = window.UWeedDesignSystem_8df554;
+function ProductScreen({ p, onAdd, onOpen }) {
+  const [saved, setSaved] = React.useState(false);
+  const [qty, setQty] = React.useState(1);
+  const oos = p.stock === "out";
+  const images = [p.tile, "#CED4F3", "#F4E2ED", "#FFF5EB"].map((c, i) => ({ src: window.ph(600, 600, c, "Bild " + (i + 1)) }));
+  return /* @__PURE__ */ React.createElement(Page, { crumbs: [{ label: "Startseite", href: "#" }, { label: "CBD Shop", href: "#" }, { label: p.cat, href: "#" }, { label: p.name }] }, /* @__PURE__ */ React.createElement("div", { style: { display: "grid", gridTemplateColumns: "minmax(0,440px) minmax(0,1fr)", gap: "var(--space-2xl)", margin: "var(--space-l) 0 var(--space-2xl)" } }, /* @__PURE__ */ React.createElement(PdpGallery, { images, saved, onToggleSave: () => setSaved((s) => !s), tags: p.tags }), /* @__PURE__ */ React.createElement("div", { style: { display: "flex", flexDirection: "column", gap: "var(--space-m)" } }, /* @__PURE__ */ React.createElement("p", { style: { margin: 0, fontSize: "var(--fs-meta)", color: "var(--dark-gray)", letterSpacing: "var(--ls-caps)", textTransform: "uppercase" } }, p.brand), /* @__PURE__ */ React.createElement("h1", { style: { margin: 0, fontSize: "var(--fs-h1)" } }, p.name), /* @__PURE__ */ React.createElement("div", { style: { display: "flex", gap: "var(--space-2xs)", flexWrap: "wrap" } }, /* @__PURE__ */ React.createElement(Badge, { variant: "attribute" }, p.cbd), /* @__PURE__ */ React.createElement(Badge, { variant: "attribute" }, p.thc), /* @__PURE__ */ React.createElement(Badge, { variant: "attribute" }, "Indoor, Schweiz")), /* @__PURE__ */ React.createElement("div", { style: { display: "flex", alignItems: "baseline", gap: "var(--space-xs)", flexWrap: "wrap" } }, /* @__PURE__ */ React.createElement(Price, { role: "hero", value: p.price, was: p.was, sale: p.sale, unit: p.unit }), /* @__PURE__ */ React.createElement(
+    Tooltip,
+    {
+      placement: "start",
+      text: "Vergleichspreis, nicht der Rechnungsbetrag. \xD6le rechnen pro mg CBD, Bl\xFCten pro Gramm.",
+      label: "Mehr Informationen zum Vergleichspreis"
+    }
+  )), /* @__PURE__ */ React.createElement(RadioGroup, { legend: "Gr\xF6sse", style: { display: "grid", gap: "var(--space-xs)", maxWidth: 420 } }, /* @__PURE__ */ React.createElement(Radio, { card: true, name: "size", label: p.size, sub: p.price + " \xB7 " + p.unit, defaultChecked: true }), /* @__PURE__ */ React.createElement(Radio, { card: true, name: "size", label: "2 \xD7 " + p.size, sub: "Mengenrabatt \xB7 8% Ersparnis" })), /* @__PURE__ */ React.createElement(StockStatus, { state: p.stock, pdp: oos }, p.stockLabel), /* @__PURE__ */ React.createElement("div", { style: { display: "flex", gap: "var(--space-s)", alignItems: "center", flexWrap: "wrap" } }, /* @__PURE__ */ React.createElement(QuantitySelector, { size: "lg", value: qty, max: 12, onChange: setQty }), /* @__PURE__ */ React.createElement(Button, { variant: "buy", disabled: oos, onClick: () => onAdd(p, qty), style: { flex: "1 1 220px" } }, oos ? "Ausverkauft" : "In den Warenkorb")), oos ? /* @__PURE__ */ React.createElement(Message, { variant: "neutral" }, /* @__PURE__ */ React.createElement("p", null, "Wir informieren dich, sobald die n\xE4chste Charge gepr\xFCft und eingetroffen ist.")) : null, /* @__PURE__ */ React.createElement(OrderInfoBar, null))), /* @__PURE__ */ React.createElement("div", { style: { borderTop: "var(--border-hairline) solid var(--line)", paddingTop: "var(--space-xl)" } }, /* @__PURE__ */ React.createElement("div", { className: "uw-pdp-tabs-desktop" }, /* @__PURE__ */ React.createElement(ContentTabs, { tabs: [
+    { label: "Beschreibung", content: /* @__PURE__ */ React.createElement(Copy, { p }) },
+    { label: "Eigenschaften", content: /* @__PURE__ */ React.createElement(ProductInfoTable, { caption: "Produkteigenschaften", rows: ROWS(p) }) },
+    { label: "Laborbericht", content: /* @__PURE__ */ React.createElement("p", { style: pStyle }, "Jede Charge wird in einem Schweizer Labor auf Cannabinoide, Pestizide und Schwermetalle gepr\xFCft. Der Bericht liegt der Lieferung bei und ist \xFCber die Chargennummer abrufbar.") },
+    { label: "Versand", content: /* @__PURE__ */ React.createElement("p", { style: pStyle }, "Bestellungen vor 16:00 gehen am selben Tag raus. Ab 50 CHF versenden wir gratis innerhalb der Schweiz.") }
+  ] })), /* @__PURE__ */ React.createElement("div", { className: "uw-pdp-tabs-mobile" }, /* @__PURE__ */ React.createElement(Accordion, null, /* @__PURE__ */ React.createElement(AccordionItem, { heading: "Beschreibung", open: true }, /* @__PURE__ */ React.createElement(Copy, { p })), /* @__PURE__ */ React.createElement(AccordionItem, { heading: "Eigenschaften" }, /* @__PURE__ */ React.createElement(ProductInfoTable, { rows: ROWS(p) })), /* @__PURE__ */ React.createElement(AccordionItem, { heading: "Laborbericht" }, /* @__PURE__ */ React.createElement("p", { style: pStyle }, "Jede Charge wird in einem Schweizer Labor gepr\xFCft.")), /* @__PURE__ */ React.createElement(AccordionItem, { heading: "Versand" }, /* @__PURE__ */ React.createElement("p", { style: pStyle }, "Ab 50 CHF gratis innerhalb der Schweiz."))))), /* @__PURE__ */ React.createElement("h2", { style: { margin: "var(--space-3xl) 0 var(--space-m)" } }, "Passt dazu"), /* @__PURE__ */ React.createElement(Carousel, { label: "Passende Produkte", itemWidth: "344px" }, window.PRODUCTS.filter((x) => x.slug !== p.slug).map((x) => /* @__PURE__ */ React.createElement(KitTile, { key: x.slug, p: x, onOpen, onAdd }))));
+}
+const pStyle = { margin: "0 0 var(--space-s)", fontSize: "var(--fs-body)", lineHeight: "var(--lh-body)", color: "var(--dark-gray)", maxWidth: "var(--measure)" };
+function Copy({ p }) {
+  return /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("p", { style: pStyle }, p.name, " kommt aus Schweizer Indoor-Anbau, wird handverlesen und langsam getrocknet. Der Gehalt ist deklariert, nicht gesch\xE4tzt."), /* @__PURE__ */ React.createElement("p", { style: pStyle }, "K\xFChl, trocken und lichtgesch\xFCtzt lagern. Nicht zum Verbrennen bestimmt."));
+}
+const ROWS = (p) => [
+  { label: "CBD-Gehalt", value: p.cbd.replace("CBD ", "") },
+  { label: "THC-Gehalt", value: p.thc.replace("THC ", "") },
+  { label: "Inhalt", value: p.size },
+  { label: "Anbau", value: "Indoor, Schweiz" },
+  { label: "Marke", value: p.brand },
+  { label: "Kategorie", value: p.cat }
+];
+Object.assign(window, { ProductScreen });
+})();
+
+/* CartScreen.jsx */
+(() => {
+const {
+  Card,
+  Price,
+  QuantitySelector,
+  Button,
+  OrderSummary,
+  CouponForm,
+  FormField,
+  Input,
+  Select,
+  Checkbox,
+  RadioGroup,
+  Radio,
+  Message,
+  Link
+} = window.UWeedDesignSystem_8df554;
+function CartScreen({ lines, onQty, onRemove, onNav }) {
+  const [step, setStep] = React.useState("cart");
+  const subtotal = lines.reduce((s, l) => s + l.amount * l.qty, 0);
+  const discount = subtotal > 0 ? subtotal * 0.1 : 0;
+  const chf = (n) => n.toFixed(2) + " CHF";
+  if (!lines.length) {
+    return /* @__PURE__ */ React.createElement(Page, { crumbs: [{ label: "Startseite", href: "#" }, { label: "Warenkorb" }] }, /* @__PURE__ */ React.createElement("h1", { style: { margin: "var(--space-m) 0 var(--space-m)" } }, "Warenkorb"), /* @__PURE__ */ React.createElement(Card, { variant: "tint", style: { padding: "var(--space-2xl)", textAlign: "center", display: "grid", gap: "var(--space-m)", justifyItems: "center" } }, /* @__PURE__ */ React.createElement("p", { style: { margin: 0, fontSize: "var(--fs-small)" } }, "Noch nichts im Warenkorb."), /* @__PURE__ */ React.createElement(Button, { variant: "nav", onClick: () => onNav("category") }, "Zum Shop")));
+  }
+  return /* @__PURE__ */ React.createElement(Page, { crumbs: [{ label: "Startseite", href: "#" }, { label: step === "cart" ? "Warenkorb" : "Kasse" }] }, /* @__PURE__ */ React.createElement("h1", { style: { margin: "var(--space-m) 0 var(--space-l)" } }, step === "cart" ? "Warenkorb" : "Kasse"), /* @__PURE__ */ React.createElement("div", { style: { display: "grid", gridTemplateColumns: "minmax(0,1fr) minmax(0,360px)", gap: "var(--space-2xl)", alignItems: "start" } }, /* @__PURE__ */ React.createElement("div", { style: { display: "grid", gap: "var(--space-l)" } }, step === "cart" ? /* @__PURE__ */ React.createElement(Card, { style: { padding: "var(--space-m) var(--space-l)" } }, /* @__PURE__ */ React.createElement("ul", { style: { margin: 0, padding: 0, listStyle: "none" } }, lines.map((l) => /* @__PURE__ */ React.createElement("li", { key: l.slug, style: { display: "flex", gap: "var(--space-m)", padding: "var(--space-m) 0", borderTop: "var(--border-hairline) solid var(--line)" } }, /* @__PURE__ */ React.createElement(
+    "img",
+    {
+      src: window.ph(160, 160, l.tile, ""),
+      alt: "",
+      width: "80",
+      height: "80",
+      style: { width: 80, height: 80, borderRadius: "var(--radius-inner)", objectFit: "cover", flex: "0 0 auto" }
+    }
+  ), /* @__PURE__ */ React.createElement("div", { style: { flex: 1, minWidth: 0, display: "grid", gap: "var(--space-2xs)" } }, /* @__PURE__ */ React.createElement("p", { style: { margin: 0, fontSize: "var(--fs-small)", fontWeight: "var(--fw-medium)", color: "var(--dark-blue)" } }, l.name), /* @__PURE__ */ React.createElement("p", { style: { margin: 0, fontSize: "var(--fs-meta)", color: "var(--dark-gray)" } }, l.size), /* @__PURE__ */ React.createElement("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between", gap: "var(--space-s)", marginTop: "var(--space-2xs)" } }, /* @__PURE__ */ React.createElement(QuantitySelector, { size: "md", value: l.qty, removeAtOne: true, onChange: (n) => onQty(l.slug, n), onRemove: () => onRemove(l.slug) }), /* @__PURE__ */ React.createElement(Price, { role: "list", value: chf(l.amount * l.qty) }))))))) : /* @__PURE__ */ React.createElement("div", { style: { display: "grid", gap: "var(--space-xl)" } }, /* @__PURE__ */ React.createElement("section", null, /* @__PURE__ */ React.createElement("h2", { style: { fontSize: "var(--fs-h4)", margin: "0 0 var(--space-s)" } }, "Kontakt"), /* @__PURE__ */ React.createElement("p", { style: { margin: "0 0 var(--space-m)", fontSize: "var(--fs-small)", color: "var(--dark-gray)" } }, "Bereits Kunde? ", /* @__PURE__ */ React.createElement(Link, { href: "#" }, "Anmelden")), /* @__PURE__ */ React.createElement("div", { style: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--space-m)" } }, /* @__PURE__ */ React.createElement(FormField, { label: "E-Mail", htmlFor: "ck-mail", required: true }, /* @__PURE__ */ React.createElement(Input, { id: "ck-mail", type: "email", autoComplete: "email", required: true })), /* @__PURE__ */ React.createElement(FormField, { label: "Telefon", htmlFor: "ck-tel", optional: true }, /* @__PURE__ */ React.createElement(Input, { id: "ck-tel", type: "tel", autoComplete: "tel" })))), /* @__PURE__ */ React.createElement("section", null, /* @__PURE__ */ React.createElement("h2", { style: { fontSize: "var(--fs-h4)", margin: "0 0 var(--space-m)" } }, "Lieferung"), /* @__PURE__ */ React.createElement("div", { style: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--space-m)" } }, /* @__PURE__ */ React.createElement(FormField, { label: "Vorname", htmlFor: "ck-fn", required: true }, /* @__PURE__ */ React.createElement(Input, { id: "ck-fn", autoComplete: "given-name", required: true })), /* @__PURE__ */ React.createElement(FormField, { label: "Nachname", htmlFor: "ck-ln", required: true }, /* @__PURE__ */ React.createElement(Input, { id: "ck-ln", autoComplete: "family-name", required: true })), /* @__PURE__ */ React.createElement("div", { style: { gridColumn: "1 / -1" } }, /* @__PURE__ */ React.createElement(FormField, { label: "Strasse und Nummer", htmlFor: "ck-st", required: true }, /* @__PURE__ */ React.createElement(Input, { id: "ck-st", autoComplete: "address-line1", required: true }))), /* @__PURE__ */ React.createElement(FormField, { label: "Postleitzahl", htmlFor: "ck-plz", required: true, error: "Bitte gib eine g\xFCltige PLZ ein." }, /* @__PURE__ */ React.createElement(Input, { id: "ck-plz", inputMode: "numeric", autoComplete: "postal-code", defaultValue: "80", invalid: true, "aria-describedby": "ck-plz-msg", required: true })), /* @__PURE__ */ React.createElement(FormField, { label: "Ort", htmlFor: "ck-city", required: true }, /* @__PURE__ */ React.createElement(Input, { id: "ck-city", autoComplete: "address-level2", required: true })), /* @__PURE__ */ React.createElement("div", { style: { gridColumn: "1 / -1" } }, /* @__PURE__ */ React.createElement(FormField, { label: "Land", htmlFor: "ck-country" }, /* @__PURE__ */ React.createElement(Select, { id: "ck-country", autoComplete: "country", options: ["Schweiz", "Liechtenstein"] }))))), /* @__PURE__ */ React.createElement("section", null, /* @__PURE__ */ React.createElement("h2", { style: { fontSize: "var(--fs-h4)", margin: "0 0 var(--space-m)" } }, "Versandart"), /* @__PURE__ */ React.createElement(RadioGroup, { legend: "Versandart", style: { display: "grid", gap: "var(--space-xs)" } }, /* @__PURE__ */ React.createElement(Radio, { card: true, name: "ship", label: "Swiss Post \u2014 Priority", sub: "1\u20132 Werktage \xB7 gratis", defaultChecked: true }), /* @__PURE__ */ React.createElement(Radio, { card: true, name: "ship", label: "Swiss Post \u2014 Economy", sub: "2\u20134 Werktage \xB7 gratis" }), /* @__PURE__ */ React.createElement(Radio, { card: true, name: "ship", label: "Abholung Z\xFCrich", sub: "Nicht verf\xFCgbar f\xFCr diese Adresse", disabled: true }))), /* @__PURE__ */ React.createElement("section", null, /* @__PURE__ */ React.createElement("h2", { style: { fontSize: "var(--fs-h4)", margin: "0 0 var(--space-m)" } }, "Zahlung"), /* @__PURE__ */ React.createElement(RadioGroup, { legend: "Zahlungsart", style: { display: "grid", gap: "var(--space-xs)" } }, /* @__PURE__ */ React.createElement(Radio, { card: true, name: "pay", label: "TWINT", sub: "Best\xE4tigung in der App", defaultChecked: true }), /* @__PURE__ */ React.createElement(Radio, { card: true, name: "pay", label: "Karte", sub: "Visa, Mastercard" }), /* @__PURE__ */ React.createElement(Radio, { card: true, name: "pay", label: "Rechnung", sub: "30 Tage \xB7 nur Schweiz" }))), /* @__PURE__ */ React.createElement(Checkbox, { label: "Ich bin 18 Jahre oder \xE4lter und akzeptiere die AGB", required: true }))), /* @__PURE__ */ React.createElement(Card, { variant: "tint", style: { padding: "var(--space-l)", display: "grid", gap: "var(--space-m)", position: "sticky", top: 140 } }, /* @__PURE__ */ React.createElement("h2", { style: { fontSize: "var(--fs-h5)", margin: 0 } }, "\xDCbersicht"), /* @__PURE__ */ React.createElement(
+    OrderSummary,
+    {
+      rows: [
+        { label: "Zwischensumme", value: chf(subtotal) },
+        { label: "Versand", value: "gratis" },
+        { label: "Rabatt ANGEBOT10", value: "\u2212" + chf(discount), discount: true }
+      ],
+      total: chf(subtotal - discount)
+    }
+  ), /* @__PURE__ */ React.createElement(CouponForm, { applied: { code: "ANGEBOT10", amount: "\u2212" + chf(discount) }, onRemove: () => {
+  } }), step === "cart" ? /* @__PURE__ */ React.createElement(Button, { variant: "buy", block: true, onClick: () => setStep("checkout") }, "Zur Kasse") : /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(Button, { variant: "buy", block: true }, "Jetzt bestellen"), /* @__PURE__ */ React.createElement(Message, { variant: "info" }, /* @__PURE__ */ React.createElement("p", null, "Diese Kasse ist ein Mock \u2014 es wird nichts abgeschickt."))), /* @__PURE__ */ React.createElement("p", { style: { margin: 0, fontSize: "var(--fs-meta)", color: "var(--dark-gray)", textAlign: "center" } }, "Gratis Versand ab 50 CHF \xB7 14 Tage R\xFCckgabe"))));
+}
+Object.assign(window, { CartScreen });
+})();
+
+/* BlogScreen.jsx */
+(() => {
+const { BlogCard, TabNav, Pagination, Card, Link } = window.UWeedDesignSystem_8df554;
+const POSTS = [
+  { title: "CBD am Steuer: was in der Schweiz gilt", excerpt: "Grenzwerte, Kontrollen und was bei einem Test passiert.", category: "Law & Safety", date: "August 2026", dt: "2026-08", c: "#CED4F3" },
+  { title: "Vollspektrum oder Isolat?", excerpt: "Was der Unterschied f\xFCr die Wirkung bedeutet.", category: "Wissen", date: "Juli 2026", dt: "2026-07", c: "#D1EFE5" },
+  { title: "Indoor, Outdoor, Greenhouse", excerpt: "Wie der Anbau Terpene und Preis ver\xE4ndert.", category: "Anbau", date: "Juli 2026", dt: "2026-07", c: "#F4E2ED" },
+  { title: "Hanftee richtig zubereiten", excerpt: "Warum Fett im Wasser den Unterschied macht.", category: "Wellness", date: "Juni 2026", dt: "2026-06", c: "#FFF5EB" },
+  { title: "Was steht im Laborbericht?", excerpt: "Cannabinoide, Pestizide, Schwermetalle \u2014 Zeile f\xFCr Zeile.", category: "Wissen", date: "Juni 2026", dt: "2026-06", c: "#CED4F3" },
+  { title: "CBD und Schlaf: die Studienlage", excerpt: "Was belegt ist und was noch offen bleibt.", category: "Wellness", date: "Mai 2026", dt: "2026-05", c: "#D1EFE5" }
+];
+function BlogScreen() {
+  const [featured, ...rest] = POSTS;
+  return /* @__PURE__ */ React.createElement(Page, { crumbs: [{ label: "Startseite", href: "#" }, { label: "Blog" }] }, /* @__PURE__ */ React.createElement("h1", { style: { margin: "var(--space-m) 0 var(--space-xs)" } }, "Blog"), /* @__PURE__ */ React.createElement("p", { style: { maxWidth: "var(--measure)", fontSize: "var(--fs-lead)", lineHeight: "var(--lh-lead)", margin: "0 0 var(--space-l)" } }, "Recht, Anbau, Laborwerte und Anwendung \u2014 geschrieben f\xFCr Leute, die wissen wollen, was sie kaufen."), /* @__PURE__ */ React.createElement(TabNav, { label: "Blogkategorien", items: [
+    { label: "Alle Artikel", active: true },
+    { label: "Wissen" },
+    { label: "Anbau" },
+    { label: "Wellness" },
+    { label: "Law & Safety" }
+  ] }), /* @__PURE__ */ React.createElement("div", { style: { margin: "var(--space-l) 0" } }, /* @__PURE__ */ React.createElement(
+    BlogCard,
+    {
+      variant: "featured",
+      title: featured.title,
+      excerpt: featured.excerpt,
+      image: window.ph(1600, 900, featured.c, "16:9"),
+      category: featured.category,
+      date: featured.date,
+      dateTime: featured.dt
+    }
+  )), /* @__PURE__ */ React.createElement("div", { style: { display: "grid", gridTemplateColumns: "minmax(0,1fr) minmax(0,300px)", gap: "var(--space-2xl)", alignItems: "start" } }, /* @__PURE__ */ React.createElement("div", { style: { display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(262px,1fr))", gap: "var(--space-l)" } }, rest.map((p) => /* @__PURE__ */ React.createElement(
+    BlogCard,
+    {
+      key: p.title,
+      title: p.title,
+      excerpt: p.excerpt,
+      image: window.ph(1600, 900, p.c, "16:9"),
+      category: p.category,
+      date: p.date,
+      dateTime: p.dt
+    }
+  ))), /* @__PURE__ */ React.createElement(Card, { variant: "tint", style: { padding: "var(--space-l)" } }, /* @__PURE__ */ React.createElement("h2", { style: { fontSize: "var(--fs-h5)", margin: "0 0 var(--space-xs)" } }, "Weitere Artikel"), POSTS.slice(2, 5).map((p) => /* @__PURE__ */ React.createElement(
+    BlogCard,
+    {
+      key: p.title,
+      variant: "compact",
+      title: p.title,
+      image: window.ph(1600, 900, p.c, ""),
+      date: p.date,
+      dateTime: p.dt
+    }
+  )), /* @__PURE__ */ React.createElement("p", { style: { margin: "var(--space-m) 0 0" } }, /* @__PURE__ */ React.createElement(Link, { variant: "action", href: "#" }, "Alle Artikel anzeigen")))), /* @__PURE__ */ React.createElement("div", { style: { margin: "var(--space-2xl) 0 0" } }, /* @__PURE__ */ React.createElement(Pagination, { current: 1, total: 7, count: "52 Artikel" })));
+}
+Object.assign(window, { BlogScreen });
+})();
+
+/* app.jsx */
+(() => {
+const { CartDrawer, CouponForm, Toast, AgeGate } = window.UWeedDesignSystem_8df554;
+function App() {
+  const [screen, setScreen] = React.useState("category");
+  const [product, setProduct] = React.useState(window.PRODUCTS[1]);
+  const [lines, setLines] = React.useState([]);
+  const [drawer, setDrawer] = React.useState(false);
+  const [toast, setToast] = React.useState(null);
+  const [gate, setGate] = React.useState(true);
+  const add = (p, qty = 1) => {
+    setLines((ls) => {
+      const found = ls.find((l) => l.slug === p.slug);
+      if (found) return ls.map((l) => l.slug === p.slug ? { ...l, qty: l.qty + qty } : l);
+      return [...ls, { slug: p.slug, name: p.name, size: p.size, tile: p.tile, qty, amount: parseFloat(p.price) }];
+    });
+    setToast({ title: "Zum Warenkorb hinzugef\xFCgt", body: p.name + " \xB7 " + p.size });
+    setDrawer(true);
+  };
+  const setQty = (slug, n) => setLines((ls) => ls.map((l) => l.slug === slug ? { ...l, qty: n } : l));
+  const remove = (slug) => setLines((ls) => ls.filter((l) => l.slug !== slug));
+  const open = (p) => {
+    setProduct(p);
+    setScreen("product");
+    window.scrollTo(0, 0);
+  };
+  const nav = (s) => {
+    setScreen(s);
+    window.scrollTo(0, 0);
+  };
+  React.useEffect(() => {
+    if (!toast) return;
+    const t = setTimeout(() => setToast(null), 5e3);
+    return () => clearTimeout(t);
+  }, [toast]);
+  const count = lines.reduce((s, l) => s + l.qty, 0);
+  const subtotal = lines.reduce((s, l) => s + l.amount * l.qty, 0);
+  return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(Header, { cartCount: count, favCount: 2, active: screen, onCart: () => setDrawer(true), onNav: nav }), screen === "category" ? /* @__PURE__ */ React.createElement(CategoryScreen, { onOpen: open, onAdd: add }) : null, screen === "product" ? /* @__PURE__ */ React.createElement(ProductScreen, { p: product, onAdd: add, onOpen: open }) : null, screen === "cart" ? /* @__PURE__ */ React.createElement(CartScreen, { lines, onQty: setQty, onRemove: remove, onNav: nav }) : null, screen === "blog" ? /* @__PURE__ */ React.createElement(BlogScreen, null) : null, /* @__PURE__ */ React.createElement(ShopFooter, null), /* @__PURE__ */ React.createElement(
+    CartDrawer,
+    {
+      open: drawer,
+      items: lines.map((l) => ({ id: l.slug, name: l.name, size: l.size, qty: l.qty, price: l.amount.toFixed(2) + " CHF", image: window.ph(160, 160, l.tile, "") })),
+      subtotal: subtotal.toFixed(2) + " CHF",
+      onClose: () => setDrawer(false),
+      onQuantityChange: setQty,
+      onRemove: remove
+    },
+    /* @__PURE__ */ React.createElement(CouponForm, null)
+  ), drawer ? /* @__PURE__ */ React.createElement("div", { style: { position: "fixed", inset: 0, zIndex: "calc(var(--z-drawer) + 1)", pointerEvents: "none" } }, /* @__PURE__ */ React.createElement("div", { style: { position: "absolute", bottom: 16, right: "min(436px, 100vw)", pointerEvents: "auto" } }, /* @__PURE__ */ React.createElement(
+    "button",
+    {
+      type: "button",
+      onClick: () => {
+        setDrawer(false);
+        nav("cart");
+      },
+      className: "uw-btn uw-btn--outline",
+      style: { background: "var(--white)" }
+    },
+    "Warenkorb-Seite"
+  ))) : null, toast ? /* @__PURE__ */ React.createElement("div", { style: { position: "fixed", bottom: 20, right: 20, zIndex: "var(--z-toast)" } }, /* @__PURE__ */ React.createElement(
+    Toast,
+    {
+      title: toast.title,
+      action: "Warenkorb ansehen",
+      onClose: () => setToast(null),
+      actionHref: "#"
+    },
+    /* @__PURE__ */ React.createElement("p", null, toast.body)
+  )) : null, gate ? /* @__PURE__ */ React.createElement(AgeGate, { onYes: () => setGate(false), onNo: () => setGate(false) }) : null);
+}
+ReactDOM.createRoot(document.getElementById("root")).render(/* @__PURE__ */ React.createElement(App, null));
+})();
+</script>
+</body></html>

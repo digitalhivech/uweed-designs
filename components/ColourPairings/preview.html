@@ -1,0 +1,22 @@
+<!-- @dsCard group="Foundations" height=540 subtitle="Approved text and background pairs, and the ones that fail" page -->
+<!DOCTYPE html><html lang="de"><head><meta charset="utf-8"><title>ColourPairings</title>
+<style>html,body{margin:0;background:var(--white);font-family:var(--font-body)}.card{padding:16px 20px 4px;border-top:var(--border-hairline) solid var(--line)}.card:first-child{border-top:0}.ct{margin:0;font-family:var(--font-heading);font-size:15px;font-weight:var(--fw-semibold);color:var(--heading-color)}.cs{margin:2px 0 10px;font-size:12px;color:var(--font-color)}.c0{margin:0;padding:16px 20px;background:var(--white);font-family:var(--ff-body)}.c0 .lbl{font-family:ui-monospace,monospace;font-size:10.5px;color:var(--medium-gray);margin:0}.c0 .row{display:flex;gap:12px;flex-wrap:wrap}.c0 .g{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.c0 .p{border-radius:var(--radius-inner);padding:12px 14px;font-size:12.5px;font-weight:var(--fw-medium)}.c0 .p b{display:block;font-family:ui-monospace,monospace;font-size:10.5px;font-weight:var(--fw-regular);opacity:.85;margin-top:3px}.c1{margin:0;padding:16px 20px;background:var(--white);font-family:var(--ff-body)}.c1 .lbl{font-family:ui-monospace,monospace;font-size:10.5px;color:var(--medium-gray);margin:0}.c1 .row{display:flex;gap:12px;flex-wrap:wrap}.c1 .g{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.c1 .p{border-radius:var(--radius-inner);padding:12px 14px;font-size:12.5px;font-weight:var(--fw-medium)}.c1 .p b{display:block;font-family:ui-monospace,monospace;font-size:10.5px;font-weight:var(--fw-regular);margin-top:3px}.c1 .note{font-size:11.5px;color:var(--dark-gray);margin:10px 0 0;line-height:1.45}</style>
+</head><body>
+<section class="card"><h2 class="ct">Approved pairings</h2><p class="cs">Computed from WCAG 2.1 relative luminance, not estimated</p><div class="c0"><div class="g">
+<div class="p" style="background:var(--dark-blue);color:var(--white)">18.72:1<b>dark-blue / white</b></div>
+<div class="p" style="background:var(--light-orange);color:var(--dark-blue)">17.39:1<b>light-orange / dark-blue</b></div>
+<div class="p" style="background:var(--light-blue);color:var(--dark-blue)">12.78:1<b>light-blue / dark-blue</b></div>
+<div class="p" style="background:var(--white);color:var(--dark-gray);border:var(--border-hairline) solid var(--line)">10.86:1<b>white / dark-gray</b></div>
+<div class="p" style="background:var(--medium-orange);color:var(--dark-blue)">9.21:1<b>medium-orange / dark-blue</b></div>
+<div class="p" style="background:var(--medium-blue);color:var(--white)">7.20:1<b>medium-blue / white</b></div>
+<div class="p" style="background:var(--dark-green);color:var(--white)">6.65:1<b>dark-green / white</b></div>
+<div class="p" style="background:var(--dark-pink);color:var(--white)">6.07:1<b>dark-pink / white</b></div>
+<div class="p" style="background:var(--medium-red);color:var(--white)">5.05:1<b>medium-red / white</b></div>
+<div class="p" style="background:var(--white);color:var(--medium-gray);border:var(--border-hairline) solid var(--line)">5.02:1<b>white / medium-gray</b></div>
+<div class="p" style="background:var(--light-gray);color:var(--medium-gray)">4.61:1<b>light-gray / medium-gray</b></div>
+</div></div></section>
+<section class="card"><h2 class="ct">Never white on a medium</h2><p class="cs">A medium tone as background takes dark-blue text. A dark tone takes white</p><div class="c1"><div class="g">
+<div class="p" style="background:var(--medium-green);color:var(--white)">2.32:1 ✕<b>use dark-blue</b></div>
+<div class="p" style="background:var(--medium-pink);color:var(--white)">1.96:1 ✕<b>use dark-blue</b></div>
+</div><p class="note"><strong>Red is the exception.</strong> It is the one medium tone that takes white text: it was darkened from #EE2E31 to #D6252A in October 2026 so the sale badge, the favourites counter and error text pass at 5.05:1.</p></div></section>
+</body></html>

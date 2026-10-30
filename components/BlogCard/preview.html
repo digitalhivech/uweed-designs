@@ -1,0 +1,30 @@
+<!-- @dsCard group="Content" height=735 width=1100 subtitle="Standard, featured and compact. One link per card, one 16:9 picture shape. On a phone every card is the compact row" -->
+<!doctype html>
+<html lang="de">
+<head><meta charset="utf-8"><title>BlogCard</title>
+<style>body{margin:0;padding:16px 20px;background:var(--white);color:var(--font-color);font-family:var(--font-body)}.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}.col{display:flex;flex-direction:column;gap:6px}.lbl{font-family:ui-monospace,monospace;font-size:10px;color:var(--dark-gray);margin:0}.sec{font-family:ui-monospace,monospace;font-size:10px;font-weight:var(--fw-bold);letter-spacing:.08em;text-transform:uppercase;color:var(--medium-blue);margin:14px 0 8px}.sec:first-child{margin-top:0}.dark{background:var(--dark-blue);border-radius:var(--radius-card);padding:14px}.stage{position:relative;overflow:hidden;border:var(--border-hairline) solid var(--line);border-radius:var(--radius-card);background:var(--light-gray);transform:translateZ(0)}</style></head>
+<body>
+<div id="root"></div>
+<script>
+var NS = window.UWeedDesignSystem_8df554, h = React.createElement, F = React.Fragment;
+function sec(t){return h("p",{className:"sec"},t);}
+function lbl(t){return h("p",{className:"lbl"},t);}
+function row(p){var k=[].slice.call(arguments,1);return h.apply(null,["div",Object.assign({className:"row"},p)].concat(k));}
+function ph(c,t,w,hh){w=w||600;hh=hh||600;return 'data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+hh+'"><rect width="'+w+'" height="'+hh+'" fill="'+c+'"/>'+(t?'<text x="'+w/2+'" y="'+(hh/2+hh*0.03)+'" font-family="DM Sans,sans-serif" font-size="'+Math.round(Math.min(w,hh)*0.07)+'" fill="#0B102A" text-anchor="middle">'+t+'</text>':'')+'</svg>');}
+var BC = NS.BlogCard;
+function Demo(){ return h(F,null,
+  sec("featured — one per archive"),
+  h(BC,{variant:"featured",href:"#",title:"CBD am Steuer: was in der Schweiz gilt",excerpt:"Grenzwerte, Kontrollen und was bei einem Test passiert.",image:ph("#CED4F3","16:9",1600,900),category:"Recht & Sicherheit",date:"August 2026",dateTime:"2026-08"}),
+  h("div",{style:{display:"grid",gridTemplateColumns:"minmax(0,2fr) minmax(0,1fr)",gap:"var(--space-l)",marginTop:"var(--space-m)"}},
+    h("div",null, sec("standard"),
+      h("div",{style:{display:"grid",gridTemplateColumns:"minmax(0,1fr) minmax(0,1fr)",gap:"var(--space-m)"}},
+        h(BC,{href:"#",title:"Vollspektrum oder Isolat?",excerpt:"Was der Unterschied für die Wirkung bedeutet.",image:ph("#D1EFE5","16:9",1600,900),category:"Wissen",date:"Juli 2026",dateTime:"2026-07"}),
+        h(BC,{href:"#",title:"Indoor, Outdoor, Greenhouse",excerpt:"Wie der Anbau Terpene und Preis verändert.",image:ph("#F4E2ED","16:9",1600,900),category:"Anbau",date:"Juni 2026",dateTime:"2026-06"}))),
+    h("div",null, sec("compact — sidebar, and every card on a phone"),
+      h(BC,{variant:"compact",href:"#",title:"CBD und Schlaf: die Studienlage",image:ph("#D1EFE5","",1600,900),category:"Wissen",date:"April 2026",dateTime:"2026-04"}),
+      h(BC,{variant:"compact",href:"#",title:"Was steht im Laborbericht?",image:ph("#CED4F3","",1600,900),category:"Wissen",date:"März 2026",dateTime:"2026-03"}))));
+}
+ReactDOM.createRoot(document.getElementById("root")).render(h(Demo));
+</script>
+</body>
+</html>

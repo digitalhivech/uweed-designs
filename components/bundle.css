@@ -1,0 +1,1288 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Poppins:wght@600;700;800&display=swap");
+
+/* Sizing: every size in this stylesheet counts border and padding in. The
+   site gets this from Bootstrap; declaring it here makes the components
+   measure the same wherever they are used. */
+:where([class^="uw-"],[class*=" uw-"]),:where([class^="uw-"],[class*=" uw-"]) *,:where([class^="uw-"],[class*=" uw-"])::before,:where([class^="uw-"],[class*=" uw-"])::after,:where([class^="uw-"],[class*=" uw-"]) *::before,:where([class^="uw-"],[class*=" uw-"]) *::after{box-sizing:border-box}
+/* ── styles.css ── */
+/* uWeed — global CSS entry point.
+   Source of truth: this design system's tokens.
+   This file is @imports only. Never declare a value here. */
+
+/* ── tokens/fonts.css ── */
+/* Six faces total: Poppins 600/700/800, DM Sans 400/500/700.
+   Loaded from Google Fonts (latin + latin-ext — latin-ext is required for
+   German and French accents). The @import sits at the top of styles.css.
+
+   Poppins 400/500 are deliberately NOT loaded: Poppins is never used below
+   600, and font-synthesis:none means a rule asking for 400 renders at 600
+   rather than being faux-bolded into looking correct.
+   DM Sans 600 is deliberately excluded — too close to 700 to distinguish,
+   and it costs a font file. */
+:root{
+  --ff-heading:var(--font-heading,'Poppins',system-ui,sans-serif);
+  --ff-body:var(--font-body,'DM Sans',system-ui,sans-serif);
+}
+html{font-synthesis:none}
+
+/* ── styles.css ── */
+
+/* ── tokens/colors.css ── */
+/* Part 2 · Colour. Every colour uWeed uses. There are no others.
+   Naming is flat and descriptive: --{scale}-{modifier}. No namespace prefix.
+   --dark-green is canonical; --uw-green-dark is a translation layer to remove. */
+:root{
+}
+
+/* ── styles.css ── */
+
+/* ── tokens/typography.css ── */
+/* Part 5 · Typography. Poppins sets headings; DM Sans sets everything else.
+   The scale is fluid between 375px and 1280px via clamp() — no breakpoints,
+   there is a defined size at every width. Tracking relaxes as size drops:
+   -0.04em on an 18px H6 reads as a rendering fault.
+
+   Weight assignments — Poppins: Display/H1/H2 800, H3/H4 700, H5/H6 600.
+   DM Sans: body 400, nav/labels/UI 500, CTA/prices/strong 700. */
+:root{
+  --ff-heading:var(--font-heading,'Poppins',system-ui,sans-serif); /* @kind font */
+  --ff-body:var(--font-body,'DM Sans',system-ui,sans-serif); /* @kind other */
+  /* 16px — body copy never below this */
+  --fs-body:1rem; /* @kind font */
+  /* 14px */
+  --fs-small:.875rem; /* @kind font */
+  /* 13px — the floor, for UI metadata, not prose */
+  --fs-meta:.8125rem; /* @kind font */
+  --fs-cta:1rem; /* @kind font */
+
+  /* Product tile name — FIXED at each breakpoint, deliberately not a clamp.
+     A product name that fluid-scales inside a fixed-width grid column is
+     wrong, and 18px is not the ceiling of any existing step, so an alias
+     would not do. */
+  --fs-tile-name:1.125rem; /* @kind font */
+  --fs-tile-name-compact:1rem; /* @kind font */
+  --lh-body:1.6; /* @kind font */
+  --lh-small:1.5; /* @kind font */
+  --lh-meta:1.45; /* @kind font */
+  --lh-cta:1; /* @kind other */
+}
+
+/* ── styles.css ── */
+
+/* ── tokens/spacing.css ── */
+/* Part 4 · Spacing. An 8px base with a 4px half-step at the bottom.
+   Spacing uses rem so it scales with the reader's browser font size.
+   Borders and shadows use px — a 1px border at 1.3px is an artefact.
+   Prefer gap over margins in flex and grid. */
+:root{ /* ~58px */
+}
+
+/* ── styles.css ── */
+
+/* ── tokens/radius.css ── */
+/* Part 3 · Radius. Cards are 16px. Buttons are full pills.
+   There is no 20px, 30px, 40px or 50px.
+   Radius is proportional to the element, not uniform: a pill reads as the
+   shape of a control at fixed small heights; 16px reads as a softened corner
+   where height varies with content. */
+:root{    /* buttons, tags, avatars, dots */
+}
+
+/* ── styles.css ── */
+
+/* ── tokens/borders.css ── */
+/* Part 3 · Border width. Three widths, same reasoning as radius — the theme
+   currently runs 1px, 2px, 2.5px and 3px with no rule.
+   A border that changes width on hover or selection shifts layout. Change
+   the COLOUR and keep the width, or reserve the thicker border at rest with
+   a transparent colour. */
+:root{ /* @kind other */
+}
+
+/* ── styles.css ── */
+
+/* ── tokens/shadows.css ── */
+/* Part 3 · Elevation. Five steps, all tinted with the brand dark blue —
+   a black shadow on a blue-based palette reads muddy.
+   A lift needs a shadow change: translateY with an identical shadow reads as
+   a rendering glitch, not depth.
+
+   xs card at rest · sm raised surface inside a card · md card on hover ·
+   lg dropdown, popover, notification · xl modal, cart drawer. */
+:root{ /* @kind spacing */
+}
+
+/* ── styles.css ── */
+
+/* ── tokens/motion.css ── */
+/* Part 8 · Motion. 296 durations and 243 easings migrated across 35 partials
+   — 550 token references, with two raw values remaining, both deliberate 0s.
+
+   Reduced motion is a global policy, not a per-component habit — and the
+   override must be at least as specific as the rule it cancels, or it loses
+   silently. Verify by FORCING the setting, never by reading the CSS.
+   Spinners are the exception: they keep turning, slower, because a spinner
+   conveys state and removing it removes information. */
+:root{ /* @kind other */
+}
+@media (prefers-reduced-motion:reduce){
+  :root{
+    --motion-fast:0.01ms; /* @kind other */
+    --motion-base:0.01ms; /* @kind other */
+    --motion-slow:0.01ms; /* @kind other */
+  }
+}
+
+/* ── styles.css ── */
+
+/* ── tokens/layout.css ── */
+/* Part 6 · Breakpoints and layout. Breakpoints are Bootstrap 5.3's — the
+   theme runs on Bootstrap and a parallel set would guarantee drift.
+   Type does not use them; clamp() covers every width continuously. They are
+   for layout: column counts, stacking, nav collapse.
+
+   Detect the input, not the width: a 1024px iPad is a touch device and a
+   1024px laptop is not. Width tells you about layout and nothing about
+   interaction.
+
+   Container widths: the 160px jump is relocated, not removed — it now sits
+   at 1399 → 1400 (1120 → 1280px) instead of 1440 → 1441. */
+:root{ /* @kind other */
+}
+
+/* ── styles.css ── */
+
+/* ── tokens/zindex.css ── */
+/* Part 8 · Z-index. Eleven tokens; 41 declarations migrated and one raw
+   value remains — a third-party 1000, documented as theirs rather than
+   adopted as ours. 56 in-card values in the 1–20 band were deliberately left
+   alone: they are local stacking inside a component.
+
+   The ordering is what the components require: a tooltip above a panel so a
+   tooltip on a filter is visible; a toast above everything because it
+   confirms an action that may have opened a modal; the cart drawer above
+   modals, keeping the position it held at 99999 but as a named value. */
+:root{ /* @kind other */
+}
+
+/* ── styles.css ── */
+
+/* ── tokens/base.css ── */
+/* Minimal element defaults so a bare page picks up the system.
+   Not a reset — the theme runs on Bootstrap. */
+:root{color-scheme:light}
+body{
+  margin:0;
+  font-family:var(--ff-body);
+  font-size:var(--fs-body);
+  font-weight:var(--fw-regular);
+  line-height:var(--lh-body);
+  color:var(--font-color);
+  background:var(--white);
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4,h5,h6{
+  font-family:var(--ff-heading);
+  color:var(--heading-color);
+  margin:0 0 var(--space-m);
+}
+h1{font-size:var(--fs-h1);font-weight:var(--fw-extrabold);line-height:var(--lh-h1);letter-spacing:var(--ls-h1)}
+h2{font-size:var(--fs-h2);font-weight:var(--fw-extrabold);line-height:var(--lh-h2);letter-spacing:var(--ls-h2)}
+h3{font-size:var(--fs-h3);font-weight:var(--fw-bold);line-height:var(--lh-h3);letter-spacing:var(--ls-h3)}
+h4{font-size:var(--fs-h4);font-weight:var(--fw-bold);line-height:var(--lh-h4);letter-spacing:var(--ls-h4)}
+h5{font-size:var(--fs-h5);font-weight:var(--fw-semibold);line-height:var(--lh-h5);letter-spacing:var(--ls-h5)}
+h6{font-size:var(--fs-h6);font-weight:var(--fw-semibold);line-height:var(--lh-h6);letter-spacing:var(--ls-h6)}
+
+/* Links get a defined default so an unstyled <a> is never browser blue.
+   Inline links are underlined at rest — colour alone is ~2.5:1 against body
+   copy, nowhere near the 3:1 that would let it work unaided.
+   Wrapped in :where() so the default has ZERO specificity: a component's
+   single-class rule (.uw-pg a, .uw-crumbs__link, .uw-tabnav__item) always
+   wins. Without this, the global a:hover (0,1,1) beat every component hover
+   and the pagination's current page rendered dark-on-dark. */
+:where(a){color:var(--medium-blue);text-decoration:underline;text-underline-offset:.15em;text-decoration-thickness:1px}
+@media (hover:hover) and (pointer:fine){
+  :where(a:hover){color:var(--dark-blue);text-decoration-thickness:2px}
+}
+:where(a:focus-visible){outline:var(--border-emphasis) solid var(--medium-blue);outline-offset:2px;border-radius:2px}
+:where(.on-dark a){color:var(--white)}
+@media (hover:hover) and (pointer:fine){:where(.on-dark a:hover){color:var(--white)}}
+:where(.on-dark a:focus-visible){outline-color:var(--white)}
+
+/* A zero-specificity focus floor sits underneath every component, so one
+   that removes its ring locally still has one beneath it. */
+:where(a,button,input,select,textarea,summary,[tabindex]):focus-visible{
+  outline:var(--border-emphasis) solid var(--medium-blue);
+  outline-offset:2px;
+}
+.on-dark :where(a,button,input,select,textarea,summary,[tabindex]):focus-visible{
+  outline:var(--border-heavy) solid var(--white);
+}
+
+/* Visually hidden is NOT hidden from assistive technology. display:none
+   removes an element from the accessibility tree; clipping does not. */
+.visually-hidden{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
+}
+
+/* ── styles.css ── */
+
+
+/* Component layer — the uw-* reference implementations of this system's components.
+   Components render these class names; consumers get them by linking this
+   one file. */
+/* ── components/core/core.css ── */
+/* 1 · Button · 5 · Badge · 6 · Link · 18 · Price · 25 · Card
+   Reference implementations. Values are tokens only. */
+
+/* ---- 1 · Button ---------------------------------------------------- */
+.uw-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-xs);min-height:44px;min-width:var(--btn-min-width);padding-inline:var(--space-l);font-family:var(--ff-body);font-size:var(--fs-cta);font-weight:var(--fw-bold);line-height:1;letter-spacing:var(--ls-caps);text-transform:uppercase;text-decoration:none;white-space:nowrap;border:var(--border-emphasis) solid transparent;border-radius:var(--radius-pill);cursor:pointer;transition:background-color var(--motion-fast) var(--motion-ease),border-color var(--motion-fast) var(--motion-ease),color var(--motion-fast) var(--motion-ease)}
+.uw-btn--buy{background:var(--dark-green);border-color:var(--dark-green);color:var(--white)}
+.uw-btn--nav{background:var(--dark-blue);border-color:var(--dark-blue);color:var(--white)}
+.uw-btn--outline{background:transparent;border-color:var(--dark-blue);color:var(--dark-blue)}
+.uw-btn--text{background:transparent;border-color:transparent;color:var(--dark-blue);min-width:0;padding-inline:var(--space-xs);text-transform:none;letter-spacing:0}
+.uw-btn--apply{background:transparent;border-color:var(--dark-green);color:var(--dark-green)}
+.uw-btn--icon{min-width:44px;width:44px;padding-inline:0}
+.uw-btn--block{width:100%}
+@media (hover:hover) and (pointer:fine){
+  .uw-btn--buy:hover{background:var(--light-green);color:var(--dark-green)}
+  .uw-btn--nav:hover{background:var(--light-blue);color:var(--dark-blue)}
+  .uw-btn--outline:hover{background:var(--light-blue)}
+  .uw-btn--text:hover{color:var(--medium-blue)}
+  .uw-btn--apply:hover{background:var(--light-green)}
+}
+.uw-btn:active{transform:translateY(1px)}
+.uw-btn:focus-visible{outline:var(--border-heavy) solid var(--medium-blue);outline-offset:2px}
+.on-dark .uw-btn:focus-visible{outline-color:var(--white)}
+.uw-btn:disabled,.uw-btn[aria-disabled="true"]{background:var(--light-gray);border-color:var(--medium-gray);color:var(--medium-gray);cursor:not-allowed;pointer-events:none}
+/* Unavailable — "not at all", as opposed to disabled's "not right now".
+   Transparent fill, --dark-gray border and label: on a sold-out tile the
+   label is the only element that states the fact in words, and disabled
+   would grey it out. #3D3D3D on white is 10.86:1. RULING (amended): no
+   tooltip AND no explanation line — the unavailable label IS the statement.
+   The icon-only form carries the word as aria-label + title.
+   pointer-events stays auto so cursor:not-allowed is actually shown; no
+   press transform. Declared AFTER the disabled rule at matching
+   specificity, because it is rendered with disabled and must win. */
+.uw-btn--unavailable,.uw-btn.uw-btn--unavailable:disabled,.uw-btn.uw-btn--unavailable[aria-disabled="true"]{background:transparent;border-color:var(--dark-gray);color:var(--dark-gray);cursor:not-allowed;pointer-events:auto}
+.uw-btn.uw-btn--unavailable:active{transform:none}
+.uw-btn.uw-btn--unavailable.uw-btn--icon:disabled{background:var(--white)}
+.uw-btn.is-loading{position:relative;color:transparent;pointer-events:none}
+.uw-btn.is-loading::after{content:"";position:absolute;width:18px;height:18px;border:var(--border-emphasis) solid var(--white);border-top-color:transparent;border-radius:50%;animation:uw-spin 700ms linear infinite}
+@keyframes uw-spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.uw-btn{transition:none}.uw-btn.is-loading::after{animation-duration:2s}}
+
+/* ---- 5 · Badge and tag -------------------------------------------- */
+.uw-badge{display:inline-flex;align-items:center;gap:var(--space-2xs);padding:var(--space-2xs) var(--space-s);font-family:var(--ff-body);font-size:var(--fs-meta);font-weight:var(--fw-medium);line-height:1;white-space:nowrap;background:var(--light-gray);color:var(--dark-gray);border-radius:var(--radius-pill)}
+.uw-badge--category{background:var(--light-pink);color:var(--dark-pink)}
+.uw-badge--attribute{background:var(--light-gray);color:var(--dark-gray)}
+.uw-badge--sale{background:var(--medium-red);color:var(--white);font-weight:var(--fw-bold)}
+.uw-badge--new{background:var(--dark-green);color:var(--white)}
+.uw-badge--bestseller{background:var(--medium-orange);color:var(--dark-blue);font-weight:var(--fw-bold)}
+.uw-badge--oos{background:var(--light-gray);color:var(--dark-gray)}
+/* Both counters share one shape and a white number; only the fill differs. */
+.uw-badge--count,.uw-badge--count-fav{justify-content:center;min-width:20px;height:20px;padding:0 var(--space-2xs);background:var(--dark-blue);color:var(--white);font-weight:var(--fw-bold);font-variant-numeric:tabular-nums;outline:var(--border-emphasis) solid var(--white)}
+.uw-badge--count:empty,.uw-badge--count-fav:empty{display:none}
+.uw-badge--removable{background:var(--light-gray);color:var(--dark-gray);padding-inline-end:var(--space-2xs)}
+.uw-badge__remove{display:grid;place-items:center;width:20px;height:20px;padding:0;border:0;border-radius:50%;background:transparent;color:inherit;cursor:pointer;transition:background-color var(--motion-fast) var(--motion-ease)}
+@media (hover:hover) and (pointer:fine){.uw-badge__remove:hover{background:var(--medium-red);color:var(--white)}}
+.uw-badge__remove:focus-visible{outline:var(--border-emphasis) solid var(--medium-blue);outline-offset:2px}
+
+/* ---- 6 · Link ------------------------------------------------------ */
+.uw-link{color:var(--medium-blue);text-decoration:underline;text-underline-offset:.15em;text-decoration-thickness:1px;transition:color var(--motion-fast) var(--motion-ease)}
+@media (hover:hover) and (pointer:fine){.uw-link:hover{color:var(--dark-blue);text-decoration-thickness:2px}}
+.uw-link:focus-visible{outline:var(--border-emphasis) solid var(--medium-blue);outline-offset:2px;border-radius:2px}
+.uw-link--action{color:var(--medium-blue);font-weight:var(--fw-medium);text-decoration:none}
+.uw-link--nav{color:var(--dark-blue);font-weight:var(--fw-medium);text-decoration:none}
+@media (hover:hover) and (pointer:fine){.uw-link--action:hover,.uw-link--nav:hover{text-decoration:underline}}
+.on-dark .uw-link{color:var(--white);text-decoration:none}
+@media (hover:hover) and (pointer:fine){.on-dark .uw-link:hover{text-decoration:underline}}
+.on-dark .uw-link:focus-visible{outline-color:var(--white)}
+.uw-link[aria-current="page"]{font-weight:var(--fw-bold);text-decoration:none}
+
+/* ---- 18 · Price ---------------------------------------------------- */
+/* Invariants on the base class; modifiers set size and weight only. */
+.uw-price{margin:0;color:var(--dark-blue);font-variant-numeric:tabular-nums}
+.uw-price--hero{font-size:var(--fs-h4);font-weight:var(--fw-bold)}
+.uw-price--tile{font-size:var(--fs-h5);font-weight:var(--fw-bold)}
+.uw-price--list{font-size:var(--fs-small);font-weight:var(--fw-bold)}
+.uw-price--total{font-size:var(--fs-h5);font-weight:var(--fw-bold)}
+.uw-price.is-sale{color:var(--medium-red)}
+.uw-price__was{margin-left:var(--space-xs);font-size:.8em;font-weight:var(--fw-regular);color:var(--dark-gray);text-decoration:line-through}
+/* Per-unit: --dark-gray at --fs-small (was --medium-blue at --fs-meta).
+   One treatment on the tile, the PDP and the variation table. */
+.uw-price__unit{font-size:var(--fs-small);line-height:var(--lh-small);font-weight:var(--fw-regular);color:var(--dark-gray);white-space:nowrap}
+/* The inline gap belongs to the slot INSIDE Price; the tile's standalone unit element has none. */
+.uw-price .uw-price__unit{margin-left:var(--space-xs)}
+.uw-price__from{font-weight:var(--fw-regular)}
+.uw-price__discount{color:var(--medium-red)}
+
+/* ---- 25 · Card ----------------------------------------------------- */
+.uw-card{background:var(--white);border:var(--border-hairline) solid var(--line);border-radius:var(--radius-card);box-shadow:var(--shadow-xs)}
+.uw-card--flat{box-shadow:none}
+.uw-card--tint{background:var(--light-gray);border-color:transparent;box-shadow:none}
+.uw-card--link{position:relative;transition:transform var(--motion-fast) var(--motion-ease),box-shadow var(--motion-fast) var(--motion-ease)}
+@media (hover:hover) and (pointer:fine){.uw-card--link:hover{transform:translateY(var(--lift-hover));box-shadow:var(--shadow-md)}}
+@media (prefers-reduced-motion:reduce){.uw-card--link{transition:none}}
+
+/* Logo. Artwork and colour come from the component; this only keeps it from
+   being squeezed or stretched by a flex or grid parent. */
+.uw-logo{display:block;flex:none;max-width:100%;height:auto}
+
+/* ── styles.css ── */
+
+/* ── components/forms/forms.css ── */
+/* 2 · Input · 3 · Select · 4 · Checkbox and radio · 19 · Quantity
+   27 · Form field · 28 · Coupon form */
+
+/* ---- 2 · Input / 27 · Form field ----------------------------------- */
+.uw-field{display:flex;flex-direction:column;gap:var(--space-2xs)}
+.uw-field__label{font-family:var(--ff-body);font-size:var(--fs-small);font-weight:var(--fw-regular);color:var(--dark-gray);padding-inline-start:var(--space-m);cursor:pointer}
+.uw-field__req{color:var(--medium-red)}
+.uw-field__message,.uw-field__hint{margin:0;padding-inline-start:var(--space-m);font-size:var(--fs-small);line-height:1.4;color:var(--dark-gray)}
+.uw-field__err{display:flex;align-items:flex-start;gap:5px}
+.uw-field__err svg{flex-shrink:0;margin-top:3px}
+.uw-input{width:100%;min-height:44px;padding:0 var(--space-m);font-family:var(--ff-body);font-size:var(--fs-body);font-weight:var(--fw-regular);color:var(--dark-gray);background:var(--light-gray);border:var(--border-hairline) solid var(--line);border-radius:var(--radius-pill);appearance:none;transition:border-color var(--motion-fast) var(--motion-ease),background-color var(--motion-fast) var(--motion-ease)}
+.uw-input::placeholder{color:var(--medium-gray);opacity:1}
+@media (hover:hover) and (pointer:fine){.uw-input:hover:not(:disabled){border-color:var(--medium-gray)}}
+.uw-input:focus{outline:none;border-color:var(--medium-blue);background:var(--white)}
+.uw-input:focus-visible{outline:var(--border-emphasis) solid var(--medium-blue);outline-offset:2px}
+.uw-input:disabled{color:var(--medium-gray);border-color:var(--medium-gray);cursor:not-allowed}
+.uw-field.is-invalid .uw-input{border-color:var(--medium-red);background:var(--light-red)}
+/* The hint turns red; the LABEL does not — the border, fill, icon and
+   message already carry the error four times. */
+.uw-field.is-invalid .uw-field__message,.uw-field.is-invalid .uw-field__hint{color:var(--medium-red)}
+.uw-input--area{min-height:96px;padding:var(--space-s) var(--space-m);border-radius:var(--radius-card);resize:vertical;line-height:var(--lh-body)}
+.uw-input:-webkit-autofill,.uw-input:-webkit-autofill:hover,.uw-input:-webkit-autofill:focus{-webkit-box-shadow:0 0 0 1000px var(--light-gray) inset;-webkit-text-fill-color:var(--dark-gray);caret-color:var(--dark-gray)}
+.uw-input[type="number"]{-moz-appearance:textfield}
+.uw-input[type="number"]::-webkit-outer-spin-button,.uw-input[type="number"]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.uw-input--search{padding-inline-start:calc(var(--space-m) + 30px)}
+.uw-inputwrap{position:relative;display:flex;align-items:center}
+.uw-inputwrap__lead{position:absolute;left:var(--space-m);color:var(--dark-gray);pointer-events:none}
+
+/* ---- 3 · Select ---------------------------------------------------- */
+.uw-select{position:relative}
+.uw-select__control{width:100%;min-height:44px;padding:0 calc(var(--space-m) + 20px) 0 var(--space-m);font-family:var(--ff-body);font-size:var(--fs-body);color:var(--dark-gray);background:var(--light-gray);border:var(--border-hairline) solid var(--line);border-radius:var(--radius-pill);appearance:none;cursor:pointer;transition:border-color var(--motion-fast) var(--motion-ease)}
+.uw-select__control:focus{outline:none;border-color:var(--medium-blue);background:var(--white)}
+.uw-select__control:focus-visible{outline:var(--border-emphasis) solid var(--medium-blue);outline-offset:2px}
+.uw-select__control:disabled{color:var(--medium-gray);border-color:var(--medium-gray);cursor:not-allowed}
+.uw-select__chevron{position:absolute;right:var(--space-m);top:50%;transform:translateY(-50%);color:var(--medium-gray);pointer-events:none;transition:color var(--motion-fast) var(--motion-ease)}
+.uw-select__control:focus + .uw-select__chevron{color:var(--medium-blue)}
+.uw-select__control:disabled + .uw-select__chevron{color:var(--medium-gray)}
+.uw-select__panel{background:var(--white);border:var(--border-hairline) solid var(--line);border-radius:var(--radius-card);box-shadow:var(--shadow-lg);padding:var(--space-2xs);overflow:hidden}
+.uw-select__option{display:flex;align-items:center;padding:var(--space-xs) var(--space-s);border-radius:var(--radius-inner);color:var(--dark-gray);cursor:pointer}
+.uw-select__option.is-active{background:var(--light-blue);color:var(--dark-blue)}
+@media (hover:hover) and (pointer:fine){.uw-select__option:hover{background:var(--light-blue);color:var(--dark-blue)}}
+.uw-select__option[aria-selected="true"]{color:var(--dark-blue);font-weight:var(--fw-medium)}
+.uw-select__option[aria-selected="true"]::after{content:"";width:14px;height:9px;margin-left:auto;border-left:var(--border-emphasis) solid currentColor;border-bottom:var(--border-emphasis) solid currentColor;transform:rotate(-45deg) translate(1px,-2px)}
+
+/* ---- 4 · Checkbox and radio ---------------------------------------- */
+.uw-check{display:flex;align-items:center;gap:var(--space-xs);min-height:44px;cursor:pointer;font-family:var(--ff-body);font-size:var(--fs-body);color:var(--dark-gray)}
+.uw-check .uw-check__input{appearance:none;-webkit-appearance:none;flex:0 0 auto;width:20px;height:20px;margin:0;background:var(--white);border:var(--border-hairline) solid var(--line);border-radius:var(--radius-checkbox);cursor:pointer;display:inline-grid;place-content:center;transition:background-color var(--motion-fast) var(--motion-ease),border-color var(--motion-fast) var(--motion-ease)}
+.uw-check--radio .uw-check__input{border-radius:50%}
+.uw-check .uw-check__input::after{content:"";width:10px;height:10px;transform:scale(0);transition:transform var(--motion-fast) var(--motion-ease);box-shadow:inset 1em 1em var(--white);clip-path:polygon(14% 44%,0 65%,50% 100%,100% 16%,80% 0%,43% 62%)}
+.uw-check--radio .uw-check__input::after{width:8px;height:8px;border-radius:50%;clip-path:none}
+.uw-check .uw-check__input:checked{background:var(--dark-blue);border-color:var(--dark-blue)}
+.uw-check .uw-check__input:checked::after{transform:scale(1)}
+.uw-check .uw-check__input:indeterminate{background:var(--dark-blue);border-color:var(--dark-blue)}
+.uw-check .uw-check__input:indeterminate::after{transform:scale(1);clip-path:polygon(0 40%,100% 40%,100% 60%,0 60%)}
+@media (hover:hover) and (pointer:fine){.uw-check .uw-check__input:hover:not(:disabled){border-color:var(--medium-gray)}}
+.uw-check .uw-check__input:focus-visible{outline:var(--border-emphasis) solid var(--medium-blue);outline-offset:2px}
+.uw-check .uw-check__input:disabled{background:var(--light-gray);border-color:var(--medium-gray);cursor:not-allowed}
+/* Disabled + checked: the glyph is grey. White on light-gray is 1.1:1. */
+.uw-check .uw-check__input:disabled:checked,.uw-check .uw-check__input:disabled:indeterminate{background:var(--light-gray);border-color:var(--medium-gray)}
+.uw-check .uw-check__input:disabled:checked::after,.uw-check .uw-check__input:disabled:indeterminate::after{box-shadow:inset 1em 1em var(--medium-gray)}
+.uw-check .uw-check__input:disabled ~ .uw-check__label{color:var(--medium-gray)}
+.uw-check__label{flex:1 1 auto;min-width:0}
+/* Grey, not blue: a count cannot be tapped, and medium-blue is the link colour. */
+.uw-check--count .uw-check__count{flex:0 0 auto;font-size:var(--fs-meta);color:var(--medium-gray);font-variant-numeric:tabular-nums}
+.uw-check-group{border:0;margin:0;padding:0}
+.uw-check-group__legend{padding:0;font-family:var(--ff-body);font-size:var(--fs-small);font-weight:var(--fw-medium);color:var(--dark-gray)}
+/* Card radio — shipping and payment methods. The whole card is the control;
+   selection is border + radio, never a fill. */
+.uw-check--card{align-items:flex-start;gap:var(--space-s);min-height:0;padding:var(--space-s) var(--space-m);background:var(--white);border:var(--border-hairline) solid var(--line);border-radius:var(--radius-pill);transition:background-color var(--motion-fast) var(--motion-ease),border-color var(--motion-fast) var(--motion-ease)}
+@media (hover:hover) and (pointer:fine){.uw-check--card:hover{background:var(--light-blue)}}
+.uw-check--card:has(.uw-check__input:checked){border:var(--border-emphasis) solid var(--dark-blue);padding:calc(var(--space-s) - 1px) calc(var(--space-m) - 1px)}
+.uw-check--card .uw-check__input{margin-top:2px}
+.uw-check--card .uw-check__label{display:flex;flex-direction:column;gap:2px}
+.uw-check--card .uw-check__sub{font-size:var(--fs-meta);color:var(--dark-gray)}
+.uw-check--card.is-disabled{background:var(--light-gray);color:var(--medium-gray);cursor:not-allowed}
+@media (prefers-reduced-motion:reduce){.uw-check .uw-check__input,.uw-check .uw-check__input::after{transition:none}}
+
+/* ---- 19 · Quantity selector ---------------------------------------- */
+.uw-qty{display:inline-flex;align-items:center;background:var(--white);border:var(--border-hairline) solid var(--line);border-radius:var(--radius-pill)}
+.uw-qty button{border:0;background:none;cursor:pointer;color:var(--dark-blue);display:grid;place-items:center;font-family:var(--ff-body);line-height:1}
+.uw-qty__value{border:0;background:none;padding:0;text-align:center;font-family:var(--ff-body);font-weight:var(--fw-medium);color:var(--dark-blue);font-variant-numeric:tabular-nums;-moz-appearance:textfield;min-height:0}
+.uw-qty__value:focus{background:none;border:0}
+.uw-qty__value::-webkit-outer-spin-button,.uw-qty__value::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.uw-qty button:disabled{color:var(--medium-gray);cursor:not-allowed}
+@media (hover:hover) and (pointer:fine){
+  .uw-qty button:not(:disabled):hover{color:var(--medium-blue)}
+  .uw-qty__down.is-remove:hover{color:var(--medium-red)}
+}
+.uw-qty button:focus-visible{outline:var(--border-emphasis) solid var(--medium-blue);outline-offset:-2px;border-radius:var(--radius-pill)}
+.uw-qty--lg{height:56px}
+.uw-qty--lg button{width:52px;height:54px;font-size:20px}
+.uw-qty--lg .uw-qty__value{width:44px;font-size:var(--fs-body)}
+.uw-qty--md{height:40px}
+.uw-qty--md button{width:38px;height:38px;font-size:17px}
+.uw-qty--md .uw-qty__value{width:34px;font-size:var(--fs-small)}
+.uw-qty--sm{height:32px}
+.uw-qty--sm button{display:none}
+.uw-qty--sm .uw-qty__value{width:auto;padding-inline:var(--space-s)}
+
+/* ---- 28 · Coupon form ---------------------------------------------- */
+.uw-coupon{display:flex;gap:var(--space-xs)}
+.uw-coupon .uw-input{flex:1}
+
+/* ── styles.css ── */
+
+/* ── components/navigation/navigation.css ── */
+/* 7 · Category tab nav · 8 · Breadcrumb · 29 · Pagination · 31 · Carousel */
+
+/* ---- 7 · Category tab nav ------------------------------------------ */
+/* Category Filters Final: 16px labels — the page's primary navigation, one
+   level above the filters. No continuous rule under the row and no
+   border-bottom on the item: the 3px marker is an ::after bar that hugs the
+   text (bottom: 8px, pill radius) and only the active item draws it. The
+   44px hit area is kept by min-height. Everything blue — the green active
+   colour on the live site was a stray .subcategory-item.active rule. */
+.uw-tabnav__list{display:flex;gap:var(--space-l);margin:0;padding:0;list-style:none;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.uw-tabnav__list::-webkit-scrollbar{display:none}
+.uw-tabnav__item{position:relative;display:inline-flex;align-items:center;min-height:44px;padding-block:0;font-family:var(--ff-body);font-size:var(--fs-body);font-weight:var(--fw-medium);letter-spacing:var(--ls-caps);text-transform:uppercase;text-decoration:none;white-space:nowrap;color:var(--dark-gray);border-bottom:0;transition:color var(--motion-fast) var(--motion-ease)}
+.uw-tabnav__item:hover{text-decoration:none}
+.uw-tabnav__item::after{content:"";position:absolute;left:0;right:0;bottom:8px;height:var(--border-heavy);border-radius:var(--radius-pill);background:transparent;transition:background-color var(--motion-fast) var(--motion-ease)}
+@media (hover:hover) and (pointer:fine){.uw-tabnav .uw-tabnav__item:hover{color:var(--medium-blue)}}
+.uw-tabnav .uw-tabnav__item.is-active,.uw-tabnav .uw-tabnav__item[aria-current="page"]{color:var(--dark-blue);font-weight:var(--fw-bold)}
+@media (hover:hover) and (pointer:fine){.uw-tabnav .uw-tabnav__item.is-active:hover,.uw-tabnav .uw-tabnav__item[aria-current="page"]:hover{color:var(--medium-blue)}}
+.uw-tabnav .uw-tabnav__item.is-active::after,.uw-tabnav .uw-tabnav__item[aria-current="page"]::after{background:var(--dark-blue)}
+.uw-tabnav__item:focus-visible{outline:var(--border-emphasis) solid var(--medium-blue);outline-offset:-2px;border-radius:2px}
+
+/* ---- 8 · Breadcrumb ------------------------------------------------ */
+.uw-crumbs__list{display:flex;align-items:center;flex-wrap:nowrap;gap:0;margin:0;padding:0;list-style:none;font-family:var(--ff-body);font-size:var(--fs-meta);line-height:1.6;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.uw-crumbs__list::-webkit-scrollbar{display:none}
+.uw-crumbs__list .uw-crumbs__item{display:flex;align-items:center;white-space:nowrap;margin:0}
+/* Separator declared plain first, so a parser without alt-text syntax keeps
+   a visible chevron; the second declaration hides it from the a11y tree. */
+.uw-crumbs__item + .uw-crumbs__item::before{content:"\203A";content:"\203A" / "";margin-inline:var(--space-xs);color:var(--line);font-size:1.15em;line-height:1}
+.uw-crumbs__link{color:var(--medium-gray);text-decoration:none;transition:color var(--motion-fast) var(--motion-ease)}
+@media (hover:hover) and (pointer:fine){.uw-crumbs__link:hover{color:var(--medium-blue);text-decoration:underline;text-underline-offset:.15em}}
+.uw-crumbs__link:focus-visible{outline:var(--border-emphasis) solid var(--medium-blue);outline-offset:2px;border-radius:2px}
+.uw-crumbs__current{color:var(--dark-blue);font-weight:var(--fw-medium)}
+@media (max-width:767px){.uw-crumbs__current{overflow:hidden;text-overflow:ellipsis;max-width:22ch}}
+
+/* ---- 29 · Pagination ----------------------------------------------- */
+/* Selectors carry .uw-pg so they beat base.css's global a / a:hover rules —
+   without that the current page rendered dark-on-dark and hover never
+   fired. Hover on a page number: --light-blue fill, --medium-blue text. */
+.uw-pg{display:flex;align-items:center;gap:var(--space-2xs);flex-wrap:wrap}
+.uw-pg a,.uw-pg > span{display:inline-grid;place-items:center;min-width:44px;height:44px;padding-inline:var(--space-xs);border-radius:var(--radius-pill);font-family:var(--ff-body);font-size:var(--fs-small);font-weight:var(--fw-medium);color:var(--dark-blue);text-decoration:none;transition:background-color var(--motion-fast) var(--motion-ease),color var(--motion-fast) var(--motion-ease)}
+@media (hover:hover) and (pointer:fine){.uw-pg a:hover{background:var(--light-blue);color:var(--medium-blue);text-decoration:none}}
+.uw-pg .uw-pg__cur{background:var(--dark-blue);color:var(--white);font-weight:var(--fw-bold)}
+.uw-pg .uw-pg__gap{color:var(--medium-gray)}
+/* Navigation is blue only. The former green-arrow exception is withdrawn:
+   a page arrow changes the view and never buys. */
+.uw-pg a.uw-pg__arrow{border:var(--border-hairline) solid var(--dark-blue);color:var(--dark-blue)}
+@media (hover:hover) and (pointer:fine){.uw-pg a.uw-pg__arrow:hover{background:var(--light-blue);color:var(--medium-blue);border-color:var(--medium-blue)}}
+.uw-pg a.uw-pg__arrow[aria-disabled="true"]{border-color:var(--line);color:var(--medium-gray);pointer-events:none}
+.uw-pg__count{font-size:var(--fs-meta);color:var(--dark-gray)}
+
+/* ---- 31 · Carousel — native CSS scroll-snap, no library ------------ */
+.uw-car{display:flex;flex-direction:column;gap:var(--space-m)}
+.uw-car__track{display:flex;gap:var(--space-m);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0;padding:0;list-style:none}
+.uw-car__track::-webkit-scrollbar{display:none}
+.uw-car__item{scroll-snap-align:start;flex:0 0 auto}
+.uw-car__foot{display:flex;align-items:center;gap:var(--space-m)}
+.uw-car__bar{flex:1;height:6px;background:var(--line);border-radius:var(--radius-pill);overflow:hidden}
+.uw-car__thumb{height:6px;background:var(--dark-blue);border-radius:var(--radius-pill)}
+.uw-car__b{width:48px;height:48px;border:var(--border-hairline) solid var(--dark-blue);border-radius:50%;background:var(--white);color:var(--dark-blue);cursor:pointer;display:grid;place-items:center;flex:0 0 auto}
+@media (hover:hover) and (pointer:fine){.uw-car__b:hover{background:var(--light-blue)}}
+.uw-car__b[aria-disabled="true"]{border-color:var(--line);color:var(--medium-gray);pointer-events:none}
+@media (max-width:991px){.uw-car__b{display:none}}
+
+/* ── styles.css ── */
+
+/* ── components/disclosure/disclosure.css ── */
+/* 9 · Accordion · 10 · Dropdown + filter pill · 12 · Tooltip · 22 · Content tabs */
+
+/* ---- 9 · Accordion — <details>/<summary>, no JavaScript ------------- */
+.uw-acc__item{border-bottom:var(--border-hairline) solid var(--line)}
+.uw-acc__item:last-child{border-bottom:0}
+.uw-acc__trigger{display:flex;align-items:center;justify-content:space-between;gap:var(--space-m);width:100%;min-height:44px;padding:var(--space-m) 0;cursor:pointer;list-style:none}
+/* Both markers must be suppressed, or a browser triangle appears beside
+   the chevron. */
+.uw-acc__trigger::-webkit-details-marker{display:none}
+.uw-acc__trigger::marker{content:""}
+/* (0,2,0) deliberately — .cat-v2-faq-section h3 is (0,1,1). */
+.uw-acc .uw-acc__heading{margin:0;flex:1 1 auto;min-width:0;font-family:var(--ff-heading);font-size:var(--fs-h5);font-weight:var(--fw-semibold);line-height:var(--lh-h5);letter-spacing:var(--ls-h5);color:var(--medium-gray);transition:color var(--motion-fast) var(--motion-ease)}
+.uw-acc [open] > .uw-acc__trigger .uw-acc__heading{color:var(--dark-blue);font-weight:var(--fw-bold)}
+.uw-acc__trigger:focus-visible{outline:var(--border-emphasis) solid var(--medium-blue);outline-offset:2px;border-radius:var(--radius-inner)}
+/* Chevron drawn in CSS, so <summary> holds exactly one heading and stays
+   valid. currentColor, so it follows the label in every state. */
+.uw-acc__trigger::after{content:"";flex:0 0 auto;width:9px;height:9px;margin-bottom:3px;border-right:var(--border-emphasis) solid currentColor;border-bottom:var(--border-emphasis) solid currentColor;color:inherit;transform:rotate(45deg);transition:transform var(--motion-base) var(--motion-ease),color var(--motion-fast) var(--motion-ease)}
+.uw-acc [open] > .uw-acc__trigger::after{transform:rotate(-135deg);margin-bottom:-3px}
+.uw-acc__panel{padding-bottom:var(--space-m);font-family:var(--ff-body);font-size:var(--fs-body);font-weight:var(--fw-regular);color:var(--dark-gray)}
+/* Filter-page accordion (Category Filters Final): 44px rows not 64, heading
+   --dark-blue at rest and bold when open (grey at rest reads as unavailable), 16px,
+   heading carries the count "Brand (2)"; panel pulled up so the first
+   option sits 10px under the heading. Explicit separators — when items are
+   mounted individually every item is a :last-child, so the flush rule
+   would draw no lines at all. */
+.uw-acc--filter .uw-acc__trigger{box-sizing:border-box;padding:10px 0;min-height:44px}
+.uw-acc--filter .uw-acc__heading,.uw-acc--filter .uw-acc .uw-acc__heading{color:var(--dark-blue);font-size:var(--fs-body)}
+.uw-acc--filter .uw-acc__panel{margin-top:-6px;padding-bottom:6px}
+.uw-acc--filter .uw-acc__item{border-bottom:var(--border-hairline) solid var(--line)}
+.uw-acc--filter > :last-child .uw-acc__item,.uw-acc--filter > .uw-acc__item:last-child{border-bottom:0}
+.uw-acc--filter .uw-check{min-height:32px;font-size:var(--fs-small)}
+.uw-acc--filter .uw-check-group__legend{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.uw-acc__panel p{margin:0 0 var(--space-xs)}
+.uw-acc__panel p:last-child{margin-bottom:0}
+/* Boxed — radius follows the state: a pill row when closed, a container
+   when open. */
+.uw-acc--boxed{display:flex;flex-direction:column;gap:var(--space-xs)}
+.uw-acc--boxed .uw-acc__item{border:0;background:var(--light-blue);border-radius:var(--radius-pill);overflow:hidden;transition:border-radius var(--motion-base) var(--motion-ease)}
+.uw-acc--boxed .uw-acc__item[open]{border-radius:var(--radius-card)}
+.uw-acc--boxed .uw-acc__trigger{padding:var(--space-m) var(--space-l)}
+/* Grey would be 1.9:1 on this background — weight carries the state. */
+.uw-acc--boxed .uw-acc__heading,.uw-acc--boxed .uw-acc__trigger::after{color:var(--dark-blue)}
+.uw-acc--boxed .uw-acc__panel{padding:0 var(--space-l) var(--space-m)}
+/* On dark — grey would be 2.4:1 */
+.on-dark .uw-acc__item{border-bottom-color:#FFFFFF33}
+.on-dark .uw-acc .uw-acc__heading,.on-dark .uw-acc__heading{color:var(--white);text-transform:uppercase;font-size:var(--fs-body);letter-spacing:var(--ls-caps)}
+.on-dark .uw-acc [open] > .uw-acc__trigger .uw-acc__heading{color:var(--white)}
+.on-dark .uw-acc__trigger::after,.on-dark [open] > .uw-acc__trigger::after{color:var(--white)}
+.on-dark .uw-acc__trigger:focus-visible{outline-color:var(--white)}
+.on-dark .uw-acc__panel{color:var(--white)}
+/* Hover block placed last, each selector one class above the rest colour it
+   beats — written flat it ties with --boxed and loses on source order. */
+@media (hover:hover) and (pointer:fine){
+  .uw-acc .uw-acc__trigger:hover .uw-acc__heading{color:var(--medium-blue)}
+  .uw-acc--boxed .uw-acc__trigger:hover .uw-acc__heading{color:var(--medium-blue)}
+  .on-dark .uw-acc .uw-acc__trigger:hover .uw-acc__heading{color:var(--light-green)}
+}
+@media (prefers-reduced-motion:reduce){
+  .uw-acc .uw-acc__heading,.uw-acc__trigger::after,.uw-acc--boxed .uw-acc__item{transition:none}
+}
+
+/* ---- 10 · Dropdown surface ----------------------------------------- */
+/* The 4px inset padding matters: without it a hovered row's fill reaches the
+   panel's rounded corner and squares it off. */
+.uw-pop{background:var(--white);border:var(--border-hairline) solid var(--line);border-radius:var(--radius-card);box-shadow:var(--shadow-lg);padding:var(--space-2xs);min-width:260px;max-width:360px;max-height:min(60vh,420px);overflow-y:auto;overscroll-behavior:contain;margin:0;list-style:none;z-index:var(--z-panel)}
+.uw-pop__item{display:flex;align-items:center;gap:var(--space-xs);min-height:44px;padding:var(--space-xs) var(--space-s);border-radius:var(--radius-inner);font-family:var(--ff-body);font-size:var(--fs-body);color:var(--dark-gray);text-decoration:none;cursor:pointer;transition:background-color var(--motion-fast) var(--motion-ease),color var(--motion-fast) var(--motion-ease)}
+/* Hover is the ONLY fill in this component. */
+@media (hover:hover) and (pointer:fine){.uw-pop__item:hover{background:var(--light-blue);color:var(--dark-blue)}}
+.uw-pop__item.is-active{background:var(--light-blue);color:var(--dark-blue)}
+/* Selected — a check mark, not a fill: two fills collide on hover. */
+.uw-pop__item[aria-selected="true"]{color:var(--dark-blue);font-weight:var(--fw-medium)}
+.uw-pop__item[aria-selected="true"]::after{content:"";flex:0 0 auto;width:14px;height:9px;margin-left:auto;border-left:var(--border-emphasis) solid currentColor;border-bottom:var(--border-emphasis) solid currentColor;transform:rotate(-45deg) translate(1px,-2px)}
+/* Current page in a menu — weight only. A check would imply a choice. */
+.uw-pop__item[aria-current="page"]{color:var(--dark-blue);font-weight:var(--fw-bold)}
+.uw-pop__item:focus-visible{outline:var(--border-emphasis) solid var(--medium-blue);outline-offset:-2px}
+.uw-pop__group{padding:var(--space-xs) var(--space-s) var(--space-2xs);font-size:var(--fs-meta);font-weight:var(--fw-bold);letter-spacing:var(--ls-caps);text-transform:uppercase;color:var(--dark-gray)}
+.uw-pop__sep{height:1px;background:var(--line);margin:var(--space-2xs) var(--space-s)}
+.uw-pop__meta{margin-left:auto;font-size:var(--fs-meta);color:var(--medium-blue);font-variant-numeric:tabular-nums}
+.uw-pop__foot{display:flex;gap:var(--space-xs);padding:var(--space-xs);border-top:var(--border-hairline) solid var(--line);margin-top:var(--space-2xs)}
+.uw-pop__thumb{width:36px;height:36px;border-radius:var(--radius-checkbox);background:var(--light-gray);flex-shrink:0;object-fit:cover}
+.uw-pop__sub{display:block;font-size:var(--fs-meta);color:var(--dark-gray)}
+
+/* ---- 10 · Filter and sort pill ------------------------------------- */
+/* Rest is WHITE, not grey. Grey means unavailable; an unapplied filter and a
+   filter with no options must not look identical. */
+.uw-fp{display:inline-flex;align-items:center;gap:var(--space-xs);height:44px;padding:0 var(--space-m);font-family:var(--ff-body);font-size:var(--fs-small);font-weight:var(--fw-medium);line-height:1;background:var(--white);color:var(--dark-blue);border:var(--border-hairline) solid var(--line);border-radius:var(--radius-pill);cursor:pointer;transition:background-color var(--motion-fast) var(--motion-ease),border-color var(--motion-fast) var(--motion-ease),color var(--motion-fast) var(--motion-ease)}
+/* Hover for BOTH rest and applied: --light-blue fill, --dark-blue text —
+   filled controls invert to their tint. */
+@media (hover:hover) and (pointer:fine){.uw-fp:hover,.uw-fp.is-active:hover{background:var(--light-blue);border-color:var(--light-blue);color:var(--dark-blue)}}
+.uw-fp:focus-visible{outline:var(--border-emphasis) solid var(--medium-blue);outline-offset:2px}
+.uw-fp[aria-expanded="true"]{background:var(--light-blue);border-color:var(--medium-blue)}
+.uw-fp.is-active{background:var(--dark-blue);border-color:var(--dark-blue);color:var(--white)}
+/* Category Filters Final: the applied count moves INTO the label —
+   "Brand (2)" — and the separate count badge is retired. Kept for one
+   release as a no-op so old markup does not break. */
+.uw-fp__count{display:inline;min-width:0;height:auto;padding:0;background:none;color:inherit;font-weight:inherit;font-size:inherit}
+.uw-fp__count::before{content:"("}
+.uw-fp__count::after{content:")"}
+/* Filter panel rows — checkbox rows, not .uw-pop__item: box left, label
+   "Alpinols (8)", 32px, 14px, hover --light-blue. No footer, no per-facet
+   clear (the applied-chips row and "Reset all filters" do that job). */
+.uw-pop--check{display:flex;flex-direction:column;gap:2px}
+.uw-pop--check .uw-check{min-height:32px;padding:0 var(--space-xs);border-radius:var(--radius-inner);font-size:var(--fs-small)}
+@media (hover:hover) and (pointer:fine){.uw-pop--check .uw-check:hover{background:var(--light-blue)}
+/* medium-gray on light-blue is 3.43:1; the count takes the label's dark-gray while the row is hovered. */
+.uw-pop--check .uw-check:hover .uw-check__count{color:var(--dark-gray)}}
+/* Sort control — NOT a pill: a button styled as the action link. --medium-blue
+   14px/500, arrows-sort 16px before "Sort: Recommended", underline on
+   hover, 44px hit height. Opens a listbox aligned right. */
+.uw-sort{display:inline-flex;align-items:center;gap:var(--space-xs);height:44px;padding:0 var(--space-2xs);background:none;border:0;cursor:pointer;color:var(--medium-blue);font-family:var(--ff-body);font-size:var(--fs-small);font-weight:var(--fw-medium);line-height:1;text-underline-offset:.2em}
+@media (hover:hover) and (pointer:fine){.uw-sort:hover{text-decoration:underline}}
+.uw-sort:focus-visible{outline:var(--border-emphasis) solid var(--medium-blue);outline-offset:2px;border-radius:2px}
+.uw-fp:disabled{background:var(--light-gray);border-color:var(--line);color:var(--medium-gray);cursor:not-allowed}
+
+/* ---- 12 · Tooltip -------------------------------------------------- */
+.uw-tip{position:relative;display:inline-flex}
+.uw-tip__trigger{display:inline-grid;place-items:center;width:20px;height:20px;padding:0;border:var(--border-hairline) solid var(--medium-gray);border-radius:50%;background:transparent;color:var(--medium-gray);font-family:var(--ff-body);font-size:var(--fs-meta);font-weight:var(--fw-bold);line-height:1;cursor:pointer;transition:color var(--motion-fast) var(--motion-ease),border-color var(--motion-fast) var(--motion-ease)}
+/* 44px hit area without a 44px circle */
+.uw-tip__trigger::before{content:"";position:absolute;inset:-12px;border-radius:50%}
+@media (hover:hover) and (pointer:fine){.uw-tip__trigger:hover{color:var(--dark-blue);border-color:var(--dark-blue)}}
+.uw-tip__trigger:focus-visible{outline:var(--border-emphasis) solid var(--medium-blue);outline-offset:2px}
+.uw-tip__bubble{position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(4px);z-index:var(--z-tooltip);width:max-content;max-width:min(280px,70vw);padding:var(--space-xs) var(--space-s);background:var(--dark-blue);color:var(--white);border-radius:var(--radius-inner);box-shadow:var(--shadow-lg);font-family:var(--ff-body);font-size:var(--fs-small);font-weight:var(--fw-regular);line-height:1.45;text-align:left;opacity:0;visibility:hidden;pointer-events:none;transition:opacity var(--motion-fast) var(--motion-ease),transform var(--motion-fast) var(--motion-ease),visibility var(--motion-fast)}
+.uw-tip__bubble::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:var(--dark-blue)}
+/* :focus, NOT :focus-visible — focus-visible does not fire on tap, which is
+   the case that needs it most. */
+.uw-tip__trigger:hover + .uw-tip__bubble,.uw-tip__trigger:focus + .uw-tip__bubble{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.uw-tip--start .uw-tip__bubble{left:0;transform:translateX(0) translateY(4px)}
+.uw-tip--start .uw-tip__trigger:hover + .uw-tip__bubble,.uw-tip--start .uw-tip__trigger:focus + .uw-tip__bubble{transform:translateX(0) translateY(0)}
+.uw-tip--start .uw-tip__bubble::after{left:14px;transform:none}
+.uw-tip--end .uw-tip__bubble{left:auto;right:0;transform:translateX(0) translateY(4px)}
+.uw-tip--end .uw-tip__trigger:hover + .uw-tip__bubble,.uw-tip--end .uw-tip__trigger:focus + .uw-tip__bubble{transform:translateX(0) translateY(0)}
+.uw-tip--end .uw-tip__bubble::after{left:auto;right:14px;transform:none}
+.uw-tip--below .uw-tip__bubble{bottom:auto;top:calc(100% + 10px);transform:translateX(-50%) translateY(-4px)}
+.uw-tip--below .uw-tip__bubble::after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:var(--dark-blue)}
+.on-dark .uw-tip__trigger{border-color:#FFFFFF80;color:var(--white)}
+.on-dark .uw-tip__trigger:focus-visible{outline-color:var(--white)}
+.on-dark .uw-tip__bubble{background:var(--white);color:var(--dark-gray)}
+.on-dark .uw-tip__bubble::after{border-top-color:var(--white)}
+.uw-tip__trigger--text{width:auto;height:auto;border:0;border-radius:0;color:var(--dark-gray);font-size:inherit;font-weight:inherit;text-decoration:underline dotted;text-underline-offset:.2em}
+@media (prefers-reduced-motion:reduce){.uw-tip__bubble{transition:opacity 1ms,visibility 1ms;transform:translateX(-50%)}}
+
+/* ---- 22 · Content tabs --------------------------------------------- */
+.uw-tabs{display:flex;gap:var(--space-xl)}
+.uw-tabs__rail{position:relative;display:flex;flex-direction:column;min-width:170px;flex-shrink:0;padding-right:var(--space-m)}
+.uw-tabs__rail::before{content:"";position:absolute;top:0;bottom:0;right:0;width:3px;background:var(--line);border-radius:var(--radius-pill)}
+.uw-tabs__t{position:relative;padding:var(--space-s) 0;text-align:left;background:none;border:0;cursor:pointer;font-family:var(--ff-heading);font-size:var(--fs-h6);font-weight:var(--fw-semibold);color:var(--medium-gray);transition:color var(--motion-fast) var(--motion-ease)}
+@media (hover:hover) and (pointer:fine){.uw-tabs__t:hover{color:var(--medium-blue)}}
+/* The marker spans only the active label, not the full rail. */
+.uw-tabs__t::after{content:"";position:absolute;top:6px;bottom:6px;right:calc(var(--space-m) * -1);width:3px;border-radius:var(--radius-pill);background:transparent;transition:background-color var(--motion-fast) var(--motion-ease)}
+.uw-tabs__t[aria-selected="true"]{color:var(--dark-blue);font-weight:var(--fw-bold)}
+.uw-tabs__t[aria-selected="true"]::after{background:var(--dark-blue)}
+.uw-tabs__p{flex:1;min-width:0}
+@media (max-width:991px){.uw-tabs{flex-direction:column;gap:0}.uw-tabs__rail{display:none}}
+
+/* ── styles.css ── */
+
+/* ── components/feedback/feedback.css ── */
+/* 13 · Stock status · 20 · Message · 21 · Toast · 30 · Loading and skeleton */
+
+/* ---- 13 · Stock status --------------------------------------------- */
+/* Out of stock is GREY, not red. Availability is a fact, not an error.
+   Text stays --dark-gray on every state except in-stock: medium-orange as
+   text is 2.0:1 and unreadable. The dot carries the colour. */
+.uw-stock{display:flex;align-items:center;gap:var(--space-xs);margin:0;font-family:var(--ff-body);font-size:var(--fs-small);font-weight:var(--fw-medium);color:var(--dark-gray)}
+.uw-stock__dot{flex:0 0 auto;width:8px;height:8px;border-radius:50%;background:var(--medium-gray)}
+.uw-stock--in{color:var(--dark-green)}
+.uw-stock--in .uw-stock__dot{background:var(--dark-green)}
+.uw-stock--low .uw-stock__dot,.uw-stock--last .uw-stock__dot{background:var(--medium-orange)}
+.uw-stock--out .uw-stock__dot{background:var(--medium-gray)}
+.uw-stock--out.uw-stock--pdp{color:var(--dark-blue);font-weight:var(--fw-bold)}
+
+/* ---- 20 · Message -------------------------------------------------- */
+/* A 3px left border, an icon and an optional title: four tinted backgrounds
+   are hard to tell apart in greyscale, so the type of message survives
+   without colour. */
+.uw-msg{display:flex;align-items:flex-start;gap:var(--space-s);padding:var(--space-m);border-radius:var(--radius-card);border-left:var(--border-heavy) solid;font-size:var(--fs-small);line-height:1.55;color:var(--dark-gray)}
+.uw-msg:not(:has(.uw-msg__t)){align-items:center}
+.uw-msg__ic{flex:0 0 auto;display:grid;place-items:center;width:32px;height:32px;border-radius:50%;color:var(--white)}
+.uw-msg:has(.uw-msg__t) .uw-msg__ic{margin-top:1px}
+.uw-msg__b{flex:1;min-width:0}
+.uw-msg .uw-msg__t{font-weight:var(--fw-bold);color:var(--dark-blue);margin:0 0 2px}
+.uw-msg .uw-msg__b p{margin:0;font-size:var(--fs-small)}
+.uw-msg--neutral{background:var(--light-gray);border-color:var(--medium-gray)}
+.uw-msg--neutral .uw-msg__ic{background:var(--medium-gray)}
+.uw-msg--info{background:var(--light-blue);border-color:var(--medium-blue)}
+.uw-msg--info .uw-msg__ic{background:var(--medium-blue)}
+.uw-msg--success{background:var(--light-green);border-color:var(--dark-green)}
+.uw-msg--success .uw-msg__ic{background:var(--dark-green)}
+.uw-msg--warning{background:var(--light-orange);border-color:var(--medium-orange)}
+.uw-msg--warning .uw-msg__ic{background:var(--medium-orange);color:var(--dark-blue)}
+.uw-msg--warning .uw-msg__ic svg{transform:translateY(-1px)}
+.uw-msg--error{background:var(--light-red);border-color:var(--medium-red)}
+.uw-msg--error .uw-msg__ic{background:var(--medium-red)}
+
+/* ---- 21 · Toast ---------------------------------------------------- */
+/* Light by default: on white the action link is simply the Link component's action link,
+   rather than a fourth link treatment existing nowhere else.
+   A white card on a white page needs a border — shadow alone does not hold
+   the corners. */
+.uw-toast{display:flex;align-items:flex-start;gap:var(--space-s);max-width:380px;padding:var(--space-s) var(--space-m);background:var(--white);color:var(--dark-gray);border:var(--border-hairline) solid var(--line);border-radius:var(--radius-card);box-shadow:var(--shadow-lg);font-size:var(--fs-small);z-index:var(--z-toast)}
+.uw-toast__ic{flex:0 0 auto;margin-top:2px;color:var(--dark-green)}
+.uw-toast__b{flex:1;min-width:0}
+.uw-toast .uw-toast__t{font-weight:var(--fw-bold);color:var(--dark-blue);margin:0 0 1px}
+.uw-toast .uw-toast__b p{margin:0;font-size:var(--fs-small)}
+.uw-toast__a{display:inline-block;margin-top:4px;color:var(--medium-blue);font-weight:var(--fw-medium);text-decoration:none}
+@media (hover:hover) and (pointer:fine){.uw-toast__a:hover{text-decoration:underline;text-underline-offset:.15em}}
+.uw-toast__x{flex:0 0 auto;width:24px;height:24px;border:0;background:none;color:var(--medium-gray);cursor:pointer;display:grid;place-items:center}
+.uw-toast--dark{background:var(--dark-blue);border-color:transparent;color:#FFFFFFCC}
+.uw-toast--dark .uw-toast__t{color:var(--white)}
+.uw-toast--dark .uw-toast__ic{color:var(--medium-green)}
+.uw-toast--dark .uw-toast__a{color:var(--white);text-decoration:underline}
+.uw-toast--dark .uw-toast__x{color:#FFFFFF99}
+
+/* ---- 30 · Loading and skeleton ------------------------------------- */
+/* Skeleton when the shape is known, spinner when it is not.
+   The spinner keeps turning under reduced motion, but slower — it conveys
+   state, so removing it removes information. */
+.uw-sk{background:var(--light-gray);border-radius:var(--radius-inner);position:relative;overflow:hidden}
+.uw-sk::after{content:"";position:absolute;inset:0;transform:translateX(-100%);background:linear-gradient(90deg,transparent,#FFFFFFB3,transparent);animation:uw-shimmer 1.4s infinite}
+@keyframes uw-shimmer{100%{transform:translateX(100%)}}
+.uw-spin{width:20px;height:20px;border:2px solid var(--line);border-top-color:var(--dark-blue);border-radius:50%;animation:uw-spin-rot .7s linear infinite}
+@keyframes uw-spin-rot{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.uw-sk::after{animation:none}.uw-spin{animation-duration:2s}}
+
+/* ── styles.css ── */
+
+/* ── components/overlays/overlays.css ── */
+/* 16 · Cart drawer · 26 · Modal · 32 · Age gate */
+
+/* ---- 26 · Modal ---------------------------------------------------- */
+.uw-modal-backdrop{position:fixed;inset:0;background:#0B102A80;z-index:var(--z-backdrop);display:grid;place-items:center;padding:var(--space-m)}
+.uw-modal{position:relative;z-index:var(--z-modal);width:min(520px,100%);max-height:min(86vh,720px);display:flex;flex-direction:column;background:var(--white);border-radius:var(--radius-card);box-shadow:var(--shadow-xl);overflow:hidden}
+.uw-modal__head{display:flex;align-items:flex-start;gap:var(--space-m);padding:var(--space-l) var(--space-l) var(--space-s);border-bottom:var(--border-hairline) solid var(--line)}
+.uw-modal .uw-modal__title{margin:0;flex:1;min-width:0;font-family:var(--ff-heading);font-size:var(--fs-h5);font-weight:var(--fw-bold);line-height:var(--lh-h5);letter-spacing:var(--ls-h5);color:var(--dark-blue)}
+.uw-modal__x{flex:0 0 auto;width:44px;height:44px;margin:-10px -10px 0 0;border:0;background:none;color:var(--dark-gray);cursor:pointer;display:grid;place-items:center;border-radius:50%}
+@media (hover:hover) and (pointer:fine){.uw-modal__x:hover{background:var(--light-gray)}}
+.uw-modal__body{padding:var(--space-l);overflow-y:auto;font-size:var(--fs-small);color:var(--dark-gray)}
+.uw-modal .uw-modal__body p{margin:0 0 var(--space-s);font-size:var(--fs-small)}
+.uw-modal .uw-modal__body p:last-child{margin-bottom:0}
+.uw-modal__foot{display:flex;justify-content:flex-end;gap:var(--space-xs);flex-wrap:wrap;padding:var(--space-s) var(--space-l) var(--space-l)}
+.uw-modal--blocking .uw-modal__body{text-align:center;padding:var(--space-xl) var(--space-l)}
+.uw-modal--blocking .uw-modal__foot{justify-content:center}
+
+/* ---- 32 · Age gate ------------------------------------------------- */
+/* The brand mark, 56px, on the modal's own white. No disc, no tint: the logo kit
+   forbids a background box behind the mark. */
+.uw-gate__mark{width:56px;margin:0 auto var(--space-m)}
+.uw-gate .uw-gate__q{margin:0 0 var(--space-xs);font-family:var(--ff-heading);font-size:var(--fs-h4);font-weight:var(--fw-bold);line-height:var(--lh-h4);letter-spacing:var(--ls-h4);color:var(--dark-blue)}
+.uw-gate .uw-gate__legal{font-size:var(--fs-meta);font-style:italic;color:var(--dark-gray);line-height:1.45;margin:var(--space-m) 0 0}
+
+/* ---- 16 · Cart drawer ---------------------------------------------- */
+.uw-drawer-backdrop{position:fixed;inset:0;background:#0B102A80;z-index:var(--z-backdrop)}
+.uw-drawer{position:fixed;top:0;right:0;bottom:0;z-index:var(--z-drawer);width:min(420px,100vw);display:flex;flex-direction:column;background:var(--white);box-shadow:var(--shadow-xl)}
+/* Header and footer are FIXED; only the item list scrolls, so the checkout
+   button is always reachable however many items are in the cart. */
+.uw-drawer__head{flex:0 0 auto;display:flex;align-items:center;gap:var(--space-m);padding:var(--space-m) var(--space-l);border-bottom:var(--border-hairline) solid var(--line)}
+.uw-drawer .uw-drawer__title{margin:0;flex:1;font-family:var(--ff-heading);font-size:var(--fs-h5);font-weight:var(--fw-bold);letter-spacing:var(--ls-h5);color:var(--dark-blue)}
+.uw-drawer__x{width:44px;height:44px;margin-right:-10px;border:0;background:none;color:var(--dark-gray);cursor:pointer;display:grid;place-items:center;border-radius:50%}
+@media (hover:hover) and (pointer:fine){.uw-drawer__x:hover{background:var(--light-gray)}}
+.uw-drawer__list{flex:1 1 auto;overflow-y:auto;overscroll-behavior:contain;padding:0 var(--space-l);margin:0;list-style:none}
+.uw-drawer__item{display:flex;gap:var(--space-s);padding:var(--space-m) 0}
+.uw-drawer__item + .uw-drawer__item{border-top:var(--border-hairline) solid var(--line)}
+.uw-drawer__thumb{flex:0 0 64px;width:64px;height:64px;border-radius:var(--radius-inner);background:var(--light-gray);object-fit:cover}
+.uw-drawer__body{flex:1;min-width:0;display:flex;flex-direction:column;gap:var(--space-2xs)}
+.uw-drawer .uw-drawer__name{margin:0;font-size:var(--fs-small);font-weight:var(--fw-medium);color:var(--dark-blue)}
+/* Size ONLY — price per unit is a comparison aid and the choice is made.
+   dark-gray, never medium-gray: the size is content, not a hint. */
+.uw-drawer .uw-drawer__meta{margin:0;font-size:var(--fs-meta);color:var(--dark-gray)}
+.uw-drawer__row{display:flex;align-items:center;justify-content:space-between;gap:var(--space-s);margin-top:var(--space-2xs)}
+.uw-drawer__foot{flex:0 0 auto;display:flex;flex-direction:column;gap:var(--space-s);padding:var(--space-m) var(--space-l);border-top:var(--border-hairline) solid var(--line)}
+.uw-drawer__sub{display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-s)}
+.uw-drawer .uw-drawer__sub-label{margin:0;font-size:var(--fs-small);color:var(--dark-gray)}
+.uw-drawer .uw-drawer__note{margin:0;font-size:var(--fs-meta);color:var(--dark-gray);text-align:center}
+.uw-drawer__empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--space-m);padding:var(--space-xl) var(--space-l);text-align:center}
+
+/* ── styles.css ── */
+
+/* ── components/commerce/commerce.css ── */
+/* 14 · Order info bar · 15 · Order summary · 24 · Product info table
+   33 · PDP gallery · Product tile (signed off) */
+
+/* ---- 14 · Order info bar ------------------------------------------- */
+/* Icons are --dark-blue, not green: these are informational statements, and
+   the actual buy button is directly above. Not pink either — pink is
+   editorial and a USP strip on a PDP is shop. */
+.uw-oib{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-m);margin:0;padding:0;list-style:none}
+.uw-oib__item{display:flex;gap:var(--space-s);align-items:flex-start}
+.uw-oib__item + .uw-oib__item{border-left:var(--border-hairline) solid var(--line);padding-left:var(--space-m)}
+.uw-oib__ic{flex:0 0 auto;color:var(--dark-blue)}
+.uw-oib .uw-oib__label{margin:0;font-family:var(--ff-body);font-size:var(--fs-small);font-weight:var(--fw-semibold);color:var(--dark-blue)}
+.uw-oib .uw-oib__sub{margin:0;font-size:var(--fs-meta);color:var(--dark-gray)}
+@media (max-width:991px){.uw-oib{grid-template-columns:repeat(2,1fr)}.uw-oib__item:nth-child(odd){border-left:0;padding-left:0}}
+@media (max-width:767px){.uw-oib{grid-template-columns:1fr}.uw-oib__item + .uw-oib__item{border-left:0;padding-left:0}}
+
+/* ---- 15 · Order summary -------------------------------------------- */
+/* A rule separates the total, not a background fill. A filled total row on a
+   page that already has cards inside cards is one container too many. */
+.uw-sum{margin:0;display:grid;grid-template-columns:1fr auto;gap:var(--space-xs) var(--space-m);font-size:var(--fs-body)}
+.uw-sum dt{margin:0;color:var(--dark-gray)}
+.uw-sum dd{margin:0;text-align:right;color:var(--dark-blue);font-variant-numeric:tabular-nums}
+.uw-sum__discount dt,.uw-sum__discount dd{color:var(--medium-red)}
+.uw-sum__rule{grid-column:1 / -1;height:1px;background:var(--line);margin:var(--space-xs) 0}
+.uw-sum__total dt{font-size:var(--fs-h5);font-weight:var(--fw-bold);color:var(--dark-blue)}
+.uw-sum__tax{grid-column:1 / -1;margin:0;font-size:var(--fs-meta);color:var(--dark-gray)}
+
+/* ---- 24 · Product info table --------------------------------------- */
+/* 34% / 66%. No zebra striping — a hairline between rows does the same job
+   without a second background colour. */
+.uw-pit{width:100%;border-collapse:collapse;border:var(--border-hairline) solid var(--line);border-radius:var(--radius-card);overflow:hidden;font-size:var(--fs-small)}
+.uw-pit th{width:34%;text-align:left;font-family:var(--ff-body);font-weight:var(--fw-semibold);color:var(--dark-blue);padding:var(--space-s) var(--space-m);vertical-align:top}
+.uw-pit td{width:66%;padding:var(--space-s) var(--space-m);color:var(--dark-gray);vertical-align:top}
+.uw-pit tr + tr th,.uw-pit tr + tr td{border-top:var(--border-hairline) solid var(--line)}
+
+/* ---- 33 · PDP gallery ---------------------------------------------- */
+.uw-gal{position:relative}
+.uw-gal__main{position:relative;display:block;width:100%;aspect-ratio:1 / 1;padding:0;border:0;border-radius:var(--radius-card);overflow:hidden;background:var(--light-gray);cursor:zoom-in}
+.uw-gal__main img{width:100%;height:100%;object-fit:cover;display:block}
+.uw-gal__tags{position:absolute;top:var(--space-s);right:var(--space-s);display:flex;flex-direction:column;gap:var(--space-2xs);align-items:flex-end;pointer-events:none}
+.uw-gal__hint{position:absolute;bottom:var(--space-s);right:var(--space-s);color:var(--dark-blue);pointer-events:none;filter:drop-shadow(0 1px 2px #0B102A40)}
+/* Favourites — no circle. A 1px drop-shadow keeps the outline legible over
+   a pale bottle and a dark bud alike, without a chip competing with the tags
+   opposite. The saved heart keeps its stroke in the same red, so the shape
+   stays crisp at 26px instead of becoming a soft blob. */
+.uw-gal__fav{position:absolute;top:var(--space-s);left:var(--space-s);width:44px;height:44px;padding:0;border:0;background:none;cursor:pointer;color:var(--dark-blue);display:grid;place-items:center;filter:drop-shadow(0 1px 2px #0B102A40);transition:color var(--motion-fast) var(--motion-ease);z-index:var(--z-raised)}
+.uw-gal__fav svg{fill:none;stroke:currentColor}
+@media (hover:hover) and (pointer:fine){.uw-gal__fav:hover{color:var(--medium-red)}}
+.uw-gal__fav[aria-pressed="true"]{color:var(--medium-red)}
+.uw-gal__fav[aria-pressed="true"] svg{fill:currentColor}
+.uw-gal__fav:focus-visible{outline:var(--border-emphasis) solid var(--medium-blue);outline-offset:2px;border-radius:50%}
+/* Thumbnails BELOW the main image, not beside it: a vertical rail costs
+   ~80px of column width straight out of the image and caps at four. Freed
+   from the height constraint they go to 76px, where one bud is actually
+   distinguishable from the next. */
+.uw-gal__strip{display:flex;gap:var(--space-xs);margin-top:var(--space-s);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:0;margin-bottom:0;list-style:none}
+.uw-gal__strip::-webkit-scrollbar{display:none}
+.uw-gal__t{flex:0 0 76px;aspect-ratio:1 / 1;padding:0;background:none;border:var(--border-emphasis) solid transparent;border-radius:var(--radius-inner);overflow:hidden;cursor:pointer;scroll-snap-align:start}
+.uw-gal__t img{width:100%;height:100%;object-fit:cover;display:block}
+.uw-gal__t[aria-current="true"]{border-color:var(--dark-blue)}
+@media (hover:hover) and (pointer:fine){
+  .uw-gal__t:hover{border-color:var(--light-blue)}
+  .uw-gal__t[aria-current="true"]:hover{border-color:var(--dark-blue)}
+}
+@media (max-width:767px){.uw-gal__strip{display:none}}
+
+/* ---- Product tile -------------------------------------------------- */
+/* Desktop from md up. The card is the Card --link variant; every value is a
+   token except the two artboard ratios and the mobile frame dimensions. */
+.uw-tile{position:relative;display:flex;flex-direction:column;overflow:hidden}
+.uw-tile__row{display:flex;flex-direction:column;flex:1}
+.uw-tile__media{position:relative;aspect-ratio:var(--tile-frame-ratio);background:var(--white);flex:none}
+.uw-tile__media img{width:100%;height:100%;object-fit:contain;display:block}
+.uw-tile__badges{position:absolute;top:var(--space-m);left:var(--space-m);display:flex;flex-direction:row;gap:var(--space-3xs);pointer-events:none}
+.uw-tile__badges .uw-badge:nth-child(n+4){display:none}
+.uw-tile__body{display:flex;flex-direction:column;gap:var(--space-xs);padding:var(--space-xs) var(--space-m) var(--space-m);flex:1;min-width:0}
+.uw-tile .uw-tile__brand{margin:0;font-family:var(--ff-heading);font-weight:var(--fw-bold);font-size:var(--fs-meta);line-height:var(--lh-meta);letter-spacing:var(--ls-caps);text-transform:uppercase;color:var(--dark-green)}
+.uw-tile .uw-tile__name{margin:0;font-family:var(--ff-heading);font-weight:var(--fw-semibold);font-size:var(--fs-tile-name);line-height:var(--lh-h5);letter-spacing:var(--ls-h5);color:var(--heading-color);text-wrap:pretty}
+/* The ONE link, stretched over the card. Ring on the card, not the overlay. */
+.uw-tile__link{color:inherit;text-decoration:none}
+.uw-tile__link::after{content:"";position:absolute;inset:0;z-index:var(--z-raised)}
+.uw-tile:has(.uw-tile__link:focus-visible){outline:var(--border-emphasis) solid var(--medium-blue);outline-offset:2px}
+.uw-tile__link:focus-visible{outline:none}
+.uw-tile__chips{display:flex;flex-wrap:wrap;gap:var(--space-3xs)}
+.uw-tile__chips--media{display:none}
+.uw-tile .uw-tile__rating{margin:0;display:flex;align-items:center;gap:var(--space-3xs);font-family:var(--ff-body);font-weight:var(--fw-regular);font-size:var(--fs-small);line-height:var(--lh-small);color:var(--dark-gray)}
+.uw-tile__star{flex:none;color:var(--medium-orange)}
+.uw-tile .uw-tile__rating strong{font-weight:var(--fw-bold);color:var(--dark-blue)}
+.uw-tile__count--compact{display:none}
+.uw-tile__pricing{margin-top:auto;display:flex;flex-direction:column;gap:var(--space-s);padding-top:var(--space-xs)}
+.uw-tile__price-row{display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-s)}
+.uw-tile__price-stack{display:contents}
+.uw-tile__unit{font-family:var(--ff-body);font-size:var(--fs-small);font-weight:var(--fw-regular);color:var(--dark-gray);white-space:nowrap}
+/* Controls sit above the stretched link. */
+.uw-tile__cta{position:relative;z-index:var(--z-overlap)}
+.uw-tile__cta--icon{display:none}
+/* Sold out: a state layer over the CARD, not an opacity on a control. */
+.uw-tile__film{position:absolute;inset:0;background:var(--film-oos);pointer-events:none;border-radius:var(--radius-card);z-index:var(--z-overlap)}
+.uw-tile.is-oos .uw-tile__cta{z-index:calc(var(--z-overlap) + 1)}
+
+/* Mobile — below md the tile becomes a horizontal row, one per line. Exactly
+   two things change: the chip drops THC, the count drops its noun.
+   Driven by the md viewport breakpoint, per the spec. A width query on the
+   tile itself cannot do it: a 344px desktop column and a 366px phone row
+   overlap. Above md, a tile that must render as a row (phone-frame specimen,
+   narrow sidebar) sets data-layout="compact" — the class .uw-tile--compact
+   is applied by the component and shares these rules. */
+@media (max-width:767px){
+  .uw-tile{gap:var(--space-xs);padding:var(--space-s)}
+  .uw-tile__row{flex-direction:row;gap:var(--space-xs);align-items:stretch}
+  .uw-tile__media{aspect-ratio:var(--tile-frame-ratio-compact);width:var(--tile-frame-w-compact);min-height:0;display:flex;align-items:center;justify-content:center;border-radius:var(--radius-control);overflow:hidden}
+  .uw-tile__media img{width:var(--tile-frame-w-compact);height:var(--tile-frame-w-compact)}
+  .uw-tile__badges{top:var(--space-xs);left:var(--space-xs);flex-direction:column;align-items:flex-start;gap:var(--space-2xs)}
+  .uw-tile__badges .uw-badge:nth-child(n+3){display:none}
+  .uw-tile__chips--media{display:flex;position:absolute;left:var(--space-xs);right:var(--space-xs);bottom:var(--space-xs);justify-content:flex-start;pointer-events:none}
+  .uw-tile__chips--body{display:none}
+  .uw-tile__body{flex:1;min-width:0;justify-content:center;gap:var(--space-3xs);padding:0}
+  .uw-tile .uw-tile__name{font-size:var(--fs-tile-name-compact);letter-spacing:var(--ls-h6)}
+  .uw-tile .uw-tile__rating{gap:var(--space-2xs);font-size:var(--fs-meta);line-height:var(--lh-meta)}
+  .uw-tile__star{width:13px;height:13px}
+  .uw-tile__count--full{display:none}
+  .uw-tile__count--compact{display:inline}
+  .uw-tile__pricing{gap:var(--space-2xs);padding-top:0}
+  .uw-tile__price-row{align-items:center;gap:var(--space-xs);padding-top:2px}
+  .uw-tile__price-stack{display:flex;flex-direction:column;gap:0;min-width:0}
+  .uw-tile__price-stack .uw-price{font-size:var(--fs-body);white-space:nowrap}
+  .uw-tile__price-stack .uw-price__was{font-size:var(--fs-meta);margin-left:var(--space-2xs)}
+  .uw-tile__unit{font-size:var(--fs-meta);line-height:var(--lh-meta)}
+  .uw-tile__cta--icon{display:block;flex:none}
+  .uw-tile__cta--full{display:none}
+}
+/* Same rules, opt-in above md. Kept as a literal copy of the block above —
+   the two must stay identical; a diff between them is a bug. */
+.uw-tile--compact{gap:var(--space-xs);padding:var(--space-s)}
+.uw-tile--compact .uw-tile__row{flex-direction:row;gap:var(--space-xs);align-items:stretch}
+.uw-tile--compact .uw-tile__media{aspect-ratio:var(--tile-frame-ratio-compact);width:var(--tile-frame-w-compact);min-height:0;display:flex;align-items:center;justify-content:center;border-radius:var(--radius-control);overflow:hidden}
+.uw-tile--compact .uw-tile__media img{width:var(--tile-frame-w-compact);height:var(--tile-frame-w-compact)}
+.uw-tile--compact .uw-tile__badges{top:var(--space-xs);left:var(--space-xs);flex-direction:column;align-items:flex-start;gap:var(--space-2xs)}
+.uw-tile--compact .uw-tile__badges .uw-badge:nth-child(n+3){display:none}
+.uw-tile--compact .uw-tile__chips--media{display:flex;position:absolute;left:var(--space-xs);right:var(--space-xs);bottom:var(--space-xs);justify-content:flex-start;pointer-events:none}
+.uw-tile--compact .uw-tile__chips--body{display:none}
+.uw-tile--compact .uw-tile__body{flex:1;min-width:0;justify-content:center;gap:var(--space-3xs);padding:0}
+.uw-tile--compact .uw-tile__name{font-size:var(--fs-tile-name-compact);letter-spacing:var(--ls-h6)}
+.uw-tile--compact .uw-tile__rating{gap:var(--space-2xs);font-size:var(--fs-meta);line-height:var(--lh-meta)}
+.uw-tile--compact .uw-tile__star{width:13px;height:13px}
+.uw-tile--compact .uw-tile__count--full{display:none}
+.uw-tile--compact .uw-tile__count--compact{display:inline}
+.uw-tile--compact .uw-tile__pricing{gap:var(--space-2xs);padding-top:0}
+.uw-tile--compact .uw-tile__price-row{align-items:center;gap:var(--space-xs);padding-top:2px}
+.uw-tile--compact .uw-tile__price-stack{display:flex;flex-direction:column;gap:0;min-width:0}
+.uw-tile--compact .uw-tile__price-stack .uw-price{font-size:var(--fs-body);white-space:nowrap}
+.uw-tile--compact .uw-tile__price-stack .uw-price__was{font-size:var(--fs-meta);margin-left:var(--space-2xs)}
+.uw-tile--compact .uw-tile__unit{font-size:var(--fs-meta);line-height:var(--lh-meta)}
+.uw-tile--compact .uw-tile__cta--icon{display:block;flex:none}
+.uw-tile--compact .uw-tile__cta--full{display:none}
+
+/* ── styles.css ── */
+
+/* ── components/content/content.css ── */
+/* 11 · Blog card */
+
+/* Desktop: a stacked card. Height is set by the IMAGE, never by the title —
+   the clamp guarantees the text can never exceed the image height, so a
+   one-line and a three-line headline produce identical cards. */
+.uw-post{position:relative;display:flex;flex-direction:column;background:var(--white);border:var(--border-hairline) solid var(--line);border-radius:var(--radius-card);box-shadow:var(--shadow-xs);overflow:hidden;transition:transform var(--motion-fast) var(--motion-ease),box-shadow var(--motion-fast) var(--motion-ease)}
+@media (hover:hover) and (pointer:fine){.uw-post:hover{transform:translateY(var(--lift-hover));box-shadow:var(--shadow-md)}}
+.uw-post__media{position:relative;aspect-ratio:16 / 9;background:var(--light-gray);flex-shrink:0}
+.uw-post__media img{width:100%;height:100%;object-fit:cover;display:block}
+/* The label is the first thing in the body. On the card it is laid over the
+   top-left corner of the picture; in the row it sits above the title. */
+.uw-post__badge{position:absolute;top:var(--space-s);left:var(--space-s);display:inline-flex;padding:var(--space-2xs) var(--space-s);font-size:var(--fs-meta);font-weight:var(--fw-medium);line-height:1.2;background:var(--light-pink);color:var(--dark-pink);border-radius:var(--radius-pill)}
+.uw-post__body{display:flex;flex-direction:column;gap:var(--space-xs);padding:var(--space-m);flex:1;min-width:0;overflow:hidden}
+.uw-post .uw-post__title{font-family:var(--ff-heading);font-size:var(--fs-h5);font-weight:var(--fw-semibold);line-height:var(--lh-h5);letter-spacing:var(--ls-h5);color:var(--dark-blue);margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.uw-post__title a{color:inherit;text-decoration:none}
+/* The ONE link, stretched over the card. */
+.uw-post__title a::after{content:"";position:absolute;inset:0;z-index:1}
+@media (hover:hover) and (pointer:fine){.uw-post:hover .uw-post__title{color:var(--medium-blue)}}
+/* Ring on the card, not on the invisible overlay. */
+.uw-post:has(a:focus-visible){outline:var(--border-emphasis) solid var(--medium-blue);outline-offset:2px}
+/* (0,3,0) — the theme's p:not([class*="has-"][class*="-color"]) is (0,2,1)
+   and shipped this at 16px instead of 14px with nothing reporting it. */
+.uw-post p.uw-post__excerpt{font-size:var(--fs-small);color:var(--dark-gray);margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.uw-post p.uw-post__meta{margin-top:auto;padding-top:var(--space-2xs);font-size:var(--fs-meta);line-height:1.15;color:var(--medium-gray);margin-bottom:0}
+/* Featured */
+.uw-post--featured{flex-direction:row}
+.uw-post--featured .uw-post__media{flex:0 0 52%;align-self:flex-start}
+.uw-post--featured .uw-post__body{padding:var(--space-l);justify-content:center}
+.uw-post--featured .uw-post__title{font-size:var(--fs-h4);font-weight:var(--fw-bold);line-height:var(--lh-h4);letter-spacing:var(--ls-h4);-webkit-line-clamp:2}
+.uw-post--featured p.uw-post__excerpt{-webkit-line-clamp:2;font-size:var(--fs-body)}
+/* Compact — sidebar, related. Horizontal at every width, and the same row
+   every card becomes on a phone: picture 36% wide, label above the title. */
+.uw-post--compact{flex-direction:row;align-items:flex-start;background:none;border:0;border-radius:0;box-shadow:none;padding:var(--space-s) 0}
+.uw-post--compact + .uw-post--compact{border-top:var(--border-hairline) solid var(--line)}
+@media (hover:hover) and (pointer:fine){.uw-post--compact:hover{transform:none;box-shadow:none}}
+.uw-post--compact .uw-post__media{flex:0 0 36%;border-radius:var(--radius-inner);overflow:hidden}
+.uw-post--compact .uw-post__body{padding:0 0 0 var(--space-s);gap:var(--space-2xs);justify-content:flex-start}
+.uw-post--compact .uw-post__title{font-size:var(--fs-small);line-height:1.25;-webkit-line-clamp:3}
+.uw-post--compact p.uw-post__excerpt{display:none}
+/* 12px: the one label below the 13px floor. Beside a 14px title, 13px in a
+   pill reads as large as the title itself. */
+.uw-post--compact .uw-post__badge{position:static;align-self:flex-start;padding:2px var(--space-xs);font-size:12px}
+.uw-post--compact p.uw-post__meta{margin-top:0;padding-top:0}
+/* Mobile: the box is dropped. Six card outlines stacked on a phone is a lot
+   of chrome for very little separation; dividers do the same job for a
+   fraction of the visual cost — and it removes the height problem entirely. */
+@media (max-width:767px){
+  .uw-post,.uw-post--featured{flex-direction:row;align-items:flex-start;background:none;border:0;border-radius:0;box-shadow:none;padding:var(--space-s) 0}
+  .uw-post + .uw-post{border-top:var(--border-hairline) solid var(--line)}
+  .uw-post:hover{transform:none;box-shadow:none}
+  .uw-post__media,.uw-post--featured .uw-post__media{flex:0 0 36%;border-radius:var(--radius-inner);overflow:hidden;align-self:flex-start}
+  .uw-post__badge{position:static;align-self:flex-start;padding:2px var(--space-xs);font-size:12px}
+  .uw-post__body,.uw-post--featured .uw-post__body{padding:0 0 0 var(--space-s);gap:var(--space-2xs);justify-content:flex-start}
+  .uw-post .uw-post__title,.uw-post--featured .uw-post__title{font-size:var(--fs-small);font-weight:var(--fw-semibold);line-height:1.25;letter-spacing:0;-webkit-line-clamp:3}
+  .uw-post p.uw-post__excerpt{display:none}
+  .uw-post p.uw-post__meta{margin-top:0;padding-top:0}
+}
+@media (prefers-reduced-motion:reduce){.uw-post{transition:none}}
+
+
+/* 35 · Content table */
+
+/* Multi-column table for editorial content: comparisons, reference data,
+   specs and figures in blog articles and category pages. NOT a replacement
+   for .uw-pit — that stays the PDP's two-column attribute block. Use this
+   one when there is a header row and more than two columns.
+   Header is --dark-gray with white text, 10.86:1. Hairlines between rows,
+   no zebra, same reasoning as .uw-pit. The first column is pinned and
+   carries a vertical rule; .uw-tbl--tinted adds a fill behind it, but the
+   rule is the signal — --light-gray is only 1.09:1 against white.
+   The horizontal scrollbar is suppressed on purpose: .uw-tbl__ind reports
+   position and is pointer-events:none, never the control. */
+.uw-tbl{margin:var(--space-l) 0;max-width:100%}
+
+.uw-tbl__title{margin:0 0 var(--space-xs);font-family:var(--ff-heading);font-size:var(--fs-h6);line-height:var(--lh-h6);letter-spacing:var(--ls-h6);font-weight:var(--fw-bold);color:var(--heading-color)}
+
+/* The scroll container. The native scrollbar is suppressed on purpose —
+   scrolling is by swipe, drag or arrow key, and .uw-tbl__ind reports
+   position. tabindex is set by the script, not in the markup, so a table
+   that fits is never a pointless tab stop. */
+.uw-tbl__scroll{overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;cursor:grab;border:var(--border-hairline) solid var(--line);border-radius:var(--radius-card)}
+.uw-tbl__scroll::-webkit-scrollbar{display:none}
+.uw-tbl__scroll.is-grabbing{cursor:grabbing;user-select:none}
+.uw-tbl__scroll:focus-visible{outline:var(--border-emphasis) solid var(--medium-blue);outline-offset:2px}
+
+.uw-tbl__data{width:100%;border-collapse:separate;border-spacing:0;font-size:var(--fs-small);line-height:var(--lh-small);color:var(--dark-gray);background:var(--white)}
+.uw-tbl__data th,
+.uw-tbl__data td{padding:var(--space-s) var(--space-m);text-align:left;vertical-align:top;white-space:nowrap}
+
+/* Header row. White on --dark-gray is 10.86:1. Sentence case, not caps:
+   at this size caps cost more legibility than the formality returns. */
+.uw-tbl__data thead th{background:var(--dark-gray);color:var(--white);font-weight:var(--fw-semibold)}
+.uw-tbl__data thead th:first-child{border-top-left-radius:var(--radius-card)}
+.uw-tbl__data thead th:last-child{border-top-right-radius:var(--radius-card)}
+
+/* Body rows: a hairline under each, no zebra. A second background colour
+   would carry no more information than the rule already does. */
+.uw-tbl__data tbody th,
+.uw-tbl__data tbody td{border-bottom:var(--border-hairline) solid var(--line)}
+.uw-tbl__data tbody tr:last-child th,
+.uw-tbl__data tbody tr:last-child td{border-bottom:0}
+
+/* Row labels, pinned. The vertical rule on the right edge is what makes
+   the label column read as a spine and marks the pinned boundary once
+   the table is scrolled. It is deliberately not the tint's job: at
+   1.09:1 against white the tint is reinforcement, never the signal. */
+.uw-tbl__data tbody th,
+.uw-tbl__data thead th:first-child{position:sticky;left:0;z-index:var(--z-raised);border-right:var(--border-hairline) solid var(--line)}
+.uw-tbl__data thead th:first-child{z-index:var(--z-overlap);border-right-color:var(--medium-gray)}
+.uw-tbl__data tbody th{background:var(--white);font-weight:var(--fw-semibold);color:var(--dark-gray)}
+
+/* Optional tinted spine. Delete the class for a plain white first column;
+   everything else is identical. */
+.uw-tbl--tinted .uw-tbl__data tbody th{background:var(--light-gray)}
+
+/* Group bands. Add a row of this class wherever a long table splits into
+   named blocks; no modifier on the figure is needed. */
+.uw-tbl__group th{position:static;background:var(--light-gray);font-family:var(--ff-heading);font-size:var(--fs-meta);font-weight:var(--fw-bold);text-transform:uppercase;letter-spacing:var(--ls-caps);color:var(--dark-gray);border-right:0}
+
+/* Cell utilities. Put .is-num on the header cell AND every cell in that
+   column; .is-wrap on the one prose column so it does not force the
+   table wider than it needs to be. */
+.uw-tbl__data .is-num{text-align:right;font-variant-numeric:tabular-nums}
+.uw-tbl__data .is-wrap{white-space:normal;min-width:20ch}
+
+/* Scroll indicator — informative only. pointer-events:none guarantees it
+   can never be grabbed; it reports position and nothing else. The script
+   hides it, and the hint, whenever the table already fits. */
+.uw-tbl__ind{position:relative;height:3px;margin:var(--space-s) 0 0;border-radius:var(--radius-pill);background:var(--line);overflow:hidden;pointer-events:none}
+.uw-tbl__ind[hidden],
+.uw-tbl__hint[hidden]{display:none}
+.uw-tbl__ind-thumb{position:absolute;inset:0 auto 0 0;border-radius:var(--radius-pill);background:var(--dark-gray);transition:transform var(--motion-fast) linear}
+.uw-tbl__hint{margin:var(--space-2xs) 0 0;font-size:var(--fs-meta);color:var(--medium-gray)}
+
+/* Source, legal basis, "as of" date. */
+.uw-tbl__note{margin:var(--space-s) 0 0;font-size:var(--fs-meta);line-height:var(--lh-meta);color:var(--medium-gray)}
+.uw-tbl__note a{color:inherit;text-decoration:underline}
+
+@media (max-width:575.98px){
+  .uw-tbl__data th,
+  .uw-tbl__data td{padding:var(--space-xs) var(--space-s)}
+}
+
+/* Someone will paste a bare table into the editor eventually. This keeps
+   it from looking broken, without pretending it is the component. */
+.uw-tbl__scroll > table:not(.uw-tbl__data){width:100%;border-collapse:collapse;font-size:var(--fs-small)}
+.uw-tbl__scroll > table:not(.uw-tbl__data) th,
+.uw-tbl__scroll > table:not(.uw-tbl__data) td{padding:var(--space-s) var(--space-m);border-bottom:var(--border-hairline) solid var(--line);text-align:left}
+
+/* ── styles.css ── */
+
+/* 35 · Informing blocks. uWeed speaking about itself or inviting, on content
+   that informs rather than sells. .uw-inform is their shared base: the
+   dark-pink eyebrow, the heading, the text and the pink disc. A block sits
+   on the page (no modifier) or on light-gray (--tint). Pink is a mark here
+   and never a surface: no block takes a pink background. */
+.uw-inform{font-family:var(--ff-body);color:var(--dark-gray)}
+.uw-inform--tint{border-radius:var(--radius-card);padding:var(--space-xl);background:var(--light-gray)}
+.uw-inform__eyebrow{margin:0 0 var(--space-xs);font-family:var(--ff-heading);font-size:var(--fs-meta);font-weight:var(--fw-semibold);line-height:var(--lh-meta);letter-spacing:var(--ls-caps);text-transform:uppercase;color:var(--dark-pink)}
+.uw-inform__title{margin:0 0 var(--space-xs);font-family:var(--ff-heading);font-size:var(--fs-h4);font-weight:var(--fw-bold);line-height:var(--lh-h4);letter-spacing:var(--ls-h4);color:var(--dark-blue);text-wrap:balance}
+.uw-inform__text{margin:0;max-width:52ch;font-size:var(--fs-body);line-height:var(--lh-body)}
+/* The one pink mark: a dark-pink icon on a light-pink disc, 4.90:1. */
+.uw-inform__disc{flex:0 0 auto;display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:var(--light-pink);color:var(--dark-pink)}
+@media (max-width:575.98px){.uw-inform--tint{padding:var(--space-l) var(--space-m)}}
+
+/* Newsletter block: invitation left, action right; they stack when narrow. */
+.uw-news{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-l) var(--space-2xl)}
+.uw-news__intro,.uw-news__action{flex:1 1 320px;min-width:0}
+/* The disc sits beside the text and moves above it once the text would get narrower than 240px. */
+.uw-news__intro{display:flex;flex-wrap:wrap;align-items:flex-start;gap:var(--space-s) var(--space-m)}
+.uw-news__intro>div{flex:1 1 240px;min-width:0}
+.uw-news__form{display:flex;flex-wrap:wrap;gap:var(--space-xs)}
+/* White: the block already carries the field's usual light-gray. */
+.uw-news__form .uw-input{flex:999 1 180px;width:auto;min-width:0;background:var(--white)}
+/* The button keeps its own width beside the field and fills the line once it wraps under it. */
+.uw-news__form .uw-btn{flex:1 0 auto}
+.uw-news.is-error .uw-news__form .uw-input{border-color:var(--medium-red);background:var(--light-red)}
+.uw-news__legal{margin:var(--space-s) 0 0;font-size:var(--fs-meta);line-height:var(--lh-meta)}
+.uw-news__legal a{color:var(--medium-blue);text-underline-offset:.15em}
+.uw-news__error,.uw-news__done{display:flex;align-items:flex-start;gap:var(--space-xs);margin:var(--space-s) 0 0;font-size:var(--fs-small);line-height:var(--lh-small)}
+.uw-news__error svg,.uw-news__done svg{flex:0 0 auto;margin-top:2px}
+/* As under any field: medium-red on light-gray is 4.63:1. */
+.uw-news__error{color:var(--medium-red)}
+.uw-news__done{margin:0;font-size:var(--fs-body);font-weight:var(--fw-medium);line-height:var(--lh-body);color:var(--dark-blue)}
+@media (max-width:575.98px){.uw-news__intro{flex-direction:column;flex-wrap:nowrap}.uw-news__intro>div{flex:0 1 auto}}
+
+/* 36 · Icon list: up to four facts, each with an icon on a pink disc. */
+.uw-icl__list{display:grid;grid-template-columns:repeat(var(--uw-icl-cols,4),minmax(0,1fr));gap:var(--space-l);margin:var(--space-l) 0 0;padding:0;list-style:none}
+.uw-icl__list:first-child{margin-top:0}
+.uw-icl__item{display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-s)}
+.uw-icl .uw-icl__label{margin:0 0 var(--space-2xs);font-size:var(--fs-body);font-weight:var(--fw-bold);line-height:var(--lh-small);color:var(--dark-blue)}
+.uw-icl .uw-icl__text{margin:0;font-size:var(--fs-small);line-height:var(--lh-small)}
+@media (max-width:991px){.uw-icl__list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:575.98px){
+.uw-icl__list{grid-template-columns:1fr;gap:var(--space-m)}
+.uw-icl__item{flex-direction:row}
+}
+
+/* ── components/chrome/chrome.css ── */
+/* 23 · Footer · 34 · Search bar */
+
+/* ---- 34 · Search bar ----------------------------------------------- */
+/* The focus ring is a BOX-SHADOW, never a wider border — a border would grow
+   the box and shift the page. This is the one component that focuses green
+   rather than blue, per the interaction spec. */
+.uw-search{position:relative;display:flex;align-items:center;width:100%}
+.uw-search__field{width:100%;min-height:44px;padding:0 var(--space-m) 0 calc(var(--space-m) + 28px);font-family:var(--ff-body);font-size:var(--fs-body);color:var(--dark-blue);background:var(--white);border:var(--border-hairline) solid var(--line);border-radius:var(--radius-pill);appearance:none;transition:border-color var(--motion-fast) var(--motion-ease)}
+.uw-search__field::placeholder{color:var(--medium-gray);opacity:1}
+/* Hover and focus are the standard field treatment: the same blue ring as every other input. */
+@media (hover:hover) and (pointer:fine){.uw-search__field:hover:not(:disabled){border-color:var(--medium-gray)}}
+.uw-search__field:focus{outline:none;border-color:var(--medium-blue)}
+.uw-search__field:focus-visible{outline:var(--border-emphasis) solid var(--medium-blue);outline-offset:2px}
+.uw-search__field:disabled{background:var(--light-gray);cursor:not-allowed}
+.uw-search__ic{position:absolute;left:var(--space-m);color:var(--dark-gray);pointer-events:none}
+.uw-search__x{position:absolute;right:var(--space-xs);width:32px;height:32px;border:0;background:none;border-radius:50%;color:var(--dark-gray);cursor:pointer;display:grid;place-items:center}
+@media (hover:hover) and (pointer:fine){.uw-search__x:hover{background:var(--light-gray)}}
+.uw-search__panel{position:absolute;top:calc(100% + var(--space-xs));left:0;right:0;max-width:none;z-index:var(--z-panel)}
+
+/* ---- 23 · Footer --------------------------------------------------- */
+/* The footer surface is --dark-blue (decided October 2026): a footer is
+   navigation, and green is kept for the purchase path. All footer text is
+   --white, not #F5F5F5. */
+.uw-footer{background:var(--dark-blue);color:var(--white)}
+.uw-footer__inner{max-width:var(--container-xl);margin-inline:auto;padding:var(--space-2xl) var(--space-l) var(--space-l)}
+.uw-footer__cols{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-xl)}
+.uw-footer .uw-footer__h{margin:0 0 var(--space-s);font-family:var(--ff-body);font-size:var(--fs-body);font-weight:var(--fw-bold);text-transform:uppercase;letter-spacing:var(--ls-caps);color:var(--white)}
+.uw-footer__list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:var(--space-xs)}
+.uw-footer__list a{color:var(--white);text-decoration:none;font-size:var(--fs-small);font-weight:var(--fw-medium)}
+@media (hover:hover) and (pointer:fine){.uw-footer__list a:hover{text-decoration:underline;text-underline-offset:.15em}}
+.uw-footer__bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-m);margin-top:var(--space-2xl);padding-top:var(--space-m);border-top:var(--border-hairline) solid #FFFFFF33}
+.uw-footer .uw-footer__copy{margin:0;font-size:var(--fs-meta);color:var(--white)}
+.uw-footer__switches{display:flex;gap:var(--space-xs);flex-wrap:wrap}
+/* Translucent white well; the pressed pill is solid white with the footer's
+   own colour as its text, so it inverts without a third colour. */
+.uw-sw{display:inline-flex;background:#FFFFFF1F;border-radius:var(--radius-pill);padding:3px}
+.uw-sw button{border:0;background:none;padding:5px 14px;border-radius:var(--radius-pill);font-family:var(--ff-body);font-size:var(--fs-meta);font-weight:var(--fw-medium);color:#FFFFFFCC;cursor:pointer;transition:background-color var(--motion-fast) var(--motion-ease),color var(--motion-fast) var(--motion-ease)}
+@media (hover:hover) and (pointer:fine){.uw-sw button:hover{color:var(--white);background:#FFFFFF26}}
+.uw-sw button[aria-pressed="true"]{background:var(--white);color:var(--dark-blue)}
+.uw-sw button:focus-visible{outline:var(--border-heavy) solid var(--white);outline-offset:2px}
+.uw-footer__acc{display:none}
+@media (max-width:991px){
+  .uw-footer__cols{display:none}
+  .uw-footer__acc{display:block}
+}
+
+/* ── styles.css ── */
+
+
+/* ── tokens/fonts.css ── */
+
+/* ── tokens/colors.css ── */
+
+/* ── tokens/typography.css ── */
+
+/* ── tokens/spacing.css ── */
+
+/* ── tokens/radius.css ── */
+
+/* ── tokens/borders.css ── */
+
+/* ── tokens/shadows.css ── */
+
+/* ── tokens/motion.css ── */
+
+/* ── tokens/layout.css ── */
+
+/* ── tokens/zindex.css ── */
+
+/* ── tokens/base.css ── */
+
+/* ── components/core/core.css ── */
+
+/* ── components/forms/forms.css ── */
+
+/* ── components/navigation/navigation.css ── */
+
+/* ── components/disclosure/disclosure.css ── */
+
+/* ── components/feedback/feedback.css ── */
+
+/* ── components/overlays/overlays.css ── */
+
+/* ── components/commerce/commerce.css ── */
+
+/* ── components/content/content.css ── */
+
+/* 37 · Article row: a heading, article cards three across, and the way to
+   the magazine. Below md the cards are rows (see 11) and nothing swipes. */
+.uw-arow__title{margin:0 0 var(--space-m);font-family:var(--ff-heading);font-size:var(--fs-h3);font-weight:var(--fw-bold);line-height:var(--lh-h3);letter-spacing:var(--ls-h3);color:var(--dark-blue)}
+.uw-arow__list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-l)}
+.uw-arow__more{display:flex;justify-content:center;margin:var(--space-l) 0 0}
+@media (max-width:767px){
+.uw-arow__list{display:block}
+.uw-arow__more .uw-btn{width:100%}
+}
+
+/* 38 · Filter panel. Below lg the filter pills and the sort control move
+   into this panel. Full screen on a phone; from 480px a panel on the right
+   over a dimmed page, like the cart drawer. Head and foot are fixed and only
+   the middle scrolls. */
+.uw-fpanel-backdrop{position:fixed;inset:0;background:#0B102A80;z-index:var(--z-backdrop)}
+.uw-fpanel{position:fixed;top:0;right:0;bottom:0;z-index:var(--z-drawer);width:min(480px,100vw);display:flex;flex-direction:column;background:var(--white);box-shadow:var(--shadow-xl);font-family:var(--ff-body);color:var(--dark-gray)}
+.uw-fpanel__head{flex:0 0 auto;display:flex;align-items:center;gap:var(--space-xs);padding:var(--space-s) 6px var(--space-s) var(--space-m);border-bottom:var(--border-hairline) solid var(--line)}
+.uw-fpanel .uw-fpanel__title{flex:1;min-width:0;margin:0;font-family:var(--ff-heading);font-size:var(--fs-h5);font-weight:var(--fw-bold);line-height:var(--lh-h5);letter-spacing:var(--ls-h5);color:var(--dark-blue)}
+.uw-fpanel__x{flex:0 0 auto;width:44px;height:44px;border:0;background:none;color:var(--dark-blue);cursor:pointer;display:grid;place-items:center;border-radius:50%}
+.uw-fpanel__x:focus-visible{outline:var(--border-emphasis) solid var(--medium-blue);outline-offset:-2px}
+.uw-fpanel__body{flex:1 1 auto;overflow-y:auto;overscroll-behavior:contain;padding:0 var(--space-m)}
+/* "Sortieren nach" and "Filtern nach": one small label, so the filter names
+   under them stay the strongest text. */
+.uw-fpanel__label{display:block;margin:var(--space-m) 0 var(--space-xs);font-family:var(--ff-heading);font-size:var(--fs-meta);font-weight:var(--fw-semibold);line-height:var(--lh-meta);letter-spacing:var(--ls-caps);text-transform:uppercase;color:var(--dark-gray)}
+/* Sorting: the select field as a button, opening the system's rounded list. */
+.uw-fpanel__sort{position:relative;padding-bottom:var(--space-m)}
+.uw-fpanel__sort button.uw-select__control{display:flex;align-items:center;text-align:left}
+.uw-fpanel__sort .uw-select__panel{position:absolute;left:0;right:0;top:calc(100% - var(--space-s));z-index:1}
+.uw-fpanel__sort .uw-select__option{width:100%;min-height:44px;border:0;background:none;font-family:var(--ff-body);font-size:var(--fs-body);text-align:left}
+.uw-fpanel__sort .uw-select__option:focus-visible{outline:var(--border-emphasis) solid var(--medium-blue);outline-offset:-2px}
+.uw-fpanel__sort.is-open .uw-select__control{border-color:var(--medium-blue);background:var(--white)}
+.uw-fpanel__sort.is-open .uw-select__chevron{color:var(--medium-blue);transform:translateY(-50%) rotate(180deg)}
+/* The grey band that sets sorting apart from the filters. */
+.uw-fpanel__band{height:var(--space-xs);margin:0 calc(var(--space-m) * -1);background:var(--light-gray)}
+/* A filter's name with what is chosen in it: first two by name, then "+3". */
+.uw-fpanel .uw-acc__heading{display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-s)}
+.uw-fpanel__name{flex:0 0 auto}
+.uw-fpanel__chosen{min-width:0;font-family:var(--ff-body);font-size:var(--fs-small);font-weight:var(--fw-regular);letter-spacing:0;color:var(--dark-gray);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.uw-fpanel .uw-acc--filter .uw-check{min-height:44px}
+.uw-fpanel__foot{flex:0 0 auto;display:flex;align-items:center;gap:var(--space-m);padding:var(--space-s) var(--space-m);border-top:var(--border-hairline) solid var(--line);background:var(--white)}
+.uw-fpanel__foot .uw-btn{flex:1}
+.uw-fpanel__reset{flex:0 0 auto;min-height:44px;padding:0;border:0;background:none;font-family:var(--ff-body);font-size:var(--fs-small);white-space:nowrap;cursor:pointer}
+@media (hover:hover) and (pointer:fine){.uw-fpanel__reset:hover{text-decoration:underline}}
+
+/* ── components/chrome/chrome.css ── */
+
+/* ── Touch areas ── On a touch screen every small control reacts to at least
+   44px. Only the reacting area grows; nothing looks different. With a mouse
+   the areas stay as drawn, so a hover state never appears beside a control.
+   The tooltip trigger already does this for every pointer. */
+@media (pointer:coarse){
+.uw-badge__remove,.uw-toast__x,.uw-qty--md button,.uw-sw button{position:relative}
+.uw-badge__remove::after,.uw-toast__x::after,.uw-search__x::after{content:"";position:absolute;top:50%;left:50%;width:44px;height:44px;transform:translate(-50%,-50%)}
+.uw-qty--md button::after{content:"";position:absolute;top:-3px;bottom:-3px;left:0;right:0}
+.uw-qty--md .uw-qty__down::after{left:-6px}
+.uw-qty--md .uw-qty__up::after{right:-6px}
+.uw-sw button::after{content:"";position:absolute;left:0;right:0;top:50%;height:44px;transform:translateY(-50%)}
+.uw-acc--filter .uw-check,.uw-pop--check .uw-check{min-height:44px}
+}

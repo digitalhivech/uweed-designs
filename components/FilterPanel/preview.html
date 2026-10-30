@@ -1,0 +1,64 @@
+<!-- @dsCard group="Overlays" height=698 width=1640 subtitle="Filters and sorting on a phone: one blue button opens a full-screen panel. The first phone works" -->
+<!doctype html>
+<html lang="de">
+<head><meta charset="utf-8"><title>FilterPanel</title>
+<style>body{margin:0;padding:16px 20px;background:var(--white);color:var(--font-color);font-family:var(--font-body)}.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}.col{display:flex;flex-direction:column;gap:6px}.lbl{font-family:ui-monospace,monospace;font-size:10px;color:var(--dark-gray);margin:0}.sec{font-family:ui-monospace,monospace;font-size:10px;font-weight:var(--fw-bold);letter-spacing:.08em;text-transform:uppercase;color:var(--medium-blue);margin:14px 0 8px}.sec:first-child{margin-top:0}.dark{background:var(--dark-blue);border-radius:var(--radius-card);padding:14px}.stage{position:relative;overflow:hidden;border:var(--border-hairline) solid var(--line);border-radius:var(--radius-card);background:var(--light-gray);transform:translateZ(0)}.phones{display:flex;gap:20px;align-items:flex-start}.phone{width:375px;flex:0 0 375px}.phone .stage{height:640px;background:var(--white);border-radius:28px}.phone .stage .uw-fpanel{width:100%}.pg{height:100%;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px}.pg h1{font-size:28px;line-height:1.15;margin:4px 0 0}.pg .bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 12px}.pg .n{font-size:var(--fs-small);white-space:nowrap}.pg .chips{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}.pg .tiles{display:flex;flex-direction:column;gap:12px}</style></head>
+<body>
+<div id="root"></div>
+<script>
+var NS = window.UWeedDesignSystem_8df554, h = React.createElement, F = React.Fragment;
+function sec(t){return h("p",{className:"sec"},t);}
+function lbl(t){return h("p",{className:"lbl"},t);}
+function row(p){var k=[].slice.call(arguments,1);return h.apply(null,["div",Object.assign({className:"row"},p)].concat(k));}
+function ph(c,t,w,hh){w=w||600;hh=hh||600;return 'data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+hh+'"><rect width="'+w+'" height="'+hh+'" fill="'+c+'"/>'+(t?'<text x="'+w/2+'" y="'+(hh/2+hh*0.03)+'" font-family="DM Sans,sans-serif" font-size="'+Math.round(Math.min(w,hh)*0.07)+'" fill="#0B102A" text-anchor="middle">'+t+'</text>':'')+'</svg>');}
+var FP = NS.FilterPanel, Button = NS.Button, Badge = NS.Badge, Link = NS.Link, ProductTile = NS.ProductTile;
+/* Sample content, not real products. */
+var facets = [
+  {id:"brand",label:"Marke",options:[{label:"Harlequin",count:8},{label:"Slow Weed",count:6},{label:"Sweed",count:5},{label:"Qualicann",count:4},{label:"B-Chill",count:4},{label:"Herba di Berna",count:3}]},
+  {id:"cbd",label:"CBD-Gehalt",options:[{label:"unter 10%",count:9},{label:"10 – 15%",count:14},{label:"15 – 20%",count:16},{label:"über 20%",count:9}]},
+  {id:"grow",label:"Anbau",options:[{label:"Indoor",count:22},{label:"Greenhouse",count:15},{label:"Outdoor",count:11}]},
+  {id:"price",label:"Preis",options:[{label:"unter 20 CHF",count:12},{label:"20 – 40 CHF",count:24},{label:"über 40 CHF",count:12}]},
+  {id:"size",label:"Menge",options:[{label:"2 g",count:10},{label:"3 g",count:26},{label:"5 g",count:8},{label:"10 g",count:4}]}];
+var sorts = ["Beliebtheit","Preis aufsteigend","Preis absteigend","Neuheiten","Beste Bewertung"];
+function tile(c){return 'data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="688" height="660"><rect width="688" height="660" fill="#fff"/><ellipse cx="344" cy="340" rx="190" ry="210" fill="'+c+'"/></svg>');}
+var tiles = [
+  {href:"#",cbd:"17%",thc:"0.7%",image:tile("#D1EFE5"),brand:"Harlequin",name:"Harlequin CBD Blüten Indoor",size:"3 g",price:"17.00 CHF",unitPrice:"5.67 CHF / g",rating:"4.8",reviewCount:212},
+  {href:"#",cbd:"16%",thc:"0.7%",image:tile("#CED4F3"),brand:"Sweed",name:"Purple Haze Greenhouse",size:"3 g",price:"20.00 CHF",unitPrice:"6.67 CHF / g",rating:"4.5",reviewCount:133},
+  {href:"#",cbd:"15%",thc:"0.8%",image:tile("#FFF5EB"),brand:"Harlequin",name:"Harlequin Small Buds",size:"3 g",price:"20.00 CHF",unitPrice:"6.67 CHF / g",rating:"4.6",reviewCount:89}];
+function countOf(a){ var c=48; facets.forEach(function(f){ var s=a[f.id]; if(s&&s.length) c=Math.min(c,f.options.filter(function(o){return s.indexOf(o.label)>-1;}).reduce(function(n,o){return n+o.count;},0)); }); return c; }
+function prod(n){ return n+(n===1?" Produkt":" Produkte"); }
+function Listing(p){
+  var st=React.useState(p.start), applied=st[0], setApplied=st[1];
+  var ss=React.useState(sorts[0]), sort=ss[0], setSort=ss[1];
+  var so=React.useState(!!p.open), open=so[0], setOpen=so[1];
+  function toggle(id,v){ setApplied(function(a){ var l=a[id]||[], n=l.indexOf(v)>-1?l.filter(function(x){return x!==v;}):l.concat([v]), b=Object.assign({},a); if(n.length) b[id]=n; else delete b[id]; return b; }); }
+  var chips=[]; facets.forEach(function(f){ (applied[f.id]||[]).forEach(function(v){ chips.push([f.id,v]); }); });
+  var n=countOf(applied);
+  return h("div",{className:"stage"},
+    h("div",{className:"pg"},
+      h("h1",null,"CBD Blüten"),
+      h("div",{className:"bar"},
+        h(Button,{variant:"nav",icon:"filter",onClick:function(){setOpen(true);}},"Filter & Sortierung"+(chips.length?" ("+chips.length+")":"")),
+        h("span",{className:"n","aria-live":"polite"},prod(n))),
+      chips.length?h("div",{className:"chips"},
+        chips.map(function(c){return h(Badge,{key:c.join(),onRemove:function(){toggle(c[0],c[1]);},removeLabel:"Filter "+c[1]+" entfernen"},c[1]);}),
+        h(Link,{variant:"action",href:"#",onClick:function(e){e.preventDefault();setApplied({});},style:{fontSize:"var(--fs-small)"}},"Alle Filter zurücksetzen")):null,
+      h("div",{className:"tiles"},tiles.map(function(t,i){return h(ProductTile,Object.assign({key:i,layout:"compact"},t));}))),
+    h(FP,{open:open,sorts:sorts,sort:sort,onSortChange:setSort,facets:facets,applied:applied,onToggle:toggle,defaultOpen:p.openFacet,
+      resultLabel:prod(n)+" zeigen",onReset:function(){setApplied({});setSort(sorts[0]);},onClose:function(){setOpen(false);}}));
+}
+var base={brand:["Harlequin","Sweed"],cbd:["15 – 20%"]};
+var many={brand:["Harlequin","Slow Weed","Sweed","Qualicann","B-Chill"],cbd:["10 – 15%","15 – 20%"],grow:["Indoor"]};
+function phone(label,node,id){return h("div",{className:"phone",id:id},sec(label),node);}
+function Demo(){ return h("div",{className:"phones"},
+  phone("closed — tap the blue button; this phone works",h(Listing,{start:base,openFacet:"brand"})),
+  phone("open — “Marke” expanded",h(Listing,{start:base,open:true,openFacet:"brand"})),
+  phone("sorting list open — rounded, with a tick",h(Listing,{start:base,open:true,openFacet:"brand"}),"sortdemo"),
+  phone("many chosen — first two by name, then “+3”",h(Listing,{start:many,open:true})));
+}
+ReactDOM.createRoot(document.getElementById("root")).render(h(Demo));
+/* The third phone shows the sorting list open; it is opened here because the list has no "open" prop. */
+setTimeout(function(){ var b=document.querySelector("#sortdemo .uw-select__control"); if(b){ b.click(); setTimeout(function(){ if(document.activeElement) document.activeElement.blur(); },50); } },300);
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!-- @dsCard group="Commerce" height=1127 width=1440 subtitle="Signed off. Stacked card from md up, horizontal row below. Four data-driven states" -->
+<!doctype html>
+<html lang="de">
+<head><meta charset="utf-8"><title>ProductTile</title>
+<style>body{margin:0;padding:16px 20px;background:var(--white);color:var(--font-color);font-family:var(--font-body)}.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}.col{display:flex;flex-direction:column;gap:6px}.lbl{font-family:ui-monospace,monospace;font-size:10px;color:var(--dark-gray);margin:0}.sec{font-family:ui-monospace,monospace;font-size:10px;font-weight:var(--fw-bold);letter-spacing:.08em;text-transform:uppercase;color:var(--medium-blue);margin:14px 0 8px}.sec:first-child{margin-top:0}.dark{background:var(--dark-blue);border-radius:var(--radius-card);padding:14px}.stage{position:relative;overflow:hidden;border:var(--border-hairline) solid var(--line);border-radius:var(--radius-card);background:var(--light-gray);transform:translateZ(0)}</style></head>
+<body>
+<div id="root"></div>
+<script>
+var NS = window.UWeedDesignSystem_8df554, h = React.createElement, F = React.Fragment;
+function sec(t){return h("p",{className:"sec"},t);}
+function lbl(t){return h("p",{className:"lbl"},t);}
+function row(p){var k=[].slice.call(arguments,1);return h.apply(null,["div",Object.assign({className:"row"},p)].concat(k));}
+function ph(c,t,w,hh){w=w||600;hh=hh||600;return 'data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+hh+'"><rect width="'+w+'" height="'+hh+'" fill="'+c+'"/>'+(t?'<text x="'+w/2+'" y="'+(hh/2+hh*0.03)+'" font-family="DM Sans,sans-serif" font-size="'+Math.round(Math.min(w,hh)*0.07)+'" fill="#0B102A" text-anchor="middle">'+t+'</text>':'')+'</svg>');}
+function tph(c){return 'data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="688" height="660"><rect width="688" height="660" fill="#fff"/><ellipse cx="344" cy="340" rx="190" ry="210" fill="'+c+'"/></svg>');}
+var PT = NS.ProductTile;
+var BASE={brand:"Harlequin",name:"Harlequin CBD Blüten Indoor",size:"3 g",cbd:"15%",thc:"0.7%",rating:"4.8",reviewCount:212,href:"#",image:tph("#D1EFE5")};
+var STATES=[
+ {label:"on sale, one size",p:{price:"17.00 CHF",was:"20.00 CHF",unitPrice:"5.67 CHF / g",sale:true,bestseller:true,isNew:true}},
+ {label:"several sizes",p:{sizes:true,price:"20.00 CHF",unitPrice:"5.00 CHF / g",bestseller:true,image:tph("#CED4F3")}},
+ {label:"sold out",p:{price:"20.00 CHF",unitPrice:"6.67 CHF / g",soldOut:true,image:tph("#F4E2ED")}},
+ {label:"full price",p:{price:"20.00 CHF",unitPrice:"6.67 CHF / g",bestseller:true,isNew:true,image:tph("#FFF5EB")}}];
+function Demo(){ return h(F,null,
+  sec("Desktop — stacked card"),
+  h("div",{style:{display:"grid",gridTemplateColumns:"repeat(4,minmax(0,1fr))",gap:"var(--space-l)",alignItems:"stretch"}},
+    STATES.map(function(s){ return h("div",{key:s.label,className:"col"},h(PT,Object.assign({},BASE,s.p,{style:{flex:1}})),lbl(s.label)); })),
+  sec("Compact row — below md, or forced"),
+  h("div",{style:{display:"grid",gridTemplateColumns:"repeat(2,minmax(0,390px))",gap:"var(--space-s)",background:"var(--light-gray)",padding:"var(--space-s)",borderRadius:"var(--radius-card)"}},
+    STATES.map(function(s){ return h(PT,Object.assign({key:s.label,layout:"compact"},BASE,s.p)); })));
+}
+ReactDOM.createRoot(document.getElementById("root")).render(h(Demo));
+</script>
+</body>
+</html>

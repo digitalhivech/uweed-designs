@@ -1,0 +1,33 @@
+<!-- @dsCard group="Content" height=1302 width=1100 subtitle="Article cards three across with one button to the magazine. On a phone a list of rows; nothing swipes" -->
+<!doctype html>
+<html lang="de">
+<head><meta charset="utf-8"><title>ArticleRow</title>
+<style>body{margin:0;padding:16px 20px;background:var(--white);color:var(--font-color);font-family:var(--font-body)}.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}.col{display:flex;flex-direction:column;gap:6px}.lbl{font-family:ui-monospace,monospace;font-size:10px;color:var(--dark-gray);margin:0}.sec{font-family:ui-monospace,monospace;font-size:10px;font-weight:var(--fw-bold);letter-spacing:.08em;text-transform:uppercase;color:var(--medium-blue);margin:14px 0 8px}.sec:first-child{margin-top:0}.dark{background:var(--dark-blue);border-radius:var(--radius-card);padding:14px}.stage{position:relative;overflow:hidden;border:var(--border-hairline) solid var(--line);border-radius:var(--radius-card);background:var(--light-gray);transform:translateZ(0)}</style></head>
+<body>
+<div id="root"></div>
+<script>
+var NS = window.UWeedDesignSystem_8df554, h = React.createElement, F = React.Fragment;
+function sec(t){return h("p",{className:"sec"},t);}
+function lbl(t){return h("p",{className:"lbl"},t);}
+function row(p){var k=[].slice.call(arguments,1);return h.apply(null,["div",Object.assign({className:"row"},p)].concat(k));}
+function ph(c,t,w,hh){w=w||600;hh=hh||600;return 'data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+hh+'"><rect width="'+w+'" height="'+hh+'" fill="'+c+'"/>'+(t?'<text x="'+w/2+'" y="'+(hh/2+hh*0.03)+'" font-family="DM Sans,sans-serif" font-size="'+Math.round(Math.min(w,hh)*0.07)+'" fill="#0B102A" text-anchor="middle">'+t+'</text>':'')+'</svg>');}
+var AR = NS.ArticleRow, BC = NS.BlogCard, Button = NS.Button;
+var arts = [
+  {href:"#a",title:"Was ist CBD? Definition und Überblick über Cannabidiol",category:"Wissen",excerpt:"Was Cannabidiol ist, woher es kommt und in welchen Produktformen es angeboten wird.",image:ph("#D1EFE5","16:9",1600,900)},
+  {href:"#b",title:"CBD vs THC: die Unterschiede verstehen und die richtigen Produkte auswählen",category:"Wissen",excerpt:"Worin sich die beiden Cannabinoide unterscheiden und was das für die Produktwahl heisst.",image:ph("#CED4F3","16:9",1600,900)},
+  {href:"#c",title:"Ist CBD in der Schweiz legal? Gesetzeslage 2026 im Überblick",category:"Recht und Sicherheit",excerpt:"Die aktuelle Gesetzeslage und was beim Reisen gilt.",image:ph("#E7E7E9","16:9",1600,900)}];
+function Demo(){ return h(F,null,
+  sec("desktop — three cards, one button to the magazine"),
+  h(AR,{title:"CBD Grundlagen",articles:arts,moreLabel:"Zum CBD-Magazin",moreHref:"#"}),
+  sec("on a phone (below 768px) — each card is a row, the label sits above the title, the button takes the full width"),
+  h("section",{className:"uw-arow",style:{maxWidth:343}},
+    h("h2",{className:"uw-arow__title",style:{fontSize:21}},"CBD Grundlagen"),
+    h("div",null,arts.map(function(a){return h(BC,Object.assign({key:a.href,variant:"compact"},a,{excerpt:undefined}));})),
+    h("p",{className:"uw-arow__more"},h(Button,{variant:"nav",href:"#",block:true},"Zum CBD-Magazin"))),
+  sec("without heading and button — inside a section that already has both"),
+  h(AR,{articles:arts.map(function(a){return Object.assign({},a,{excerpt:undefined});})}));
+}
+ReactDOM.createRoot(document.getElementById("root")).render(h(Demo));
+</script>
+</body>
+</html>

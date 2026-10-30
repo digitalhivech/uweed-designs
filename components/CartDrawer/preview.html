@@ -1,0 +1,31 @@
+<!-- @dsCard group="Overlays" height=556 width=1040 subtitle="Slide-in cart: header and footer fixed, only the list scrolls; size-only meta" -->
+<!doctype html>
+<html lang="de">
+<head><meta charset="utf-8"><title>CartDrawer</title>
+<style>body{margin:0;padding:16px 20px;background:var(--white);color:var(--font-color);font-family:var(--font-body)}.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}.col{display:flex;flex-direction:column;gap:6px}.lbl{font-family:ui-monospace,monospace;font-size:10px;color:var(--dark-gray);margin:0}.sec{font-family:ui-monospace,monospace;font-size:10px;font-weight:var(--fw-bold);letter-spacing:.08em;text-transform:uppercase;color:var(--medium-blue);margin:14px 0 8px}.sec:first-child{margin-top:0}.dark{background:var(--dark-blue);border-radius:var(--radius-card);padding:14px}.stage{position:relative;overflow:hidden;border:var(--border-hairline) solid var(--line);border-radius:var(--radius-card);background:var(--light-gray);transform:translateZ(0)}</style></head>
+<body>
+<div id="root"></div>
+<script>
+var NS = window.UWeedDesignSystem_8df554, h = React.createElement, F = React.Fragment;
+function sec(t){return h("p",{className:"sec"},t);}
+function lbl(t){return h("p",{className:"lbl"},t);}
+function row(p){var k=[].slice.call(arguments,1);return h.apply(null,["div",Object.assign({className:"row"},p)].concat(k));}
+function ph(c,t,w,hh){w=w||600;hh=hh||600;return 'data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+hh+'"><rect width="'+w+'" height="'+hh+'" fill="'+c+'"/>'+(t?'<text x="'+w/2+'" y="'+(hh/2+hh*0.03)+'" font-family="DM Sans,sans-serif" font-size="'+Math.round(Math.min(w,hh)*0.07)+'" fill="#0B102A" text-anchor="middle">'+t+'</text>':'')+'</svg>');}
+var CD = NS.CartDrawer, CF = NS.CouponForm;
+var items=[
+  {id:"1",name:"CBD Öl 20% Vollspektrum",size:"10 ml",qty:1,price:"44.10 CHF",was:"49.00 CHF",sale:true,image:ph("#CED4F3","",128,128)},
+  {id:"2",name:"Slow Weed · Fedtnight",size:"3 g",qty:2,price:"53.60 CHF",image:ph("#D1EFE5","",128,128)},
+  {id:"3",name:"Hanftee Bio · Zitronenmelisse",size:"30 g",qty:1,price:"12.50 CHF",image:ph("#FFF5EB","",128,128)}];
+function Demo(){
+  var s = React.useState(items), list = s[0], set = s[1];
+  return h("div",{style:{display:"grid",gridTemplateColumns:"minmax(0,1fr) minmax(0,1fr)",gap:"var(--space-m)"}},
+    h("div",{className:"col"}, h("div",{className:"stage",style:{height:500}},
+      h(CD,{items:list,subtotal:"110.20 CHF",
+        onQuantityChange:function(id,n){set(list.map(function(i){return i.id===id?Object.assign({},i,{qty:n}):i;}));},
+        onRemove:function(id){set(list.filter(function(i){return i.id!==id;}));}}, h(CF,null))), lbl("with items")),
+    h("div",{className:"col"}, h("div",{className:"stage",style:{height:500}}, h(CD,{items:[]})), lbl("empty")));
+}
+ReactDOM.createRoot(document.getElementById("root")).render(h(Demo));
+</script>
+</body>
+</html>

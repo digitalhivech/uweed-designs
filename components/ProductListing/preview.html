@@ -1,0 +1,137 @@
+<!-- @dsCard group="Pages" height=2415 width=1280 subtitle="Category page per Category Filters Final: grey header band, tab nav, one pill per facet with checkbox panels, sort as action link, applied chips, tile grid" page -->
+<!DOCTYPE html><html lang="de"><head><meta charset="utf-8"><title>Product listing</title>
+<style>body{margin:0;background:var(--white);color:var(--font-color);font-family:var(--font-body)}</style>
+</head><body>
+<div id="root"></div>
+<script>
+/* listing-data.js */
+/* Sample catalogue for the Product listing template. Eight tiles covering all
+   four states — on sale · several sizes · sold out · full price — twice.
+   Imagery is a flat placeholder: the sources ship no product photography. */
+(() => {
+  const ph = (c) => "data:image/svg+xml;utf8," + encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" width="688" height="660"><rect width="688" height="660" fill="#fff"/><ellipse cx="344" cy="340" rx="190" ry="210" fill="' + c + '"/></svg>');
+  const base = { href: "#", cbd: "15%", thc: "0.7%" };
+  window.LISTING_DATA = {
+    crumbs: [{ label: "Startseite", href: "#" }, { label: "CBD Shop", href: "#" }, { label: "CBD Blüten" }],
+    tabs: [{ label: "Alle Blüten", active: true }, { label: "Indoor" }, { label: "Outdoor" }, { label: "Greenhouse" }, { label: "Small Buds" }].map((t) => ({ ...t, href: "#", onClick: (e) => e.preventDefault() })),
+    facets: [
+      { id: "brand", label: "Marke", options: [["Harlequin", 8], ["Slow Weed", 6], ["Sweed", 5], ["Qualicann", 4], ["B-Chill", 4], ["Herba di Berna", 3]] },
+      { id: "cbd", label: "CBD-Gehalt", options: [["unter 10%", 9], ["10 – 15%", 14], ["15 – 20%", 16], ["über 20%", 9]] },
+      { id: "grow", label: "Anbau", options: [["Indoor", 22], ["Greenhouse", 15], ["Outdoor", 11]] },
+      { id: "price", label: "Preis", options: [["unter 20 CHF", 12], ["20 – 40 CHF", 24], ["über 40 CHF", 12]] },
+      { id: "size", label: "Menge", options: [["2 g", 10], ["3 g", 26], ["5 g", 8], ["10 g", 4]] },
+    ],
+    sorts: ["Beliebtheit", "Preis aufsteigend", "Preis absteigend", "Neuheiten", "Beste Bewertung"],
+    products: [
+      { ...base, image: ph("#D1EFE5"), brand: "Harlequin", name: "Harlequin CBD Blüten Indoor", size: "3 g", price: "17.00 CHF", was: "20.00 CHF", unitPrice: "5.67 CHF / g", sale: true, bestseller: true, isNew: true, rating: "4.8", reviewCount: 212 },
+      { ...base, image: ph("#CED4F3"), brand: "Slow Weed", name: "Fedtnight Indoor", size: "3 g", sizes: true, price: "20.00 CHF", unitPrice: "5.00 CHF / g", bestseller: true, rating: "4.9", reviewCount: 341 },
+      { ...base, image: ph("#F4E2ED"), brand: "Sweed", name: "Purple Haze Greenhouse", size: "3 g", price: "20.00 CHF", unitPrice: "6.67 CHF / g", soldOut: true, rating: "4.5", reviewCount: 133 },
+      { ...base, image: ph("#FFF5EB"), brand: "Qualicann", name: "Swiss Indoor Small Buds", size: "3 g", price: "20.00 CHF", unitPrice: "6.67 CHF / g", bestseller: true, isNew: true, rating: "4.6", reviewCount: 89 },
+      { ...base, image: ph("#CED4F3"), brand: "B-Chill", name: "Lemon Haze Outdoor", size: "5 g", price: "22.50 CHF", was: "25.00 CHF", unitPrice: "4.50 CHF / g", sale: true, cbd: "12%", thc: "0.9%", rating: "4.4", reviewCount: 27 },
+      { ...base, image: ph("#D1EFE5"), brand: "Herba di Berna", name: "Kush Indoor", size: "2 g", sizes: true, price: "18.00 CHF", unitPrice: "9.00 CHF / g", isNew: true, cbd: "19%", thc: "0.8%", rating: "4.7", reviewCount: 58 },
+      { ...base, image: ph("#FFF5EB"), brand: "Genuine Swiss", name: "Alpine Outdoor", size: "10 g", price: "39.00 CHF", unitPrice: "3.90 CHF / g", soldOut: true, cbd: "9%", thc: "0.6%", rating: "4.2", reviewCount: 14 },
+      { ...base, image: ph("#F4E2ED"), brand: "Pure Production", name: "Strawberry Greenhouse", size: "3 g", price: "19.50 CHF", unitPrice: "6.50 CHF / g", cbd: "14%", thc: "0.7%", rating: "4.8", reviewCount: 176 },
+    ],
+  };
+})();
+
+/* ProductListing */
+(() => {
+  const { Breadcrumb, TabNav, FilterPill, Popover, PopoverItem, Checkbox, SortButton, Badge, Link, ProductTile, Pagination } = window.UWeedDesignSystem_8df554;
+  const d = window.LISTING_DATA;
+  const clone = (o) => JSON.parse(JSON.stringify(o));
+  function ProductListing({ lang = "de" }) {
+    const [open, setOpen] = React.useState(null);
+    const [sortOpen, setSortOpen] = React.useState(false);
+    const [sort, setSort] = React.useState(d.sorts[0]);
+    const [applied, setAppliedState] = React.useState({ brand: ["Harlequin"] });
+    React.useEffect(() => {
+      const onDoc = (e) => {
+        if (!e.target.closest || !e.target.closest("[data-fw]")) {
+          setOpen(null);
+          setSortOpen(false);
+        }
+      };
+      const onKey = (e) => {
+        if (e.key === "Escape") {
+          setOpen(null);
+          setSortOpen(false);
+        }
+      };
+      document.addEventListener("click", onDoc);
+      document.addEventListener("keydown", onKey);
+      return () => {
+        document.removeEventListener("click", onDoc);
+        document.removeEventListener("keydown", onKey);
+      };
+    }, []);
+    const setApplied = (fn) => setAppliedState((s) => {
+      const a = clone(s);
+      fn(a);
+      return a;
+    });
+    const toggleOption = (id, label) => setApplied((a) => {
+      const l = a[id] || [];
+      a[id] = l.includes(label) ? l.filter((x) => x !== label) : [...l, label];
+      if (!a[id].length) delete a[id];
+    });
+    const chips = [];
+    d.facets.forEach((f) => (applied[f.id] || []).forEach((v) => chips.push({ id: f.id, label: v })));
+    let count = 48;
+    d.facets.forEach((f) => {
+      const sel = applied[f.id];
+      if (sel && sel.length) count = Math.min(count, f.options.filter((o) => sel.includes(o[0])).reduce((n, o) => n + o[1], 0));
+    });
+    const countLabel = count + " Produkte";
+    return /* @__PURE__ */ React.createElement("div", { style: { maxWidth: "var(--container-xl)", margin: "0 auto", padding: "var(--space-m) var(--space-l) var(--space-3xl)", display: "flex", flexDirection: "column", gap: "var(--space-l)" } }, /* @__PURE__ */ React.createElement("div", { style: { display: "flex", flexDirection: "column", gap: "var(--space-m)", padding: "var(--space-l) var(--space-xl)", background: "var(--light-gray)", borderRadius: "var(--radius-card)" } }, /* @__PURE__ */ React.createElement(Breadcrumb, { items: d.crumbs, label: "Brotkrumen" }), /* @__PURE__ */ React.createElement("h1", { style: { margin: 0, fontFamily: "var(--font-heading)", fontWeight: "var(--fw-extrabold)", fontSize: "var(--fs-h1)", lineHeight: "var(--lh-h1)", letterSpacing: "var(--ls-h1)", color: "var(--heading-color)", textWrap: "balance" } }, "CBD Bl\xFCten"), /* @__PURE__ */ React.createElement("p", { style: { margin: 0, fontSize: "var(--fs-body)", lineHeight: 1.6, maxWidth: "var(--measure)" } }, "Indoor, Outdoor und Greenhouse aus Schweizer Anbau. Jede Charge wird im Labor gepr\xFCft und der Bericht liegt offen. Bestellungen vor 16:00 gehen am selben Tag raus.")), /* @__PURE__ */ React.createElement(TabNav, { label: "Produktkategorien", items: d.tabs }), /* @__PURE__ */ React.createElement("div", { style: { display: "flex", flexDirection: "column", gap: "var(--space-s)" } }, /* @__PURE__ */ React.createElement("div", { style: { display: "grid", gridTemplateColumns: "auto 1fr auto", alignItems: "center", gap: "var(--space-l)" } }, /* @__PURE__ */ React.createElement("div", { style: { display: "flex", flexWrap: "wrap", gap: "var(--space-xs)", minWidth: 0 } }, d.facets.map((f) => {
+      const sel = applied[f.id] || [];
+      return /* @__PURE__ */ React.createElement("div", { key: f.id, "data-fw": "1", style: { position: "relative" } }, /* @__PURE__ */ React.createElement(
+        FilterPill,
+        {
+          active: sel.length > 0,
+          open: open === f.id,
+          count: sel.length || void 0,
+          onClick: (e) => {
+            e.stopPropagation();
+            setOpen(open === f.id ? null : f.id);
+            setSortOpen(false);
+          }
+        },
+        f.label
+      ), open === f.id ? /* @__PURE__ */ React.createElement("div", { style: { position: "absolute", top: "calc(100% + var(--space-xs))", left: 0, zIndex: "var(--z-panel)" } }, /* @__PURE__ */ React.createElement(Popover, { behaviour: "panel", label: f.label, className: "uw-pop--check" }, f.options.map(([label, n]) => /* @__PURE__ */ React.createElement(Checkbox, { key: label, label: label + " (" + n + ")", checked: sel.includes(label), onChange: () => toggleOption(f.id, label) })))) : null);
+    })), /* @__PURE__ */ React.createElement("span", { "aria-live": "polite", style: { justifySelf: "center", fontSize: "var(--fs-small)", fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" } }, countLabel), /* @__PURE__ */ React.createElement("div", { style: { display: "flex", justifyContent: "flex-end", minWidth: 210 } }, /* @__PURE__ */ React.createElement("div", { "data-fw": "1", style: { position: "relative" } }, /* @__PURE__ */ React.createElement(
+      SortButton,
+      {
+        label: "Sortieren",
+        value: sort,
+        open: sortOpen,
+        onClick: (e) => {
+          e.stopPropagation();
+          setSortOpen(!sortOpen);
+          setOpen(null);
+        }
+      }
+    ), sortOpen ? /* @__PURE__ */ React.createElement("div", { style: { position: "absolute", top: "calc(100% + var(--space-xs))", right: 0, zIndex: "var(--z-panel)" } }, /* @__PURE__ */ React.createElement(Popover, { behaviour: "listbox", label: "Sortierung" }, d.sorts.map((label) => /* @__PURE__ */ React.createElement(
+      PopoverItem,
+      {
+        key: label,
+        as: "button",
+        type: "button",
+        selected: label === sort,
+        onClick: () => {
+          setSort(label);
+          setSortOpen(false);
+        },
+        style: { width: "100%", textAlign: "left", background: "none", border: 0, font: "inherit", color: "inherit", minHeight: 36, padding: "6px 12px", fontSize: 14 }
+      },
+      label
+    )))) : null))), chips.length ? /* @__PURE__ */ React.createElement("div", { style: { display: "flex", flexWrap: "wrap", alignItems: "center", gap: "var(--space-xs) var(--space-s)" } }, chips.map((c) => /* @__PURE__ */ React.createElement(Badge, { key: c.id + c.label, variant: "attribute", onRemove: () => toggleOption(c.id, c.label), removeLabel: "Filter " + c.label + " entfernen" }, c.label)), /* @__PURE__ */ React.createElement(Link, { variant: "action", href: "#", onClick: (e) => {
+      e.preventDefault();
+      setAppliedState({});
+    }, style: { fontSize: "var(--fs-small)" } }, "Alle Filter zur\xFCcksetzen")) : null), /* @__PURE__ */ React.createElement("div", { style: { display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: "var(--space-l)" } }, d.products.map((p) => /* @__PURE__ */ React.createElement(ProductTile, { key: p.brand + p.name, ...p, lang }))), /* @__PURE__ */ React.createElement("div", { style: { marginTop: "var(--space-l)" } }, /* @__PURE__ */ React.createElement(Pagination, { current: 1, total: 4, count: countLabel, hrefFor: (n) => "#seite-" + n })));
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(/* @__PURE__ */ React.createElement(ProductListing, null));
+})();
+</script>
+</body></html>

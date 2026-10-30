@@ -1,0 +1,769 @@
+{
+  "v": 3,
+  "assetGroups": {
+    "Logos": {
+      "name": "Logos",
+      "tile": "l",
+      "order": [
+        "uweed_logo_horizontal_dark-blue.svg",
+        "uweed_logo_horizontal_white.svg",
+        "uweed_logo_horizontal_dark-green.svg",
+        "uweed_logo_horizontal_dark-pink.svg",
+        "uweed_logo_horizontal_light-blue.svg",
+        "uweed_logo_horizontal_light-green.svg",
+        "uweed_logo_horizontal_light-pink.svg",
+        "uweed_logo_horizontal_black.svg",
+        "uweed_logo_horizontal-tagline_dark-blue.svg",
+        "uweed_logo_horizontal-tagline_white.svg",
+        "uweed_logo_horizontal-tagline_dark-green.svg",
+        "uweed_logo_horizontal-tagline_dark-pink.svg",
+        "uweed_logo_horizontal-tagline_light-blue.svg",
+        "uweed_logo_horizontal-tagline_light-green.svg",
+        "uweed_logo_horizontal-tagline_light-pink.svg",
+        "uweed_logo_horizontal-tagline_black.svg",
+        "uweed_mark_dark-blue.svg",
+        "uweed_mark_white.svg",
+        "uweed_mark_light-blue.svg",
+        "uweed_mark_light-green.svg",
+        "uweed_mark_light-pink.svg",
+        "uweed_mark_black.svg",
+        "uweed_badge_dark-blue.svg",
+        "uweed_badge_white.svg",
+        "uweed_badge_dark-green.svg",
+        "uweed_badge_dark-pink.svg",
+        "uweed_badge_light-blue.svg",
+        "uweed_badge_light-green.svg",
+        "uweed_badge_light-pink.svg",
+        "uweed_badge_black.svg",
+        "uweed_stamp_dark-blue.svg",
+        "uweed_stamp_white.svg",
+        "uweed_stamp_dark-green.svg",
+        "uweed_stamp_dark-pink.svg",
+        "uweed_stamp_light-blue.svg",
+        "uweed_stamp_light-green.svg",
+        "uweed_stamp_light-pink.svg",
+        "uweed_stamp_black.svg",
+        "uweed_favicon_32.png",
+        "uweed_favicon_180.png"
+      ],
+      "files": {
+        "uweed_favicon_180.png": {
+          "blob": "1c34ee6ef7d98d1ed417e4259ce6ee5c",
+          "name": "uweed_favicon_180.png",
+          "sha256": "d44428d74022255e5ddf919768d70cdcef35dfc8123e79938d0ffaf5355e34e0",
+          "size": 4209,
+          "type": "image/png"
+        },
+        "uweed_favicon_32.png": {
+          "blob": "4016c7f1f797b5cad1f7e3cb2316911d",
+          "name": "uweed_favicon_32.png",
+          "sha256": "eecdc5c3e0860a76967d5fc2ce263ef7cf272a8eb2cec803b01d4449d5c5bb37",
+          "size": 859,
+          "type": "image/png"
+        },
+        "uweed_logo_horizontal-tagline_black.svg": {
+          "blob": "fb8d049c9e39053a68d8161d0f8facde",
+          "name": "uweed_logo_horizontal-tagline_black.svg",
+          "sha256": "3f77f0ae337c1fa57472cb80e9971d13ea8a0156987912a1038bd22ae444c738",
+          "size": 8359,
+          "type": "image/svg+xml"
+        },
+        "uweed_logo_horizontal-tagline_dark-blue.svg": {
+          "blob": "d6d7600b6d27b0e8890808c5d8fdedb5",
+          "name": "uweed_logo_horizontal-tagline_dark-blue.svg",
+          "sha256": "292ff4b85f2a99a206372ac6cf2c878259331d4f84c9b2a3f2046ac187f5099b",
+          "size": 8359,
+          "type": "image/svg+xml"
+        },
+        "uweed_logo_horizontal-tagline_dark-green.svg": {
+          "blob": "3b035eec7bcf81e622c24b46cb5685f4",
+          "name": "uweed_logo_horizontal-tagline_dark-green.svg",
+          "sha256": "0a0a0fd9a12196b254885afa245bbdec35e91c7eaff0288c7925c50c2028d6ce",
+          "size": 8359,
+          "type": "image/svg+xml"
+        },
+        "uweed_logo_horizontal-tagline_dark-pink.svg": {
+          "blob": "0e1237cc24508748418b4baea493719e",
+          "name": "uweed_logo_horizontal-tagline_dark-pink.svg",
+          "sha256": "6b46ee50efe84c4ebe494686eed0bc568c317734f4e44bbba786ea4baac8ad18",
+          "size": 8359,
+          "type": "image/svg+xml"
+        },
+        "uweed_logo_horizontal-tagline_light-blue.svg": {
+          "blob": "cea0226ca91871d587111583cc5d4960",
+          "name": "uweed_logo_horizontal-tagline_light-blue.svg",
+          "sha256": "8677f5756be6e69795810fcd5ec58b4f0e6e7e703c67cacdfc6a39b817a3f528",
+          "size": 8359,
+          "type": "image/svg+xml"
+        },
+        "uweed_logo_horizontal-tagline_light-green.svg": {
+          "blob": "24f14884c23f5b12027be4f1554a5992",
+          "name": "uweed_logo_horizontal-tagline_light-green.svg",
+          "sha256": "53aafc2d76949da0caaf8e2dc8bb9f814014673455437527a5a8fd35490f1666",
+          "size": 8359,
+          "type": "image/svg+xml"
+        },
+        "uweed_logo_horizontal-tagline_light-pink.svg": {
+          "blob": "dfb2726dd48c8cb0e2711a8be3dec98f",
+          "name": "uweed_logo_horizontal-tagline_light-pink.svg",
+          "sha256": "09e06d3b12e9d20674019b3563fb627787069482c277c61d087048691c01db38",
+          "size": 8359,
+          "type": "image/svg+xml"
+        },
+        "uweed_logo_horizontal-tagline_white.svg": {
+          "blob": "ccac4413c3b24ecdda66aac2abd14406",
+          "name": "uweed_logo_horizontal-tagline_white.svg",
+          "sha256": "54023ec734e111dc75fc9543c76452668a5c9ea6c2aafa4d3edc62fc6bf19b7e",
+          "size": 8359,
+          "type": "image/svg+xml"
+        },
+        "uweed_logo_horizontal_black.svg": {
+          "blob": "4b8aa58033ffcca235879dae9d5e17b7",
+          "name": "uweed_logo_horizontal_black.svg",
+          "sha256": "d6fa5ccd20aa18b4a9cc525ca1c01b5bb344b4b57b498dc6adc2c712b4f16897",
+          "size": 1737,
+          "type": "image/svg+xml"
+        },
+        "uweed_logo_horizontal_dark-blue.svg": {
+          "blob": "1d680124e60ec7d4840c1826d71ebf89",
+          "name": "uweed_logo_horizontal_dark-blue.svg",
+          "sha256": "38bbf384da6f44822b12bc352b5257f70602c33c020bd330c08af4991df77f2f",
+          "size": 1737,
+          "type": "image/svg+xml"
+        },
+        "uweed_logo_horizontal_dark-green.svg": {
+          "blob": "5a994bbd5eaba9cdd646c54d3656019f",
+          "name": "uweed_logo_horizontal_dark-green.svg",
+          "sha256": "527c9bdeadb8905fb458b06e8dc20c925b4046b5c7131e61895c0dafffb7336e",
+          "size": 1737,
+          "type": "image/svg+xml"
+        },
+        "uweed_logo_horizontal_dark-pink.svg": {
+          "blob": "a261c6f54462808d47cb1ad3244a1351",
+          "name": "uweed_logo_horizontal_dark-pink.svg",
+          "sha256": "31d4e5da5c749a557c68ddb0916b2eef71291cc3872c886021d93f1e6c873d16",
+          "size": 1737,
+          "type": "image/svg+xml"
+        },
+        "uweed_logo_horizontal_light-blue.svg": {
+          "blob": "f37dcffa095d30100972b7397f4b6db4",
+          "name": "uweed_logo_horizontal_light-blue.svg",
+          "sha256": "92aa332fc91bc34335162706a8d361cdb9131f6defa0fdbfa779a1beeb244059",
+          "size": 1737,
+          "type": "image/svg+xml"
+        },
+        "uweed_logo_horizontal_light-green.svg": {
+          "blob": "1ce538cd04f1f7e3e1bb04a917ad9758",
+          "name": "uweed_logo_horizontal_light-green.svg",
+          "sha256": "c0b50ac0bdd4fb229e3093075e01b63e34d900dec0f291a75d11d22b27c96984",
+          "size": 1737,
+          "type": "image/svg+xml"
+        },
+        "uweed_logo_horizontal_light-pink.svg": {
+          "blob": "7da9c91446e40b153e49587f1d9b3375",
+          "name": "uweed_logo_horizontal_light-pink.svg",
+          "sha256": "c825fd4b5cecc68e5b8f05949a151e0aa82da58eabfaea156a07a4da0f02ab3a",
+          "size": 1737,
+          "type": "image/svg+xml"
+        },
+        "uweed_logo_horizontal_white.svg": {
+          "blob": "0a319c04304c116e0b6bad8bb8710802",
+          "name": "uweed_logo_horizontal_white.svg",
+          "sha256": "082b3d55b37ce09b31e0d2b532f1386af45b82b5e0a15df8d8aa66baf842f05c",
+          "size": 1737,
+          "type": "image/svg+xml"
+        },
+        "uweed_mark_black.svg": {
+          "blob": "03ec017362e19187358326d522be724b",
+          "name": "uweed_mark_black.svg",
+          "sha256": "55b4283a4fcd93a029d0dcb526404d6c438baf8a714b557b140832a0d43cd77b",
+          "size": 527,
+          "type": "image/svg+xml"
+        },
+        "uweed_mark_dark-blue.svg": {
+          "blob": "af965f7b92a6cb6e830c91531ab5a92a",
+          "name": "uweed_mark_dark-blue.svg",
+          "sha256": "23da010bb10f7913ea22f60ca8fd8c0723a3efb8528565720a767db451c0449f",
+          "size": 527,
+          "type": "image/svg+xml"
+        },
+        "uweed_mark_light-blue.svg": {
+          "blob": "efb085173eccb40bc8ddb3a0c0ca57b0",
+          "name": "uweed_mark_light-blue.svg",
+          "sha256": "28ce1d8dee86bdf48384d49568ad8975dbc0e7b806deebf66706e3eb33a52bad",
+          "size": 527,
+          "type": "image/svg+xml"
+        },
+        "uweed_mark_light-green.svg": {
+          "blob": "e3287947cc2fcfd789873c1b1aaf21b3",
+          "name": "uweed_mark_light-green.svg",
+          "sha256": "384492b0a0a7a9ebdb0cbe152f45457024acedadea67feb0f7b4f8d0f4e78bda",
+          "size": 527,
+          "type": "image/svg+xml"
+        },
+        "uweed_mark_light-pink.svg": {
+          "blob": "e44b252e16c25076af91e5a9c7fde55e",
+          "name": "uweed_mark_light-pink.svg",
+          "sha256": "00b196d4a657aee34864a8706fd9d6eecdadce0410c5755e345233afbd48fc0d",
+          "size": 527,
+          "type": "image/svg+xml"
+        },
+        "uweed_mark_white.svg": {
+          "blob": "db3936cf53c4dd55796299bec5156483",
+          "name": "uweed_mark_white.svg",
+          "sha256": "15359c84e17c2e8adda37954bb03551ee22d101138e4b48722f43903dd1db07d",
+          "size": 527,
+          "type": "image/svg+xml"
+        },
+        "uweed_badge_dark-blue.svg": {
+          "blob": "6b679e3d4024f29cb37ee6613ff4d195",
+          "name": "uweed_badge_dark-blue.svg",
+          "sha256": "262c9274b3e811539cd657b6db3354072318b80da99272d817ab3a381d98cd61",
+          "size": 18651,
+          "type": "image/svg+xml"
+        },
+        "uweed_badge_white.svg": {
+          "blob": "52f83161d3fb2b6c70415f3c92884ec5",
+          "name": "uweed_badge_white.svg",
+          "sha256": "04cf735282e8cc66e05a83210ddca95e6534f1c2ca32c00c3a7e2d42ab719852",
+          "size": 18651,
+          "type": "image/svg+xml"
+        },
+        "uweed_badge_dark-green.svg": {
+          "blob": "c045b7ec72c36340365af94bc8de8924",
+          "name": "uweed_badge_dark-green.svg",
+          "sha256": "4b7aad086487e42b5a53e8f60f7bf2d5eef8b5bdea7672010e0c37d5e7f682b0",
+          "size": 18651,
+          "type": "image/svg+xml"
+        },
+        "uweed_badge_dark-pink.svg": {
+          "blob": "aa5550119c759a3b1554436c9a93c396",
+          "name": "uweed_badge_dark-pink.svg",
+          "sha256": "d92aecbae71c3bc7794712aa521c4041eb5b675f548e799d750a4f7309e2bf46",
+          "size": 18651,
+          "type": "image/svg+xml"
+        },
+        "uweed_badge_light-blue.svg": {
+          "blob": "5f782a6701abd0c21b03ad8653104123",
+          "name": "uweed_badge_light-blue.svg",
+          "sha256": "08c495d6f5e137728491ca57bb5cbfdd5e9cad8f0554b93829fc411fca067f07",
+          "size": 18651,
+          "type": "image/svg+xml"
+        },
+        "uweed_badge_light-green.svg": {
+          "blob": "2e57d5770b6292e839395213de9f240c",
+          "name": "uweed_badge_light-green.svg",
+          "sha256": "821fa5a0372da5c4e09818cc8b9ac621d966c1c6186ab3460ef35512fb31284e",
+          "size": 18651,
+          "type": "image/svg+xml"
+        },
+        "uweed_badge_light-pink.svg": {
+          "blob": "69a7815a7c1b8018a1e2594375bd43e9",
+          "name": "uweed_badge_light-pink.svg",
+          "sha256": "8fb93b8fe83c608743aba2e688b614c5a692adbebca6a2818cfb255e0a0ed14a",
+          "size": 18651,
+          "type": "image/svg+xml"
+        },
+        "uweed_badge_black.svg": {
+          "blob": "265295375753caa8a7d381b18ae6da94",
+          "name": "uweed_badge_black.svg",
+          "sha256": "ebeee8de0bdfd96c68a665081e13da42d34102b1e16a71cefe84534502e36280",
+          "size": 18651,
+          "type": "image/svg+xml"
+        },
+        "uweed_stamp_dark-blue.svg": {
+          "blob": "2be1a8526c5e5ccd02ea680f9299c86d",
+          "name": "uweed_stamp_dark-blue.svg",
+          "sha256": "eb534224d0498d6cf4296bfb786609f34868f73ad6455ac7602ef10f3e0fb2ef",
+          "size": 35033,
+          "type": "image/svg+xml"
+        },
+        "uweed_stamp_white.svg": {
+          "blob": "b97df9dba508172f0453e65391362604",
+          "name": "uweed_stamp_white.svg",
+          "sha256": "463a8a0e21da0519ef62b81a108a11eb8f22915f99d6ff7b4dda9f80a915500b",
+          "size": 35033,
+          "type": "image/svg+xml"
+        },
+        "uweed_stamp_dark-green.svg": {
+          "blob": "f39f327b9e4f78adf3959891698ba931",
+          "name": "uweed_stamp_dark-green.svg",
+          "sha256": "d9d9230b8ad5b8400403c6bf2603642459bd14903bca1a1f1520d7e68bc001c0",
+          "size": 35033,
+          "type": "image/svg+xml"
+        },
+        "uweed_stamp_dark-pink.svg": {
+          "blob": "7a4c7c98e8e15fc6f48cb735f1bb5596",
+          "name": "uweed_stamp_dark-pink.svg",
+          "sha256": "120c9e43e392827e43e1df98294d95b68b3a16cde68b7c11cc2d7b5bbcef32dd",
+          "size": 35033,
+          "type": "image/svg+xml"
+        },
+        "uweed_stamp_light-blue.svg": {
+          "blob": "45924fc308f8b6652e7ba5c3a4c04574",
+          "name": "uweed_stamp_light-blue.svg",
+          "sha256": "0dafa34572a01bfe3ee9764f9ed7c2ca62a503ba9c9df3c195cddd0df845513e",
+          "size": 35033,
+          "type": "image/svg+xml"
+        },
+        "uweed_stamp_light-green.svg": {
+          "blob": "5b351c2937e446263811e4862019e40a",
+          "name": "uweed_stamp_light-green.svg",
+          "sha256": "07c9f11d6a115ede05cff64e3b9ebf0dc76aa060f3b94b53fb24d2cb6d8314c1",
+          "size": 35033,
+          "type": "image/svg+xml"
+        },
+        "uweed_stamp_light-pink.svg": {
+          "blob": "26addb4841f4a8d185c52d2b1dcf4138",
+          "name": "uweed_stamp_light-pink.svg",
+          "sha256": "34dcf89938971223ba7f93be6b669d14bdb68984bd2dedea794d1a53c8903f4f",
+          "size": 35033,
+          "type": "image/svg+xml"
+        },
+        "uweed_stamp_black.svg": {
+          "blob": "c4c15f27331e81a90bc53ffc53e8b9dc",
+          "name": "uweed_stamp_black.svg",
+          "sha256": "f242133766cc88a06ef48a62cca5d364c3f2da25e3c9f6e79f841f00a23603bc",
+          "size": 35033,
+          "type": "image/svg+xml"
+        }
+      }
+    },
+    "Icons": {
+      "name": "Icons",
+      "tile": "s",
+      "order": [
+        "adjustments-horizontal.svg",
+        "alert-circle.svg",
+        "alert-triangle.svg",
+        "arrow-back-up.svg",
+        "arrows-sort.svg",
+        "cannabis.svg",
+        "check.svg",
+        "chevron-down.svg",
+        "chevron-left.svg",
+        "chevron-right.svg",
+        "chevron-up.svg",
+        "circle-check.svg",
+        "circle-x.svg",
+        "clock.svg",
+        "credit-card.svg",
+        "external-link.svg",
+        "filter.svg",
+        "flask.svg",
+        "heart.svg",
+        "heart-filled.svg",
+        "help-circle.svg",
+        "info-circle.svg",
+        "leaf.svg",
+        "lock.svg",
+        "mail.svg",
+        "map-pin.svg",
+        "menu-2.svg",
+        "minus.svg",
+        "package.svg",
+        "phone.svg",
+        "plus.svg",
+        "rosette-discount.svg",
+        "search.svg",
+        "selector.svg",
+        "shield-check.svg",
+        "shopping-bag.svg",
+        "shopping-cart.svg",
+        "star-filled.svg",
+        "star.svg",
+        "tag.svg",
+        "trash.svg",
+        "truck.svg",
+        "user.svg",
+        "user-check.svg",
+        "world.svg",
+        "x.svg",
+        "zoom-in.svg"
+      ],
+      "files": {
+        "adjustments-horizontal.svg": {
+          "blob": "5dfbe0c60e65e773013d4ed3c35e33a2",
+          "name": "adjustments-horizontal.svg",
+          "sha256": "5d972a9b515a6aef1b947a6a2dd063a45202e885051e7b1a93b2a521e67f3840",
+          "size": 509,
+          "type": "image/svg+xml"
+        },
+        "alert-circle.svg": {
+          "blob": "7cf0a80c9c7bbb157c370169f3812654",
+          "name": "alert-circle.svg",
+          "sha256": "7dd3aed5f4e0bcfe97c6d785298e5af2920fe87c3a11a381ac019b21066bb57a",
+          "size": 294,
+          "type": "image/svg+xml"
+        },
+        "alert-triangle.svg": {
+          "blob": "e29a4b0f381ee7d5121c04efa2f6f966",
+          "name": "alert-triangle.svg",
+          "sha256": "521c57b0169e339e24bb4b498a18acea40ec633f3aacf3a678bbdc71add4d2e6",
+          "size": 394,
+          "type": "image/svg+xml"
+        },
+        "arrow-back-up.svg": {
+          "blob": "f3bf69d944fff8762885ecc4ed8579e1",
+          "name": "arrow-back-up.svg",
+          "sha256": "99064b236e757a6ee820aa16b25c306a1f2fd3632053ee1481d0538a37107a45",
+          "size": 264,
+          "type": "image/svg+xml"
+        },
+        "arrows-sort.svg": {
+          "blob": "a6ab27398bddae514a080197a4e187a9",
+          "name": "arrows-sort.svg",
+          "sha256": "aca7df39f8571dc14801bc3ddd90b84b9aab54c76e635a34ea205a26fd1843a5",
+          "size": 270,
+          "type": "image/svg+xml"
+        },
+        "cannabis.svg": {
+          "blob": "02f712d520b29e2fc69a3e476e4bba9a",
+          "name": "cannabis.svg",
+          "sha256": "655d4ef7afa796bc36558d314f8c4713c4b0d208a5b110fce8cf86d4fc5e3a24",
+          "size": 564,
+          "type": "image/svg+xml"
+        },
+        "check.svg": {
+          "blob": "8299ead0e5b5d3edf116a297423244a8",
+          "name": "check.svg",
+          "sha256": "74f7f3276d497da4a49c60c67c7ba07672160d1b292e9ae6e66e8e41e6b5b7d6",
+          "size": 221,
+          "type": "image/svg+xml"
+        },
+        "chevron-down.svg": {
+          "blob": "f6a3ddd27a205bef8c71bffbb06aaa2c",
+          "name": "chevron-down.svg",
+          "sha256": "8d67914b5f84bd33f66729dd5e2cbedad1346dce7f30f51ff6e3ba77c089a5b9",
+          "size": 218,
+          "type": "image/svg+xml"
+        },
+        "chevron-left.svg": {
+          "blob": "c14805ef648b65d984f0d2bc0b2cfc0a",
+          "name": "chevron-left.svg",
+          "sha256": "86522c32694a82ea41f9f88e4e29117adfc78866a81a75c622a74837bf428358",
+          "size": 219,
+          "type": "image/svg+xml"
+        },
+        "chevron-right.svg": {
+          "blob": "1462fc6bc8371ae5f1bf6de5b25fe197",
+          "name": "chevron-right.svg",
+          "sha256": "0455cfb2fcd4c33d9db2fbe2c6f06aba6eaa492ee487ba69fc7b3f650c042b94",
+          "size": 218,
+          "type": "image/svg+xml"
+        },
+        "chevron-up.svg": {
+          "blob": "46e6fe06cc182d449883caad5ab69ba7",
+          "name": "chevron-up.svg",
+          "sha256": "1b565f4135468d6b6e055eb5bc2f4a327d2a0c52750bed1762baebe07cc8a155",
+          "size": 219,
+          "type": "image/svg+xml"
+        },
+        "circle-check.svg": {
+          "blob": "513e59acb283bbeda8afc43a6a0f8cf3",
+          "name": "circle-check.svg",
+          "sha256": "2ef4f7ca1da2428b901aefdd875588cec69a9301a7690d71e0775f1fcc56e952",
+          "size": 273,
+          "type": "image/svg+xml"
+        },
+        "circle-x.svg": {
+          "blob": "8e4d4d602cbd762a4602374b7daefe77",
+          "name": "circle-x.svg",
+          "sha256": "fe518aedde7a4e5a5ad9bb51c10d882283fdffa3b6ad3e476497fb537717001b",
+          "size": 279,
+          "type": "image/svg+xml"
+        },
+        "clock.svg": {
+          "blob": "26cb0396874003ec1f28db14ae348351",
+          "name": "clock.svg",
+          "sha256": "aa17409b9d52bf78cdca816a599b511c8261ddbfdb3c9f0a4ff1c7c11a1678c1",
+          "size": 270,
+          "type": "image/svg+xml"
+        },
+        "credit-card.svg": {
+          "blob": "28c3b1415f146b125240e66c85d70acd",
+          "name": "credit-card.svg",
+          "sha256": "a2d95d43271f2a89a988318b6e40c51b2ab99dc0c6af8fd498b34a22e5ce0c5b",
+          "size": 368,
+          "type": "image/svg+xml"
+        },
+        "external-link.svg": {
+          "blob": "81e839715849223c8d134de37b26b6cb",
+          "name": "external-link.svg",
+          "sha256": "af5ee5705d1f3a492050bda0e0a2a3f54a06b9010d736c1c794f47c746a9f559",
+          "size": 322,
+          "type": "image/svg+xml"
+        },
+        "filter.svg": {
+          "blob": "f32e2d8d6beac7dc23b5ca4a30e363e0",
+          "name": "filter.svg",
+          "sha256": "277992fbe9e471fe561efed67259f0225ead76caec58e51ea53b06ba521c96f8",
+          "size": 307,
+          "type": "image/svg+xml"
+        },
+        "flask.svg": {
+          "blob": "bf019997e98d025044c2324ba88f9f67",
+          "name": "flask.svg",
+          "sha256": "643f0533cac2eb98f41571e1993b33991a83d30f94baecbfb9050ea52d003920",
+          "size": 319,
+          "type": "image/svg+xml"
+        },
+        "heart-filled.svg": {
+          "blob": "a32b97a8a5c6536f26e10674f82247fd",
+          "name": "heart-filled.svg",
+          "sha256": "00ad4420bde6afa6ba735d50c58c63c5f52244ba94a272e54beb471c1238c778",
+          "size": 342,
+          "type": "image/svg+xml"
+        },
+        "heart.svg": {
+          "blob": "fabc344e257075ed428a39834592d1b1",
+          "name": "heart.svg",
+          "sha256": "863d5d7068815e8a5fbf91e690de4ee42137af9dd57b1bfbee4989122234679e",
+          "size": 281,
+          "type": "image/svg+xml"
+        },
+        "info-circle.svg": {
+          "blob": "3834ca38df35314cd361feba374c9579",
+          "name": "info-circle.svg",
+          "sha256": "3a69000dcab13fbcaf15f3f9af095e4a45ec6f2916bbf52abc1cd6acfd592096",
+          "size": 298,
+          "type": "image/svg+xml"
+        },
+        "leaf.svg": {
+          "blob": "29d17f87574ae7415d469994f175c181",
+          "name": "leaf.svg",
+          "sha256": "8d720cf7e9e8221a9233ef623df5c777be1e29771a4715b266ad5ff42848d1a5",
+          "size": 333,
+          "type": "image/svg+xml"
+        },
+        "lock.svg": {
+          "blob": "61d05d5b6391c3deb6cfdb9723490382",
+          "name": "lock.svg",
+          "sha256": "c887b3a4e1fce574a609a0e5dab3aa0f98b95b5b2a3cb7cb4d38f6da6bce7376",
+          "size": 377,
+          "type": "image/svg+xml"
+        },
+        "mail.svg": {
+          "blob": "85817d53d5c33f077c38f3c6b3ab7ab4",
+          "name": "mail.svg",
+          "sha256": "fae555e16a201a3d716e2d9eb59a7f3dc89cd75bd86ea122a4318b67472840ce",
+          "size": 314,
+          "type": "image/svg+xml"
+        },
+        "map-pin.svg": {
+          "blob": "fc00e6862084c5d8e3bf94240476d5b4",
+          "name": "map-pin.svg",
+          "sha256": "085cb3daf8b9a23c6c293fca4fac08b1acea7f3b21dd902a0c68b5684c6f87e1",
+          "size": 336,
+          "type": "image/svg+xml"
+        },
+        "menu-2.svg": {
+          "blob": "11624a2ca61b26652d41af3dd832e54b",
+          "name": "menu-2.svg",
+          "sha256": "d5964cd717caf6196db45c0b39b517cba2e0bdb8f6ca026bb99fd127a4bb1e0b",
+          "size": 270,
+          "type": "image/svg+xml"
+        },
+        "minus.svg": {
+          "blob": "c1af764dbca2f3842aa0023a753b7cf3",
+          "name": "minus.svg",
+          "sha256": "99b64ad6b2ca50351420be7b4e761afe4470def947484afa2ec182b091186b17",
+          "size": 215,
+          "type": "image/svg+xml"
+        },
+        "package.svg": {
+          "blob": "e1d29aaf7e156485b297d61791b701fe",
+          "name": "package.svg",
+          "sha256": "7c3f0fe1b00e1bbe79ccf4503d79237676dd3aa64a9ee2be10a7ba5359a8d88b",
+          "size": 371,
+          "type": "image/svg+xml"
+        },
+        "phone.svg": {
+          "blob": "946ce2a7f29676e60e300e68e832cc8d",
+          "name": "phone.svg",
+          "sha256": "b1e576dbf50e548b825a3c7550afbb3110c375d555469682cdcaf68ec9481159",
+          "size": 305,
+          "type": "image/svg+xml"
+        },
+        "plus.svg": {
+          "blob": "36a23fee68a43d91ff045e16f77b6a53",
+          "name": "plus.svg",
+          "sha256": "390f845bb245f8c03c3b68bffef54b15c4911f531a03dce16576924fa20df094",
+          "size": 243,
+          "type": "image/svg+xml"
+        },
+        "rosette-discount.svg": {
+          "blob": "cdbc7281ddffa34d11f75fe58ff4fe8a",
+          "name": "rosette-discount.svg",
+          "sha256": "c0ff0358c8abd92a4aadc1744369e691e867f1c5fa3fae8a4e699bd620b49a59",
+          "size": 841,
+          "type": "image/svg+xml"
+        },
+        "search.svg": {
+          "blob": "27168ab3eddb1a53e1924f45e8573a9f",
+          "name": "search.svg",
+          "sha256": "9e7c6388fe3ef103b4aef912bf4f024b6746d07a89bbcfe819f156466135e6e5",
+          "size": 271,
+          "type": "image/svg+xml"
+        },
+        "selector.svg": {
+          "blob": "d3e04d61403803ecda9d01bbaaad2d35",
+          "name": "selector.svg",
+          "sha256": "e10b9c5aafbc138fc8300b9cccdd478f9ed904f5ff7ef0598388bda3bb1d7653",
+          "size": 253,
+          "type": "image/svg+xml"
+        },
+        "shield-check.svg": {
+          "blob": "be1daea4f4045e721184ae9bfeb587d6",
+          "name": "shield-check.svg",
+          "sha256": "141aa57c43fd9432b6770dc21832fbeb9338e64d5e42be30fab0af879e529b8b",
+          "size": 336,
+          "type": "image/svg+xml"
+        },
+        "shopping-bag.svg": {
+          "blob": "78e9a17e52d32dfd3e9ef75fae955374",
+          "name": "shopping-bag.svg",
+          "sha256": "67987fb661062bc3c7407b203764a3b131dcbc49dc82ee9aa06a127453b706db",
+          "size": 388,
+          "type": "image/svg+xml"
+        },
+        "shopping-cart.svg": {
+          "blob": "7bcb8f09b099bae7ea9a574d893400f2",
+          "name": "shopping-cart.svg",
+          "sha256": "5efe6830da8d54c866b5b82109744d17a1db920782b946fbd118ecbc78d51e0b",
+          "size": 363,
+          "type": "image/svg+xml"
+        },
+        "star-filled.svg": {
+          "blob": "8974246fc10b7cd1bcac4a8fab4799cb",
+          "name": "star-filled.svg",
+          "sha256": "c1a77ac9de2928b1618f130824b674cb716db6db5dc7c82aabb2a56f28cda0a5",
+          "size": 397,
+          "type": "image/svg+xml"
+        },
+        "star.svg": {
+          "blob": "fba03afabd6147c5c7534201b646d44c",
+          "name": "star.svg",
+          "sha256": "6c74a1e3cca73f97bca47b02b4f2613d082da57bbfd2c48c700178d07d7bc334",
+          "size": 323,
+          "type": "image/svg+xml"
+        },
+        "tag.svg": {
+          "blob": "7ee94e53092cb35aa745a69468d92e9f",
+          "name": "tag.svg",
+          "sha256": "671bb75485d204ed049404343da4061512ff2bb2321ccea81d73af9df0e11492",
+          "size": 420,
+          "type": "image/svg+xml"
+        },
+        "trash.svg": {
+          "blob": "508f517b42f411ac960d49dc400dcb8e",
+          "name": "trash.svg",
+          "sha256": "314e8adb22f2a6829f5b9a1862557b98804bb7a33703df7bca89a6525fdeaaaf",
+          "size": 392,
+          "type": "image/svg+xml"
+        },
+        "truck.svg": {
+          "blob": "cdbc9f1912d4411d3f6bfa3a6e6e000b",
+          "name": "truck.svg",
+          "sha256": "3b7b7f7426c893d66b61883fdcc6c41abcfe5927bdc9baf0019513bf28c52033",
+          "size": 372,
+          "type": "image/svg+xml"
+        },
+        "user-check.svg": {
+          "blob": "fb2d6b079095a37f95284c900eeea662",
+          "name": "user-check.svg",
+          "sha256": "dc6d105e5cc35bd870b24d6c5936418191ad51cb288fae02c98c5ffaedd5f726",
+          "size": 314,
+          "type": "image/svg+xml"
+        },
+        "user.svg": {
+          "blob": "74a3afa6278696a07b76c282a9d4c5d2",
+          "name": "user.svg",
+          "sha256": "7c005c05ccc6e2b70d51bf701189c5fccee84c7a4655b02c301da8c427dfb40c",
+          "size": 297,
+          "type": "image/svg+xml"
+        },
+        "world.svg": {
+          "blob": "8a61c0d58feda55cef599065dbacf06f",
+          "name": "world.svg",
+          "sha256": "d7ca8c53af2a99244522d1ca80660954b1a18a809f8c05a0d4a2120b5111219a",
+          "size": 384,
+          "type": "image/svg+xml"
+        },
+        "x.svg": {
+          "blob": "e1dec58eb097b13fb3e048b2d4baf19a",
+          "name": "x.svg",
+          "sha256": "76e196c23a8eb54641beb7bc013fcf832e9647b782a795399f299fcacff751e8",
+          "size": 245,
+          "type": "image/svg+xml"
+        },
+        "zoom-in.svg": {
+          "blob": "3b220f351f18a42d121128cc6f8ad830",
+          "name": "zoom-in.svg",
+          "sha256": "a609d67c87cba1bf69f43d23526fe09975009e18aeb35c73483ea5e4fd69ffb8",
+          "size": 325,
+          "type": "image/svg+xml"
+        },
+        "help-circle.svg": {
+          "blob": "9ed944017006ebffa441aa969ff1dc26",
+          "name": "help-circle.svg",
+          "sha256": "9ed2456c4b3b7dc333d3d2a008b75ba37ac9b9c58a3c9823524e81dc6e74cdee",
+          "size": 343,
+          "type": "image/svg+xml"
+        }
+      }
+    }
+  },
+  "blobs": {},
+  "createdOnFiles": {
+    "at": "2026-09-17T12:23:06.329Z",
+    "v": 1
+  },
+  "docs": {
+    "readme": "project/README.md",
+    "sections": [
+      "project/ui_kits/uweed-shop/README.md"
+    ]
+  },
+  "groups": [
+    "Logos",
+    "Icons"
+  ],
+  "layout": "files",
+  "libraries": [
+    {
+      "file": "components/lib/react.production.min.js",
+      "global": "React",
+      "name": "react",
+      "version": "18.3.1"
+    },
+    {
+      "file": "components/lib/react-dom.production.min.js",
+      "global": "ReactDOM",
+      "name": "react-dom",
+      "version": "18.3.1"
+    }
+  ],
+  "namespace": "UWeedDesignSystem_8df554",
+  "sections": {},
+  "source": {
+    "app": "claude-design",
+    "exportedAt": "2026-09-17T12:23:06.329Z",
+    "projectId": "8df554c2-917a-4ac9-869b-39fc51f70947",
+    "url": "https://claude.ai/design/p/8df554c2-917a-4ac9-869b-39fc51f70947",
+    "v": 1,
+    "upgradedAt": "2026-09-17T14:35:28Z"
+  },
+  "title": "uWeed Design System",
+  "lastChange": {
+    "by": "Loic",
+    "at": "2026-10-27T11:20:00Z",
+    "via": "Claude (Cowork)",
+    "note": "27 Oct 2026: one count style for the cart and favourites badges (dark blue, white bold number, 2px white ring); heart-filled added to the icon set for the header favourites icon once something is saved; user-check added for the header account icon when logged in (47 icons); counts above 99 show 99+. Badge, Icon, colour rules and token notes updated."
+  },
+  "upgraded": {
+    "v": 1,
+    "at": "2026-09-17T14:35:28Z",
+    "from": "claude-design"
+  }
+}

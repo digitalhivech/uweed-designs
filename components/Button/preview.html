@@ -1,0 +1,41 @@
+<!-- @dsCard group="Core" height=320 subtitle="Colour by purpose: buy advances a purchase, nav goes somewhere. Pills, caps, 44px" -->
+<!doctype html>
+<html lang="de">
+<head><meta charset="utf-8"><title>Button</title>
+<style>body{margin:0;padding:16px 20px;background:var(--white);color:var(--font-color);font-family:var(--font-body)}.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}.col{display:flex;flex-direction:column;gap:6px}.lbl{font-family:ui-monospace,monospace;font-size:10px;color:var(--dark-gray);margin:0}.sec{font-family:ui-monospace,monospace;font-size:10px;font-weight:var(--fw-bold);letter-spacing:.08em;text-transform:uppercase;color:var(--medium-blue);margin:14px 0 8px}.sec:first-child{margin-top:0}.dark{background:var(--dark-blue);border-radius:var(--radius-card);padding:14px}.stage{position:relative;overflow:hidden;border:var(--border-hairline) solid var(--line);border-radius:var(--radius-card);background:var(--light-gray);transform:translateZ(0)}
+/* Page-only: shows the hover look without a pointer. It mirrors the component's real :hover rule and is not part of the component. */
+.uw-btn.demo-hover.uw-btn--buy{background:var(--light-green);color:var(--dark-green)}</style></head>
+<body>
+<div id="root"></div>
+<script>
+var NS = window.UWeedDesignSystem_8df554, h = React.createElement, F = React.Fragment;
+function sec(t){return h("p",{className:"sec"},t);}
+function lbl(t){return h("p",{className:"lbl"},t);}
+function row(p){var k=[].slice.call(arguments,1);return h.apply(null,["div",Object.assign({className:"row"},p)].concat(k));}
+function ph(c,t,w,hh){w=w||600;hh=hh||600;return 'data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+hh+'"><rect width="'+w+'" height="'+hh+'" fill="'+c+'"/>'+(t?'<text x="'+w/2+'" y="'+(hh/2+hh*0.03)+'" font-family="DM Sans,sans-serif" font-size="'+Math.round(Math.min(w,hh)*0.07)+'" fill="#0B102A" text-anchor="middle">'+t+'</text>':'')+'</svg>');}
+var B = NS.Button;
+function Demo(){ return h(F,null,
+  sec("Variants — purpose, not prominence"),
+  row(null,
+    h(B,{variant:"buy"},"In den Warenkorb"),
+    h(B,{variant:"nav",href:"#"},"Jetzt entdecken"),
+    h(B,{variant:"outline"},"Weiter einkaufen"),
+    h(B,{variant:"apply"},"Anwenden"),
+    h(B,{variant:"text"},"Mehr anzeigen")),
+  sec("States"),
+  row(null,
+    h(B,{variant:"buy",className:"demo-hover"},"Hover"),
+    h(B,{variant:"buy",disabled:true},"In den Warenkorb"),
+    h(B,{variant:"unavailable"},"Ausverkauft"),
+    h(B,{variant:"buy",loading:true},"Lädt")),
+  sec("With icon · icon-only 44 × 44"),
+  row(null,
+    h(B,{variant:"buy",icon:"shopping-cart"},"Kaufen"),
+    h(B,{variant:"buy",iconOnly:true,icon:"shopping-cart","aria-label":"In den Warenkorb"}),
+    h(B,{variant:"nav",iconOnly:true,icon:"search","aria-label":"Suchen"}),
+    h(B,{variant:"unavailable",iconOnly:true,icon:"x","aria-label":"Ausverkauft",title:"Ausverkauft"})));
+}
+ReactDOM.createRoot(document.getElementById("root")).render(h(Demo));
+</script>
+</body>
+</html>
