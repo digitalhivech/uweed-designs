@@ -7,7 +7,7 @@ The design system there is the master. This copy exists so that other tools and 
 Never edit files here: a change made here is overwritten by the next copy. Change the design system,
 and the copy follows.
 
-Copied from version `1793344416-bb6e` on 2026-10-30. Last recorded change in the system: 2026-10-27T11:20:00Z (Loic). 27 Oct 2026: one count style for the cart and favourites badges (dark blue, white bold number, 2px white ring); heart-filled added to the icon set for the header favourites icon once something is saved; user-check added for the header account icon when logged in (47 icons); counts above 99 show 99+. Badge, Icon, colour rules and token notes updated.
+Copied from version `1793370745-aea7` on 2026-11-01. Last recorded change in the system: 2026-10-30T14:40:00Z (Loic). 30 Oct 2026: news added to the icon set for the Magazin link in the header menu (48 icons). Icon and Icons READMEs updated.
 
 ## What is where
 

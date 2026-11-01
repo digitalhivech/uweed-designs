@@ -204,7 +204,7 @@ Lay out with the Bootstrap 5.3 breakpoints `bs-breakpoint-sm` to `bs-breakpoint-
 
 ## Iconography
 
-The uWeed icon set is **[Tabler Icons](https://tabler.io/icons)**, a free open-source family (MIT licence), chosen in October 2026 because it is built the way the logo is: one even line, round ends, simple geometry. The 47 icons in use are in the **Icons** asset group and drawn by `Icon`, so they inherit `currentColor`.
+The uWeed icon set is **[Tabler Icons](https://tabler.io/icons)**, a free open-source family (MIT licence), chosen in October 2026 because it is built the way the logo is: one even line, round ends, simple geometry. The 48 icons in use are in the **Icons** asset group and drawn by `Icon`, so they inherit `currentColor`.
 
 - Render icons through `Icon` in four sizes: 16px in small controls (tags, filters, the quantity stepper, field hints), 20px in buttons, fields and messages, 24px for an icon on its own, 32px for an empty state. No other size; the one exception is the rating star on the product tile, 14px to match the text beside it.
 - Use **one line weight**: 2px on the 24px grid, at every size. Do not thin or thicken an icon to make it quieter or louder; change its size or colour.
@@ -277,7 +277,7 @@ A page built strictly against this system will not match production until the to
 ## Assets
 
 - **Logos**: the approved logo kit, 22 SVGs and 2 favicon PNGs, with the brand's usage guide (see Logo).
-- **Icons**: the 47 Tabler icons in use, as SVG files, with the licence (see Iconography).
+- **Icons**: the 48 Tabler icons in use, as SVG files, with the licence (see Iconography).
 
 ---
 

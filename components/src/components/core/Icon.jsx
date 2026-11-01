@@ -36,6 +36,7 @@ const PATHS = {
   "map-pin": "<path d=\"M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0\"></path><path d=\"M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0\"></path>",
   "menu-2": "<path d=\"M4 6l16 0\"></path><path d=\"M4 12l16 0\"></path><path d=\"M4 18l16 0\"></path>",
   "minus": "<path d=\"M5 12l14 0\"></path>",
+  "news": "<path d=\"M16 6h3a1 1 0 0 1 1 1v11a2 2 0 0 1 -4 0v-13a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1v12a3 3 0 0 0 3 3h11\"></path><path d=\"M8 8l4 0\"></path><path d=\"M8 12l4 0\"></path><path d=\"M8 16l4 0\"></path>",
   "package": "<path d=\"M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5\"></path><path d=\"M12 12l8 -4.5\"></path><path d=\"M12 12l0 9\"></path><path d=\"M12 12l-8 -4.5\"></path><path d=\"M16 5.25l-8 4.5\"></path>",
   "phone": "<path d=\"M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2\"></path>",
   "plus": "<path d=\"M12 5l0 14\"></path><path d=\"M5 12l14 0\"></path>",
@@ -83,4 +84,4 @@ export function Icon({ name, size = 24, strokeWidth = 2, color = "currentColor",
   );
 }
 
-export const ICON_NAMES = ["adjustments-horizontal","alert-circle","alert-triangle","arrow-back-up","arrows-sort","cannabis","check","chevron-down","chevron-left","chevron-right","chevron-up","circle-check","circle-x","clock","credit-card","external-link","filter","flask","heart","heart-filled","help-circle","info-circle","leaf","lock","mail","map-pin","menu-2","minus","package","phone","plus","rosette-discount","search","selector","shield-check","shopping-bag","shopping-cart","star","star-filled","tag","trash","truck","user","user-check","world","x","zoom-in"];
+export const ICON_NAMES = ["adjustments-horizontal","alert-circle","alert-triangle","arrow-back-up","arrows-sort","cannabis","check","chevron-down","chevron-left","chevron-right","chevron-up","circle-check","circle-x","clock","credit-card","external-link","filter","flask","heart","heart-filled","help-circle","info-circle","leaf","lock","mail","map-pin","menu-2","minus","news","package","phone","plus","rosette-discount","search","selector","shield-check","shopping-bag","shopping-cart","star","star-filled","tag","trash","truck","user","user-check","world","x","zoom-in"];

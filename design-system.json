@@ -361,6 +361,7 @@
         "map-pin.svg",
         "menu-2.svg",
         "minus.svg",
+        "news.svg",
         "package.svg",
         "phone.svg",
         "plus.svg",
@@ -522,6 +523,13 @@
           "size": 281,
           "type": "image/svg+xml"
         },
+        "help-circle.svg": {
+          "blob": "9ed944017006ebffa441aa969ff1dc26",
+          "name": "help-circle.svg",
+          "sha256": "9ed2456c4b3b7dc333d3d2a008b75ba37ac9b9c58a3c9823524e81dc6e74cdee",
+          "size": 343,
+          "type": "image/svg+xml"
+        },
         "info-circle.svg": {
           "blob": "3834ca38df35314cd361feba374c9579",
           "name": "info-circle.svg",
@@ -569,6 +577,13 @@
           "name": "minus.svg",
           "sha256": "99b64ad6b2ca50351420be7b4e761afe4470def947484afa2ec182b091186b17",
           "size": 215,
+          "type": "image/svg+xml"
+        },
+        "news.svg": {
+          "blob": "174b193e4182f194b39b6f3aa49c239d",
+          "name": "news.svg",
+          "sha256": "372070f119fd8c966a4df9368ae2f073e8bd73450167ab2b99ac701a78a81b03",
+          "size": 383,
           "type": "image/svg+xml"
         },
         "package.svg": {
@@ -703,13 +718,6 @@
           "sha256": "a609d67c87cba1bf69f43d23526fe09975009e18aeb35c73483ea5e4fd69ffb8",
           "size": 325,
           "type": "image/svg+xml"
-        },
-        "help-circle.svg": {
-          "blob": "9ed944017006ebffa441aa969ff1dc26",
-          "name": "help-circle.svg",
-          "sha256": "9ed2456c4b3b7dc333d3d2a008b75ba37ac9b9c58a3c9823524e81dc6e74cdee",
-          "size": 343,
-          "type": "image/svg+xml"
         }
       }
     }
@@ -757,9 +765,9 @@
   "title": "uWeed Design System",
   "lastChange": {
     "by": "Loic",
-    "at": "2026-10-27T11:20:00Z",
+    "at": "2026-10-30T14:40:00Z",
     "via": "Claude (Cowork)",
-    "note": "27 Oct 2026: one count style for the cart and favourites badges (dark blue, white bold number, 2px white ring); heart-filled added to the icon set for the header favourites icon once something is saved; user-check added for the header account icon when logged in (47 icons); counts above 99 show 99+. Badge, Icon, colour rules and token notes updated."
+    "note": "30 Oct 2026: news added to the icon set for the Magazin link in the header menu (48 icons). Icon and Icons READMEs updated."
   },
   "upgraded": {
     "v": 1,
