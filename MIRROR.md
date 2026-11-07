@@ -7,7 +7,7 @@ The design system there is the master. This copy exists so that other tools and 
 Never edit files here: a change made here is overwritten by the next copy. Change the design system,
 and the copy follows.
 
-Copied from version `1793370745-aea7` on 2026-11-01. Last recorded change in the system: 2026-10-30T14:40:00Z (Loic). 30 Oct 2026: news added to the icon set for the Magazin link in the header menu (48 icons). Icon and Icons READMEs updated.
+Copied from version `1793948061-6b2f` on 2026-11-07. Last recorded change in the system: 2026-11-06T07:00:00Z (Loic). 6 Nov 2026: Checkbox and radio box now sit on the label's first line instead of centring on a wrapped label; row height set by --uw-check-row. bundle.css and Checkbox README updated.
 
 ## What is where
 

@@ -765,9 +765,9 @@
   "title": "uWeed Design System",
   "lastChange": {
     "by": "Loic",
-    "at": "2026-10-30T14:40:00Z",
+    "at": "2026-11-06T07:00:00Z",
     "via": "Claude (Cowork)",
-    "note": "30 Oct 2026: news added to the icon set for the Magazin link in the header menu (48 icons). Icon and Icons READMEs updated."
+    "note": "6 Nov 2026: Checkbox and radio box now sit on the label's first line instead of centring on a wrapped label; row height set by --uw-check-row. bundle.css and Checkbox README updated."
   },
   "upgraded": {
     "v": 1,

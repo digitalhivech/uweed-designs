@@ -378,8 +378,11 @@ h6{font-size:var(--fs-h6);font-weight:var(--fw-semibold);line-height:var(--lh-h6
 .uw-select__option[aria-selected="true"]::after{content:"";width:14px;height:9px;margin-left:auto;border-left:var(--border-emphasis) solid currentColor;border-bottom:var(--border-emphasis) solid currentColor;transform:rotate(-45deg) translate(1px,-2px)}
 
 /* ---- 4 · Checkbox and radio ---------------------------------------- */
-.uw-check{display:flex;align-items:center;gap:var(--space-xs);min-height:44px;cursor:pointer;font-family:var(--ff-body);font-size:var(--fs-body);color:var(--dark-gray)}
-.uw-check .uw-check__input{appearance:none;-webkit-appearance:none;flex:0 0 auto;width:20px;height:20px;margin:0;background:var(--white);border:var(--border-hairline) solid var(--line);border-radius:var(--radius-checkbox);cursor:pointer;display:inline-grid;place-content:center;transition:background-color var(--motion-fast) var(--motion-ease),border-color var(--motion-fast) var(--motion-ease)}
+/* The box sits on the label's FIRST line, never centred on a label that wraps.
+   --uw-check-row is the row's minimum height; the vertical padding centres a
+   one-line label in it. Contexts change the variable, never min-height. */
+.uw-check{--uw-check-row:44px;display:flex;align-items:flex-start;gap:var(--space-xs);min-height:var(--uw-check-row);padding-block:9px;padding-block:max(0px,calc((var(--uw-check-row) - 1lh) / 2));cursor:pointer;font-family:var(--ff-body);font-size:var(--fs-body);color:var(--dark-gray)}
+.uw-check .uw-check__input{appearance:none;-webkit-appearance:none;flex:0 0 auto;width:20px;height:20px;font:inherit;margin:3px 0 0;margin:calc((1lh - 20px) / 2) 0 0;background:var(--white);border:var(--border-hairline) solid var(--line);border-radius:var(--radius-checkbox);cursor:pointer;display:inline-grid;place-content:center;transition:background-color var(--motion-fast) var(--motion-ease),border-color var(--motion-fast) var(--motion-ease)}
 .uw-check--radio .uw-check__input{border-radius:50%}
 .uw-check .uw-check__input::after{content:"";width:10px;height:10px;transform:scale(0);transition:transform var(--motion-fast) var(--motion-ease);box-shadow:inset 1em 1em var(--white);clip-path:polygon(14% 44%,0 65%,50% 100%,100% 16%,80% 0%,43% 62%)}
 .uw-check--radio .uw-check__input::after{width:8px;height:8px;border-radius:50%;clip-path:none}
@@ -534,7 +537,7 @@ h6{font-size:var(--fs-h6);font-weight:var(--fw-semibold);line-height:var(--lh-h6
 .uw-acc--filter .uw-acc__panel{margin-top:-6px;padding-bottom:6px}
 .uw-acc--filter .uw-acc__item{border-bottom:var(--border-hairline) solid var(--line)}
 .uw-acc--filter > :last-child .uw-acc__item,.uw-acc--filter > .uw-acc__item:last-child{border-bottom:0}
-.uw-acc--filter .uw-check{min-height:32px;font-size:var(--fs-small)}
+.uw-acc--filter .uw-check{--uw-check-row:32px;font-size:var(--fs-small)}
 .uw-acc--filter .uw-check-group__legend{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .uw-acc__panel p{margin:0 0 var(--space-xs)}
 .uw-acc__panel p:last-child{margin-bottom:0}
@@ -606,7 +609,7 @@ h6{font-size:var(--fs-h6);font-weight:var(--fw-semibold);line-height:var(--lh-h6
    "Alpinols (8)", 32px, 14px, hover --light-blue. No footer, no per-facet
    clear (the applied-chips row and "Reset all filters" do that job). */
 .uw-pop--check{display:flex;flex-direction:column;gap:2px}
-.uw-pop--check .uw-check{min-height:32px;padding:0 var(--space-xs);border-radius:var(--radius-inner);font-size:var(--fs-small)}
+.uw-pop--check .uw-check{--uw-check-row:32px;padding-inline:var(--space-xs);border-radius:var(--radius-inner);font-size:var(--fs-small)}
 @media (hover:hover) and (pointer:fine){.uw-pop--check .uw-check:hover{background:var(--light-blue)}
 /* medium-gray on light-blue is 3.43:1; the count takes the label's dark-gray while the row is hovered. */
 .uw-pop--check .uw-check:hover .uw-check__count{color:var(--dark-gray)}}
@@ -1265,7 +1268,7 @@ h6{font-size:var(--fs-h6);font-weight:var(--fw-semibold);line-height:var(--lh-h6
 .uw-fpanel .uw-acc__heading{display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-s)}
 .uw-fpanel__name{flex:0 0 auto}
 .uw-fpanel__chosen{min-width:0;font-family:var(--ff-body);font-size:var(--fs-small);font-weight:var(--fw-regular);letter-spacing:0;color:var(--dark-gray);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.uw-fpanel .uw-acc--filter .uw-check{min-height:44px}
+.uw-fpanel .uw-acc--filter .uw-check{--uw-check-row:44px}
 .uw-fpanel__foot{flex:0 0 auto;display:flex;align-items:center;gap:var(--space-m);padding:var(--space-s) var(--space-m);border-top:var(--border-hairline) solid var(--line);background:var(--white)}
 .uw-fpanel__foot .uw-btn{flex:1}
 .uw-fpanel__reset{flex:0 0 auto;min-height:44px;padding:0;border:0;background:none;font-family:var(--ff-body);font-size:var(--fs-small);white-space:nowrap;cursor:pointer}
@@ -1284,5 +1287,5 @@ h6{font-size:var(--fs-h6);font-weight:var(--fw-semibold);line-height:var(--lh-h6
 .uw-qty--md .uw-qty__down::after{left:-6px}
 .uw-qty--md .uw-qty__up::after{right:-6px}
 .uw-sw button::after{content:"";position:absolute;left:0;right:0;top:50%;height:44px;transform:translateY(-50%)}
-.uw-acc--filter .uw-check,.uw-pop--check .uw-check{min-height:44px}
+.uw-acc--filter .uw-check,.uw-pop--check .uw-check{--uw-check-row:44px}
 }
