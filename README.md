@@ -2,7 +2,7 @@ The design system for **uweed.ch**, a Swiss CBD and hemp marketplace selling flo
 
 This system is the single source of truth for uWeed's design. A value is declared in its tokens and nowhere else, and each component's guidelines own its anatomy, states and behaviour. Where the live site differs, the difference is recorded and decided case by case; it is never copied in silently. Never declare a value of your own: use a token, and if no token fits, raise it rather than inventing one. Nothing is rounded to a 4/8px grid or borrowed from a framework default.
 
-The content rules below follow two of uWeed's source documents, **04 Tone of Voice** (v1.1) and **05 Localisation Rules** (v1.2). Those documents remain the full reference for writing; this system carries the parts that shape the interface. Where the sources disagreed, the decisions of October 2026 are recorded under *Punctuation and symbols*. **11 Visual Identity** has not been written, so photography and illustration are still absent here and must not be inferred. The logo kit was supplied separately and is in this system (see Logo).
+The content rules below follow two of uWeed's source documents, **04 Tone of Voice** (v1.1) and **05 Localisation Rules** (v1.2). Those documents remain the full reference for writing; this system carries the parts that shape the interface. Where the sources disagreed, the decisions of October 2026 are recorded under *Punctuation and symbols*. **11 Visual Identity** has not been written, so photography and illustration are still absent here and must not be inferred. The visual treatment of imagery is in the **uWeed Imagery Master Guide**; this system holds the sizing, framing and display rules for category images and partner logos (see *Imagery*). The logo kit was supplied separately and is in this system (see Logo).
 
 ---
 
@@ -117,7 +117,7 @@ Name icon-only controls, count badges and remove buttons in full sentences, and 
 | **Blue** (`dark-blue`, `medium-blue`, `light-blue`) | Brand, structure, navigation | Headings, links, focus rings, tab nav active, filter and sort controls, the footer, overlay surfaces, prices, the count badges on the cart and favourites icons |
 | **Green** (`dark-green`, `medium-green`, `light-green`) | Commerce, the purchase path | Add to cart, checkout, in stock, the New badge, the brand line on a product tile |
 | **Pink** (`dark-pink`, `medium-pink`, `light-pink`) | uWeed informing or inviting, never selling | Blog category labels, pink icon discs in informing blocks, the small label of an informing block. Never a background |
-| **Orange** (`medium-orange`, `light-orange`) | Worth noticing: recognition and heads-up | Rating stars, Bestseller, loyalty, referral, the low-stock dot, the warning note |
+| **Orange** (`medium-orange`, `light-orange`) | Worth noticing: recognition and heads-up | Rating stars, Bestseller, loyalty, referral, the low-stock dot, the warning note. `dark-orange` is not an interface colour: see *Vertical colours* |
 | **Red** (`medium-red`, `light-red`) | Attention: what must not be missed | Errors, destructive actions, sale price, discount badge, the favourites heart (filled once something is saved; its count stays dark blue) |
 | **Grey** (`dark-gray`, `medium-gray`, `light-gray`, `line`) | Surface, structure, unavailability | Backgrounds, borders, disabled controls, metadata, attribute chips, out of stock |
 
@@ -141,11 +141,39 @@ Pink is uWeed speaking about itself or inviting the visitor, on content that inf
 - **Saturated on controls, tint on labels.** A `dark-*` fill with white text says what will happen; a `light-*` tint with dark text says what kind of thing this is.
 - **Inactive is not grey.** Grey means unavailable. An available, idle control stays white with a `line` hairline and dark text.
 - **Pair by the table, not by eye.** `font-color` on `white` is 10.86:1 and on `light-gray` 9.96:1. White on `dark-blue` 18.72:1, `dark-green` 6.65:1, `dark-pink` 6.07:1. `dark-blue` on `medium-orange` 9.21:1. A mid-tone never takes white text; give it `dark-blue`. The one exception is `medium-red`. `light-*` tints are backgrounds only. `medium-gray` is the quiet text colour: `#6F6F6F`, 5.02:1 on `white` and 4.61:1 on `light-gray`, so dates, hints, breadcrumb links, unselected tabs and the hint text inside fields all pass. It was darkened from `#767676` in October 2026 for the hint text, which sits on `light-gray`. The brand book grey (`#999999`, 2.85:1) was too faint for text.
-- **Message icons sit on a disc.** Each of the five message types carries its icon on a disc in its own colour: white on `medium-gray`, `medium-blue`, `dark-green` and `medium-red`, and `dark-blue` on the `medium-orange` disc of the warning (9.21:1), because white on `medium-orange` is 2.03:1 and `medium-orange` on `light-orange` 1.89:1. The palette keeps two orange tones.
+- **Message icons sit on a disc.** Each of the five message types carries its icon on a disc in its own colour: white on `medium-gray`, `medium-blue`, `dark-green` and `medium-red`, and `dark-blue` on the `medium-orange` disc of the warning (9.21:1), because white on `medium-orange` is 2.03:1 and `medium-orange` on `light-orange` 1.89:1. The interface uses two orange tones; `dark-orange` belongs to the snus vertical's creative assets.
 - **The red was darkened in October 2026**, from `#EE2E31` to `#D6252A`, so that small white text on it passes: white on `medium-red` is 5.05:1. It is the one medium tone that takes white text.
 - **The selected category tab is dark blue.** Confirmed in October 2026. The green on the live site is an accident in its code and is to be corrected there, not copied here.
 - **One thin line.** Every hairline is `line`, `#E7E7E9`. The `#E4E4E4` named in the old search bar and mini cart specs is retired.
 - **Write colours as hex**, alpha as 8-digit `#RRGGBBAA`, never `rgba()`.
+
+### Vertical colours: one family per shop (November 2026)
+
+uWeed is growing from the CBD shop into further shop verticals. Each vertical takes one colour family for its **category imagery, illustrative packaging and related creative assets**. The assignment below was decided in November 2026; the four new values (`dark-orange`, `dark-brown`, `medium-brown`, `light-brown`) are an initial proposal, still to be refined visually. The `VerticalColours` foundations page shows all five families side by side.
+
+| Vertical | Family | Dark | Medium | Light |
+|---|---|---|---|---|
+| CBD / CBG shop | Green | `dark-green` #286754 | `medium-green` #4ABD9A | `light-green` #D1EFE5 |
+| Vape shop | Blue | `dark-blue` #0B102A | `medium-blue` #334BC1 | `light-blue` #CED4F3 |
+| Headshop | Pink | `dark-pink` #78596F | `medium-pink` #DBABCF | `light-pink` #F4E2ED |
+| Snus shop | Orange | `dark-orange` #AD5200 *(new)* | `medium-orange` #FFA033 | `light-orange` #FFF5EB |
+| Tobacco shop | Brown *(new)* | `dark-brown` #4A2E22 | `medium-brown` #A3784F | `light-brown` #EADCC8 |
+
+- **The interface does not change.** Blue still navigates, green still buys, orange is still the heads-up, red still marks what must not be missed, and pink keeps its informing role. A vertical colour never becomes a button, link, badge, message or state, and a vertical's pages use the same interface colours as every other page. Brown and `dark-orange` have no job in the interface.
+- **What stays shared.** The navy (`dark-blue`) engraving style and the logo geometry are the same in every vertical. Third-party product packaging is shown as it is, never recoloured.
+- **Contrast follows the palette rule.** Dark tones take white: `dark-orange` 5.27:1, `dark-brown` 12.32:1. Medium tones take `dark-blue`: `medium-brown` 4.78:1 (white is 3.92:1, large text only). Light tones are backgrounds: `dark-orange` on `light-orange` 4.90:1, `dark-brown` on `light-brown` 9.13:1.
+- **Navy engraving needs a light or medium ground.** Navy lines are a graphic, so they need 3:1. They hold on every light tone and on `medium-green`, `medium-pink`, `medium-orange` and `medium-brown`, but not on `medium-blue` (2.60:1), `dark-green` (2.82:1) or `dark-brown` (1.52:1), and not on `dark-blue`, which is the navy itself. On those grounds draw the engraving white.
+- **Orange and brown are kept apart by saturation and lightness**, not by hue: they share a warm hue. Measured colour difference (CIEDE2000): `dark-orange` to `medium-brown` 14.3, `dark-orange` to `dark-brown` 25.6, `medium-orange` to `medium-brown` 20.9, `light-orange` to `light-brown` 6.7. The two light tints are the closest pair: distinct side by side, close on their own. Do not use them next to each other as the only signal of which vertical a visitor is in.
+
+**Decisions (November 2026).** These close questions that came up while the families were set; keep them unless they are reopened as a decision.
+
+1. **Snus is orange, the headshop is pink, not the other way round.** Snus and tobacco are both nicotine products, and orange beside brown reads as one warm pair. The headshop sells accessories, not something consumed, and sits apart in its own family; the muted pink suits it. A pastel pink on nicotine products could read as youthful, and Swiss tobacco law restricts nicotine advertising that appeals to minors: compliance checks the creative of both nicotine verticals whatever their colour.
+2. **The interface keeps `medium-orange`; snus imagery leads with `dark-orange`.** Stars, the Bestseller badge and the low-stock dot already use `medium-orange`. Snus banners, tiles and illustrated packaging are built on `dark-orange` and the `light-orange` ground, with `medium-orange` only as a small accent inside an illustration, never as a large surface. A Bestseller badge therefore never stands against the same orange as the picture behind it.
+3. **Vertical colours stay inside imagery.** On a vertical's pages, buttons, filters, badges, messages and the header keep the interface colours. Nothing in the interface turns orange, pink or brown because a visitor is in that vertical.
+4. **Badges never sit on category imagery.** Product tiles show the real packaging on `white`, as the system already requires, so a snus product tile is not orange. Only category tiles and banners carry the vertical colour, and they carry no Bestseller badge, stars or stock dot.
+5. **The warning note stays as it is.** It shares the `light-orange` ground with the snus tint, but its edge, icon disc and title make it read as a message. Check it on real snus pages once they exist.
+6. **No new colour for recognition.** A separate gold for stars and Bestseller was considered and not added: stars are expected to be gold or orange, gold cannot take white text, and rules 2 to 4 already keep the oranges apart. If Bestseller badges get lost on real snus pages, adjust the badge, not the palette.
+7. **Brown and `dark-orange` have no interface job.** They exist for the tobacco and snus verticals' creative assets only, like `medium-pink`, which has none either.
 
 ### Type
 
@@ -231,9 +259,58 @@ The approved kit (August 2026) is in the **Logos** asset group and shown on the 
 - **Not for** the favicon, the age gate, the header or any control.
 - **In React** use `Logo`, which inlines the same artwork and accepts only the approved colourways. The age gate shows the dark-blue mark with no disc behind it.
 
-### No imagery yet
+### Imagery
 
-⚠️ **No photography or illustration exists in the sources.** Every image in the previews is a flat token-coloured placeholder. Blog imagery is **16:9 everywhere, from one source file**: the featured image at the top of an article, the card on a desktop and the row on a phone all show the same cut. No place gets its own crop or its own shape.
+The look of uWeed's imagery is defined in the **[uWeed Imagery Master Guide](https://docs.google.com/document/d/1UlCUc-Xgds9ZIqRwG1SAkIVsz2cYtQL2rLFGwwReWzU/edit)**. This system holds the sizing, framing and display rules for two kinds of image: product category images and partner brand logos (November 2026). The files themselves are not in this system: every image in the previews is a placeholder that shows the framing, not artwork. The `Imagery` foundations page shows both rules side by side, on a desktop and a 380px phone.
+
+Blog imagery is **16:9 everywhere, from one source file**: the featured image at the top of an article, the card on a desktop and the row on a phone all show the same cut. No place gets its own crop or its own shape. Product photography, blog images, banners and the uWeed logo keep their own rules; the two below apply to category images and partner logos only.
+
+#### Product category images
+
+**Asset.** A square 1:1 canvas, master size **1254 × 1254 px**, transparent outside the artwork. One square image serves every placement: category tiles, carousels, and category tiles inside a full-width homepage section.
+
+**Framing.** These measurements are visual guides; allow modest optical adjustment for different product shapes.
+
+- About **8–10% transparent space at the top and bottom**, and **at least about 8% at the sides**. A narrow composition naturally keeps more at the sides.
+- The visible base of the composition sits near **91% of the canvas height**, so a row of images shares one baseline.
+- Balance the apparent size of compositions shown together. Keep each object's natural proportions, and keep the whole product, its packaging, engraving and labels visible.
+- The category heading belongs to the interface, outside the image. Text printed on packaging stays part of the artwork.
+- Category artwork uses the current paper-free composition: no torn paper beneath the products.
+
+**Display.**
+
+- Show the **entire square** with `object-fit: contain`, in a frame of `aspect-ratio: var(--category-frame-ratio)`.
+- Keep the asset's transparency and its built-in margins. Never crop, stretch, or add padding around the image: the margins in the file are the spacing.
+- The frame stays square on desktop and mobile; its width follows the layout. A carousel or section may run full width; each image in it stays square.
+- No background behind the image: it sits on whatever surface the tile has, so a transparent file never shows a white rectangle.
+
+#### Partner brand logos
+
+These rules cover supplier and partner brand logos, not the uWeed logo (see *Logo*).
+
+**Asset.** A horizontal **2:1** canvas, output size **1200 × 600 px**. Transparent surroundings, unless a background is an intended part of the logo itself. Keep the supplier's original master separately, preferably a vector or a genuinely high-resolution file.
+
+**Framing.**
+
+- Centre the logo within the canvas. Its visible artwork stays within **1056 × 456 px: 88% of the width and 76% of the height**, which leaves at least **72 px clear on each side** of a 1200 × 600 px canvas. A narrow or tall logo naturally keeps more space on some sides.
+- Aim for comparable visual presence across a row of logos while respecting the difference between a horizontal wordmark, a square mark and a circular emblem.
+- Use the exact approved artwork: its colours, wording, symbols and tagline. Never redraw, stretch, crop, recolour or substitute another version.
+
+**Display.**
+
+- Show the complete **2:1 frame** with `object-fit: contain`, in a frame of `aspect-ratio: var(--brand-logo-frame-ratio)`.
+- Do not trim the transparent margins built into a standardised logo, and do not add a second layer of padding.
+- The same framing applies on desktop and mobile. The component decides the display size: 1200 × 600 px is the asset canvas, not an on-screen size.
+- Where only an opaque, white-background supplier file exists, mark it as such and show it on a `white` surface until a transparent master arrives.
+- A larger canvas made from a small image adds no detail. Flag low-resolution source artwork for replacement.
+
+**Accessible names.** A logo that is the only content of a link names the link: `alt="Sweed"` (the brand's name, no "Logo"). A logo or category image next to link text that already says the same thing is decorative: `alt=""`.
+
+```css
+/* Category image and partner logo: the frame sets the shape, the file sets the spacing */
+.category-image { aspect-ratio: var(--category-frame-ratio); width: 100%; height: auto; object-fit: contain; background: none; }
+.brand-logo     { aspect-ratio: var(--brand-logo-frame-ratio); width: 100%; height: auto; object-fit: contain; background: none; }
+```
 
 ---
 
@@ -253,7 +330,7 @@ Each component has a live preview, its guidelines and its types:
 
 Two more groups show the system in use rather than one component at a time:
 
-- **Foundations** shows the tokens as specimens, and the logo: `Colours`, `ColourPairings`, `Typography`, `SpacingAndShape`, `MotionAndStacking`, `Logo`.
+- **Foundations** shows the tokens as specimens, and the logo: `Colours`, `ColourPairings`, `VerticalColours`, `Typography`, `SpacingAndShape`, `MotionAndStacking`, `Logo`, `Imagery`.
 - **Pages** holds whole pages built from the components. `ProductListing` is the category page to copy when you build a listing. `ShopPrototype` is a clickable mock of the shop: age gate, category listing, PDP, cart drawer, cart, checkout and blog. Its sources are in `ui_kits/uweed-shop/`.
 
 - **Intentional additions:** `RadioGroup` exists because no radio group on the live site uses the grouped pattern unless something makes it easier.

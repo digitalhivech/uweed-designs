@@ -720,6 +720,70 @@
           "type": "image/svg+xml"
         }
       }
+    },
+    "Imagery": {
+      "name": "Imagery",
+      "tile": "l",
+      "order": [
+        "cbd-blueten.png",
+        "cbd-hash.png",
+        "cbd-joints-vorgedreht.png",
+        "cbd-kristalle-isolat.png",
+        "b-chill-logo.png",
+        "bud-bouncy-logo.png",
+        "naturalpes-logo.png"
+      ],
+      "files": {
+        "cbd-blueten.png": {
+          "blob": "e76c20146af73a049443ba23f881ca62",
+          "name": "cbd-blueten.png",
+          "sha256": "b08f9e442627d7bc6293f218a08f1f003f3586ec17ef527e8936def0671ed56c",
+          "size": 1341924,
+          "type": "image/png"
+        },
+        "cbd-hash.png": {
+          "blob": "27afeb206b85acaa843d7ccd5864df3a",
+          "name": "cbd-hash.png",
+          "sha256": "48dedda37a4191bee6b136bd6ad16a51591040e928aeed67f9920c745f20541c",
+          "size": 1464858,
+          "type": "image/png"
+        },
+        "cbd-joints-vorgedreht.png": {
+          "blob": "7a7c62e05955b254295f4b1466ab21d1",
+          "name": "cbd-joints-vorgedreht.png",
+          "sha256": "fb4c816e589beb8712dbb7d320e382600e3ee81fb678c7b3a44c4cbb4fcedf90",
+          "size": 1331881,
+          "type": "image/png"
+        },
+        "cbd-kristalle-isolat.png": {
+          "blob": "d4b1a4cc4b1475f3e378f090b29bb1f2",
+          "name": "cbd-kristalle-isolat.png",
+          "sha256": "cc39a2cfe6c540500358f4269c5a3b31b77469a6769fcab2f3537d4abd11e12b",
+          "size": 1491243,
+          "type": "image/png"
+        },
+        "b-chill-logo.png": {
+          "blob": "8180e024567b6fddac4ac7b73672935f",
+          "name": "b-chill-logo.png",
+          "sha256": "8fd971608bf9444a6df257e70a88147b1c16a9a3574b34b4a7dcad821bb5d227",
+          "size": 43218,
+          "type": "image/png"
+        },
+        "bud-bouncy-logo.png": {
+          "blob": "5b50dde4bc57351f74cec98aaa373926",
+          "name": "bud-bouncy-logo.png",
+          "sha256": "02e7082c41b5c855c569bfba37d3ad6d7978ead33c770ec43940aa02861e3373",
+          "size": 154285,
+          "type": "image/png"
+        },
+        "naturalpes-logo.png": {
+          "blob": "a816bbdea7f551220a3d133a5efc848d",
+          "name": "naturalpes-logo.png",
+          "sha256": "a2ba5cc853a4c307494ef0ac61f4b24ec7f7fcb2e81beb80d0261ccad7db3571",
+          "size": 58134,
+          "type": "image/png"
+        }
+      }
     }
   },
   "blobs": {},
@@ -735,7 +799,8 @@
   },
   "groups": [
     "Logos",
-    "Icons"
+    "Icons",
+    "Imagery"
   ],
   "layout": "files",
   "libraries": [
@@ -765,9 +830,9 @@
   "title": "uWeed Design System",
   "lastChange": {
     "by": "Loic",
-    "at": "2026-11-06T07:00:00Z",
+    "at": "2026-11-13T14:24:00Z",
     "via": "Claude (Cowork)",
-    "note": "6 Nov 2026: Checkbox and radio box now sit on the label's first line instead of centring on a wrapped label; row height set by --uw-check-row. bundle.css and Checkbox README updated."
+    "note": "13 Nov 2026: Imagery page now shows the supplied files (4 category images, 3 partner logos) on white, light-gray and a 380 px phone, with a measured check against the framing guides; files stored in the new Imagery asset group. Earlier today: imagery rules in the README, tokens category-frame-ratio and brand-logo-frame-ratio, Carousel guidelines and preview."
   },
   "upgraded": {
     "v": 1,

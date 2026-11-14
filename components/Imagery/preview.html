@@ -1,0 +1,159 @@
+<!-- @dsCard group="Foundations" height=3900 subtitle="Category images and partner logos: canvas, framing and display" page -->
+<!DOCTYPE html><html lang="de"><head><meta charset="utf-8"><title>Imagery</title>
+<style>
+html,body{margin:0;background:var(--white);font-family:var(--font-body);color:var(--font-color)}
+.card{padding:16px 20px 20px;border-top:var(--border-hairline) solid var(--line)}.card:first-child{border-top:0}
+.ct{margin:0;font-family:var(--font-heading);font-size:15px;font-weight:var(--fw-semibold);color:var(--heading-color)}
+.cs{margin:2px 0 14px;font-size:12px;line-height:1.5;color:var(--font-color);max-width:var(--measure)}
+.lbl{font-family:ui-monospace,monospace;font-size:10.5px;color:var(--medium-gray);margin:0}
+.note{font-size:11.5px;line-height:1.5;color:var(--dark-gray);margin:12px 0 0;max-width:var(--measure)}
+.sub{margin:16px 0 8px;font-size:12px;font-weight:var(--fw-medium);color:var(--dark-gray)}
+/* canvas specimen */
+.spec{display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:var(--space-l);align-items:start}
+.canvas{position:relative;border:var(--border-hairline) solid var(--line);border-radius:var(--radius-inner);overflow:hidden;background-color:var(--white);background-size:24px 24px}
+.canvas img,.canvas svg{display:block;width:100%;height:100%}
+.canvas .guides{position:absolute;inset:0}
+.sq{aspect-ratio:var(--category-frame-ratio,1 / 1)}
+.wide{aspect-ratio:var(--brand-logo-frame-ratio,2 / 1)}
+.measures{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;font-size:12px;line-height:1.45;color:var(--dark-gray)}
+.measures b{font-family:ui-monospace,monospace;font-size:11.5px;color:var(--dark-blue);font-weight:var(--fw-bold)}
+/* tiles */
+.stage{border-radius:var(--radius-card);padding:var(--space-m)}
+.stage--white{background:var(--white);border:var(--border-hairline) solid var(--line)}
+.stage--tint{background:var(--light-gray)}
+.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-m)}
+.phone{width:380px;max-width:100%;box-sizing:border-box;padding:var(--space-m);border:var(--border-hairline) solid var(--line);border-radius:var(--radius-card);background:var(--white)}
+.phone .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-s)}
+.pair{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--space-l);align-items:start}
+.tile{display:flex;flex-direction:column;background:var(--white);border:var(--border-hairline) solid var(--line);border-radius:var(--radius-card);box-shadow:var(--shadow-xs);overflow:hidden;text-decoration:none}
+.tile .frame{display:block;width:100%;height:auto;aspect-ratio:var(--category-frame-ratio,1 / 1);object-fit:contain;background:none}
+.tile .th{margin:0;padding:var(--space-xs) var(--space-s) var(--space-s);font-family:var(--font-heading);font-size:var(--fs-h6);font-weight:var(--fw-semibold);line-height:var(--lh-h6);color:var(--heading-color)}
+.bare .frame{display:block;width:100%;height:auto;aspect-ratio:var(--category-frame-ratio,1 / 1);object-fit:contain;background:none}
+.bare .th{margin:var(--space-xs) 0 0;font-family:var(--font-heading);font-size:var(--fs-h6);font-weight:var(--fw-semibold);color:var(--heading-color)}
+.logo{display:block;border-radius:var(--radius-inner)}
+.logo img{display:block;width:100%;height:auto;aspect-ratio:var(--brand-logo-frame-ratio,2 / 1);object-fit:contain;background:none}
+.cap{margin:6px 0 0;font-size:11px;line-height:1.4;color:var(--dark-gray)}
+/* do and don't */
+.dd{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-m)}
+.dd .box{aspect-ratio:1 / 1;border:var(--border-hairline) solid var(--line);border-radius:var(--radius-inner);overflow:hidden;background:var(--white);display:flex}
+.dd .box img{display:block;width:100%;height:100%}
+.verdict{margin:6px 0 0;font-size:11.5px;font-weight:var(--fw-medium);color:var(--dark-blue)}
+.mt{width:100%;max-width:760px;border-collapse:collapse;font-size:12px;margin:0 0 12px}.mt th,.mt td{text-align:left;padding:6px 8px;border-bottom:var(--border-hairline) solid var(--line);white-space:nowrap}.mt th{font-weight:var(--fw-medium);color:var(--dark-gray)}.mt .ok{color:var(--dark-blue);font-weight:var(--fw-medium)}.mt .fl{color:var(--dark-orange,#B5470B);font-weight:var(--fw-medium)}.mtw{overflow-x:auto}
+.verdict span{display:block;font-weight:var(--fw-regular);color:var(--dark-gray)}
+@media (max-width:700px){.spec,.pair{grid-template-columns:1fr}.grid4,.dd{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+</head><body>
+
+<section class="card"><h2 class="ct">Category image: the canvas</h2><p class="cs">One square, transparent file per category, 1254 × 1254 px. The blue lines are the framing guides, drawn over the CBD Hash image, which sits on them. The chequer shows what is transparent.</p>
+<div class="spec">
+<div class="canvas sq" data-chequer><img id="catGuide" alt=""><svg class="guides" id="catLines" viewBox="0 0 1254 1254" aria-hidden="true"></svg></div>
+<ul class="measures">
+<li><b>1254 × 1254 px</b> square master, transparent outside the artwork</li>
+<li><b>8–10%</b> clear at the top and the bottom (dashed)</li>
+<li><b>≥ 8%</b> clear at each side; a narrow composition keeps more</li>
+<li><b>91%</b> of the height: the visible base of the composition (solid)</li>
+<li>Whole product, packaging, engraving and labels visible; natural proportions; no torn paper underneath</li>
+<li>The category heading is set by the interface, below the image, never in it</li>
+</ul></div></section>
+
+<section class="card"><h2 class="ct">Category images side by side</h2><p class="cs">Four supplied category images of different shape, shown whole with object-fit: contain in a square frame. The frame follows the layout's width; the margins come from the files, not from padding.</p>
+<p class="sub">Desktop · category tiles (Card link), on white</p>
+<div class="stage stage--white"><div class="grid4" id="catDesk"></div></div>
+<p class="sub">Desktop · full-width section on light-gray: transparency shows the surface, no white rectangles</p>
+<div class="stage stage--tint"><div class="grid4" id="catTint"></div></div>
+<p class="sub">Phone · 380 px</p>
+<div class="phone"><div class="grid2" id="catPhone"></div></div>
+</section>
+
+<section class="card"><h2 class="ct">Display: contain, never crop or pad</h2><p class="cs">The same file in four square frames. Only the first is right.</p>
+<div class="dd" id="dd"></div></section>
+
+<section class="card"><h2 class="ct">Check of the supplied files</h2><p class="cs">Measured from the transparent pixels of each file, as a share of the canvas. Target: 8–10% clear at the top and bottom, at least 8% at the sides, visible base at 91%.</p>
+<div class="mtw"><table class="mt"><thead><tr><th>File</th><th>Top</th><th>Bottom</th><th>Sides</th><th>Base</th><th>Read</th></tr></thead><tbody>
+<tr><td>CBD Hash</td><td>8.3%</td><td>7.7%</td><td>20.4 / 19.8%</td><td>92.3%</td><td class="ok">On target</td></tr>
+<tr><td>CBD Blüten</td><td class="fl">7.2%</td><td>8.4%</td><td>21.9 / 19.0%</td><td>91.6%</td><td class="fl">Top slightly tight</td></tr>
+<tr><td>CBD Joints</td><td class="fl">11.9%</td><td>7.3%</td><td>19.1 / 19.6%</td><td>92.7%</td><td class="fl">Composition a little small</td></tr>
+<tr><td>CBD Kristalle &amp; Isolat</td><td>8.5%</td><td class="fl">6.1%</td><td>15.7 / 13.6%</td><td class="fl">93.9%</td><td class="fl">Sits low: re-export</td></tr>
+</tbody></table></div>
+<div class="mtw"><table class="mt"><thead><tr><th>File</th><th>Canvas</th><th>Artwork</th><th>Inside 1056 × 456</th><th>Background</th><th>Read</th></tr></thead><tbody>
+<tr><td>B-Chill</td><td>1200 × 600</td><td>503 × 454</td><td>Yes, height-bound</td><td>Transparent</td><td class="ok">On target</td></tr>
+<tr><td>Bud Bouncy</td><td>1200 × 600</td><td>364 × 454</td><td>Yes, height-bound</td><td>Transparent</td><td class="ok">On target</td></tr>
+<tr><td>Naturalpes</td><td>1200 × 600</td><td>443 × 456</td><td>Yes, height-bound</td><td>Transparent</td><td class="ok">On target</td></tr>
+</tbody></table></div>
+<p class="note">All seven files are transparent at the corners, so none brings a white rectangle onto light-gray or a coloured surface. The logos are all limited by height, so they share one visual height while keeping their own widths.</p></section>
+
+<section class="card"><h2 class="ct">Partner logo: the canvas</h2><p class="cs">One 2:1 file per brand, 1200 × 600 px. The artwork stays inside the blue box, shown with the B-Chill file. Not for the uWeed logo.</p>
+<div class="spec">
+<div class="canvas wide" data-chequer><img id="logoGuide" alt=""><svg class="guides" id="logoLines" viewBox="0 0 1200 600" aria-hidden="true"></svg></div>
+<ul class="measures">
+<li><b>1200 × 600 px</b> canvas, transparent unless a background is part of the logo</li>
+<li><b>1056 × 456 px</b> maximum artwork: 88% of the width, 76% of the height</li>
+<li><b>72 px</b> clear on each side at least; narrow or tall logos keep more</li>
+<li>Centred; exact approved artwork, colours, wording and tagline</li>
+<li>Supplier master kept separately, vector or genuinely high resolution</li>
+</ul></div></section>
+
+<section class="card"><h2 class="ct">Partner logos side by side</h2><p class="cs">Three supplied logos of different shape in identical 2:1 frames with object-fit: contain: one shared height, each keeping its own width. The fourth tile is a grey stand-in for an opaque white-background file: it goes on white only, flagged until a transparent master arrives.</p>
+<p class="sub">Desktop · brand row on white</p>
+<div class="stage stage--white"><div class="grid4" id="logoDesk"></div></div>
+<p class="sub">Desktop · on light-gray: the three transparent files sit on the surface; the opaque file would show as a white box, so it is left out here</p>
+<div class="stage stage--tint"><div class="grid4" id="logoTint"></div></div>
+<p class="sub">Phone · 380 px</p>
+<div class="phone"><div class="grid2" id="logoPhone"></div></div>
+<p class="note"><strong>Accessible names.</strong> A logo that is a link's only content names the link with the brand's name (<code>alt="Sweed"</code>). A logo or category image beside link text that says the same is decorative (<code>alt=""</code>). Here each logo carries its brand name; the category images are decorative because the heading below names the tile.</p>
+</section>
+
+<script>
+(function(){
+var NAVY="#0B102A",DG="#3D3D3D",MG="#6F6F6F",LINE="#E7E7E9",BLUE="#334BC1",W="#FFFFFF";
+function uri(svg,w,h){return "data:image/svg+xml;utf8,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+w+' '+h+'" width="'+w+'" height="'+h+'">'+svg+'</svg>');}
+var st='stroke="'+DG+'" stroke-width="8" fill="'+LINE+'"';
+/* supplied files, stored as design-system assets */
+var IMG={
+ bl:"/_blob/e76c20146af73a049443ba23f881ca62",
+ ha:"/_blob/27afeb206b85acaa843d7ccd5864df3a",
+ jo:"/_blob/7a7c62e05955b254295f4b1466ab21d1",
+ kr:"/_blob/d4b1a4cc4b1475f3e378f090b29bb1f2"
+};
+function cat(k){return IMG[k];}
+var names={bl:"CBD Blüten",ha:"CBD Hash",jo:"CBD Joints",kr:"CBD Kristalle & Isolat"};
+var BRAND={bc:["/_blob/8180e024567b6fddac4ac7b73672935f","B-Chill"],bb:["/_blob/5b50dde4bc57351f74cec98aaa373926","Bud Bouncy"],np:["/_blob/a816bbdea7f551220a3d133a5efc848d","Naturalpes"]};
+/* stand-in for an opaque white-background logo file (no such file supplied) */
+var LOGO={opaque:'<rect x="0" y="0" width="1200" height="600" fill="'+W+'"/><rect x="240" y="250" width="720" height="100" rx="16" fill="'+DG+'"/>'};
+function logo(k){return BRAND[k]?BRAND[k][0]:uri(LOGO[k],1200,600);}
+var chequer="url(\""+uri('<rect width="24" height="24" fill="'+W+'"/><rect width="12" height="12" fill="'+LINE+'"/><rect x="12" y="12" width="12" height="12" fill="'+LINE+'"/>',24,24)+"\")";
+document.querySelectorAll("[data-chequer]").forEach(function(el){el.style.backgroundImage=chequer;});
+/* guides */
+document.getElementById("catGuide").src=cat("ha");
+var dash='stroke="'+BLUE+'" stroke-width="5" stroke-dasharray="22 14"';
+document.getElementById("catLines").innerHTML=
+ '<line x1="0" y1="100" x2="1254" y2="100" '+dash+'/><line x1="0" y1="125" x2="1254" y2="125" '+dash+'/>'+
+ '<line x1="0" y1="1129" x2="1254" y2="1129" '+dash+'/><line x1="0" y1="1154" x2="1254" y2="1154" '+dash+'/>'+
+ '<line x1="100" y1="0" x2="100" y2="1254" '+dash+'/><line x1="1154" y1="0" x2="1154" y2="1254" '+dash+'/>'+
+ '<line x1="0" y1="1141" x2="1254" y2="1141" stroke="'+BLUE+'" stroke-width="6"/>';
+document.getElementById("logoGuide").src=logo("bc");
+document.getElementById("logoLines").innerHTML='<rect x="72" y="72" width="1056" height="456" fill="none" stroke="'+BLUE+'" stroke-width="5" stroke-dasharray="22 14"/>';
+/* category tiles */
+function tile(k){return '<a class="tile" href="#" onclick="return false"><img class="frame" alt="" src="'+cat(k)+'"><p class="th">'+names[k]+'</p></a>';}
+function bare(k){return '<a class="bare" href="#" onclick="return false" style="text-decoration:none"><img class="frame" alt="" src="'+cat(k)+'"><p class="th">'+names[k]+'</p></a>';}
+var keys=["bl","ha","jo","kr"];
+document.getElementById("catDesk").innerHTML=keys.map(tile).join("");
+document.getElementById("catTint").innerHTML=keys.map(bare).join("");
+document.getElementById("catPhone").innerHTML=keys.map(tile).join("");
+/* do / don't */
+var f=cat("jo");
+document.getElementById("dd").innerHTML=[
+ ['<img alt="" src="'+f+'" style="object-fit:contain">','Contain','the whole square, margins from the file'],
+ ['<img alt="" src="'+f+'" style="object-fit:cover;transform:scale(1.6)">','Cropped','cover or zoom cuts the product'],
+ ['<img alt="" src="'+f+'" style="object-fit:fill;transform:scaleX(1.5)">','Stretched','proportions changed'],
+ ['<img alt="" src="'+f+'" style="object-fit:contain;padding:22%;box-sizing:border-box">','Padded','a second margin on top of the file’s own']
+].map(function(d,i){return '<div><div class="box">'+d[0]+'</div><p class="verdict">'+(i===0?'✓ ':'✕ ')+d[1]+'<span>'+d[2]+'</span></p></div>';}).join("");
+/* logos */
+var lk=["bc","bb","np","opaque"];
+function lg(k){var b=BRAND[k];return '<div><a class="logo" href="#" onclick="return false"><img alt="'+(b?b[1]:'')+'" src="'+logo(k)+'"></a><p class="cap">'+(b?b[1]:'Stand-in · nur weisse Datei · ersetzen')+'</p></div>';}
+document.getElementById("logoDesk").innerHTML=lk.map(lg).join("");
+document.getElementById("logoTint").innerHTML=["bc","bb","np"].map(lg).join("");
+document.getElementById("logoPhone").innerHTML=lk.map(lg).join("");
+})();
+</script>
+</body></html>

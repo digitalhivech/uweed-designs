@@ -7,7 +7,7 @@ The design system there is the master. This copy exists so that other tools and 
 Never edit files here: a change made here is overwritten by the next copy. Change the design system,
 and the copy follows.
 
-Copied from version `1793948061-6b2f` on 2026-11-07. Last recorded change in the system: 2026-11-06T07:00:00Z (Loic). 6 Nov 2026: Checkbox and radio box now sit on the label's first line instead of centring on a wrapped label; row height set by --uw-check-row. bundle.css and Checkbox README updated.
+Copied from version `1794579838-8c53` on 2026-11-14. Last recorded change in the system: 2026-11-13T14:24:00Z (Loic). 13 Nov 2026: Imagery page now shows the supplied files (4 category images, 3 partner logos) on white, light-gray and a 380 px phone, with a measured check against the framing guides; files stored in the new Imagery asset group. Earlier today: imagery rules in the README, tokens category-frame-ratio and brand-logo-frame-ratio, Carousel guidelines and preview.
 
 ## What is where
 
@@ -42,6 +42,10 @@ straight from this repository they render blank; the pictures in `previews/` sho
 
 ![Colours](previews/Colours.png)
 
+**[Imagery](components/Imagery/)** · Category images and partner logos: canvas, framing and display
+
+![Imagery](previews/Imagery.png)
+
 **[Logo](components/Logo/)** · The approved logo kit and the two secondary marks: lockups, colourways, sizes and clear space
 
 ![Logo](previews/Logo.png)
@@ -57,6 +61,10 @@ straight from this repository they render blank; the pictures in `previews/` sho
 **[Typography](components/Typography/)** · Poppins for headings, DM Sans for everything else, fluid between 375 and 1280px
 
 ![Typography](previews/Typography.png)
+
+**[VerticalColours](components/VerticalColours/)** · Five shop verticals, one family each: imagery and creative assets only (proposed)
+
+![VerticalColours](previews/VerticalColours.png)
 
 
 ### Core
