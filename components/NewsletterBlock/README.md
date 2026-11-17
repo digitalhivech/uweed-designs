@@ -15,9 +15,9 @@ Use `NewsletterBlock` to invite a visitor to the newsletter: on the homepage, at
 - **Never in the buying steps.** Not in the cart, the checkout or beside the buy button.
 - **Dark blue and dark grey, blue button.** Heading, text and the success line are dark blue or dark grey, and the button is the blue `nav` button. Never a green button here: subscribing is not buying.
 - **The field is white.** The block already carries the field's usual light grey.
-- **`icon` is the envelope by default.** Pass another name from `ICON_NAMES`, or `""` to leave the disc out.
+- **`icon` is the envelope by default.** Pass another name from `ICON_NAMES`, or `""` to leave the disc out. Leave it out above the footer, where the `IconList` cards right above already carry pink discs: one set of discs per screen.
 - **Promise nothing by default.** A welcome discount, the sending rhythm and the confirmation wording are facts of the offer; pass them in as copy and only when they are true.
-- **Always pass `legal`** with the link to the privacy policy.
+- **Always pass `legal`** with the link to the privacy policy. The legal note is set in DM Sans italic (decided 16 November 2026), so it reads as a note and not as part of the invitation.
 - **Errors are red text with the alert icon**, as under any field: `medium-red` on `light-gray` is 4.63:1. The success state replaces the form, so the visitor cannot submit twice.
 - Invitation left, action right. Where the block gets narrow the two stack, and the button takes the full width once it no longer fits beside the field. On a phone, and in a column too narrow to keep the text readable beside it, the disc moves above the heading.
 - The shared base is `.uw-inform` (with `--tint`, `__disc`, `__eyebrow`, `__title`, `__text`); `IconList` builds on the same one.

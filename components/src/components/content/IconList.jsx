@@ -7,20 +7,27 @@ import { Icon } from "../core/Icon.jsx";
    block, never on a pink one. The "why uWeed" band is its first use.
    The discs never go into the buying steps: the reassurance strip under the
    buy button is OrderInfoBar, with plain dark-blue icons.
-   Four across from `lg`, two from `sm`, and below that a list with the disc
-   on the left. */
+   Two variants:
+   - "list" (default): four across from `lg`, two from `sm`, and below that a
+     list with the disc on the left.
+   - "cards" (added 16 November 2026 for the band above the footer): the
+     heading is centred and each fact sits in its own white card with the
+     hairline, the card radius and the smallest shadow; disc on top, text
+     centred. Two per row on a phone, four across from `lg`. The cards are
+     not links, so they never lift on hover. */
 export function IconList({
   eyebrow,
   title,
   items = [],
   surface = "plain",
+  variant = "list",
   headingLevel = 2,
   className = "",
   style,
   ...rest
 }) {
   const H = "h" + headingLevel;
-  const cls = ["uw-inform", surface === "tint" && "uw-inform--tint", "uw-icl", className].filter(Boolean).join(" ");
+  const cls = ["uw-inform", surface === "tint" && "uw-inform--tint", "uw-icl", variant === "cards" && "uw-icl--cards", className].filter(Boolean).join(" ");
   const cols = Math.min(Math.max(items.length, 1), 4);
   return (
     <section className={cls} style={{ "--uw-icl-cols": cols, ...style }} {...rest}>

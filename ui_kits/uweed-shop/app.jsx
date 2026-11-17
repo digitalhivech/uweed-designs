@@ -1,11 +1,10 @@
-const { CartDrawer, CouponForm, Toast, AgeGate } = window.UWeedDesignSystem_8df554;
+const { CartDrawer, CouponForm, AgeGate } = window.UWeedDesignSystem_8df554;
 
 function App() {
   const [screen, setScreen] = React.useState("category");
   const [product, setProduct] = React.useState(window.PRODUCTS[1]);
   const [lines, setLines] = React.useState([]);
   const [drawer, setDrawer] = React.useState(false);
-  const [toast, setToast] = React.useState(null);
   const [gate, setGate] = React.useState(true);
 
   const add = (p, qty = 1) => {
@@ -14,19 +13,12 @@ function App() {
       if (found) return ls.map((l) => (l.slug === p.slug ? { ...l, qty: l.qty + qty } : l));
       return [...ls, { slug: p.slug, name: p.name, size: p.size, tile: p.tile, qty, amount: parseFloat(p.price) }];
     });
-    setToast({ title: "Zum Warenkorb hinzugefügt", body: p.name + " · " + p.size });
     setDrawer(true);
   };
   const setQty = (slug, n) => setLines((ls) => ls.map((l) => (l.slug === slug ? { ...l, qty: n } : l)));
   const remove = (slug) => setLines((ls) => ls.filter((l) => l.slug !== slug));
   const open = (p) => { setProduct(p); setScreen("product"); window.scrollTo(0, 0); };
   const nav = (s) => { setScreen(s); window.scrollTo(0, 0); };
-
-  React.useEffect(() => {
-    if (!toast) return;
-    const t = setTimeout(() => setToast(null), 5000);
-    return () => clearTimeout(t);
-  }, [toast]);
 
   const count = lines.reduce((s, l) => s + l.qty, 0);
   const subtotal = lines.reduce((s, l) => s + l.amount * l.qty, 0);
@@ -57,15 +49,6 @@ function App() {
             <button type="button" onClick={() => { setDrawer(false); nav("cart"); }}
               className="uw-btn uw-btn--outline" style={{ background: "var(--white)" }}>Warenkorb-Seite</button>
           </div>
-        </div>
-      ) : null}
-
-      {toast ? (
-        <div style={{ position: "fixed", bottom: 20, right: 20, zIndex: "var(--z-toast)" }}>
-          <Toast title={toast.title} action="Warenkorb ansehen" onClose={() => setToast(null)}
-            actionHref="#" >
-            <p>{toast.body}</p>
-          </Toast>
         </div>
       ) : null}
 

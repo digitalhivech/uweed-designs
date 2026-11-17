@@ -2,7 +2,8 @@ import React from "react";
 import { Icon } from "../core/Icon.jsx";
 
 /* 20 · Message. Inline feedback at page or section level. A message
-   PERSISTS; a toast confirms and leaves.
+   PERSISTS. uWeed has no toasts: a confirmation shows in the changed
+   state itself (the cart drawer opens, the heart fills).
    Warning is orange: a heads-up, not an alarm. Red would be worse — in a
    message it means something failed, and "not suitable during pregnancy"
    is a restriction. Every type carries its icon on a 32px disc in its own

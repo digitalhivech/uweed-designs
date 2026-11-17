@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"UWeedDesignSystem_8df554","components":[{"name":"Footer","sourcePath":"components/chrome/Footer.jsx"},{"name":"SearchBar","sourcePath":"components/chrome/SearchBar.jsx"},{"name":"OrderInfoBar","sourcePath":"components/commerce/OrderInfoBar.jsx"},{"name":"OrderSummary","sourcePath":"components/commerce/OrderSummary.jsx"},{"name":"PdpGallery","sourcePath":"components/commerce/PdpGallery.jsx"},{"name":"ProductInfoTable","sourcePath":"components/commerce/ProductInfoTable.jsx"},{"name":"ProductTile","sourcePath":"components/commerce/ProductTile.jsx"},{"name":"BlogCard","sourcePath":"components/content/BlogCard.jsx"},{"name":"ArticleRow","sourcePath":"components/content/ArticleRow.jsx"},{"name":"IconList","sourcePath":"components/content/IconList.jsx"},{"name":"NewsletterBlock","sourcePath":"components/content/NewsletterBlock.jsx"},{"name":"Badge","sourcePath":"components/core/Badge.jsx"},{"name":"Button","sourcePath":"components/core/Button.jsx"},{"name":"Card","sourcePath":"components/core/Card.jsx"},{"name":"Icon","sourcePath":"components/core/Icon.jsx"},{"name":"Logo","sourcePath":"components/core/Logo.jsx"},{"name":"Link","sourcePath":"components/core/Link.jsx"},{"name":"Price","sourcePath":"components/core/Price.jsx"},{"name":"Accordion","sourcePath":"components/disclosure/Accordion.jsx"},{"name":"AccordionItem","sourcePath":"components/disclosure/Accordion.jsx"},{"name":"ContentTabs","sourcePath":"components/disclosure/ContentTabs.jsx"},{"name":"FilterPill","sourcePath":"components/disclosure/FilterPill.jsx"},{"name":"Popover","sourcePath":"components/disclosure/Popover.jsx"},{"name":"PopoverItem","sourcePath":"components/disclosure/Popover.jsx"},{"name":"PopoverGroup","sourcePath":"components/disclosure/Popover.jsx"},{"name":"PopoverSeparator","sourcePath":"components/disclosure/Popover.jsx"},{"name":"PopoverFooter","sourcePath":"components/disclosure/Popover.jsx"},{"name":"SortButton","sourcePath":"components/disclosure/SortButton.jsx"},{"name":"Tooltip","sourcePath":"components/disclosure/Tooltip.jsx"},{"name":"Message","sourcePath":"components/feedback/Message.jsx"},{"name":"Skeleton","sourcePath":"components/feedback/Skeleton.jsx"},{"name":"Spinner","sourcePath":"components/feedback/Spinner.jsx"},{"name":"StockStatus","sourcePath":"components/feedback/StockStatus.jsx"},{"name":"Toast","sourcePath":"components/feedback/Toast.jsx"},{"name":"Checkbox","sourcePath":"components/forms/Checkbox.jsx"},{"name":"CouponForm","sourcePath":"components/forms/CouponForm.jsx"},{"name":"FormField","sourcePath":"components/forms/FormField.jsx"},{"name":"Input","sourcePath":"components/forms/Input.jsx"},{"name":"QuantitySelector","sourcePath":"components/forms/QuantitySelector.jsx"},{"name":"Radio","sourcePath":"components/forms/Radio.jsx"},{"name":"RadioGroup","sourcePath":"components/forms/Radio.jsx"},{"name":"Select","sourcePath":"components/forms/Select.jsx"},{"name":"Breadcrumb","sourcePath":"components/navigation/Breadcrumb.jsx"},{"name":"Carousel","sourcePath":"components/navigation/Carousel.jsx"},{"name":"Pagination","sourcePath":"components/navigation/Pagination.jsx"},{"name":"TabNav","sourcePath":"components/navigation/TabNav.jsx"},{"name":"AgeGate","sourcePath":"components/overlays/AgeGate.jsx"},{"name":"CartDrawer","sourcePath":"components/overlays/CartDrawer.jsx"},{"name":"FilterPanel","sourcePath":"components/overlays/FilterPanel.jsx"},{"name":"Modal","sourcePath":"components/overlays/Modal.jsx"}],"sourceHashes":{"components/chrome/Footer.jsx":"03c01a5e9c7a","components/chrome/SearchBar.jsx":"5644ae541ca3","components/commerce/OrderInfoBar.jsx":"094db4c8301f","components/commerce/OrderSummary.jsx":"960d2094a0eb","components/commerce/PdpGallery.jsx":"ae726d622a60","components/commerce/ProductInfoTable.jsx":"609bc679ec48","components/commerce/ProductTile.jsx":"fffee574c39f","components/content/ArticleRow.jsx":"2187ecce0c8a","components/content/BlogCard.jsx":"0cd0bd2cae57","components/content/IconList.jsx":"3ca72de9c21c","components/content/NewsletterBlock.jsx":"a2790e5f5a2d","components/core/Badge.jsx":"29a058f249e0","components/core/Button.jsx":"e19e1792f78b","components/core/Card.jsx":"9a53df0e9c8f","components/core/Icon.jsx":"b05eb61ed6bc","components/core/Link.jsx":"137e8ba3044d","components/core/Logo.jsx":"451419f02806","components/core/Price.jsx":"bc0b333dcb06","components/disclosure/Accordion.jsx":"c550c32816da","components/disclosure/ContentTabs.jsx":"0f4beb51a1f6","components/disclosure/FilterPill.jsx":"60017ccf4ece","components/disclosure/Popover.jsx":"c38cd051aa26","components/disclosure/SortButton.jsx":"30ef5bc04f29","components/disclosure/Tooltip.jsx":"dbd30e6a971b","components/feedback/Message.jsx":"f43d39947239","components/feedback/Skeleton.jsx":"3b758be083d2","components/feedback/Spinner.jsx":"ba7da9572c9b","components/feedback/StockStatus.jsx":"5c680a671d9d","components/feedback/Toast.jsx":"df5c4047e01e","components/forms/Checkbox.jsx":"bfb6d81cd3cc","components/forms/CouponForm.jsx":"c759df709943","components/forms/FormField.jsx":"00e0245da845","components/forms/Input.jsx":"837469360eb4","components/forms/QuantitySelector.jsx":"b5bda6512112","components/forms/Radio.jsx":"c9b51314c609","components/forms/Select.jsx":"e1f779e0f077","components/navigation/Breadcrumb.jsx":"e481c0dd69f1","components/navigation/Carousel.jsx":"ba5ad858febe","components/navigation/Pagination.jsx":"708c5101f42d","components/navigation/TabNav.jsx":"3cb70869be16","components/overlays/AgeGate.jsx":"f460c98e3450","components/overlays/CartDrawer.jsx":"0b54419ba52b","components/overlays/FilterPanel.jsx":"0d41a2a4881d","components/overlays/Modal.jsx":"4588e7f57b28"},"inlinedExternals":[],"unexposedExports":[{"name":"formatFrom","sourcePath":"components/core/Price.jsx"}]} */
+/* @ds-bundle: {"format":4,"namespace":"UWeedDesignSystem_8df554","components":[{"name":"Footer","sourcePath":"components/chrome/Footer.jsx"},{"name":"SearchBar","sourcePath":"components/chrome/SearchBar.jsx"},{"name":"OrderInfoBar","sourcePath":"components/commerce/OrderInfoBar.jsx"},{"name":"OrderSummary","sourcePath":"components/commerce/OrderSummary.jsx"},{"name":"PdpGallery","sourcePath":"components/commerce/PdpGallery.jsx"},{"name":"ProductInfoTable","sourcePath":"components/commerce/ProductInfoTable.jsx"},{"name":"ProductTile","sourcePath":"components/commerce/ProductTile.jsx"},{"name":"BlogCard","sourcePath":"components/content/BlogCard.jsx"},{"name":"ArticleRow","sourcePath":"components/content/ArticleRow.jsx"},{"name":"IconList","sourcePath":"components/content/IconList.jsx"},{"name":"NewsletterBlock","sourcePath":"components/content/NewsletterBlock.jsx"},{"name":"Badge","sourcePath":"components/core/Badge.jsx"},{"name":"Button","sourcePath":"components/core/Button.jsx"},{"name":"Card","sourcePath":"components/core/Card.jsx"},{"name":"Icon","sourcePath":"components/core/Icon.jsx"},{"name":"Logo","sourcePath":"components/core/Logo.jsx"},{"name":"Link","sourcePath":"components/core/Link.jsx"},{"name":"Price","sourcePath":"components/core/Price.jsx"},{"name":"Accordion","sourcePath":"components/disclosure/Accordion.jsx"},{"name":"AccordionItem","sourcePath":"components/disclosure/Accordion.jsx"},{"name":"ContentTabs","sourcePath":"components/disclosure/ContentTabs.jsx"},{"name":"FilterPill","sourcePath":"components/disclosure/FilterPill.jsx"},{"name":"Popover","sourcePath":"components/disclosure/Popover.jsx"},{"name":"PopoverItem","sourcePath":"components/disclosure/Popover.jsx"},{"name":"PopoverGroup","sourcePath":"components/disclosure/Popover.jsx"},{"name":"PopoverSeparator","sourcePath":"components/disclosure/Popover.jsx"},{"name":"PopoverFooter","sourcePath":"components/disclosure/Popover.jsx"},{"name":"SortButton","sourcePath":"components/disclosure/SortButton.jsx"},{"name":"Tooltip","sourcePath":"components/disclosure/Tooltip.jsx"},{"name":"Message","sourcePath":"components/feedback/Message.jsx"},{"name":"Skeleton","sourcePath":"components/feedback/Skeleton.jsx"},{"name":"Spinner","sourcePath":"components/feedback/Spinner.jsx"},{"name":"StockStatus","sourcePath":"components/feedback/StockStatus.jsx"},{"name":"Checkbox","sourcePath":"components/forms/Checkbox.jsx"},{"name":"CouponForm","sourcePath":"components/forms/CouponForm.jsx"},{"name":"FormField","sourcePath":"components/forms/FormField.jsx"},{"name":"Input","sourcePath":"components/forms/Input.jsx"},{"name":"QuantitySelector","sourcePath":"components/forms/QuantitySelector.jsx"},{"name":"Radio","sourcePath":"components/forms/Radio.jsx"},{"name":"RadioGroup","sourcePath":"components/forms/Radio.jsx"},{"name":"Select","sourcePath":"components/forms/Select.jsx"},{"name":"Breadcrumb","sourcePath":"components/navigation/Breadcrumb.jsx"},{"name":"Carousel","sourcePath":"components/navigation/Carousel.jsx"},{"name":"Pagination","sourcePath":"components/navigation/Pagination.jsx"},{"name":"TabNav","sourcePath":"components/navigation/TabNav.jsx"},{"name":"AgeGate","sourcePath":"components/overlays/AgeGate.jsx"},{"name":"CartDrawer","sourcePath":"components/overlays/CartDrawer.jsx"},{"name":"FilterPanel","sourcePath":"components/overlays/FilterPanel.jsx"},{"name":"Modal","sourcePath":"components/overlays/Modal.jsx"}],"sourceHashes":{"components/chrome/Footer.jsx":"993b6c73ba80","components/chrome/SearchBar.jsx":"5644ae541ca3","components/commerce/OrderInfoBar.jsx":"094db4c8301f","components/commerce/OrderSummary.jsx":"960d2094a0eb","components/commerce/PdpGallery.jsx":"ae726d622a60","components/commerce/ProductInfoTable.jsx":"609bc679ec48","components/commerce/ProductTile.jsx":"fffee574c39f","components/content/ArticleRow.jsx":"2187ecce0c8a","components/content/BlogCard.jsx":"0cd0bd2cae57","components/content/IconList.jsx":"0c4aecbcfc4c","components/content/NewsletterBlock.jsx":"a2790e5f5a2d","components/core/Badge.jsx":"29a058f249e0","components/core/Button.jsx":"e19e1792f78b","components/core/Card.jsx":"9a53df0e9c8f","components/core/Icon.jsx":"40c7a284d8b1","components/core/Link.jsx":"137e8ba3044d","components/core/Logo.jsx":"451419f02806","components/core/Price.jsx":"bc0b333dcb06","components/disclosure/Accordion.jsx":"c550c32816da","components/disclosure/ContentTabs.jsx":"0f4beb51a1f6","components/disclosure/FilterPill.jsx":"60017ccf4ece","components/disclosure/Popover.jsx":"c38cd051aa26","components/disclosure/SortButton.jsx":"30ef5bc04f29","components/disclosure/Tooltip.jsx":"dbd30e6a971b","components/feedback/Message.jsx":"689aba684bd7","components/feedback/Skeleton.jsx":"3b758be083d2","components/feedback/Spinner.jsx":"ba7da9572c9b","components/feedback/StockStatus.jsx":"5c680a671d9d","components/forms/Checkbox.jsx":"bfb6d81cd3cc","components/forms/CouponForm.jsx":"c759df709943","components/forms/FormField.jsx":"00e0245da845","components/forms/Input.jsx":"837469360eb4","components/forms/QuantitySelector.jsx":"b5bda6512112","components/forms/Radio.jsx":"c9b51314c609","components/forms/Select.jsx":"e1f779e0f077","components/navigation/Breadcrumb.jsx":"e481c0dd69f1","components/navigation/Carousel.jsx":"ba5ad858febe","components/navigation/Pagination.jsx":"708c5101f42d","components/navigation/TabNav.jsx":"3cb70869be16","components/overlays/AgeGate.jsx":"f460c98e3450","components/overlays/CartDrawer.jsx":"0b54419ba52b","components/overlays/FilterPanel.jsx":"0d41a2a4881d","components/overlays/Modal.jsx":"4588e7f57b28"},"inlinedExternals":[],"unexposedExports":[{"name":"formatFrom","sourcePath":"components/core/Price.jsx"}]} */
 
 (() => {
 
@@ -184,20 +184,27 @@ function _extends() { return _extends = Object.assign ? Object.assign.bind() : f
    block, never on a pink one. The "why uWeed" band is its first use.
    The discs never go into the buying steps: the reassurance strip under the
    buy button is OrderInfoBar, with plain dark-blue icons.
-   Four across from `lg`, two from `sm`, and below that a list with the disc
-   on the left. */
+   Two variants:
+   - "list" (default): four across from `lg`, two from `sm`, and below that a
+     list with the disc on the left.
+   - "cards" (added 16 November 2026 for the band above the footer): the
+     heading is centred and each fact sits in its own white card with the
+     hairline, the card radius and the smallest shadow; disc on top, text
+     centred. Two per row on a phone, four across from `lg`. The cards are
+     not links, so they never lift on hover. */
 function IconList({
   eyebrow,
   title,
   items = [],
   surface = "plain",
+  variant = "list",
   headingLevel = 2,
   className = "",
   style,
   ...rest
 }) {
   const H = "h" + headingLevel;
-  const cls = ["uw-inform", surface === "tint" && "uw-inform--tint", "uw-icl", className].filter(Boolean).join(" ");
+  const cls = ["uw-inform", surface === "tint" && "uw-inform--tint", "uw-icl", variant === "cards" && "uw-icl--cards", className].filter(Boolean).join(" ");
   const cols = Math.min(Math.max(items.length, 1), 4);
   return /*#__PURE__*/React.createElement("section", _extends({
     className: cls,
@@ -363,6 +370,10 @@ const PATHS = {
   "alert-triangle": "<path d=\"M12 9v4\"></path><path d=\"M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0\"></path><path d=\"M12 16h.01\"></path>",
   "arrow-back-up": "<path d=\"M9 14l-4 -4l4 -4\"></path><path d=\"M5 10h11a4 4 0 1 1 0 8h-1\"></path>",
   "arrows-sort": "<path d=\"M3 9l4 -4l4 4m-4 -4v14\"></path><path d=\"M21 15l-4 4l-4 -4m4 4v-14\"></path>",
+  "brand-facebook": "<path d=\"M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3\"></path>",
+  "brand-instagram": "<path d=\"M4 8a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z\"></path><path d=\"M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0\"></path><path d=\"M16.5 7.5v.01\"></path>",
+  "brand-linkedin": "<path d=\"M8 11v5\"></path><path d=\"M8 8v.01\"></path><path d=\"M12 16v-5\"></path><path d=\"M16 16v-3a2 2 0 1 0 -4 0\"></path><path d=\"M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z\"></path>",
+  "brand-telegram": "<path d=\"M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4\"></path>",
   "cannabis": "<path d=\"M7 20s0 -2 1 -3.5c-1.5 0 -2 -.5 -4 -1.5c0 0 1.839 -1.38 5 -1c-1.789 -.97 -3.279 -2.03 -5 -6c0 0 3.98 -.3 6.5 3.5c-2.284 -4.9 1.5 -9.5 1.5 -9.5c2.734 5.47 2.389 7.5 1.5 9.5c2.531 -3.77 6.5 -3.5 6.5 -3.5c-1.721 3.97 -3.211 5.03 -5 6c3.161 -.38 5 1 5 1c-2 1 -2.5 1.5 -4 1.5c1 1.5 1 3.5 1 3.5c-2 0 -4.438 -2.22 -5 -3c-.563 .78 -3 3 -5 3\"></path><path d=\"M12 22v-5\"></path>",
   "check": "<path d=\"M5 12l5 5l10 -10\"></path>",
   "chevron-down": "<path d=\"M6 9l6 6l6 -6\"></path>",
@@ -381,10 +392,12 @@ const PATHS = {
   "help-circle": "<path d=\"M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0\"></path><path d=\"M12 16v.01\"></path><path d=\"M12 13a2 2 0 0 0 .914 -3.782a1.98 1.98 0 0 0 -2.414 .483\"></path>",
   "info-circle": "<path d=\"M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0\"></path><path d=\"M12 9h.01\"></path><path d=\"M11 12h1v4h1\"></path>",
   "leaf": "<path d=\"M5 21c.5 -4.5 2.5 -8 7 -10\"></path><path d=\"M9 18c6.218 0 10.5 -3.288 11 -12v-2h-4.014c-9 0 -11.986 4 -12 9c0 1 0 3 2 5h3l.014 0\"></path>",
+  "link": "<path d=\"M9 15l6 -6\"></path><path d=\"M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464\"></path><path d=\"M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463\"></path>",
   "lock": "<path d=\"M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6\"></path><path d=\"M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0\"></path><path d=\"M8 11v-4a4 4 0 1 1 8 0v4\"></path>",
   "mail": "<path d=\"M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10\"></path><path d=\"M3 7l9 6l9 -6\"></path>",
   "map-pin": "<path d=\"M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0\"></path><path d=\"M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0\"></path>",
   "menu-2": "<path d=\"M4 6l16 0\"></path><path d=\"M4 12l16 0\"></path><path d=\"M4 18l16 0\"></path>",
+  "message-circle": "<path d=\"M3 20l1.3 -3.9c-2.324 -3.437 -1.426 -7.872 2.1 -10.374c3.526 -2.501 8.59 -2.296 11.845 .48c3.255 2.777 3.695 7.266 1.029 10.501c-2.666 3.235 -7.615 4.215 -11.574 2.293l-4.7 1\"></path>",
   "minus": "<path d=\"M5 12l14 0\"></path>",
   "news": "<path d=\"M16 6h3a1 1 0 0 1 1 1v11a2 2 0 0 1 -4 0v-13a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1v12a3 3 0 0 0 3 3h11\"></path><path d=\"M8 8l4 0\"></path><path d=\"M8 12l4 0\"></path><path d=\"M8 16l4 0\"></path>",
   "package": "<path d=\"M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5\"></path><path d=\"M12 12l8 -4.5\"></path><path d=\"M12 12l0 9\"></path><path d=\"M12 12l-8 -4.5\"></path><path d=\"M16 5.25l-8 4.5\"></path>",
@@ -444,7 +457,7 @@ function Icon({
     }
   }, rest));
 }
-const ICON_NAMES = ["adjustments-horizontal", "alert-circle", "alert-triangle", "arrow-back-up", "arrows-sort", "cannabis", "check", "chevron-down", "chevron-left", "chevron-right", "chevron-up", "circle-check", "circle-x", "clock", "credit-card", "external-link", "filter", "flask", "heart", "heart-filled", "help-circle", "info-circle", "leaf", "lock", "mail", "map-pin", "menu-2", "minus", "news", "package", "phone", "plus", "rosette-discount", "search", "selector", "shield-check", "shopping-bag", "shopping-cart", "star", "star-filled", "tag", "trash", "truck", "user", "user-check", "world", "x", "zoom-in"];
+const ICON_NAMES = ["adjustments-horizontal", "alert-circle", "alert-triangle", "arrow-back-up", "arrows-sort", "brand-facebook", "brand-instagram", "brand-linkedin", "brand-telegram", "cannabis", "check", "chevron-down", "chevron-left", "chevron-right", "chevron-up", "circle-check", "circle-x", "clock", "credit-card", "external-link", "filter", "flask", "heart", "heart-filled", "help-circle", "info-circle", "leaf", "link", "lock", "mail", "map-pin", "menu-2", "message-circle", "minus", "news", "package", "phone", "plus", "rosette-discount", "search", "selector", "shield-check", "shopping-bag", "shopping-cart", "star", "star-filled", "tag", "trash", "truck", "user", "user-check", "world", "x", "zoom-in"];
 Object.assign(__ds_scope, { Icon, ICON_NAMES });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/core/Icon.jsx", error: String((e && e.message) || e) }); }
 
@@ -1038,63 +1051,226 @@ Object.assign(__ds_scope, { Accordion, AccordionItem });
 // components/chrome/Footer.jsx
 try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-/* 23 · Footer. Four link columns, then a bottom row with copyright and the
-   currency and language switchers.
-   Below --bs-breakpoint-lg the columns become the accordion INSIDE
-   .on-dark — not a separate footer accordion, which is what exists today.
-   The switchers use aria-pressed, not aria-current: they change a setting
-   rather than marking a location. */
+/* 23 · Footer. Redesigned 16 November 2026, mobile first.
+   ONE markup for every width; CSS only redistributes it, so the reading
+   order is the visual order everywhere:
+     1. nav: Kontakt (always open), then the link columns
+     2. mid: Folge uns, Bewertungen, Sprache und Währung, Sicher bezahlen
+        with Mitglied bei
+     3. bottom: logo with the legal links, the disclaimer, copyright with
+        "Nach oben"
+   Below --bs-breakpoint-lg (992px) each link column is a disclosure: its
+   heading holds a button with aria-expanded that shows or hides the list.
+   Not <details>: a closed <details> hides its links from the desktop
+   layout too. From lg the four nav blocks are four equal columns, the
+   buttons are gone and every list is open; the mid band is four equal
+   columns as well.
+   The language and currency controls are the header's: white pills with a
+   round flag that open the same picker. No address and no SEO paragraph:
+   the legal address is in the Impressum. */
+function useWide(query) {
+  const [wide, setWide] = React.useState(false);
+  React.useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return undefined;
+    const mq = window.matchMedia(query);
+    const on = () => setWide(mq.matches);
+    on();
+    mq.addEventListener ? mq.addEventListener("change", on) : mq.addListener(on);
+    return () => mq.removeEventListener ? mq.removeEventListener("change", on) : mq.removeListener(on);
+  }, [query]);
+  return wide;
+}
+function Act({
+  item,
+  className,
+  children
+}) {
+  if (item.href) return /*#__PURE__*/React.createElement("a", {
+    className: className,
+    href: item.href,
+    rel: item.rel
+  }, children);
+  if (item.onClick) return /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    className: className,
+    onClick: item.onClick,
+    "aria-haspopup": item.haspopup
+  }, children);
+  return /*#__PURE__*/React.createElement("div", {
+    className: className
+  }, children);
+}
 function Footer({
+  contact,
   columns = [],
-  copyright = "© 2026 uWeed",
-  switches = [],
+  social,
+  reviews,
+  locale,
+  payments,
+  memberships,
+  legalLinks = [],
+  disclaimer,
+  copyright = "© 2026 Digital Hive GmbH",
+  backToTop = {
+    label: "Nach oben",
+    href: "#"
+  },
+  navLabel = "Fusszeile",
   className = "",
   ...rest
 }) {
+  const wide = useWide("(min-width: 992px)");
+  const [open, setOpen] = React.useState({});
+  const uid = React.useId();
+  const toggle = k => setOpen(o => ({
+    ...o,
+    [k]: !o[k]
+  }));
   return /*#__PURE__*/React.createElement("footer", _extends({
     className: ["uw-footer", "on-dark", className].filter(Boolean).join(" ")
   }, rest), /*#__PURE__*/React.createElement("div", {
     className: "uw-footer__inner"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "uw-footer__cols"
-  }, columns.map(c => /*#__PURE__*/React.createElement("div", {
-    key: c.heading
+  }, /*#__PURE__*/React.createElement("nav", {
+    className: "uw-footer__nav",
+    "aria-label": navLabel
+  }, contact ? /*#__PURE__*/React.createElement("div", {
+    className: "uw-footer__col uw-footer__contact"
   }, /*#__PURE__*/React.createElement("h2", {
     className: "uw-footer__h"
-  }, c.heading), /*#__PURE__*/React.createElement("ul", {
+  }, contact.heading || "Kontakt"), /*#__PURE__*/React.createElement("ul", {
     className: "uw-footer__list"
-  }, c.links.map(l => /*#__PURE__*/React.createElement("li", {
-    key: l.label
+  }, contact.items.map(it => /*#__PURE__*/React.createElement("li", {
+    key: it.label
+  }, /*#__PURE__*/React.createElement(Act, {
+    item: it,
+    className: ["uw-footer__row", it.onClick && "uw-footer__row--action"].filter(Boolean).join(" ")
+  }, it.icon ? /*#__PURE__*/React.createElement(__ds_scope.Icon, {
+    name: it.icon,
+    size: 20
+  }) : null, /*#__PURE__*/React.createElement("span", null, it.label)))))) : null, columns.map((c, i) => {
+    const id = uid + "-c" + i;
+    const isOpen = wide || !!open[i];
+    return /*#__PURE__*/React.createElement("div", {
+      className: "uw-footer__col",
+      key: c.heading
+    }, /*#__PURE__*/React.createElement("h2", {
+      className: "uw-footer__h"
+    }, wide ? c.heading : /*#__PURE__*/React.createElement("button", {
+      type: "button",
+      className: "uw-footer__toggle",
+      "aria-expanded": isOpen,
+      "aria-controls": id,
+      onClick: () => toggle(i)
+    }, /*#__PURE__*/React.createElement("span", null, c.heading), /*#__PURE__*/React.createElement(__ds_scope.Icon, {
+      name: "chevron-down",
+      size: 20
+    }))), /*#__PURE__*/React.createElement("ul", {
+      className: "uw-footer__list",
+      id: id,
+      hidden: !isOpen
+    }, c.links.map(l => /*#__PURE__*/React.createElement("li", {
+      key: l.label
+    }, /*#__PURE__*/React.createElement("a", {
+      className: "uw-footer__row",
+      href: l.href
+    }, l.label)))));
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "uw-footer__mid"
+  }, social ? /*#__PURE__*/React.createElement("div", {
+    className: "uw-footer__social"
+  }, /*#__PURE__*/React.createElement("h2", {
+    className: "uw-footer__h"
+  }, social.heading || "Folge uns"), /*#__PURE__*/React.createElement("ul", {
+    className: "uw-footer__icons"
+  }, social.links.map(s => /*#__PURE__*/React.createElement("li", {
+    key: s.network
   }, /*#__PURE__*/React.createElement("a", {
-    href: l.href
-  }, l.label))))))), /*#__PURE__*/React.createElement("div", {
-    className: "uw-footer__acc"
-  }, /*#__PURE__*/React.createElement(__ds_scope.Accordion, null, columns.map(c => /*#__PURE__*/React.createElement(__ds_scope.AccordionItem, {
-    key: c.heading,
-    heading: c.heading,
-    headingLevel: 0
-  }, /*#__PURE__*/React.createElement("ul", {
-    className: "uw-footer__list"
-  }, c.links.map(l => /*#__PURE__*/React.createElement("li", {
-    key: l.label
-  }, /*#__PURE__*/React.createElement("a", {
-    href: l.href
-  }, l.label)))))))), /*#__PURE__*/React.createElement("div", {
-    className: "uw-footer__bottom"
-  }, /*#__PURE__*/React.createElement("p", {
-    className: "uw-footer__copy"
-  }, copyright), /*#__PURE__*/React.createElement("div", {
-    className: "uw-footer__switches"
-  }, switches.map(s => /*#__PURE__*/React.createElement("div", {
-    className: "uw-sw",
-    key: s.label,
-    role: "group",
+    className: "uw-footer__soc",
+    href: s.href,
+    rel: "nofollow noopener",
     "aria-label": s.label
-  }, s.options.map(o => /*#__PURE__*/React.createElement("button", {
-    key: o,
+  }, /*#__PURE__*/React.createElement(__ds_scope.Icon, {
+    name: "brand-" + s.network,
+    size: 24
+  })))))) : null, reviews ? /*#__PURE__*/React.createElement("div", {
+    className: "uw-footer__reviews"
+  }, /*#__PURE__*/React.createElement("h2", {
+    className: "uw-footer__h"
+  }, reviews.heading || "Bewertungen"), reviews.content) : null, locale ? /*#__PURE__*/React.createElement("div", {
+    className: "uw-footer__locale"
+  }, /*#__PURE__*/React.createElement("h2", {
+    className: "uw-footer__h"
+  }, locale.heading || "Sprache und Währung"), /*#__PURE__*/React.createElement("div", {
+    className: "uw-footer__pills"
+  }, locale.controls.map(p => /*#__PURE__*/React.createElement("button", {
+    key: p.label,
     type: "button",
-    "aria-pressed": o === s.value
-  }, o))))))));
+    className: "uw-footer__pill",
+    "aria-haspopup": "listbox",
+    "aria-label": p.label + ": " + p.value,
+    onClick: p.onClick
+  }, p.flag ? /*#__PURE__*/React.createElement("span", {
+    className: "uw-footer__flag",
+    "aria-hidden": "true"
+  }, p.flag) : null, /*#__PURE__*/React.createElement("span", {
+    className: "uw-footer__pill-text"
+  }, /*#__PURE__*/React.createElement("small", null, p.label), p.value), /*#__PURE__*/React.createElement(__ds_scope.Icon, {
+    name: "chevron-down",
+    size: 16
+  }))))) : null, payments || memberships ? /*#__PURE__*/React.createElement("div", {
+    className: "uw-footer__trust"
+  }, payments ? /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h2", {
+    className: "uw-footer__h"
+  }, payments.heading || "Sicher bezahlen"), /*#__PURE__*/React.createElement("ul", {
+    className: "uw-footer__chips"
+  }, payments.methods.map(m => /*#__PURE__*/React.createElement("li", {
+    key: m.label,
+    className: "uw-footer__chip"
+  }, m.src ? /*#__PURE__*/React.createElement("img", {
+    src: m.src,
+    alt: m.label
+  }) : m.label)))) : null, memberships ? /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h2", {
+    className: "uw-footer__h"
+  }, memberships.heading || "Mitglied bei"), /*#__PURE__*/React.createElement("ul", {
+    className: "uw-footer__chips"
+  }, memberships.items.map(m => /*#__PURE__*/React.createElement("li", {
+    key: m.label
+  }, /*#__PURE__*/React.createElement("a", {
+    className: "uw-footer__member",
+    href: m.href,
+    rel: "nofollow noopener"
+  }, m.src ? /*#__PURE__*/React.createElement("img", {
+    src: m.src,
+    alt: m.label
+  }) : m.label))))) : null) : null), /*#__PURE__*/React.createElement("div", {
+    className: "uw-footer__bottom"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "uw-footer__brand"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "uw-footer__logo"
+  }, /*#__PURE__*/React.createElement(__ds_scope.Logo, {
+    color: "white",
+    width: 120,
+    decorative: true
+  })), legalLinks.length ? /*#__PURE__*/React.createElement("ul", {
+    className: "uw-footer__legal"
+  }, legalLinks.map(l => /*#__PURE__*/React.createElement("li", {
+    key: l.label
+  }, /*#__PURE__*/React.createElement(Act, {
+    item: l
+  }, l.label)))) : null), disclaimer ? /*#__PURE__*/React.createElement("p", {
+    className: "uw-footer__small uw-footer__disclaimer"
+  }, disclaimer) : null, /*#__PURE__*/React.createElement("div", {
+    className: "uw-footer__end"
+  }, /*#__PURE__*/React.createElement("p", {
+    className: "uw-footer__small"
+  }, copyright), backToTop ? /*#__PURE__*/React.createElement("a", {
+    className: "uw-footer__top",
+    href: backToTop.href || "#"
+  }, backToTop.label || "Nach oben", /*#__PURE__*/React.createElement(__ds_scope.Icon, {
+    name: "chevron-up",
+    size: 16
+  })) : null))));
 }
 Object.assign(__ds_scope, { Footer });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/chrome/Footer.jsx", error: String((e && e.message) || e) }); }
@@ -1425,7 +1601,8 @@ Object.assign(__ds_scope, { Tooltip });
 try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 /* 20 · Message. Inline feedback at page or section level. A message
-   PERSISTS; a toast confirms and leaves.
+   PERSISTS. uWeed has no toasts: a confirmation shows in the changed
+   state itself (the cart drawer opens, the heart fills).
    Warning is orange: a heads-up, not an alarm. Red would be worse — in a
    message it means something failed, and "not suitable during pregnancy"
    is a restriction. Every type carries its icon on a 32px disc in its own
@@ -1546,53 +1723,6 @@ function StockStatus({
 }
 Object.assign(__ds_scope, { StockStatus });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/feedback/StockStatus.jsx", error: String((e && e.message) || e) }); }
-
-// components/feedback/Toast.jsx
-try { (() => {
-function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-/* 21 · Toast. Transient confirmation. Never an error — it disappears.
-   Five seconds, paused on hover and focus, never auto-dismissed if it
-   contains a link: a control that vanishes while being reached for is worse
-   than no control. One at a time; a second replaces the first. */
-function Toast({
-  variant = "light",
-  title,
-  action,
-  actionHref = "#",
-  onClose,
-  children,
-  className = "",
-  ...rest
-}) {
-  return /*#__PURE__*/React.createElement("div", _extends({
-    className: ["uw-toast", variant === "dark" && "uw-toast--dark", className].filter(Boolean).join(" "),
-    role: "status",
-    "aria-live": "polite"
-  }, rest), /*#__PURE__*/React.createElement("span", {
-    className: "uw-toast__ic",
-    "aria-hidden": "true"
-  }, /*#__PURE__*/React.createElement(__ds_scope.Icon, {
-    name: "circle-check",
-    size: 20
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "uw-toast__b"
-  }, title ? /*#__PURE__*/React.createElement("p", {
-    className: "uw-toast__t"
-  }, title) : null, children, action ? /*#__PURE__*/React.createElement("a", {
-    className: "uw-toast__a",
-    href: actionHref
-  }, action) : null), /*#__PURE__*/React.createElement("button", {
-    type: "button",
-    className: "uw-toast__x",
-    "aria-label": "Schliessen",
-    onClick: onClose
-  }, /*#__PURE__*/React.createElement(__ds_scope.Icon, {
-    name: "x",
-    size: 16
-  })));
-}
-Object.assign(__ds_scope, { Toast });
-})(); } catch (e) { __ds_ns.__errors.push({ path: "components/feedback/Toast.jsx", error: String((e && e.message) || e) }); }
 
 // components/forms/Checkbox.jsx
 try { (() => {
@@ -2613,8 +2743,6 @@ __ds_ns.Skeleton = __ds_scope.Skeleton;
 __ds_ns.Spinner = __ds_scope.Spinner;
 
 __ds_ns.StockStatus = __ds_scope.StockStatus;
-
-__ds_ns.Toast = __ds_scope.Toast;
 
 __ds_ns.Checkbox = __ds_scope.Checkbox;
 

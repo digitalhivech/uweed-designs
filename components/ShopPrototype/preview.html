@@ -339,13 +339,12 @@ Object.assign(window, { BlogScreen });
 
 /* app.jsx */
 (() => {
-const { CartDrawer, CouponForm, Toast, AgeGate } = window.UWeedDesignSystem_8df554;
+const { CartDrawer, CouponForm, AgeGate } = window.UWeedDesignSystem_8df554;
 function App() {
   const [screen, setScreen] = React.useState("category");
   const [product, setProduct] = React.useState(window.PRODUCTS[1]);
   const [lines, setLines] = React.useState([]);
   const [drawer, setDrawer] = React.useState(false);
-  const [toast, setToast] = React.useState(null);
   const [gate, setGate] = React.useState(true);
   const add = (p, qty = 1) => {
     setLines((ls) => {
@@ -353,7 +352,6 @@ function App() {
       if (found) return ls.map((l) => l.slug === p.slug ? { ...l, qty: l.qty + qty } : l);
       return [...ls, { slug: p.slug, name: p.name, size: p.size, tile: p.tile, qty, amount: parseFloat(p.price) }];
     });
-    setToast({ title: "Zum Warenkorb hinzugef\xFCgt", body: p.name + " \xB7 " + p.size });
     setDrawer(true);
   };
   const setQty = (slug, n) => setLines((ls) => ls.map((l) => l.slug === slug ? { ...l, qty: n } : l));
@@ -367,11 +365,6 @@ function App() {
     setScreen(s);
     window.scrollTo(0, 0);
   };
-  React.useEffect(() => {
-    if (!toast) return;
-    const t = setTimeout(() => setToast(null), 5e3);
-    return () => clearTimeout(t);
-  }, [toast]);
   const count = lines.reduce((s, l) => s + l.qty, 0);
   const subtotal = lines.reduce((s, l) => s + l.amount * l.qty, 0);
   return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(Header, { cartCount: count, favCount: 2, active: screen, onCart: () => setDrawer(true), onNav: nav }), screen === "category" ? /* @__PURE__ */ React.createElement(CategoryScreen, { onOpen: open, onAdd: add }) : null, screen === "product" ? /* @__PURE__ */ React.createElement(ProductScreen, { p: product, onAdd: add, onOpen: open }) : null, screen === "cart" ? /* @__PURE__ */ React.createElement(CartScreen, { lines, onQty: setQty, onRemove: remove, onNav: nav }) : null, screen === "blog" ? /* @__PURE__ */ React.createElement(BlogScreen, null) : null, /* @__PURE__ */ React.createElement(ShopFooter, null), /* @__PURE__ */ React.createElement(
@@ -397,16 +390,7 @@ function App() {
       style: { background: "var(--white)" }
     },
     "Warenkorb-Seite"
-  ))) : null, toast ? /* @__PURE__ */ React.createElement("div", { style: { position: "fixed", bottom: 20, right: 20, zIndex: "var(--z-toast)" } }, /* @__PURE__ */ React.createElement(
-    Toast,
-    {
-      title: toast.title,
-      action: "Warenkorb ansehen",
-      onClose: () => setToast(null),
-      actionHref: "#"
-    },
-    /* @__PURE__ */ React.createElement("p", null, toast.body)
-  )) : null, gate ? /* @__PURE__ */ React.createElement(AgeGate, { onYes: () => setGate(false), onNo: () => setGate(false) }) : null);
+  ))) : null, gate ? /* @__PURE__ */ React.createElement(AgeGate, { onYes: () => setGate(false), onNo: () => setGate(false) }) : null);
 }
 ReactDOM.createRoot(document.getElementById("root")).render(/* @__PURE__ */ React.createElement(App, null));
 })();

@@ -1,16 +1,16 @@
 {
   "source": "https://claude.ai/artifact/JyZjDAewAEusKwmN6LbvVH",
-  "source_version": "1794579838-8c53",
+  "source_version": "1794848770-978b",
   "last_change": {
     "by": "Loic",
-    "at": "2026-11-13T14:24:00Z",
-    "via": "Claude (Cowork)",
-    "note": "13 Nov 2026: Imagery page now shows the supplied files (4 category images, 3 partner logos) on white, light-gray and a 380 px phone, with a measured check against the framing guides; files stored in the new Imagery asset group. Earlier today: imagery rules in the README, tokens category-frame-ratio and brand-logo-frame-ratio, Carousel guidelines and preview."
+    "at": "2026-11-16T18:10:00Z",
+    "via": "Claude (chat)",
+    "note": "16 Nov 2026: Footer redesigned (one markup; contact, three link columns as disclosures below lg, trust band, legal row; no switchers). IconList cards variant. Icons +6 (brand-instagram/facebook/telegram/linkedin, message-circle, link). DM Sans Italic 400; newsletter legal note italic."
   },
-  "mirrored_at": "2026-11-14",
-  "files": 278,
+  "mirrored_at": "2026-11-17",
+  "files": 274,
   "assets": {
-    "Icons": 48,
+    "Icons": 54,
     "Logos": 40
   }
 }

@@ -4,7 +4,8 @@ import React from "react";
    assets/Icons/README.md. 24×24 grid, 2px line, round ends and round joins:
    the same construction as the uWeed logo.
    Names are Tabler's own, so a further icon is added from the same family
-   under its published name. A name ending in "-filled" is Tabler's solid
+   under its published name. Names starting "brand-" are Tabler's brand
+   marks, used only for the footer's social links. A name ending in "-filled" is Tabler's solid
    version and is drawn as a fill, not a line.
    The same artwork is in the Icons asset group as SVG files. */
 const PATHS = {
@@ -13,6 +14,10 @@ const PATHS = {
   "alert-triangle": "<path d=\"M12 9v4\"></path><path d=\"M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0\"></path><path d=\"M12 16h.01\"></path>",
   "arrow-back-up": "<path d=\"M9 14l-4 -4l4 -4\"></path><path d=\"M5 10h11a4 4 0 1 1 0 8h-1\"></path>",
   "arrows-sort": "<path d=\"M3 9l4 -4l4 4m-4 -4v14\"></path><path d=\"M21 15l-4 4l-4 -4m4 4v-14\"></path>",
+  "brand-facebook": "<path d=\"M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3\"></path>",
+  "brand-instagram": "<path d=\"M4 8a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z\"></path><path d=\"M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0\"></path><path d=\"M16.5 7.5v.01\"></path>",
+  "brand-linkedin": "<path d=\"M8 11v5\"></path><path d=\"M8 8v.01\"></path><path d=\"M12 16v-5\"></path><path d=\"M16 16v-3a2 2 0 1 0 -4 0\"></path><path d=\"M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z\"></path>",
+  "brand-telegram": "<path d=\"M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4\"></path>",
   "cannabis": "<path d=\"M7 20s0 -2 1 -3.5c-1.5 0 -2 -.5 -4 -1.5c0 0 1.839 -1.38 5 -1c-1.789 -.97 -3.279 -2.03 -5 -6c0 0 3.98 -.3 6.5 3.5c-2.284 -4.9 1.5 -9.5 1.5 -9.5c2.734 5.47 2.389 7.5 1.5 9.5c2.531 -3.77 6.5 -3.5 6.5 -3.5c-1.721 3.97 -3.211 5.03 -5 6c3.161 -.38 5 1 5 1c-2 1 -2.5 1.5 -4 1.5c1 1.5 1 3.5 1 3.5c-2 0 -4.438 -2.22 -5 -3c-.563 .78 -3 3 -5 3\"></path><path d=\"M12 22v-5\"></path>",
   "check": "<path d=\"M5 12l5 5l10 -10\"></path>",
   "chevron-down": "<path d=\"M6 9l6 6l6 -6\"></path>",
@@ -31,10 +36,12 @@ const PATHS = {
   "help-circle": "<path d=\"M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0\"></path><path d=\"M12 16v.01\"></path><path d=\"M12 13a2 2 0 0 0 .914 -3.782a1.98 1.98 0 0 0 -2.414 .483\"></path>",
   "info-circle": "<path d=\"M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0\"></path><path d=\"M12 9h.01\"></path><path d=\"M11 12h1v4h1\"></path>",
   "leaf": "<path d=\"M5 21c.5 -4.5 2.5 -8 7 -10\"></path><path d=\"M9 18c6.218 0 10.5 -3.288 11 -12v-2h-4.014c-9 0 -11.986 4 -12 9c0 1 0 3 2 5h3l.014 0\"></path>",
+  "link": "<path d=\"M9 15l6 -6\"></path><path d=\"M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464\"></path><path d=\"M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463\"></path>",
   "lock": "<path d=\"M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6\"></path><path d=\"M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0\"></path><path d=\"M8 11v-4a4 4 0 1 1 8 0v4\"></path>",
   "mail": "<path d=\"M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10\"></path><path d=\"M3 7l9 6l9 -6\"></path>",
   "map-pin": "<path d=\"M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0\"></path><path d=\"M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0\"></path>",
   "menu-2": "<path d=\"M4 6l16 0\"></path><path d=\"M4 12l16 0\"></path><path d=\"M4 18l16 0\"></path>",
+  "message-circle": "<path d=\"M3 20l1.3 -3.9c-2.324 -3.437 -1.426 -7.872 2.1 -10.374c3.526 -2.501 8.59 -2.296 11.845 .48c3.255 2.777 3.695 7.266 1.029 10.501c-2.666 3.235 -7.615 4.215 -11.574 2.293l-4.7 1\"></path>",
   "minus": "<path d=\"M5 12l14 0\"></path>",
   "news": "<path d=\"M16 6h3a1 1 0 0 1 1 1v11a2 2 0 0 1 -4 0v-13a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1v12a3 3 0 0 0 3 3h11\"></path><path d=\"M8 8l4 0\"></path><path d=\"M8 12l4 0\"></path><path d=\"M8 16l4 0\"></path>",
   "package": "<path d=\"M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5\"></path><path d=\"M12 12l8 -4.5\"></path><path d=\"M12 12l0 9\"></path><path d=\"M12 12l-8 -4.5\"></path><path d=\"M16 5.25l-8 4.5\"></path>",
@@ -84,4 +91,4 @@ export function Icon({ name, size = 24, strokeWidth = 2, color = "currentColor",
   );
 }
 
-export const ICON_NAMES = ["adjustments-horizontal","alert-circle","alert-triangle","arrow-back-up","arrows-sort","cannabis","check","chevron-down","chevron-left","chevron-right","chevron-up","circle-check","circle-x","clock","credit-card","external-link","filter","flask","heart","heart-filled","help-circle","info-circle","leaf","lock","mail","map-pin","menu-2","minus","news","package","phone","plus","rosette-discount","search","selector","shield-check","shopping-bag","shopping-cart","star","star-filled","tag","trash","truck","user","user-check","world","x","zoom-in"];
+export const ICON_NAMES = ["adjustments-horizontal","alert-circle","alert-triangle","arrow-back-up","arrows-sort","brand-facebook","brand-instagram","brand-linkedin","brand-telegram","cannabis","check","chevron-down","chevron-left","chevron-right","chevron-up","circle-check","circle-x","clock","credit-card","external-link","filter","flask","heart","heart-filled","help-circle","info-circle","leaf","link","lock","mail","map-pin","menu-2","message-circle","minus","news","package","phone","plus","rosette-discount","search","selector","shield-check","shopping-bag","shopping-cart","star","star-filled","tag","trash","truck","user","user-check","world","x","zoom-in"];

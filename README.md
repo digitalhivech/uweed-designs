@@ -177,7 +177,9 @@ uWeed is growing from the CBD shop into further shop verticals. Each vertical ta
 
 ### Type
 
-Set headings in **Poppins** (`font-heading`) and everything else in **DM Sans** (`font-body`): body, navigation, labels, buttons, prices, metadata. Six faces load from Google Fonts: Poppins 600/700/800 and DM Sans 400/500/700, latin plus latin-ext for German and French accents.
+Set headings in **Poppins** (`font-heading`) and everything else in **DM Sans** (`font-body`): body, navigation, labels, buttons, prices, metadata. Seven faces load from Google Fonts: Poppins 600/700/800, DM Sans 400/500/700 and DM Sans Italic 400, latin plus latin-ext for German and French accents.
+
+- Use DM Sans Italic 400 only for a short note beside a form, such as the newsletter's privacy line (added 16 November 2026). Never italicise headings, labels, buttons or prices, and never for emphasis in running text.
 
 - Never set Poppins below `fw-semibold`. 400 and 500 are not loaded, and `font-synthesis: none` renders a request for them at 600.
 - Use the fluid scale `fs-display` to `fs-h6` and `fs-lead`, each with its `lh-*` and `ls-*`. It runs between 375px and 1280px with no breakpoints. The `h1` to `h6`, `display` and `lead` styles show the 1280px bound.
@@ -196,7 +198,7 @@ Set headings in **Poppins** (`font-heading`) and everything else in **DM Sans** 
 ### Surfaces and cards
 
 - Use flat colour. The only gradient is the skeleton shimmer. No patterns, textures, grain, blur or `backdrop-filter`.
-- Put pages on `white` and grouped blocks on `light-gray`. The footer, tooltips, the lightbox and the dark toast sit on `dark-blue`.
+- Put pages on `white` and grouped blocks on `light-gray`. The footer, tooltips and the lightbox sit on `dark-blue`.
 - Show product imagery on `white` on the tile and `light-gray` in the gallery frame, so the product carries the colour.
 - Build every card from `Card`: white, a `line` hairline, `radius-card`, `shadow-xs`. Use the four variants and no fifth: default, `link` (lifts), `flat` (inside a container), `tint` (`light-gray`, no border). Never nest cards more than one deep, and drop the inner frame.
 - Protect elements over photographs with a drop shadow, never a capsule or gradient: the favourites heart is the worked example.
@@ -221,23 +223,24 @@ Gate every hover inside `@media (hover: hover) and (pointer: fine)`. The one exc
 - **Never use opacity** for a state.
 - **Disabled** (`light-gray` fill, `medium-gray` border and label) means *not right now*. **Unavailable** (transparent fill, `dark-gray` border and label) means *not at all*, as with sold out. Give neither a tooltip.
 - **Press** is `translateY(1px)` everywhere.
-- **Touch** needs 44px. Controls are 44px high; the few that are drawn smaller (the remove button on a tag, the close button on a toast, the clear button in the search field, plus and minus in the cart, the footer switchers, the tooltip trigger) keep their look and react to a 44px area on a touch screen. Tick rows in filter lists are 32px with a mouse and 44px on a touch screen. A new small control gets the same treatment in `@media (pointer: coarse)`.
+- **Touch** needs 44px. Controls are 44px high; the few that are drawn smaller (the remove button on a tag, the clear button in the search field, plus and minus in the cart, the tooltip trigger) keep their look and react to a 44px area on a touch screen. Tick rows in filter lists are 32px with a mouse and 44px on a touch screen. A new small control gets the same treatment in `@media (pointer: coarse)`.
 - **Focus** uses `:focus-visible`: a 2px `medium-blue` outline at 2px offset on light surfaces, and 3px `white` inside `.on-dark`. Every control uses this ring, the search field included; there are no exceptions. The tooltip alone opens on `:focus`, so it works on tap.
 
 ### Layout
 
-Lay out with the Bootstrap 5.3 breakpoints `bs-breakpoint-sm` to `bs-breakpoint-xxl`, for layout only and never for type. Contain pages at `container-xl`, `container-xxl`, `container-wide-lg` and `container-wide`. Detect the input, not the width. Stack fixed elements by token from `z-sticky` through `z-header`, `z-panel`, `z-tooltip`, `z-backdrop`, `z-modal` and `z-drawer` to `z-toast`. Give tap targets 44×44px under `(pointer: coarse)`, usually by making the label the hit area.
+Lay out with the Bootstrap 5.3 breakpoints `bs-breakpoint-sm` to `bs-breakpoint-xxl`, for layout only and never for type. Contain pages at `container-xl`, `container-xxl`, `container-wide-lg` and `container-wide`. Detect the input, not the width. Stack fixed elements by token from `z-sticky` through `z-header`, `z-panel`, `z-tooltip`, `z-backdrop`, `z-modal` to `z-drawer`. Give tap targets 44×44px under `(pointer: coarse)`, usually by making the label the hit area.
 
 ---
 
 ## Iconography
 
-The uWeed icon set is **[Tabler Icons](https://tabler.io/icons)**, a free open-source family (MIT licence), chosen in October 2026 because it is built the way the logo is: one even line, round ends, simple geometry. The 48 icons in use are in the **Icons** asset group and drawn by `Icon`, so they inherit `currentColor`.
+The uWeed icon set is **[Tabler Icons](https://tabler.io/icons)**, a free open-source family (MIT licence), chosen in October 2026 because it is built the way the logo is: one even line, round ends, simple geometry. The 54 icons in use are in the **Icons** asset group and drawn by `Icon`, so they inherit `currentColor`.
 
 - Render icons through `Icon` in four sizes: 16px in small controls (tags, filters, the quantity stepper, field hints), 20px in buttons, fields and messages, 24px for an icon on its own, 32px for an empty state. No other size; the one exception is the rating star on the product tile, 14px to match the text beside it.
 - Use **one line weight**: 2px on the 24px grid, at every size. Do not thin or thicken an icon to make it quieter or louder; change its size or colour.
 - Take a further icon from **Tabler only**, under Tabler's own name, and add it to `Icon` and the Icons asset group together. Never mix in another family. Where the site needs an icon Tabler does not have, flag it: it is then drawn once to Tabler's rules (24px grid, 2px line, round ends) and added like any other.
 - Use a filled icon (a name ending in `-filled`) only for a state or a score, such as the rating star. Everything else is a line icon.
+- Use the four brand icons (`brand-instagram`, `brand-facebook`, `brand-telegram`, `brand-linkedin`) only for social links, in the surrounding colour, never in a network's own colours.
 - Keep icons decorative. An icon-only control takes its name from `aria-label`.
 - Colour the order-info-bar icons `dark-blue`, never green: the buy button sits directly above them.
 - Use no unicode stand-ins, with two CSS exceptions: the breadcrumb `›`, and the accordion chevron and check marks.
@@ -322,10 +325,11 @@ Each component has a live preview, its guidelines and its types:
 - **Forms**: `Input`, `Select`, `Checkbox`, `Radio` (with `RadioGroup`), `FormField`, `QuantitySelector`, `CouponForm`
 - **Navigation**: `TabNav`, `Breadcrumb`, `Pagination`, `Carousel`
 - **Disclosure**: `Accordion` (with `AccordionItem`), `Popover` (with `PopoverItem`, `PopoverGroup`, `PopoverSeparator`, `PopoverFooter`), `FilterPill`, `SortButton`, `Tooltip`, `ContentTabs`
-- **Feedback**: `Message`, `Toast`, `StockStatus`, `Skeleton`, `Spinner`
+- **Feedback**: `Message`, `StockStatus`, `Skeleton`, `Spinner`
+- **No toasts** (decided 16 November 2026). Nothing slides in and leaves on its own. A confirmation is the changed state itself: adding to the cart opens the `CartDrawer`, a saved favourite fills the heart, an applied coupon becomes its chip. Feedback that must be read stays on the page as a `Message` or a field error.
 - **Overlays**: `Modal`, `AgeGate`, `CartDrawer`, `FilterPanel`
 - **Commerce**: `ProductTile`, `PdpGallery`, `OrderInfoBar`, `OrderSummary`, `ProductInfoTable`
-- **Content**: `ArticleRow`, `BlogCard`, `ContentTable` (CSS only, no React component), `IconList`, `NewsletterBlock`
+- **Content**: `ArticleRow`, `BlogCard`, `ContentTable` (CSS only, no React component), `IconList` (as a list, or as cards for the band above the footer), `NewsletterBlock`
 - **Chrome**: `SearchBar`, `Footer`
 
 Two more groups show the system in use rather than one component at a time:
@@ -336,10 +340,11 @@ Two more groups show the system in use rather than one component at a time:
 - **Intentional additions:** `RadioGroup` exists because no radio group on the live site uses the grouped pattern unless something makes it easier.
 - **Not built:** the header, mega menu, mobile menu, PDP sticky bar and variation selector. Each is blocked in the source on a decision or a redesign. Where a page needs one, compose documented components and say so.
 - **Articles are teased one way.** Outside the magazine that is `ArticleRow`: cards three across on a desktop and a list of rows on a phone, never a swipe row, never a card with the title laid over the picture. On a phone every `BlogCard` is a row with the category label above the title.
+- **Every page ends the same way** (16 November 2026): the `IconList` cards ("Warum uWeed"), then `NewsletterBlock` without its disc, then `Footer`. The footer is one markup for every width: contact first, three link columns that are disclosures below `lg`, a trust band, then the logo with the legal links.
 - **Brand and city pages** are page layouts that arrange these components, not components of their own.
 - **Filters on a phone.** Below `lg` the filter pills and the sort control give way to one filled blue button, "Filter & Sortierung (3)", that opens `FilterPanel`: full screen, sorting as its own block at the top, each filter opening in place and naming what is chosen in it ("Harlequin, Sweed +2"), reset bottom left and a blue button with the number of matching products bottom right. Decided in October 2026 against published research on leading shops.
 - **Counts are grey.** The product count beside a filter option is `medium-gray`. Blue is the colour of links; text that cannot be tapped never takes it.
-- **Colour by purpose, not prominence:** `Button` `buy` advances a purchase and `nav` goes somewhere. The sort control is `SortButton`, never a `FilterPill`. Errors on coupons use `Message`, never `Toast`.
+- **Colour by purpose, not prominence:** `Button` `buy` advances a purchase and `nav` goes somewhere. The sort control is `SortButton`, never a `FilterPill`. A coupon error is the field's own error state; an applied coupon is the green chip.
 
 ---
 
@@ -354,7 +359,7 @@ A page built strictly against this system will not match production until the to
 ## Assets
 
 - **Logos**: the approved logo kit, 22 SVGs and 2 favicon PNGs, with the brand's usage guide (see Logo).
-- **Icons**: the 48 Tabler icons in use, as SVG files, with the licence (see Iconography).
+- **Icons**: the 54 Tabler icons in use, as SVG files, with the licence (see Iconography).
 
 ---
 
@@ -392,7 +397,7 @@ Every path named below is under `project/` in this design system: read `project/
 - **Foundations**: `Logo` — The approved uWeed logo kit (August 2026): a horizontal logo, the same logo with the tagline, and the mark, each as a ready-coloured SVG, plus two favicon PNGs · `ColourPairings` (showcase page) — Approved text and background pairs, and the ones that fail · `Colours` (showcase page) — The palette by family: each family has one job · `MotionAndStacking` (showcase page) — Three durations and one easing; eleven stacking tokens · `SpacingAndShape` (showcase page) — The spacing scale in use, radius, border widths and elevation · `Typography` (showcase page) — Poppins for headings, DM Sans for everything else, fluid between 375 and 1280px
 - **Disclosure**: `Accordion` — Use Accordion + AccordionItem for FAQ blocks, PDP tabs on mobile, category text and footer columns on mobile · `ContentTabs` — Use ContentTabs for the PDP description / lab report / shipping panels on desktop · `FilterPill` — Use FilterPill for every facet trigger — one per facet, always visible · `Popover` — Use Popover for any panel that opens from a trigger and floats above the page · `SortButton` — Use SortButton as the sort control on a listing · `Tooltip` — Use Tooltip only for nuance the reader could do without
 - `AccordionItem` — AccordionItem · `PopoverItem` — PopoverItem · `PopoverGroup` — PopoverGroup · `PopoverSeparator` — PopoverSeparator · `PopoverFooter` — PopoverFooter · `RadioGroup` — RadioGroup
-- **Feedback**: `Message` — Use Message for feedback the reader must be able to come back to — form errors, compliance notes, coupon results, shipping notices · `Skeleton` — Use Skeleton where the incoming shape is known — a reloading product grid, cart drawer rows, filter results · `Spinner` — Use Spinner when you cannot know the shape of what is coming — a submitting form, an in-flight request · `StockStatus` — Use StockStatus on a PDP below the variation selector · `Toast` — Use Toast to confirm an action that succeeded and needs no decision
+- **Feedback**: `Message` — Use Message for feedback the reader must be able to come back to — form errors, compliance notes, coupon results, shipping notices · `Skeleton` — Use Skeleton where the incoming shape is known — a reloading product grid, cart drawer rows, filter results · `Spinner` — Use Spinner when you cannot know the shape of what is coming — a submitting form, an in-flight request · `StockStatus` — Use StockStatus on a PDP below the variation selector
 - **Forms**: `Checkbox` — Use Checkbox for independent on/off and for filter facets · `CouponForm` — Use CouponForm on the cart page, in the cart drawer and at checkout · `FormField` — Use FormField around every form control · `Input` — Use Input for any text entry · `QuantitySelector` — Use QuantitySelector wherever a quantity is set or shown · `Radio` — Use RadioGroup + Radio for any single-choice set · `Select` — Use Select for one-of-many where the list is known
 - **Navigation**: `Breadcrumb` — Use Breadcrumb above the H1 on category and product pages · `Carousel` — Use Carousel for a horizontal rail of products or city tiles · `Pagination` — Use Pagination below a product grid or blog archive · `TabNav` — Use TabNav for one axis of category filtering above a grid or a rail
 - **Overlays**: `AgeGate` — Use AgeGate as the first thing a visitor sees · `CartDrawer` — Use CartDrawer for the slide-in cart · `FilterPanel` — Use FilterPanel for filtering and sorting a product listing below lg, where the row of filter pills has no room · `Modal` — Use Modal rarely — a destructive confirmation or a required choice

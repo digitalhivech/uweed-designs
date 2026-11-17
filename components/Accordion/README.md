@@ -1,4 +1,4 @@
-Use `Accordion` + `AccordionItem` for FAQ blocks, PDP tabs on mobile, category text and footer columns on mobile.
+Use `Accordion` + `AccordionItem` for FAQ blocks, PDP tabs on mobile and category text. The footer's link columns are not an `Accordion` since 16 November 2026: the footer keeps one markup for every width, with its own button disclosures below `lg` (see `Footer`).
 
 ```jsx
 <Accordion>

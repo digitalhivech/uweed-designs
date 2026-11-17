@@ -1,7 +1,7 @@
 /**
  * A short heading and up to four facts, each with an icon on a pink disc.
  * An informing block: never used in the buying steps, never on a pink
- * background.
+ * background. `variant="cards"` sets each fact in its own white card.
  */
 export interface IconListItem {
   /** An icon name from ICON_NAMES. Drawn at 24px, dark pink on a light-pink disc. */
@@ -19,6 +19,8 @@ export interface IconListProps {
   items: IconListItem[];
   /** `plain` directly on the page · `tint` a light-grey block. */
   surface?: "plain" | "tint";
+  /** `list` facts side by side, disc on the left on a phone · `cards` centred heading, each fact in a white card (the band above the footer). */
+  variant?: "list" | "cards";
   /** h2 by default: the band is a section of the page. */
   headingLevel?: 2 | 3 | 4;
   className?: string;

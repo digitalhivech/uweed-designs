@@ -7,7 +7,7 @@ The design system there is the master. This copy exists so that other tools and 
 Never edit files here: a change made here is overwritten by the next copy. Change the design system,
 and the copy follows.
 
-Copied from version `1794579838-8c53` on 2026-11-14. Last recorded change in the system: 2026-11-13T14:24:00Z (Loic). 13 Nov 2026: Imagery page now shows the supplied files (4 category images, 3 partner logos) on white, light-gray and a 380 px phone, with a measured check against the framing guides; files stored in the new Imagery asset group. Earlier today: imagery rules in the README, tokens category-frame-ratio and brand-logo-frame-ratio, Carousel guidelines and preview.
+Copied from version `1794848770-978b` on 2026-11-17. Last recorded change in the system: 2026-11-16T18:10:00Z (Loic). 16 Nov 2026: Footer redesigned (one markup; contact, three link columns as disclosures below lg, trust band, legal row; no switchers). IconList cards variant. Icons +6 (brand-instagram/facebook/telegram/linkedin, message-circle, link). DM Sans Italic 400; newsletter legal note italic.
 
 ## What is where
 
@@ -189,10 +189,6 @@ straight from this repository they render blank; the pictures in `previews/` sho
 
 ![StockStatus](previews/StockStatus.png)
 
-**[Toast](components/Toast/)** · Transient confirmation, never for an error. Light by default, dark over imagery
-
-![Toast](previews/Toast.png)
-
 
 ### Overlays
 
@@ -250,7 +246,7 @@ straight from this repository they render blank; the pictures in `previews/` sho
 
 ![ContentTable](previews/ContentTable.png)
 
-**[IconList](components/IconList/)** · Up to four facts with an icon on a pink disc. On the page or on light grey, never on pink and never in the buying steps
+**[IconList](components/IconList/)** · Up to four facts with an icon on a pink disc: as a list or as cards. On the page or on light grey, never on pink and never in the buying steps
 
 ![IconList](previews/IconList.png)
 
@@ -261,7 +257,7 @@ straight from this repository they render blank; the pictures in `previews/` sho
 
 ### Chrome
 
-**[Footer](components/Footer/)** · Dark-blue footer: four link columns, copyright and aria-pressed switchers
+**[Footer](components/Footer/)** · Dark-blue footer: contact, three link columns, trust band and legal row; one markup, accordions below lg
 
 ![Footer](previews/Footer.png)
 

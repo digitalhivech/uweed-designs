@@ -1,6 +1,6 @@
 # Icons
 
-The 48 icons uWeed uses, from [Tabler Icons](https://tabler.io/icons) (version 3.49.0), a free open-source family under the MIT licence. Tabler was chosen in October 2026 because it is built the way the logo is: one even line, round ends, simple geometry.
+The 54 icons uWeed uses, from [Tabler Icons](https://tabler.io/icons) (version 3.49.0), a free open-source family under the MIT licence. Tabler was chosen in October 2026 because it is built the way the logo is: one even line, round ends, simple geometry.
 
 - In the interface, draw icons with the `Icon` component. It holds the same artwork and inherits `currentColor`.
 - These files are for surfaces without the component, such as a slide or a document: 24×24, 2px line, `currentColor`. Shown through `<img>` they draw in black; recolour them in code, not in the file.
@@ -27,7 +27,7 @@ These icons replaced an earlier stand-in set in October 2026. Twelve changed nam
 | `ticket-percent` | `rosette-discount` |
 | `triangle-alert` | `alert-triangle` |
 
-`cannabis` and `star-filled` are new. `help-circle` was added on 25 October 2026 for the FAQ link in the header menu, and `heart-filled` on 27 October 2026 for the header favourites icon once something is saved. `user-check` was added the same day for the header account icon when the visitor is logged in, and `news` on 30 October 2026 for the Magazin link in the header menu.
+`cannabis` and `star-filled` are new. `help-circle` was added on 25 October 2026 for the FAQ link in the header menu, and `heart-filled` on 27 October 2026 for the header favourites icon once something is saved. `user-check` was added the same day for the header account icon when the visitor is logged in, and `news` on 30 October 2026 for the Magazin link in the header menu. On 16 November 2026 the footer redesign added `message-circle` (live chat), `link` (contact page) and four brand marks for the social links: `brand-instagram`, `brand-facebook`, `brand-telegram` and `brand-linkedin`.
 
 ## Licence
 

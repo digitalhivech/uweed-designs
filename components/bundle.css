@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Poppins:wght@600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Poppins:wght@600;700;800&display=swap");
 
 /* Sizing: every size in this stylesheet counts border and padding in. The
    site gets this from Bootstrap; declaring it here makes the components
@@ -10,7 +10,9 @@
    This file is @imports only. Never declare a value here. */
 
 /* ── tokens/fonts.css ── */
-/* Six faces total: Poppins 600/700/800, DM Sans 400/500/700.
+/* Seven faces total: Poppins 600/700/800, DM Sans 400/500/700 and DM Sans
+   Italic 400 (added 16 November 2026, for short notes beside a form such as
+   the newsletter's privacy line; never for headings, labels or emphasis).
    Loaded from Google Fonts (latin + latin-ext — latin-ext is required for
    German and French accents). The @import sits at the top of styles.css.
 
@@ -159,8 +161,7 @@ html{font-synthesis:none}
    alone: they are local stacking inside a component.
 
    The ordering is what the components require: a tooltip above a panel so a
-   tooltip on a filter is visible; a toast above everything because it
-   confirms an action that may have opened a modal; the cart drawer above
+   tooltip on a filter is visible; the cart drawer above
    modals, keeping the position it held at 99999 but as a named value. */
 :root{ /* @kind other */
 }
@@ -664,7 +665,7 @@ h6{font-size:var(--fs-h6);font-weight:var(--fw-semibold);line-height:var(--lh-h6
 /* ── styles.css ── */
 
 /* ── components/feedback/feedback.css ── */
-/* 13 · Stock status · 20 · Message · 21 · Toast · 30 · Loading and skeleton */
+/* 13 · Stock status · 20 · Message · 30 · Loading and skeleton */
 
 /* ---- 13 · Stock status --------------------------------------------- */
 /* Out of stock is GREY, not red. Availability is a fact, not an error.
@@ -700,25 +701,6 @@ h6{font-size:var(--fs-h6);font-weight:var(--fw-semibold);line-height:var(--lh-h6
 .uw-msg--warning .uw-msg__ic svg{transform:translateY(-1px)}
 .uw-msg--error{background:var(--light-red);border-color:var(--medium-red)}
 .uw-msg--error .uw-msg__ic{background:var(--medium-red)}
-
-/* ---- 21 · Toast ---------------------------------------------------- */
-/* Light by default: on white the action link is simply the Link component's action link,
-   rather than a fourth link treatment existing nowhere else.
-   A white card on a white page needs a border — shadow alone does not hold
-   the corners. */
-.uw-toast{display:flex;align-items:flex-start;gap:var(--space-s);max-width:380px;padding:var(--space-s) var(--space-m);background:var(--white);color:var(--dark-gray);border:var(--border-hairline) solid var(--line);border-radius:var(--radius-card);box-shadow:var(--shadow-lg);font-size:var(--fs-small);z-index:var(--z-toast)}
-.uw-toast__ic{flex:0 0 auto;margin-top:2px;color:var(--dark-green)}
-.uw-toast__b{flex:1;min-width:0}
-.uw-toast .uw-toast__t{font-weight:var(--fw-bold);color:var(--dark-blue);margin:0 0 1px}
-.uw-toast .uw-toast__b p{margin:0;font-size:var(--fs-small)}
-.uw-toast__a{display:inline-block;margin-top:4px;color:var(--medium-blue);font-weight:var(--fw-medium);text-decoration:none}
-@media (hover:hover) and (pointer:fine){.uw-toast__a:hover{text-decoration:underline;text-underline-offset:.15em}}
-.uw-toast__x{flex:0 0 auto;width:24px;height:24px;border:0;background:none;color:var(--medium-gray);cursor:pointer;display:grid;place-items:center}
-.uw-toast--dark{background:var(--dark-blue);border-color:transparent;color:#FFFFFFCC}
-.uw-toast--dark .uw-toast__t{color:var(--white)}
-.uw-toast--dark .uw-toast__ic{color:var(--medium-green)}
-.uw-toast--dark .uw-toast__a{color:var(--white);text-decoration:underline}
-.uw-toast--dark .uw-toast__x{color:#FFFFFF99}
 
 /* ---- 30 · Loading and skeleton ------------------------------------- */
 /* Skeleton when the shape is known, spinner when it is not.
@@ -1121,7 +1103,8 @@ h6{font-size:var(--fs-h6);font-weight:var(--fw-semibold);line-height:var(--lh-h6
 /* The button keeps its own width beside the field and fills the line once it wraps under it. */
 .uw-news__form .uw-btn{flex:1 0 auto}
 .uw-news.is-error .uw-news__form .uw-input{border-color:var(--medium-red);background:var(--light-red)}
-.uw-news__legal{margin:var(--space-s) 0 0;font-size:var(--fs-meta);line-height:var(--lh-meta)}
+/* The legal note is italic (16 November 2026): it reads as a note, not as part of the invitation. */
+.uw-news__legal{margin:var(--space-s) 0 0;font-size:var(--fs-meta);font-style:italic;line-height:var(--lh-meta)}
 .uw-news__legal a{color:var(--medium-blue);text-underline-offset:.15em}
 .uw-news__error,.uw-news__done{display:flex;align-items:flex-start;gap:var(--space-xs);margin:var(--space-s) 0 0;font-size:var(--fs-small);line-height:var(--lh-small)}
 .uw-news__error svg,.uw-news__done svg{flex:0 0 auto;margin-top:2px}
@@ -1140,6 +1123,20 @@ h6{font-size:var(--fs-h6);font-weight:var(--fw-semibold);line-height:var(--lh-h6
 @media (max-width:575.98px){
 .uw-icl__list{grid-template-columns:1fr;gap:var(--space-m)}
 .uw-icl__item{flex-direction:row}
+}
+/* Cards variant (16 November 2026): the band above the footer. Heading
+   centred, each fact in a white card (the Card surface: hairline,
+   radius-card, shadow-xs), disc on top, text centred. Not links, so no
+   hover lift. Two per row until the band is wide enough for four; it
+   measures itself, so it holds in a narrow column too. */
+.uw-icl--cards{container-type:inline-size;text-align:center}
+.uw-icl--cards .uw-inform__title{margin-inline:auto}
+.uw-icl--cards .uw-icl__list{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-s);margin-top:var(--space-l)}
+.uw-icl--cards .uw-icl__item{flex-direction:column;align-items:center;gap:var(--space-s);padding:var(--space-m) var(--space-s);background:var(--white);border:var(--border-hairline) solid var(--line);border-radius:var(--radius-card);box-shadow:var(--shadow-xs)}
+.uw-icl--cards .uw-icl__label{margin-bottom:var(--space-3xs)}
+@container (min-width:900px){
+.uw-icl--cards .uw-icl__list{grid-template-columns:repeat(var(--uw-icl-cols,4),minmax(0,1fr));gap:var(--space-l)}
+.uw-icl--cards .uw-icl__item{padding:var(--space-l) var(--space-m)}
 }
 
 /* ── components/chrome/chrome.css ── */
@@ -1163,30 +1160,87 @@ h6{font-size:var(--fs-h6);font-weight:var(--fw-semibold);line-height:var(--lh-h6
 .uw-search__panel{position:absolute;top:calc(100% + var(--space-xs));left:0;right:0;max-width:none;z-index:var(--z-panel)}
 
 /* ---- 23 · Footer --------------------------------------------------- */
-/* The footer surface is --dark-blue (decided October 2026): a footer is
-   navigation, and green is kept for the purchase path. All footer text is
-   --white, not #F5F5F5. */
-.uw-footer{background:var(--dark-blue);color:var(--white)}
-.uw-footer__inner{max-width:var(--container-xl);margin-inline:auto;padding:var(--space-2xl) var(--space-l) var(--space-l)}
-.uw-footer__cols{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-xl)}
-.uw-footer .uw-footer__h{margin:0 0 var(--space-s);font-family:var(--ff-body);font-size:var(--fs-body);font-weight:var(--fw-bold);text-transform:uppercase;letter-spacing:var(--ls-caps);color:var(--white)}
-.uw-footer__list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:var(--space-xs)}
-.uw-footer__list a{color:var(--white);text-decoration:none;font-size:var(--fs-small);font-weight:var(--fw-medium)}
-@media (hover:hover) and (pointer:fine){.uw-footer__list a:hover{text-decoration:underline;text-underline-offset:.15em}}
-.uw-footer__bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-m);margin-top:var(--space-2xl);padding-top:var(--space-m);border-top:var(--border-hairline) solid #FFFFFF33}
-.uw-footer .uw-footer__copy{margin:0;font-size:var(--fs-meta);color:var(--white)}
-.uw-footer__switches{display:flex;gap:var(--space-xs);flex-wrap:wrap}
-/* Translucent white well; the pressed pill is solid white with the footer's
-   own colour as its text, so it inverts without a third colour. */
-.uw-sw{display:inline-flex;background:#FFFFFF1F;border-radius:var(--radius-pill);padding:3px}
-.uw-sw button{border:0;background:none;padding:5px 14px;border-radius:var(--radius-pill);font-family:var(--ff-body);font-size:var(--fs-meta);font-weight:var(--fw-medium);color:#FFFFFFCC;cursor:pointer;transition:background-color var(--motion-fast) var(--motion-ease),color var(--motion-fast) var(--motion-ease)}
-@media (hover:hover) and (pointer:fine){.uw-sw button:hover{color:var(--white);background:#FFFFFF26}}
-.uw-sw button[aria-pressed="true"]{background:var(--white);color:var(--dark-blue)}
-.uw-sw button:focus-visible{outline:var(--border-heavy) solid var(--white);outline-offset:2px}
-.uw-footer__acc{display:none}
-@media (max-width:991px){
-  .uw-footer__cols{display:none}
-  .uw-footer__acc{display:block}
+/* Redesigned 16 November 2026, mobile first. The surface is --dark-blue
+   (decided October 2026): a footer is navigation, and green is kept for the
+   purchase path. All footer text is --white, not #F5F5F5 (18.72:1).
+   ONE markup for every width. Below lg everything stacks and the link
+   columns are disclosures (button + aria-expanded); from lg the nav and the
+   trust band are four equal columns each. Dividers are white at 15%. */
+.uw-footer{background:var(--dark-blue);color:var(--white);font-family:var(--ff-body)}
+.uw-footer__inner{max-width:var(--container-xl);margin-inline:auto;padding:var(--space-xs) var(--space-m) var(--space-xl)}
+.uw-footer ul{margin:0;padding:0;list-style:none}
+.uw-footer a{color:var(--white);text-decoration:none}
+.uw-footer :focus-visible{outline:var(--border-heavy) solid var(--white);outline-offset:2px}
+.uw-footer .uw-footer__h{margin:0 0 var(--space-xs);font-family:var(--ff-heading);font-size:var(--fs-h6);font-weight:var(--fw-semibold);line-height:var(--lh-h6);letter-spacing:var(--ls-h6);color:var(--white)}
+/* Navigation: Kontakt, then the link columns. */
+.uw-footer__col{padding:var(--space-m) 0}
+.uw-footer__col:not(.uw-footer__contact){padding:0}
+.uw-footer__col+.uw-footer__col{border-top:var(--border-hairline) solid #FFFFFF26}
+.uw-footer__col:not(.uw-footer__contact) .uw-footer__h{margin:0}
+.uw-footer__toggle{display:flex;align-items:center;justify-content:space-between;gap:var(--space-s);width:100%;min-height:56px;padding:0;border:0;background:none;color:inherit;font:inherit;letter-spacing:inherit;text-align:left;cursor:pointer}
+.uw-footer__toggle svg{transition:transform var(--motion-fast) var(--motion-ease)}
+.uw-footer__toggle[aria-expanded="true"] svg{transform:rotate(180deg)}
+.uw-footer__col:not(.uw-footer__contact) .uw-footer__list{padding-bottom:var(--space-s)}
+.uw-footer__list[hidden]{display:none}
+/* Every row is 44px on a phone. Contact rows look like the links; only the
+   live-chat row, which opens a window, is underlined. */
+.uw-footer__row{display:flex;align-items:center;gap:var(--space-s);min-height:44px;padding:0;border:0;background:none;font-family:var(--ff-body);font-size:var(--fs-body);line-height:var(--lh-small);color:var(--white);text-align:left;cursor:pointer}
+div.uw-footer__row{cursor:default}
+.uw-footer__row--action span{text-decoration:underline;text-underline-offset:.2em}
+@media (hover:hover) and (pointer:fine){a.uw-footer__row:hover,button.uw-footer__row:hover{text-decoration:underline;text-underline-offset:.2em}}
+/* Trust band: social, reviews, language and currency, payment and memberships. */
+.uw-footer__mid{display:flex;flex-direction:column;gap:var(--space-l);padding:var(--space-l) 0;border-top:var(--border-hairline) solid #FFFFFF26}
+.uw-footer__locale,.uw-footer__trust{padding-top:var(--space-l);border-top:var(--border-hairline) solid #FFFFFF26}
+.uw-footer__trust{display:flex;flex-direction:column;gap:var(--space-l)}
+.uw-footer__icons{display:flex;flex-wrap:wrap;gap:var(--space-s)}
+.uw-footer__soc{display:grid;place-items:center;width:44px;height:44px;border:var(--border-hairline) solid #FFFFFF40;border-radius:50%;transition:background-color var(--motion-fast) var(--motion-ease)}
+@media (hover:hover) and (pointer:fine){.uw-footer__soc:hover{background:#FFFFFF1F}}
+/* Static stand-in for the REVIEWS.io badge, for previews and as the frame the widget fills. */
+.uw-footer .uw-footer__badge{display:inline-flex;flex-direction:column;align-items:center;gap:5px;width:200px;padding:var(--space-m) var(--space-l);background:var(--white);border-radius:var(--radius-card);color:var(--dark-blue);font-size:var(--fs-meta);line-height:1.3;text-align:center}
+.uw-footer__badge>b{font-size:.9375rem}
+.uw-footer__stars{display:inline-flex;gap:2px;color:var(--medium-orange)}
+/* Language and currency: the header's white pills with a round flag. */
+.uw-footer__pills{display:flex;flex-wrap:wrap;gap:var(--space-xs)}
+.uw-footer__pill{display:inline-flex;align-items:center;gap:var(--space-xs);height:44px;padding:0 var(--space-s);border:0;border-radius:var(--radius-pill);background:var(--white);color:var(--dark-blue);font-family:var(--ff-body);font-size:.9375rem;font-weight:var(--fw-medium);white-space:nowrap;cursor:pointer;transition:background-color var(--motion-fast) var(--motion-ease)}
+@media (hover:hover) and (pointer:fine){.uw-footer__pill:hover{background:var(--light-blue)}}
+.uw-footer__flag{display:block;line-height:0}
+.uw-footer__flag svg,.uw-footer__flag img{display:block;width:20px;height:20px;border-radius:50%}
+.uw-footer__pill-text{display:flex;flex-direction:column;gap:1px;line-height:1.1;text-align:left}
+.uw-footer__pill-text small{font-size:12px;font-weight:var(--fw-medium);color:var(--medium-gray)}
+/* Payment marks and membership logos sit on white. */
+.uw-footer__chips{display:flex;flex-wrap:wrap;gap:6px}
+.uw-footer__chip{display:grid;place-items:center;min-width:44px;height:28px;padding:0 var(--space-xs);background:var(--white);border-radius:var(--radius-checkbox);font-size:10px;font-weight:var(--fw-bold);color:var(--dark-blue)}
+.uw-footer__chip img{display:block;height:18px;width:auto}
+.uw-footer .uw-footer__member{display:grid;place-items:center;width:88px;aspect-ratio:var(--brand-logo-frame-ratio);padding:0 4px;background:var(--white);border-radius:var(--radius-checkbox);font-size:11px;font-weight:var(--fw-bold);color:var(--dark-blue);text-align:center}
+.uw-footer__member img{width:100%;height:100%;object-fit:contain}
+/* Bottom: logo with the legal links, disclaimer, copyright with "Nach oben". */
+.uw-footer__bottom{display:flex;flex-direction:column;gap:var(--space-m);padding-top:var(--space-l);border-top:var(--border-hairline) solid #FFFFFF26}
+.uw-footer__brand{display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-m)}
+.uw-footer__logo{display:block;line-height:0}
+.uw-footer__legal{display:flex;flex-wrap:wrap;align-items:center;column-gap:var(--space-l)}
+.uw-footer .uw-footer__legal a,.uw-footer .uw-footer__legal button{display:inline-flex;align-items:center;min-height:44px;padding:0;border:0;background:none;font-family:var(--ff-body);font-size:var(--fs-small);color:var(--white);text-decoration:underline;text-underline-offset:.2em;cursor:pointer}
+.uw-footer .uw-footer__small{margin:0;font-size:var(--fs-meta);line-height:var(--lh-small);color:var(--white)}
+.uw-footer__disclaimer{max-width:120ch}
+.uw-footer__end{display:flex;align-items:center;justify-content:space-between;gap:var(--space-m)}
+.uw-footer a.uw-footer__top{display:inline-flex;align-items:center;gap:6px;min-height:44px;font-size:.9375rem;font-weight:var(--fw-bold);text-decoration:underline;text-underline-offset:.2em}
+@media (min-width:992px){
+  .uw-footer__inner{padding:var(--space-m) var(--space-l) var(--space-xl)}
+  .uw-footer__nav,.uw-footer__mid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-xl);align-items:start;padding:var(--space-xl) 0}
+  .uw-footer__col,.uw-footer__col:not(.uw-footer__contact){padding:0}
+  .uw-footer__col+.uw-footer__col{border-top:0}
+  .uw-footer .uw-footer__col .uw-footer__h{margin:0 0 var(--space-s)}
+  .uw-footer__col:not(.uw-footer__contact) .uw-footer__list{padding-bottom:0}
+  .uw-footer__locale,.uw-footer__trust{padding-top:0;border-top:0}
+  .uw-footer__pills{flex-wrap:nowrap;gap:6px}
+  .uw-footer__pill{gap:6px;padding:0 10px}
+  .uw-footer__trust{gap:28px}
+  .uw-footer__bottom{gap:var(--space-l);padding-top:var(--space-xl)}
+  /* The legal links sit on the logo's baseline, not centred on it. */
+  .uw-footer__brand{flex-direction:row;flex-wrap:wrap;align-items:flex-end;gap:var(--space-2xl)}
+}
+@media (min-width:992px) and (hover:hover) and (pointer:fine){
+  .uw-footer__row{min-height:32px;font-size:.9375rem}
+  .uw-footer .uw-footer__legal a,.uw-footer .uw-footer__legal button{min-height:0;line-height:1.5}
 }
 
 /* ── styles.css ── */
@@ -1281,11 +1335,10 @@ h6{font-size:var(--fs-h6);font-weight:var(--fw-semibold);line-height:var(--lh-h6
    the areas stay as drawn, so a hover state never appears beside a control.
    The tooltip trigger already does this for every pointer. */
 @media (pointer:coarse){
-.uw-badge__remove,.uw-toast__x,.uw-qty--md button,.uw-sw button{position:relative}
-.uw-badge__remove::after,.uw-toast__x::after,.uw-search__x::after{content:"";position:absolute;top:50%;left:50%;width:44px;height:44px;transform:translate(-50%,-50%)}
+.uw-badge__remove,.uw-qty--md button{position:relative}
+.uw-badge__remove::after,.uw-search__x::after{content:"";position:absolute;top:50%;left:50%;width:44px;height:44px;transform:translate(-50%,-50%)}
 .uw-qty--md button::after{content:"";position:absolute;top:-3px;bottom:-3px;left:0;right:0}
 .uw-qty--md .uw-qty__down::after{left:-6px}
 .uw-qty--md .uw-qty__up::after{right:-6px}
-.uw-sw button::after{content:"";position:absolute;left:0;right:0;top:50%;height:44px;transform:translateY(-50%)}
 .uw-acc--filter .uw-check,.uw-pop--check .uw-check{--uw-check-row:44px}
 }

@@ -338,6 +338,10 @@
         "alert-triangle.svg",
         "arrow-back-up.svg",
         "arrows-sort.svg",
+        "brand-facebook.svg",
+        "brand-instagram.svg",
+        "brand-linkedin.svg",
+        "brand-telegram.svg",
         "cannabis.svg",
         "check.svg",
         "chevron-down.svg",
@@ -356,10 +360,12 @@
         "help-circle.svg",
         "info-circle.svg",
         "leaf.svg",
+        "link.svg",
         "lock.svg",
         "mail.svg",
         "map-pin.svg",
         "menu-2.svg",
+        "message-circle.svg",
         "minus.svg",
         "news.svg",
         "package.svg",
@@ -416,6 +422,48 @@
           "name": "arrows-sort.svg",
           "sha256": "aca7df39f8571dc14801bc3ddd90b84b9aab54c76e635a34ea205a26fd1843a5",
           "size": 270,
+          "type": "image/svg+xml"
+        },
+        "brand-facebook.svg": {
+          "blob": "8f11332f58afb7639c2b9bc5d7273f4f",
+          "name": "brand-facebook.svg",
+          "sha256": "747213ec5c7c28eae6af999a332c29985a5e52ca29f0d635e2949890f7de28c0",
+          "size": 277,
+          "type": "image/svg+xml"
+        },
+        "brand-instagram.svg": {
+          "blob": "703584b76f4cbbcf5caca7e5147a13e4",
+          "name": "brand-instagram.svg",
+          "sha256": "2fb7d0f9a9c9b69cfcf6bea05d748ff37aeaa18fc57fb7a9a36abda272b47588",
+          "size": 360,
+          "type": "image/svg+xml"
+        },
+        "brand-linkedin.svg": {
+          "blob": "ee7500b850630d79202c21963bebe69c",
+          "name": "brand-linkedin.svg",
+          "sha256": "4ab4e0595c7ef1d1cdd96ac8bbdf00a79d7cf58a61386bcf3dd49bd2ea003051",
+          "size": 400,
+          "type": "image/svg+xml"
+        },
+        "brand-telegram.svg": {
+          "blob": "31e71d05ecf7114e476b06090781d3e1",
+          "name": "brand-telegram.svg",
+          "sha256": "b28fba13ee0cda90599b66522145fdc21404a5cc27b6744194d44908c2f0bcb2",
+          "size": 245,
+          "type": "image/svg+xml"
+        },
+        "link.svg": {
+          "blob": "6e86de4f1f85f6abb45f2fd961cb82eb",
+          "name": "link.svg",
+          "sha256": "b4c898d7e94afa5a6bb7a427f5c337d9679ea83abbc7dc46965b4f7c23e98ee7",
+          "size": 382,
+          "type": "image/svg+xml"
+        },
+        "message-circle.svg": {
+          "blob": "6d0ab619f3ddfbe4802d234fa190cc78",
+          "name": "message-circle.svg",
+          "sha256": "221a8671bb905f215936b2ca41d1f4e54949f02aa46508e2a249282717135f05",
+          "size": 379,
           "type": "image/svg+xml"
         },
         "cannabis.svg": {
@@ -830,9 +878,9 @@
   "title": "uWeed Design System",
   "lastChange": {
     "by": "Loic",
-    "at": "2026-11-13T14:24:00Z",
-    "via": "Claude (Cowork)",
-    "note": "13 Nov 2026: Imagery page now shows the supplied files (4 category images, 3 partner logos) on white, light-gray and a 380 px phone, with a measured check against the framing guides; files stored in the new Imagery asset group. Earlier today: imagery rules in the README, tokens category-frame-ratio and brand-logo-frame-ratio, Carousel guidelines and preview."
+    "at": "2026-11-16T18:10:00Z",
+    "via": "Claude (chat)",
+    "note": "16 Nov 2026: Footer redesigned (one markup; contact, three link columns as disclosures below lg, trust band, legal row; no switchers). IconList cards variant. Icons +6 (brand-instagram/facebook/telegram/linkedin, message-circle, link). DM Sans Italic 400; newsletter legal note italic."
   },
   "upgraded": {
     "v": 1,

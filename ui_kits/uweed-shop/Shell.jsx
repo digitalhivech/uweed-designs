@@ -53,16 +53,31 @@ function Header({ cartCount = 0, favCount = 0, onCart, onNav, active }) {
 const btn = { width: 44, height: 44, display: "grid", placeItems: "center", border: 0, background: "none", color: "var(--dark-blue)", cursor: "pointer", borderRadius: "50%" };
 const dot = { position: "absolute", top: 4, right: 2 };
 
+const L = (label) => ({ label, href: "#" });
 const FOOTER_COLS = [
-  { heading: "Shop", links: [{ label: "CBD Blüten", href: "#" }, { label: "CBD Öl", href: "#" }, { label: "Hanftee", href: "#" }, { label: "Kosmetik", href: "#" }, { label: "Hash & Pollen", href: "#" }] },
-  { heading: "Marken", links: [{ label: "Sweed", href: "#" }, { label: "B-Chill", href: "#" }, { label: "Slow Weed", href: "#" }, { label: "Qualicann", href: "#" }] },
-  { heading: "Hilfe", links: [{ label: "Versand & Lieferung", href: "#" }, { label: "Rückgabe", href: "#" }, { label: "Häufige Fragen", href: "#" }, { label: "Kontakt", href: "#" }] },
-  { heading: "Über uWeed", links: [{ label: "Laborberichte", href: "#" }, { label: "Blog", href: "#" }, { label: "AGB", href: "#" }, { label: "Datenschutz", href: "#" }] },
+  { heading: "Online CBD Shop", links: ["CBD Öl", "CBD Blüten", "Hash & Konzentrate", "Vapes", "CBG", "Wellness", "Headshop", "Neuheiten", "Angebote", "Alle Marken"].map(L) },
+  { heading: "CBD Wissen", links: ["Was ist CBD?", "CBD vs THC", "Ist CBD legal in der Schweiz?", "CBD Dosierung", "CBD Öl Testsieger", "Alle Artikel"].map(L) },
+  { heading: "Service & Hilfe", links: ["Versand & Lieferung", "Rückgabe & Umtausch", "Häufige Fragen (FAQ)", "Über uns", "uWeed Club"].map(L) },
 ];
 
+/* The footer as redesigned on 16 November 2026; see Footer's guidelines. */
 function ShopFooter() {
-  return <Footer columns={FOOTER_COLS} copyright="© 2026 uWeed · Zürich, Schweiz"
-    switches={[{ label: "Währung", options: ["CHF", "EUR"], value: "CHF" }, { label: "Sprache", options: ["DE", "FR", "EN"], value: "DE" }]} />;
+  return <Footer
+    contact={{ items: [
+      { icon: "mail", label: "hello@uweed.ch", href: "#" },
+      { icon: "phone", label: "+41 44 505 76 66", href: "#" },
+      { icon: "message-circle", label: "Live-Chat öffnen", onClick: () => {}, haspopup: "dialog" },
+      { icon: "clock", label: "Mo bis Fr, 9:00 bis 17:00" },
+      { icon: "link", label: "Zur Kontaktseite", href: "#" },
+    ] }}
+    columns={FOOTER_COLS}
+    social={{ links: ["instagram", "facebook", "telegram", "linkedin"].map((n) => ({ network: n, label: "uWeed auf " + n[0].toUpperCase() + n.slice(1).replace("edin", "edIn"), href: "#" })) }}
+    locale={{ controls: [{ label: "Sprache", value: "Deutsch" }, { label: "Währung", value: "CHF" }] }}
+    payments={{ methods: ["TWINT", "PostFinance", "Visa", "Mastercard", "Apple Pay", "Google Pay", "QR-Rechnung"].map((label) => ({ label })) }}
+    memberships={{ items: [L("IG Hanf"), L("MedCan")] }}
+    legalLinks={[L("Impressum"), L("AGB"), L("Datenschutzrichtlinie"), L("Cookie-Richtlinie"), { label: "Cookie-Einstellungen", onClick: () => {} }]}
+    disclaimer={<><b>Verkauf nur an Personen ab 18 Jahren.</b> Alle Produkte enthalten unter 1% THC und sind in der Schweiz legal.</>}
+  />;
 }
 
 function Page({ crumbs, children }) {
