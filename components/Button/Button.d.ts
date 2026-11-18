@@ -4,13 +4,13 @@
  * `buy` advances a purchase, `nav` takes the user somewhere.
  */
 export interface ButtonProps {
-  /** Purpose, not prominence. `apply` is the coupon form's outline green and
+  /** Purpose, not prominence. `danger` is the red button that confirms a deletion, only inside a confirmation modal. `apply` is the coupon form's outline green and
    *  the tile's "choose size". `unavailable` means "not at all" — sold out,
    *  withdrawn — as opposed to `disabled`'s "not right now": transparent
    *  fill, --dark-gray border and label (10.86:1 on white), rendered with
    *  disabled + aria-disabled. Gets neither a tooltip nor an explanation
    *  line — the label is the statement. Icon-only form: aria-label + title. */
-  variant?: "buy" | "nav" | "outline" | "text" | "apply" | "unavailable";
+  variant?: "buy" | "nav" | "outline" | "text" | "apply" | "unavailable" | "danger";
   /** Override the rendered element. Defaults to `a` when href is set. */
   as?: keyof JSX.IntrinsicElements;
   /** Renders an anchor. Use for navigation; the `nav` variant is usually a link. */

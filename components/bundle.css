@@ -1342,3 +1342,10 @@ div.uw-footer__row{cursor:default}
 .uw-qty--md .uw-qty__up::after{right:-6px}
 .uw-acc--filter .uw-check,.uw-pop--check .uw-check{--uw-check-row:44px}
 }
+
+/* ---- Delete is red (17 November 2026) ----------------------------- */
+/* danger: the one red button, only inside a confirmation. White on medium-red 5.05:1; hover turns it white with a red label (5.05:1). */
+.uw-btn--danger{background:var(--medium-red);border-color:var(--medium-red);color:var(--white)}
+@media (hover:hover) and (pointer:fine){.uw-btn--danger:hover{background:var(--white);color:var(--medium-red)}}
+/* Every bin that removes something is red at rest, not only on hover. */
+.uw-qty__down.is-remove{color:var(--medium-red)}

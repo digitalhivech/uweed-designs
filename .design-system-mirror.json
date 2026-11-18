@@ -1,13 +1,13 @@
 {
   "source": "https://claude.ai/artifact/JyZjDAewAEusKwmN6LbvVH",
-  "source_version": "1794848770-978b",
+  "source_version": "1794912030-7b26",
   "last_change": {
     "by": "Loic",
-    "at": "2026-11-16T18:10:00Z",
-    "via": "Claude (chat)",
-    "note": "16 Nov 2026: Footer redesigned (one markup; contact, three link columns as disclosures below lg, trust band, legal row; no switchers). IconList cards variant. Icons +6 (brand-instagram/facebook/telegram/linkedin, message-circle, link). DM Sans Italic 400; newsletter legal note italic."
+    "at": "2026-11-17T10:30:00Z",
+    "via": "Claude (Cowork)",
+    "note": "17 Nov 2026: delete is red. New Button variant danger (only inside a deletion confirmation); the bin in QuantitySelector is medium-red at rest. Modal example and preview use the danger button."
   },
-  "mirrored_at": "2026-11-17",
+  "mirrored_at": "2026-11-18",
   "files": 274,
   "assets": {
     "Icons": 54,

@@ -7,7 +7,7 @@ The design system there is the master. This copy exists so that other tools and 
 Never edit files here: a change made here is overwritten by the next copy. Change the design system,
 and the copy follows.
 
-Copied from version `1794848770-978b` on 2026-11-17. Last recorded change in the system: 2026-11-16T18:10:00Z (Loic). 16 Nov 2026: Footer redesigned (one markup; contact, three link columns as disclosures below lg, trust band, legal row; no switchers). IconList cards variant. Icons +6 (brand-instagram/facebook/telegram/linkedin, message-circle, link). DM Sans Italic 400; newsletter legal note italic.
+Copied from version `1794912030-7b26` on 2026-11-18. Last recorded change in the system: 2026-11-17T10:30:00Z (Loic). 17 Nov 2026: delete is red. New Button variant danger (only inside a deletion confirmation); the bin in QuantitySelector is medium-red at rest. Modal example and preview use the danger button.
 
 ## What is where
 

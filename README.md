@@ -328,6 +328,13 @@ Each component has a live preview, its guidelines and its types:
 - **Feedback**: `Message`, `StockStatus`, `Skeleton`, `Spinner`
 - **No toasts** (decided 16 November 2026). Nothing slides in and leaves on its own. A confirmation is the changed state itself: adding to the cart opens the `CartDrawer`, a saved favourite fills the heart, an applied coupon becomes its chip. Feedback that must be read stays on the page as a `Message` or a field error.
 - **Overlays**: `Modal`, `AgeGate`, `CartDrawer`, `FilterPanel`
+- **Which overlay** (decided 17 November 2026). Start with a page; use the lightest overlay that does the job: popover, then sheet or drawer, then modal.
+  - **Modal** (the centred box), three uses only: the `AgeGate` (no close, no Escape), login from the header account icon (the account page stays the main route), and confirming a deletion (focus on "Abbrechen", no Escape).
+  - **Drawer**: the `CartDrawer`, the mobile menu and the mobile `FilterPanel`.
+  - **Search** is part of the header: on desktop the bar stays in the header and suggestions open in a panel below it, not a modal; on a phone the icon opens a full-screen search view that closes with Back as well as its close button.
+  - **Size picker** from a product tile: a popover on the tile on desktop, a sheet from the bottom on a phone.
+  - **No quick view**, and no entry pop-ups for the newsletter or discounts.
+  - Every overlay that blocks the page behaves the same: focus moves in and stays inside, Escape and the close button close it (except the age gate and a deletion confirmation), focus returns to what opened it, and the page behind cannot be reached by keyboard. Never an overlay on an overlay, except a confirmation inside a drawer.
 - **Commerce**: `ProductTile`, `PdpGallery`, `OrderInfoBar`, `OrderSummary`, `ProductInfoTable`
 - **Content**: `ArticleRow`, `BlogCard`, `ContentTable` (CSS only, no React component), `IconList` (as a list, or as cards for the band above the footer), `NewsletterBlock`
 - **Chrome**: `SearchBar`, `Footer`
