@@ -878,9 +878,9 @@
   "title": "uWeed Design System",
   "lastChange": {
     "by": "Loic",
-    "at": "2026-11-17T10:30:00Z",
+    "at": "2026-11-18T17:30:14Z",
     "via": "Claude (Cowork)",
-    "note": "17 Nov 2026: delete is red. New Button variant danger (only inside a deletion confirmation); the bin in QuantitySelector is medium-red at rest. Modal example and preview use the danger button."
+    "note": "18 Nov 2026: hero banner pictures added to Imagery. Two clean files per banner (phone 3:4, 1320 × 1760 px; desktop 21:9, 2520 × 1080 px), where the subject sits, and the dark-blue fade the page draws over them. Surfaces and cards names that fade as the one exception to flat colour. Open item: the hero between 768 and 1199px."
   },
   "upgraded": {
     "v": 1,

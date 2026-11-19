@@ -197,12 +197,12 @@ Set headings in **Poppins** (`font-heading`) and everything else in **DM Sans** 
 
 ### Surfaces and cards
 
-- Use flat colour. The only gradient is the skeleton shimmer. No patterns, textures, grain, blur or `backdrop-filter`.
+- Use flat colour. The only gradients are the skeleton shimmer and the hero banner fade (see *Imagery*, hero banner pictures). No patterns, textures, grain, blur or `backdrop-filter`.
 - Put pages on `white` and grouped blocks on `light-gray`. The footer, tooltips and the lightbox sit on `dark-blue`.
 - Show product imagery on `white` on the tile and `light-gray` in the gallery frame, so the product carries the colour.
 - Build every card from `Card`: white, a `line` hairline, `radius-card`, `shadow-xs`. Use the four variants and no fifth: default, `link` (lifts), `flat` (inside a container), `tint` (`light-gray`, no border). Never nest cards more than one deep, and drop the inner frame.
-- Protect elements over photographs with a drop shadow, never a capsule or gradient: the favourites heart is the worked example.
-- Use transparency only for the modal and drawer overlay `#0B102A80`, the lightbox `#0B102AE6`, `.on-dark` dividers, the shadow scale, and `film-oos` over a sold-out tile.
+- Protect elements over photographs with a drop shadow, never a capsule or gradient: the favourites heart is the worked example. The one exception is the hero banner, where a `dark-blue` fade carries the text (see *Imagery*, hero banner pictures).
+- Use transparency only for the modal and drawer overlay `#0B102A80`, the lightbox `#0B102AE6`, `.on-dark` dividers, the shadow scale, `film-oos` over a sold-out tile, and the hero banner fade.
 
 ### Elevation
 
@@ -264,9 +264,9 @@ The approved kit (August 2026) is in the **Logos** asset group and shown on the 
 
 ### Imagery
 
-The look of uWeed's imagery is defined in the **[uWeed Imagery Master Guide](https://docs.google.com/document/d/1UlCUc-Xgds9ZIqRwG1SAkIVsz2cYtQL2rLFGwwReWzU/edit)**. This system holds the sizing, framing and display rules for two kinds of image: product category images and partner brand logos (November 2026). The files themselves are not in this system: every image in the previews is a placeholder that shows the framing, not artwork. The `Imagery` foundations page shows both rules side by side, on a desktop and a 380px phone.
+The look of uWeed's imagery is defined in the **[uWeed Imagery Master Guide](https://docs.google.com/document/d/1UlCUc-Xgds9ZIqRwG1SAkIVsz2cYtQL2rLFGwwReWzU/edit)**. This system holds the sizing, framing and display rules for three kinds of image: product category images, partner brand logos and hero banner pictures (November 2026). The files themselves are not in this system: every image in the previews is a placeholder that shows the framing, not artwork. The `Imagery` foundations page shows the first two side by side, on a desktop and a 380px phone; hero banner pictures are not on that page yet.
 
-Blog imagery is **16:9 everywhere, from one source file**: the featured image at the top of an article, the card on a desktop and the row on a phone all show the same cut. No place gets its own crop or its own shape. Product photography, blog images, banners and the uWeed logo keep their own rules; the two below apply to category images and partner logos only.
+Blog imagery is **16:9 everywhere, from one source file**: the featured image at the top of an article, the card on a desktop and the row on a phone all show the same cut. No place gets its own crop or its own shape. Product photography, blog images, other banners and the uWeed logo keep their own rules; the three below apply to category images, partner logos and hero banner pictures only.
 
 #### Product category images
 
@@ -315,6 +315,51 @@ These rules cover supplier and partner brand logos, not the uWeed logo (see *Log
 .brand-logo     { aspect-ratio: var(--brand-logo-frame-ratio); width: 100%; height: auto; object-fit: contain; background: none; }
 ```
 
+#### Hero banner pictures
+
+The homepage hero banner shows one picture per banner, edge to edge, with the headline, one sentence and the buttons set in `white` on the picture. A `dark-blue` fade between picture and text keeps the text readable. Decided on 18 November 2026 on two reference screens: a phone (iPhone 17 Pro, 402 × 714px of the page visible) and a laptop window (1280 × 720px). The hero banner component is not in this system yet; these rules are here so that pictures can be produced for it.
+
+**Asset.** Two files per banner. The text sits at the bottom on a phone and on the left on a desktop, so one cut cannot serve both.
+
+| | Phone | Desktop |
+| --- | --- | --- |
+| Canvas | portrait **3:4** | landscape **21:9** |
+| Master size | **1320 × 1760 px** | **2520 × 1080 px** |
+| Shown at, on the reference screen | 402 × 577px | 1280 × 563px |
+
+- Deliver the picture **clean**: no text, logo, badge, frame or fade in the file. The page adds the fade and the text, so the text stays sharp, translatable and readable by search engines.
+- Opaque, and full bleed to every edge of the canvas.
+- Keep the files light: the first banner's picture is the largest thing the homepage loads. Aim for under 150 KB for the phone file and under 250 KB for the desktop file, as WebP.
+
+**Framing.** The picture fills the hero box and is cut to it. The box is as wide as the screen and as high as the space between the header and the USP bar on the first screen, so its shape changes with the device. The margins below allow for that.
+
+- **Phone: the subject sits in the top 40% of the canvas.** The text starts about 44% down and runs to the bottom. Fade and text cover the lower 60%: keep it calm, mid-tone or darker, and free of faces, products or detail that matters. Only the top 16% is entirely free of the fade.
+- **Phone:** keep anything that matters out of the outer 8% on each side. A narrow, tall phone cuts the sides.
+- **Desktop: the subject sits in the right 40% of the canvas.** The text occupies the left half, which the fade covers: keep it calm. Only the right quarter is entirely free of the fade.
+- **Desktop:** keep the subject within the middle 60% of the height. A wide screen cuts the top and the bottom.
+- **Desktop:** leave the middle of the right edge and the middle of the bottom edge free of anything that matters. The arrow and the progress bars sit there.
+
+**Display.**
+
+- Fill the hero box with `object-fit: cover`.
+- The fade is drawn by the page and never saved into the file. It is flat `dark-blue` (`#0B102A`) at falling opacity, in a straight line from stop to stop. There is no blur.
+- **Phone, one fade from the bottom edge upwards:** 90% at the edge, 65% at 279px, 0% at 484px. Above that the picture is untouched: the top 93px of a 577px-high hero. The distances are fixed in px, because they follow the text and not the height of the picture.
+- **Desktop, two fades.** From the left edge to the right: 90% at the edge, 65% at 460px past the left edge of the text, 0% at 860px past it. On a 1280px window the text starts 104px from the left, which puts the stops at 564px and 964px. From the bottom edge upwards, for the progress bars: 45% at the edge, 0% at 96px.
+- White text on the fade takes a soft shadow, `0 1px 14px #0B102A80`.
+- With these values white text reaches 4.5:1 on any picture on a desktop. On a phone it does so on a mid-tone or dark picture; on a very bright one small text falls to about 3.7:1, which is why the lower part of the phone picture must not be bright.
+- This is the one place where the system sets text on a photograph and uses a gradient to do it (see *Surfaces and cards*). Do not reuse the fade elsewhere.
+
+```css
+/* Hero banner picture: the file stays clean, the page draws the fade */
+.hero-picture { width: 100%; height: 100%; object-fit: cover; }
+.hero-fade    { background: linear-gradient(to top, #0B102AE6 0, #0B102AA6 279px, #0B102A00 484px); }
+@media (min-width: 1200px) { /* bs-breakpoint-xl */
+  .hero-fade  { --hero-text-left: max(104px, (100vw - 1120px) / 2);
+                background: linear-gradient(to top, #0B102A73 0, #0B102A00 96px),
+                            linear-gradient(to right, #0B102AE6 0, #0B102AA6 calc(var(--hero-text-left) + 460px), #0B102A00 calc(var(--hero-text-left) + 860px)); }
+}
+```
+
 ---
 
 ## Components
@@ -360,6 +405,7 @@ Two more groups show the system in use rather than one component at a time:
 These are uWeed's own unresolved decisions. Do not resolve them by accident.
 
 1. **Navigation is blue only.** The Category Filters Final decision withdrew the earlier green pagination and carousel arrows.
+2. **Hero banner between 768 and 1199px.** The hero banner is designed for a phone and for 1200px and wider. Which picture and which fade a tablet takes is not decided.
 
 A page built strictly against this system will not match production until the token corrections ship on the site (`white`, `line`, the five shadows, `radius-pill`, the 16px card radius, and the removal of Poppins 400/500). This system describes the **target**.
 

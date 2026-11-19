@@ -7,7 +7,7 @@ The design system there is the master. This copy exists so that other tools and 
 Never edit files here: a change made here is overwritten by the next copy. Change the design system,
 and the copy follows.
 
-Copied from version `1794912030-7b26` on 2026-11-18. Last recorded change in the system: 2026-11-17T10:30:00Z (Loic). 17 Nov 2026: delete is red. New Button variant danger (only inside a deletion confirmation); the bin in QuantitySelector is medium-red at rest. Modal example and preview use the danger button.
+Copied from version `1795029340-5a4d` on 2026-11-19. Last recorded change in the system: 2026-11-18T17:30:14Z (Loic). 18 Nov 2026: hero banner pictures added to Imagery. Two clean files per banner (phone 3:4, 1320 × 1760 px; desktop 21:9, 2520 × 1080 px), where the subject sits, and the dark-blue fade the page draws over them. Surfaces and cards names that fade as the one exception to flat colour. Open item: the hero between 768 and 1199px.
 
 ## What is where
 
