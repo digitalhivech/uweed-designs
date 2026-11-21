@@ -7,7 +7,7 @@ The design system there is the master. This copy exists so that other tools and 
 Never edit files here: a change made here is overwritten by the next copy. Change the design system,
 and the copy follows.
 
-Copied from version `1795029340-5a4d` on 2026-11-19. Last recorded change in the system: 2026-11-18T17:30:14Z (Loic). 18 Nov 2026: hero banner pictures added to Imagery. Two clean files per banner (phone 3:4, 1320 × 1760 px; desktop 21:9, 2520 × 1080 px), where the subject sits, and the dark-blue fade the page draws over them. Surfaces and cards names that fade as the one exception to flat colour. Open item: the hero between 768 and 1199px.
+Copied from version `1795163989-69ba` on 2026-11-21. Last recorded change in the system: 2026-11-20T08:39:37Z (Loic). 20 Nov 2026: hero banner pictures now cover tablets, with no third file. Below 992px (phones, tablets held upright) the hero takes the phone file and the fade from the bottom; from 992px (tablets held sideways, laptops, desktops) the desktop file and its two fades. The switch moved from 1200px to 992px (bs-breakpoint-lg), the step the footer, the filters and the content tabs use. Added: where each file is anchored and what a tablet cuts off. Open item: the hero height limits.
 
 ## What is where
 

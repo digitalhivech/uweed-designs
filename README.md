@@ -317,43 +317,50 @@ These rules cover supplier and partner brand logos, not the uWeed logo (see *Log
 
 #### Hero banner pictures
 
-The homepage hero banner shows one picture per banner, edge to edge, with the headline, one sentence and the buttons set in `white` on the picture. A `dark-blue` fade between picture and text keeps the text readable. Decided on 18 November 2026 on two reference screens: a phone (iPhone 17 Pro, 402 × 714px of the page visible) and a laptop window (1280 × 720px). The hero banner component is not in this system yet; these rules are here so that pictures can be produced for it.
+The homepage hero banner shows one picture per banner, edge to edge, with the headline, one sentence and the buttons set in `white` on the picture. A `dark-blue` fade between picture and text keeps the text readable. Decided on 18 to 20 November 2026 on three reference screens: a phone (iPhone 17 Pro, 402 × 714px of the page visible), a tablet held upright (768px wide, 950px of the page visible) and a laptop window (1280 × 720px). The hero banner component is not in this system yet; these rules are here so that pictures can be produced for it.
 
-**Asset.** Two files per banner. The text sits at the bottom on a phone and on the left on a desktop, so one cut cannot serve both.
+**Asset.** Two files per banner, and no third one for tablets. The text sits at the bottom on a phone and on the left on a desktop, so one cut cannot serve both. A tablet takes one of the two, by its width.
 
-| | Phone | Desktop |
+| | Phone file | Desktop file |
 | --- | --- | --- |
 | Canvas | portrait **3:4** | landscape **21:9** |
 | Master size | **1320 × 1760 px** | **2520 × 1080 px** |
-| Shown at, on the reference screen | 402 × 577px | 1280 × 563px |
+| Used | below 992px: phones, and tablets held upright | from 992px: tablets held sideways, laptops and desktops |
+| Shown at, on the reference screens | 402 × 577px (phone), 768 × 793px (tablet) | 1280 × 563px |
 
 - Deliver the picture **clean**: no text, logo, badge, frame or fade in the file. The page adds the fade and the text, so the text stays sharp, translatable and readable by search engines.
 - Opaque, and full bleed to every edge of the canvas.
 - Keep the files light: the first banner's picture is the largest thing the homepage loads. Aim for under 150 KB for the phone file and under 250 KB for the desktop file, as WebP.
+- On a tablet the phone file is enlarged: an iPad held upright asks for about 1640px across and the file has 1320px. The picture is slightly softer there than on a phone. That is the price of having no third file.
+
+**Which screen takes which.** The hero changes at 992px (`bs-breakpoint-lg`), the step at which the footer, the filters and the content tabs change too. Below 992px it has the phone arrangement: the phone file, the text at the bottom, centred and at most 560px wide, and the fade from the bottom. From 992px it has the desktop arrangement: the desktop file, the text on the left, and the fades from the left and the bottom. A tablet held upright (768 to 991px) is treated as a wide phone and a tablet held sideways as a small desktop. No tablet has a file, a fade or an arrangement of its own.
 
 **Framing.** The picture fills the hero box and is cut to it. The box is as wide as the screen and as high as the space between the header and the USP bar on the first screen, so its shape changes with the device. The margins below allow for that.
 
 - **Phone: the subject sits in the top 40% of the canvas.** The text starts about 44% down and runs to the bottom. Fade and text cover the lower 60%: keep it calm, mid-tone or darker, and free of faces, products or detail that matters. Only the top 16% is entirely free of the fade.
 - **Phone:** keep anything that matters out of the outer 8% on each side. A narrow, tall phone cuts the sides.
+- **Tablet held upright:** the box is wider than the phone file, so the picture is cut at the bottom, never at the top. On the 768px reference tablet about the lower quarter of the canvas is out of view and the top 30% is free of the fade. Nothing changes for whoever makes the picture: the subject in the top 40% stays in view.
 - **Desktop: the subject sits in the right 40% of the canvas.** The text occupies the left half, which the fade covers: keep it calm. Only the right quarter is entirely free of the fade.
 - **Desktop:** keep the subject within the middle 60% of the height. A wide screen cuts the top and the bottom.
 - **Desktop:** leave the middle of the right edge and the middle of the bottom edge free of anything that matters. The arrow and the progress bars sit there.
+- **Tablet held sideways and narrow laptop windows (992 to about 1100px):** the box is narrower than the desktop file, so the picture is cut on the left, never on the right. The fade from the left ends 964px from the left edge, so here it reaches almost across the picture and the subject is dimmer than on a 1280px window.
 
 **Display.**
 
-- Fill the hero box with `object-fit: cover`.
+- Fill the hero box with `object-fit: cover`. Anchor the phone file at its top edge and the desktop file at its right edge. A tablet then cuts the bottom of the phone file and a narrow window the left of the desktop file, which is where the fade and the text are.
 - The fade is drawn by the page and never saved into the file. It is flat `dark-blue` (`#0B102A`) at falling opacity, in a straight line from stop to stop. There is no blur.
-- **Phone, one fade from the bottom edge upwards:** 90% at the edge, 65% at 279px, 0% at 484px. Above that the picture is untouched: the top 93px of a 577px-high hero. The distances are fixed in px, because they follow the text and not the height of the picture.
-- **Desktop, two fades.** From the left edge to the right: 90% at the edge, 65% at 460px past the left edge of the text, 0% at 860px past it. On a 1280px window the text starts 104px from the left, which puts the stops at 564px and 964px. From the bottom edge upwards, for the progress bars: 45% at the edge, 0% at 96px.
+- **Below 992px (phone, and tablet held upright), one fade from the bottom edge upwards:** 90% at the edge, 65% at 279px, 0% at 484px. Above that the picture is untouched: the top 93px of a 577px-high hero on the phone, the top 309px of a 793px-high hero on the tablet. The distances are fixed in px, because they follow the text and not the height of the picture.
+- **From 992px (desktop, and tablet held sideways), two fades.** From the left edge to the right: 90% at the edge, 65% at 460px past the left edge of the text, 0% at 860px past it. On a 1280px window the text starts 104px from the left, which puts the stops at 564px and 964px. From the bottom edge upwards, for the progress bars: 45% at the edge, 0% at 96px.
 - White text on the fade takes a soft shadow, `0 1px 14px #0B102A80`.
-- With these values white text reaches 4.5:1 on any picture on a desktop. On a phone it does so on a mid-tone or dark picture; on a very bright one small text falls to about 3.7:1, which is why the lower part of the phone picture must not be bright.
+- With these values white text reaches 4.5:1 on any picture on a desktop. Below 992px it does so on a mid-tone or dark picture; on a very bright one small text falls to about 3.7:1 on a phone and 3.6:1 on a tablet, which is why the lower part of the phone file must not be bright.
 - This is the one place where the system sets text on a photograph and uses a gradient to do it (see *Surfaces and cards*). Do not reuse the fade elsewhere.
 
 ```css
 /* Hero banner picture: the file stays clean, the page draws the fade */
-.hero-picture { width: 100%; height: 100%; object-fit: cover; }
+.hero-picture { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
 .hero-fade    { background: linear-gradient(to top, #0B102AE6 0, #0B102AA6 279px, #0B102A00 484px); }
-@media (min-width: 1200px) { /* bs-breakpoint-xl */
+@media (min-width: 992px) { /* bs-breakpoint-lg: tablets held sideways, laptops, desktops */
+  .hero-picture { object-position: right center; }
   .hero-fade  { --hero-text-left: max(104px, (100vw - 1120px) / 2);
                 background: linear-gradient(to top, #0B102A73 0, #0B102A00 96px),
                             linear-gradient(to right, #0B102AE6 0, #0B102AA6 calc(var(--hero-text-left) + 460px), #0B102A00 calc(var(--hero-text-left) + 860px)); }
@@ -405,7 +412,7 @@ Two more groups show the system in use rather than one component at a time:
 These are uWeed's own unresolved decisions. Do not resolve them by accident.
 
 1. **Navigation is blue only.** The Category Filters Final decision withdrew the earlier green pagination and carousel arrows.
-2. **Hero banner between 768 and 1199px.** The hero banner is designed for a phone and for 1200px and wider. Which picture and which fade a tablet takes is not decided.
+2. **Hero banner height limits.** Proposed on the build card and not confirmed: the hero is never lower than 480px or higher than 800px below 992px, and never lower than 440px or higher than 640px from 992px.
 
 A page built strictly against this system will not match production until the token corrections ship on the site (`white`, `line`, the five shadows, `radius-pill`, the 16px card radius, and the removal of Poppins 400/500). This system describes the **target**.
 
